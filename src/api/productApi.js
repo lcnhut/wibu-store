@@ -1,0 +1,3 @@
+const productApi = {};
+
+export { productApi };
