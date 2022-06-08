@@ -1,12 +1,17 @@
 import { Product } from "./pages";
-import { Button } from "./components";
+import { Button, Navbar } from "./components";
 import "./App.scss";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Product />
-      <Button label="Click me!" />
+      <Navbar />
+
+      <Routes>
+        <Route path="/" index element={<Product />} />
+        <Route path="*" />
+      </Routes>
     </div>
   );
 }
