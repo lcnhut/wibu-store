@@ -1,3 +1,14 @@
-const productApi = {};
+import instance from "../utils/AxiosConfig/AxiosConfig";
 
-export { productApi };
+const productApi = {
+  getAll: () =>
+    instance
+      .get("products")
+      .then((response) => {
+        return response;
+      })
+      .catch((e) => {
+        console.log(e);
+      }),
+};
+export default productApi;
