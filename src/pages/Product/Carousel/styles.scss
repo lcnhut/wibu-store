@@ -1,0 +1,15 @@
+.carousel__wrapper {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-color: red;
+  .carousel__item {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    // background-color: blue;
+    .carousel__content {
+      position: absolute;
+    }
+  }
+}

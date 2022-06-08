@@ -1,6 +1,11 @@
-import React from "react";
-import "./Product.scss";
+import React from 'react';
+import './Product.scss';
+import Carousel from './Carousel';
 
 export default function Product() {
-  return <div>Product</div>;
+  return (
+    <div>
+      <Carousel />
+    </div>
+  );
 }
