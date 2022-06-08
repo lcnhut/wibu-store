@@ -1,6 +1,6 @@
-import { Product } from './pages';
-import { Button } from './components';
-import './App.scss';
+import { Product } from "./pages";
+import { Button } from "./components";
+import "./App.scss";
 
 function App() {
   return (
