@@ -16,19 +16,20 @@ export default function Navbar() {
       />
       <ul className="navbar__links">
         <li className="navbar__link">
-          <a>HOME</a>
+          <NavLink to="/">HOME</NavLink>
+          <div className="navbar__dropdown"></div>
         </li>
         <li className="navbar__link">
-          <a>SHOP</a>
+          <NavLink to="/Shop">SHOP</NavLink>
         </li>
         <li className="navbar__link">
-          <a>FEATURED</a>
+          <NavLink to="/Feature"> FEATURE</NavLink>
         </li>
         <li className="navbar__link">
-          <a>PAGES</a>
+          <NavLink to="/Feature"> PAGES</NavLink>
         </li>
         <li className="navbar__link">
-          <a>BLOGS</a>
+          <NavLink to="/Feature"> BLOGS</NavLink>
         </li>
       </ul>
       <div className="navbar__icon">
