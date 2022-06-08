@@ -15,6 +15,52 @@ API: https://629f1565461f8173e4e04579.mockapi.io/products
 
 Trello: https://trello.com/invite/b/HTiUAbHk/c0f783d981f2179a58eb8821aefa88a9/sneaker
 
+### API Usage
+  1. GET all products -> Endpoint: /product
+ Response:
+ ```
+    [
+      {
+        "id": "number",
+        "name": "string",
+        "image": "string",
+        "price": "string",
+        "inStock": "string",
+        "description": "string";
+      },
+      {
+        "id": "number",
+        "name": "string",
+        "image": "string",
+        "price": "string",
+        "inStock": "string",
+        "description": "string";
+      },
+    ]
+  ```
+  2. POST create product -> Endpoint: /product
+ ```
+    {
+      "name": "string",
+      "image": "string",
+      "price": "string",
+      "inStock": "string",
+      "description": "string";
+    }
+ ```
+   3. PUT edit product -> Endpoint: /product/{productId} 
+ ```
+    {
+      "name": "string",
+      "image": "string",
+      "price": "string",
+      "inStock": "string",
+      "description": "string";
+    }
+ ```
+    
+   4. DELETE product -> Endpoint: /product/{productId}
+  
 ### Setting Up Environment 
 ```
   Node.js >= v14.17.4
