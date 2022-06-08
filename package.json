@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
+    "animate.css": "^4.1.1",
     "antd": "^4.21.0",
     "axios": "^0.27.2",
     "lodash": "^4.17.21",

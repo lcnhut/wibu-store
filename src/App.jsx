@@ -6,7 +6,6 @@ function App() {
   return (
     <div className="App">
       <Product />
-      {/* <Button label="Click me!" /> */}
     </div>
   );
 }

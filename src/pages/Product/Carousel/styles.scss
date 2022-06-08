@@ -2,14 +2,56 @@
   height: 100vh;
   width: 100vw;
   position: relative;
-  background-color: red;
+
   .carousel__item {
     height: 100vh;
     width: 100vw;
     position: relative;
-    // background-color: blue;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     .carousel__content {
-      position: absolute;
+      position: relative;
+      padding: 3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: left;
+      padding-left: 15%;
+      h3 {
+        font-size: 1.5rem;
+        color: #7d7b7b;
+        &:first-child {
+          font-size: 1.2rem;
+          letter-spacing: 7px;
+        }
+      }
+      h1 {
+        font-size: 4rem;
+        letter-spacing: 5px;
+        margin: 0;
+      }
+      .carousel__content__btn {
+        border: 1px solid black;
+        color: black;
+        background-color: transparent;
+        cursor: pointer;
+        font-weight: 500;
+        transition: 0.3s;
+        &:hover {
+          background-color: #cfa485;
+          color: white;
+          border: 1px solid transparent;
+        }
+      }
+    }
+  }
+  .slick-dots {
+    li {
+      background-color: black;
+      min-height: 5px;
+      button {
+        height: 100% !important;
+      }
     }
   }
 }

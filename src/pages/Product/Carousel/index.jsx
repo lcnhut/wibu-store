@@ -1,6 +1,7 @@
 import React from 'react';
 import { Carousel as CarouselAnt } from 'antd';
 import './styles.scss';
+import 'animate.css';
 
 const Carousel = () => {
   const data = [
@@ -23,17 +24,35 @@ const Carousel = () => {
       box_title2: 'Woven Raffia Upper With Leather Sole',
     },
   ];
+
+  const onChange = (currentSlide) => {
+    console.log(currentSlide);
+  };
   return (
-    <CarouselAnt className="carousel__wrapper">
+    <CarouselAnt autoplay className="carousel__wrapper" afterChange={onChange}>
       {data.map((item, id) => (
-        <div className="carousel__item" key={id}>
+        <div key={id}>
           <div
-            style={{ backgroundColor: 'blue' }}
-            className="carousel__content"
+            style={{ backgroundImage: `url(${item.img})` }}
+            className="carousel__item"
           >
-            <h3>{item.box_title1}</h3>
-            <h1>{item.box_title}</h1>
-            <h3>{item.box_title2}</h3>
+            <div className="carousel__content">
+              <h3 className="animate__animated animate__fadeInRight">
+                {item.box_title1}
+              </h3>
+              <h1 className="animate__animated animate__fadeInLeft">
+                {item.box_title}
+              </h1>
+              <h3 className="animate__animated animate__fadeInUp">
+                {item.box_title2}
+              </h3>
+              <button
+                style={{ padding: '10px 35px' }}
+                className="carousel__content__btn"
+              >
+                SHOP NOW
+              </button>
+            </div>
           </div>
         </div>
       ))}
