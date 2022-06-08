@@ -1,16 +1,19 @@
   <h1 align="center">Wibu Store</h1>
 
-<!-- ### Check it out  👇
-https://react-basic-nfq-course.netlify.app/ -->
+## Check it out  👇
+https://wibustore.netlify.app/
 
 ## About the project 🤡
-
 This project is an e-commerce website for selling shoes that provide some basic functionalities for Admin user and Regular user
 
 ## Getting Started  😎
-
 This is an example of how you may give instructions on setting up our project locally.
 To get a local copy up and running follow these simple example steps.
+
+### Links
+API: https://629f1565461f8173e4e04579.mockapi.io/products
+
+Trello: https://trello.com/invite/b/HTiUAbHk/c0f783d981f2179a58eb8821aefa88a9/sneaker
 
 ### Setting Up Environment 
 ```
