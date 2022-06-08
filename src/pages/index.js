@@ -1,3 +1,3 @@
 import Product from "./Product/Product";
-
-export { Product };
+import AdminPage from "./Admin/AdminPage";
+export { Product, AdminPage };
