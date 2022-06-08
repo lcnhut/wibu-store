@@ -17,7 +17,16 @@ export default function Navbar() {
       <ul className="navbar__links">
         <li className="navbar__link">
           <NavLink to="/">HOME</NavLink>
-          <div className="navbar__dropdown"></div>
+          <div className="navbar__dropdown">
+            <div className="">
+              <div className="title">SHOP LAYOUTS</div>
+              <ul className="list__dropdown__items">
+                <li className="list__dropdown__item">Pagination</li>
+                <li className="list__dropdown__item">Ajax Load More</li>
+                <li className="list__dropdown__item">Ajax Load More</li>
+              </ul>
+            </div>
+          </div>
         </li>
         <li className="navbar__link">
           <NavLink to="/Shop">SHOP</NavLink>
