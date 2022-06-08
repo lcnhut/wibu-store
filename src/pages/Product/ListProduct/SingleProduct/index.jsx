@@ -5,7 +5,7 @@ const SingleProduct = ({ product }) => {
   return (
     <div className="single__product__wrapper">
       <div className="single__product__image">
-        <img height="100px" src={product.image} alt="product image" />
+        <img src={product.image} alt="product image" />
       </div>
       <div className="single__product__content">
         <h3>{product.name}</h3>

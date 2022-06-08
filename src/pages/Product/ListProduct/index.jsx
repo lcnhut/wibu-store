@@ -21,7 +21,7 @@ const ListProduct = () => {
     getAllProduct();
   }, []);
   return (
-    <Row className="listproduct__wrapper">
+    <Row gutter={[16, 26]} className="listproduct__wrapper">
       {products &&
         products.map((product, id) => (
           <Col className="listproduct__item" key={id} span={6}>

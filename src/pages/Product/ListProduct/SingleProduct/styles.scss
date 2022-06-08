@@ -1,5 +1,14 @@
 .single__product__wrapper {
   overflow: hidden;
-  background-color: red;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  .single__product__image {
+    overflow: hidden;
+    height: 20rem;
+    img {
+      height: 100%;
+    }
+  }
 }
