@@ -1,0 +1,42 @@
+.navbar__logo {
+  //   background-image: url("https://cdn.shopify.com/s/files/1/0277/0472/1542/files/logo.png?v=1589452027");
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0;
+  align-items: center;
+}
+.navbar__logo {
+  width: 100%;
+  background-repeat: none;
+}
+.navbar__logo {
+  width: 150px;
+  height: 65px;
+}
+.navbar__links {
+  display: flex;
+  list-style-type: none;
+  flex: 1;
+  justify-content: center;
+}
+.navbar__link {
+  padding: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+}
+.navbar__link:hover {
+  color: #cea384;
+}
+.navbar__icon {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar__link a{
+    
+}

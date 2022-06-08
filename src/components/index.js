@@ -1,3 +1,3 @@
 import Button from "./Button/Button";
-
-export { Button };
+import Navbar from "./Navbar/Navbar";
+export { Button, Navbar };
