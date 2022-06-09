@@ -1,7 +1,9 @@
-import { Product } from "./pages";
-import { Button, Navbar } from "./components";
+import "antd/dist/antd.css";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.scss";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navbar } from "./components";
+import { AdminPage, Product } from "./pages";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         <Route path="/" index element={<Product />} />
         <Route path="*" />
       </Routes>
+      {/* <Product /> */}
+      <AdminPage />
     </div>
   );
 }

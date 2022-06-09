@@ -10,6 +10,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@reduxjs/toolkit": "^1.8.2",
+    "animate.css": "^4.1.1",
     "antd": "^4.21.0",
     "axios": "^0.27.2",
     "lodash": "^4.17.21",
@@ -23,6 +24,8 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
+    "eslint": "^8.17.0",
+    "eslint-plugin-react": "^7.30.0",
     "vite": "^2.9.9"
   }
 }
