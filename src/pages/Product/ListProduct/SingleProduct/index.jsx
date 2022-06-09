@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import { HeartOutlined, SearchOutlined } from "@ant-design/icons";
+import { HeartOutlined, MoreOutlined, SearchOutlined } from "@ant-design/icons";
 import { Image } from "antd";
 
 const SingleProduct = ({ product }) => {
@@ -18,7 +18,10 @@ const SingleProduct = ({ product }) => {
                 <HeartOutlined />
               </span>
               <span>
-                <SearchOutlined />
+                <SearchOutlined/>
+              </span>
+              <span>
+                <MoreOutlined rotate="90" />
               </span>
             </div>
           </div>
