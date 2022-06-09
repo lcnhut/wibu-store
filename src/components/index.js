@@ -1,3 +1,3 @@
 import Button from "./Button/Button";
-
-export { Button };
+import AddProductForm from "./Form/AddProductForm/AddProductForm";
+export { Button, AddProductForm };
