@@ -103,7 +103,7 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="admin__page">
+    <div className="admin__page container-page">
       <Input
         className="search__input"
         placeholder="Search name"

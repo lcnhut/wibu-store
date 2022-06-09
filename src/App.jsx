@@ -1,13 +1,18 @@
 import React from "react";
-import "antd/dist/antd.css";
+import { Route, Routes } from "react-router-dom";
 import "./App.scss";
+import { Navbar } from "./components";
 import { AdminPage, Product } from "./pages";
 
 function App() {
   return (
     <div className="App">
-      <Product />
-      {/* <AdminPage /> */}
+      <Navbar />
+
+      <Routes>
+        <Route path="/" index element={<Product />} />
+        <Route path="/admin" element={<AdminPage />} />
+      </Routes>
     </div>
   );
 }
