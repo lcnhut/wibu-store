@@ -1,24 +1,22 @@
 import { Button, Image, Input, message, Table } from "antd";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { productApi } from "../../api";
 import { AddProductForm } from "../../components";
+import { getAllAsync } from "../../store/productStore";
 import "./AdminPage.scss";
-
 const AdminPage = () => {
-  const [productData, setProductData] = useState([]);
+  const productData = useSelector((state) => state.product.list);
   const [product, setProduct] = useState(productData);
   const [value, setValue] = useState("");
 
   const [visibleAddForm, setVisibleAddForm] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const getData = async () => {
-    const response = await productApi.getAll();
-    setProductData(response.data);
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getData();
+    dispatch(getAllAsync());
   }, [confirmLoading, visibleAddForm]);
 
   useEffect(() => {
