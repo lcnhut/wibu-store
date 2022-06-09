@@ -25,11 +25,8 @@ const Carousel = () => {
     },
   ];
 
-  const onChange = (currentSlide) => {
-    console.log(currentSlide);
-  };
   return (
-    <CarouselAnt autoplay className="carousel__wrapper" afterChange={onChange}>
+    <CarouselAnt autoplay className="carousel__wrapper">
       {data.map((item, id) => (
         <div key={id}>
           <div

@@ -14,9 +14,10 @@ function App() {
         <Route path="/" index element={<Product />} />
         <Route path="*" />
         <Route path="/admin">
-          <Route  element={<AdminPage />} />
+          <Route element={<AdminPage />} />
         </Route>
       </Routes>
+
     </div>
   );
 }
