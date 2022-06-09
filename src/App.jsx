@@ -12,12 +12,8 @@ function App() {
 
       <Routes>
         <Route path="/" index element={<Product />} />
-        <Route path="*" />
-        <Route path="/admin">
-          <Route element={<AdminPage />} />
-        </Route>
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
-
     </div>
   );
 }

@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 .App {
-  text-align: center;
+  // text-align: center;
   font-family: "Poppins", sans-serif;
 }
 
@@ -41,4 +41,8 @@
 
 button {
   font-size: calc(10px + 2vmin);
+}
+
+.container-page {
+  margin-top: 116px;
 }
