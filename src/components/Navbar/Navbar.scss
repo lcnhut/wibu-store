@@ -1,11 +1,18 @@
 .navbar__logo {
   //   background-image: url("https://cdn.shopify.com/s/files/1/0277/0472/1542/files/logo.png?v=1589452027");
 }
+header {
+  display: flex;
+  justify-content: center;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
   padding: 25px 0;
   align-items: center;
+  position: absolute;
+  z-index: 99999;
+  width: 100%;
   margin: 0 auto;
   max-width: 1670px;
 }
@@ -156,4 +163,8 @@
     transform: translateY(0);
     visibility: visible;
   }
+}
+.ant-ribbon {
+  font-size: 12px;
+  transform: translate(-15px, -30px);
 }

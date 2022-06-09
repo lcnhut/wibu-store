@@ -1,4 +1,4 @@
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.scss";
@@ -13,9 +13,10 @@ function App() {
       <Routes>
         <Route path="/" index element={<Product />} />
         <Route path="*" />
+        <Route path="/admin">
+          <Route  element={<AdminPage />} />
+        </Route>
       </Routes>
-      {/* <Product /> */}
-      <AdminPage />
     </div>
   );
 }
