@@ -6,7 +6,7 @@
   height: 421px;
   .single__product__image {
     .single__product__image__contain {
-      background-color: yellow;
+      width: 100%;
       height: 270px;
       position: relative;
       display: flex;
@@ -24,7 +24,7 @@
         }
       }
       img {
-        height: 100%;
+        // height: 100%;
         transition: 0.5s;
       }
       .single__product__image__boxmodal {
@@ -33,9 +33,6 @@
         height: 100%;
         // background-color: blue;
         display: flex;
-        flex-direction: column;
-        justify-content: end;
-        align-items: flex-end;
         span {
           width: 3rem;
           height: 3rem;
@@ -45,6 +42,9 @@
           align-items: center;
           border-radius: 100%;
           font-size: 1.5rem;
+          top: 50%;
+          left: 50%;
+          position: absolute;
         }
       }
     }

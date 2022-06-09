@@ -12,7 +12,6 @@ const SingleProduct = ({ product }) => {
             <span>
               <HeartOutlined />
             </span>
-            <span>...</span>
             <span>
               <SearchOutlined />
             </span>
