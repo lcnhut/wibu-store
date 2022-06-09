@@ -4,6 +4,7 @@ import {
   ShoppingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { Avatar, Badge } from "antd";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.scss";
@@ -19,12 +20,14 @@ export default function Navbar() {
           <NavLink to="/">HOME</NavLink>
           <div className="navbar__dropdown">
             <div className="navbar__dropdown__content">
-              <div className="title">SHOP LAYOUTS</div>
-              <ul className="list__dropdown__items">
-                <li className="list__dropdown__item">Pagination</li>
-                <li className="list__dropdown__item">Ajax Load More</li>
-                <li className="list__dropdown__item">Ajax Load More</li>
-              </ul>
+              <div className="navbar__dropdown__lists">
+                <div className="title">SHOP LAYOUTS</div>
+                <ul className="list__dropdown__items">
+                  <li className="list__dropdown__item">Pagination</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                </ul>
+              </div>
             </div>
           </div>
         </li>
@@ -74,38 +77,44 @@ export default function Navbar() {
           <NavLink to="/Feature"> FEATURE</NavLink>
           <div className="navbar__dropdown">
             <div className="navbar__dropdown__content">
-              <div className="title">SHOP LAYOUTS</div>
-              <ul className="list__dropdown__items">
-                <li className="list__dropdown__item">Pagination</li>
-                <li className="list__dropdown__item">Ajax Load More</li>
-                <li className="list__dropdown__item">Ajax Load More</li>
-              </ul>
+              <div className="navbar__dropdown__lists">
+                <div className="title">SHOP LAYOUTS</div>
+                <ul className="list__dropdown__items">
+                  <li className="list__dropdown__item">Pagination</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                </ul>
+              </div>
             </div>
           </div>
         </li>
         <li className="navbar__link">
-          <NavLink to="/Feature"> PAGES</NavLink>
+          <NavLink to="/Pages"> PAGES</NavLink>
           <div className="navbar__dropdown">
             <div className="navbar__dropdown__content">
-              <div className="title">SHOP LAYOUTS</div>
-              <ul className="list__dropdown__items">
-                <li className="list__dropdown__item">Pagination</li>
-                <li className="list__dropdown__item">Ajax Load More</li>
-                <li className="list__dropdown__item">Ajax Load More</li>
-              </ul>
+              <div className="navbar__dropdown__lists">
+                <div className="title">SHOP LAYOUTS</div>
+                <ul className="list__dropdown__items">
+                  <li className="list__dropdown__item">Pagination</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                </ul>
+              </div>
             </div>
           </div>
         </li>
         <li className="navbar__link">
-          <NavLink to="/Feature"> BLOGS</NavLink>
+          <NavLink to="/Blogs"> Admin</NavLink>
           <div className="navbar__dropdown">
             <div className="navbar__dropdown__content">
-              <div className="title">SHOP LAYOUTS</div>
-              <ul className="list__dropdown__items">
-                <li className="list__dropdown__item">Pagination</li>
-                <li className="list__dropdown__item">Ajax Load More</li>
-                <li className="list__dropdown__item">Ajax Load More</li>
-              </ul>
+              <div className="navbar__dropdown__lists">
+                <div className="title">SHOP LAYOUTS</div>
+                <ul className="list__dropdown__items">
+                  <li className="list__dropdown__item">Pagination</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                </ul>
+              </div>
             </div>
           </div>
         </li>
@@ -122,6 +131,7 @@ export default function Navbar() {
         </div>
         <div>
           <ShoppingOutlined style={{ fontSize: 24 }} />
+          {/* <Avatar style={{ fontSize: 24 }} icon={<ShoppingOutlined />} /> */}
         </div>
       </div>
     </nav>

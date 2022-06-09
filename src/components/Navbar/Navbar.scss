@@ -95,7 +95,18 @@
     margin-bottom: 8px;
     .navbar__dropdown__lists {
       flex: 1;
-
+      .title {
+        position: relative;
+      }
+      .title::after {
+        border-bottom: 1px solid #cea384;
+        bottom: 0;
+        content: "";
+        position: absolute;
+        transition: width 0.4s linear 0s;
+        left: 0;
+        width: 50%;
+      }
       .list__dropdown__items {
         padding: 0;
         margin-top: 3px;
@@ -112,6 +123,10 @@
           line-height: 28px;
           text-transform: unset;
           letter-spacing: unset;
+          transition: all 0.5s ease;
+        }
+        .list__dropdown__item:hover {
+          color: #cea384;
         }
       }
     }
