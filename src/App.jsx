@@ -1,6 +1,7 @@
+import React from "react";
 import "antd/dist/antd.css";
 import "./App.scss";
-import { AdminPage } from "./pages";
+import { AdminPage, Product } from "./pages";
 
 function App() {
   return (
