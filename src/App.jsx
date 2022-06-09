@@ -6,8 +6,8 @@ import { AdminPage, Product } from "./pages";
 function App() {
   return (
     <div className="App">
-      {/* <Product /> */}
-      <AdminPage />
+      <Product />
+      {/* <AdminPage /> */}
     </div>
   );
 }
