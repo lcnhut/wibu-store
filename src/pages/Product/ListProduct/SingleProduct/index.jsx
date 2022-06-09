@@ -9,12 +9,14 @@ const SingleProduct = ({ product }) => {
         <div className="single__product__image__contain">
           <img src={product.image} alt="product image" />
           <div className="single__product__image__boxmodal">
-            <span>
-              <HeartOutlined />
-            </span>
-            <span>
-              <SearchOutlined />
-            </span>
+            <div className="single__product__icon">
+              <span>
+                <HeartOutlined />
+              </span>
+              <span>
+                <SearchOutlined />
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -23,7 +25,7 @@ const SingleProduct = ({ product }) => {
         <h5>${product.price}</h5>
       </div>
       <div className="single__product__action">
-        <button>clickmen</button>
+        <button style={{ padding: "7px 0" }}>Add to cart</button>
       </div>
     </div>
   );
