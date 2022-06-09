@@ -18,7 +18,7 @@ export default function Navbar() {
         <li className="navbar__link">
           <NavLink to="/">HOME</NavLink>
           <div className="navbar__dropdown">
-            <div className="">
+            <div className="navbar__dropdown__content">
               <div className="title">SHOP LAYOUTS</div>
               <ul className="list__dropdown__items">
                 <li className="list__dropdown__item">Pagination</li>
@@ -30,15 +30,84 @@ export default function Navbar() {
         </li>
         <li className="navbar__link">
           <NavLink to="/Shop">SHOP</NavLink>
+          <div className="navbar__dropdown">
+            <div
+              className="navbar__dropdown__content"
+              style={{ width: "700px" }}
+            >
+              <div className="navbar__dropdown__lists">
+                <div className="title">SHOP LAYOUTS</div>
+                <ul className="list__dropdown__items">
+                  <li className="list__dropdown__item">Pagination</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                </ul>
+              </div>
+              <div className="navbar__dropdown__lists">
+                <div className="title">SHOP LAYOUTS</div>
+                <ul className="list__dropdown__items">
+                  <li className="list__dropdown__item">Pagination</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                  <li className="list__dropdown__item">Thang </li>
+                </ul>
+              </div>
+              <div className="navbar__dropdown__lists">
+                <div className="title">SHOP LAYOUTS</div>
+                <ul className="list__dropdown__items">
+                  <li className="list__dropdown__item">Pagination</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                  <li className="list__dropdown__item">Ajax Load More</li>
+                </ul>
+              </div>
+            </div>
+            <div className="navbar__video">
+              <iframe
+                style={{ width: " 100%" }}
+                src="https://player.vimeo.com/video/348288278?background=1&quality=1080p&loop=1"
+                frameborder="0"
+              ></iframe>
+            </div>
+          </div>
         </li>
         <li className="navbar__link">
           <NavLink to="/Feature"> FEATURE</NavLink>
+          <div className="navbar__dropdown">
+            <div className="navbar__dropdown__content">
+              <div className="title">SHOP LAYOUTS</div>
+              <ul className="list__dropdown__items">
+                <li className="list__dropdown__item">Pagination</li>
+                <li className="list__dropdown__item">Ajax Load More</li>
+                <li className="list__dropdown__item">Ajax Load More</li>
+              </ul>
+            </div>
+          </div>
         </li>
         <li className="navbar__link">
           <NavLink to="/Feature"> PAGES</NavLink>
+          <div className="navbar__dropdown">
+            <div className="navbar__dropdown__content">
+              <div className="title">SHOP LAYOUTS</div>
+              <ul className="list__dropdown__items">
+                <li className="list__dropdown__item">Pagination</li>
+                <li className="list__dropdown__item">Ajax Load More</li>
+                <li className="list__dropdown__item">Ajax Load More</li>
+              </ul>
+            </div>
+          </div>
         </li>
         <li className="navbar__link">
           <NavLink to="/Feature"> BLOGS</NavLink>
+          <div className="navbar__dropdown">
+            <div className="navbar__dropdown__content">
+              <div className="title">SHOP LAYOUTS</div>
+              <ul className="list__dropdown__items">
+                <li className="list__dropdown__item">Pagination</li>
+                <li className="list__dropdown__item">Ajax Load More</li>
+                <li className="list__dropdown__item">Ajax Load More</li>
+              </ul>
+            </div>
+          </div>
         </li>
       </ul>
       <div className="navbar__icon">
