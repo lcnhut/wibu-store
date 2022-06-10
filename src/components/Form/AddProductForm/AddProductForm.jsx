@@ -16,6 +16,7 @@ const AddProductForm = (props) => {
 
   return (
     <Modal
+      className="modal__container"
       title="Add Product Form"
       visible={visible}
       onOk={() => {
@@ -75,26 +76,10 @@ const AddProductForm = (props) => {
         >
           <InputNumber />
         </Form.Item>
-        <Form.Item
-          name="image"
-          label="Image"
-          // rules={[
-          //   {
-          //     required: true,
-          //   },
-          // ]}
-        >
+        <Form.Item name="image" label="Image">
           <Input />
         </Form.Item>
-        <Form.Item
-          name="description"
-          label="Description"
-          // rules={[
-          //   {
-          //     required: true,
-          //   },
-          // ]}
-        >
+        <Form.Item name="description" label="Description">
           <Input />
         </Form.Item>
       </Form>

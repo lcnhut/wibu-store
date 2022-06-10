@@ -1,12 +1,14 @@
-import { Button, Image, Input, message, Table } from "antd";
+import { Button, Image, Input, Space, Spin, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { productApi } from "../../api";
 import { AddProductForm } from "../../components";
-import { getAllAsync } from "../../store/productStore";
+import { addProductAsync, getAllAsync } from "../../store/productStore";
 import "./AdminPage.scss";
+
 const AdminPage = () => {
   const productData = useSelector((state) => state.product.list);
+  const isLoading = useSelector((state) => state.product.isLoading);
+
   const [product, setProduct] = useState(productData);
   const [value, setValue] = useState("");
 
@@ -17,8 +19,9 @@ const AdminPage = () => {
 
   useEffect(() => {
     dispatch(getAllAsync());
-  }, [confirmLoading, visibleAddForm]);
+  }, []);
 
+  // Update data after search
   useEffect(() => {
     setProduct(productData);
   }, [productData]);
@@ -56,14 +59,17 @@ const AdminPage = () => {
       sorter: (a, b) => a.inStock - b.inStock,
     },
     {
-      title: "Description",
-      dataIndex: "description",
-      key: "description",
-      render: (_, record) => {
+      title: "Action",
+      render: () => {
         return (
-          <p style={{ width: "100%", maxWidth: "500px" }}>
-            {record.description}
-          </p>
+          <Space size="middle">
+            <Button className="primary__button" type="primary" ghost>
+              Edit
+            </Button>
+            <Button type="danger" ghost>
+              Delete
+            </Button>
+          </Space>
         );
       },
     },
@@ -90,39 +96,40 @@ const AdminPage = () => {
     setVisibleAddForm(false);
   };
 
-  const handleSubmitAddForm = async (values) => {
-    setConfirmLoading(true);
-    const response = await productApi.add(values);
-    if (response.status === 201) {
-      setConfirmLoading(false);
-      setVisibleAddForm(false);
-      message.success("A new product is added!!!");
+  const handleSubmitAddForm = (values) => {
+    setConfirmLoading(isLoading);
+    const result = dispatch(addProductAsync(values));
+    if (result) {
+      setConfirmLoading(isLoading);
+      setVisibleAddForm(isLoading);
     }
   };
 
   return (
-    <div className="admin__page container-page">
-      <Input
-        className="search__input"
-        placeholder="Search name"
-        value={value}
-        onChange={(e) => onSearch(e.target.value)}
-      />
-      <Button type="primary" ghost onClick={showModalAddForm}>
-        Add new product
-      </Button>
-      <AddProductForm
-        handleSubmitForm={handleSubmitAddForm}
-        visible={visibleAddForm}
-        confirmLoading={confirmLoading}
-        onCancel={onCancelAddForm}
-      />
-      <Table
-        className="product__table"
-        dataSource={product}
-        columns={columns}
-      />
-    </div>
+    <Spin tip="Loading..." size="large" spinning={isLoading}>
+      <div className="admin__page container-page">
+        <Input
+          className="search__input"
+          placeholder="Search product"
+          value={value}
+          onChange={(e) => onSearch(e.target.value)}
+        />
+        <Button type="primary" ghost onClick={showModalAddForm}>
+          Add new product
+        </Button>
+        <AddProductForm
+          handleSubmitForm={handleSubmitAddForm}
+          visible={visibleAddForm}
+          confirmLoading={confirmLoading}
+          onCancel={onCancelAddForm}
+        />
+        <Table
+          className="product__table"
+          dataSource={product}
+          columns={columns}
+        />
+      </div>
+    </Spin>
   );
 };
 

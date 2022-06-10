@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { message } from "antd";
 import { productApi } from "../api";
 
 export const getAllAsync = createAsyncThunk("product/getAll", async () => {
@@ -6,25 +7,46 @@ export const getAllAsync = createAsyncThunk("product/getAll", async () => {
   return response;
 });
 
+export const addProductAsync = createAsyncThunk(
+  "product/addProduct",
+  async (product) => {
+    const response = await productApi.add(product);
+    return response;
+  }
+);
+
 export const productSlice = createSlice({
   name: "product",
   initialState: {
     list: [],
-    loading: false,
-    error: "",
+    isLoading: false,
   },
   reducers: {},
   extraReducers: {
     [getAllAsync.pending]: (state) => {
-      state.loading = true;
+      state.isLoading = true;
     },
     [getAllAsync.rejected]: (state) => {
-      state.loading = false;
-      state.error = "Something went wrong!!!";
+      state.isLoading = false;
+      message.error("Something went wrong!!!");
     },
     [getAllAsync.fulfilled]: (state, action) => {
-      state.loading = false;
+      state.isLoading = false;
       state.list = action.payload.data;
+    },
+
+    [addProductAsync.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [addProductAsync.rejected]: (state) => {
+      state.isLoading = false;
+      message.error("Something went wrong!!!");
+    },
+    [addProductAsync.fulfilled]: (state, action) => {
+      const newProduct = action.payload.data;
+      state.isLoading = false;
+      state.list.push(newProduct);
+      message.success("A new product is added!!!");
     },
   },
 });
