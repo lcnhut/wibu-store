@@ -5,7 +5,17 @@ import {
   PlusCircleOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-import { Image, Row, Col, Divider, Select, Space } from "antd";
+import {
+  Image,
+  Row,
+  Col,
+  Divider,
+  Select,
+  Space,
+  Form,
+  Input,
+  InputNumber,
+} from "antd";
 const { Option } = Select;
 import { Modal } from "antd";
 import instance from "../../../../utils/AxiosConfig/AxiosConfig";
@@ -84,6 +94,11 @@ const SingleProduct = ({ product }) => {
                   <Option>Navy again</Option>
                 </Select>
               </div>
+              <Form>
+                <Form.Item>
+                  <InputNumber defaultValue={1} />
+                </Form.Item>
+              </Form>
               <button
                 className="product__details__content__btn"
                 onClick={() => handleAddToCart(product.id)}
