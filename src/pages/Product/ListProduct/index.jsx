@@ -22,6 +22,7 @@ const ListProduct = () => {
   }, []);
   return (
     <>
+    
       <Row className="listproduct__title__wrapper">
         <Col className="listproduct__title__container" span={24}>
           <h1>Shop The Collection</h1>

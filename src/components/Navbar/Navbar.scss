@@ -1,6 +1,7 @@
 .navbar__logo {
   //   background-image: url("https://cdn.shopify.com/s/files/1/0277/0472/1542/files/logo.png?v=1589452027");
 }
+
 header {
   display: flex;
   justify-content: center;
@@ -16,6 +17,7 @@ header {
   margin: 0 auto;
   max-width: 1670px;
 }
+
 .navbar__logo {
   width: 100%;
   background-repeat: none;
@@ -38,6 +40,9 @@ header {
   transition: all 0.3s ease;
   display: table-cell;
   position: relative;
+  .active {
+    color: var(--primary-color);
+  }
 }
 
 .navbar__link a {
@@ -49,6 +54,7 @@ header {
   display: inline-block;
   position: relative;
 }
+
 .navbar__link a:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
