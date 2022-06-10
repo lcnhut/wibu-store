@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import { HeartOutlined, SearchOutlined } from "@ant-design/icons";
+import {
+  HeartOutlined,
+  PlusCircleOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 import { Image, Row, Col, Divider, Select, Space } from "antd";
 const { Option } = Select;
 import { Modal } from "antd";
@@ -22,13 +26,10 @@ const SingleProduct = ({ product }) => {
   const handleAddToCart = async (id) => {
     const data = await getProduct(id);
     data && dispatch(addToCart(data));
+    setIsModalVisible(false);
   };
   const showModal = () => {
     setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
   };
 
   const handleCancel = () => {
@@ -51,6 +52,7 @@ const SingleProduct = ({ product }) => {
             handleOk();
             handleAddToCart(product.id);
           }}
+          footer={null}
           onCancel={handleCancel}
           className="product__details__wrapper"
         >
@@ -82,6 +84,12 @@ const SingleProduct = ({ product }) => {
                   <Option>Navy again</Option>
                 </Select>
               </div>
+              <button
+                className="product__details__content__btn"
+                onClick={() => handleAddToCart(product.id)}
+              >
+                <PlusCircleOutlined />
+              </button>
             </Col>
           </Row>
         </Modal>
@@ -110,11 +118,8 @@ const SingleProduct = ({ product }) => {
           <h5>${product.price}</h5>
         </div>
         <div className="single__product__action">
-          <button
-            onClick={() => handleAddToCart(product.id)}
-            style={{ padding: "7px 0" }}
-          >
-            Add to cart
+          <button onClick={() => handleAddToCart(product.id)}>
+            <PlusCircleOutlined style={{ fontSize: "1rem" }} />
           </button>
         </div>
       </div>
