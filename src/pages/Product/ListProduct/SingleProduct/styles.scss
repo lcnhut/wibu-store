@@ -1,3 +1,35 @@
+.product__details__wrapper {
+  .ant-btn.ant-btn-primary {
+    background-color: #cea384;
+    outline: none;
+    border: none;
+  }
+  .ant-btn.ant-btn-default {
+    color: #cea384;
+    outline: none;
+    border: 1px solid "#cea384";
+    &:hover {
+      border: 1px solid transparent;
+    }
+  }
+  .product__details__content {
+    .product__details__content__btn {
+      background-color: #cea384;
+      padding: 5px 10px;
+      border: none;
+      outline: none;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+      &:hover {
+        color: white;
+        background-color: black;
+      }
+    }
+  }
+}
+
 .single__product__wrapper {
   width: 100%;
   display: flex;
