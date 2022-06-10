@@ -5,16 +5,24 @@ import { Image, Row, Col, Divider, Select, Space } from "antd";
 const { Option } = Select;
 import { Modal } from "antd";
 import instance from "../../../../utils/AxiosConfig/AxiosConfig";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../../../store/productStore";
 
 const SingleProduct = ({ product }) => {
+  const dispatch = useDispatch();
   const [singleProduct, setSingleProduct] = useState({});
   const getProduct = async (id) => {
     const { data } = await instance.get(`products/${id}`);
     data && setSingleProduct(data);
+    return data;
   };
 
+  const cartItem = useSelector((state) => state.product.cartItem);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  const handleAddToCart = async (id) => {
+    const data = await getProduct(id);
+    data && dispatch(addToCart(data));
+  };
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -39,7 +47,10 @@ const SingleProduct = ({ product }) => {
           centered
           title="Product Details"
           visible={isModalVisible}
-          onOk={handleOk}
+          onOk={() => {
+            handleOk();
+            handleAddToCart(product.id);
+          }}
           onCancel={handleCancel}
           className="product__details__wrapper"
         >
@@ -71,9 +82,6 @@ const SingleProduct = ({ product }) => {
                   <Option>Navy again</Option>
                 </Select>
               </div>
-              <button className="product__details__content__btn">
-                Add to cart
-              </button>
             </Col>
           </Row>
         </Modal>
@@ -102,7 +110,12 @@ const SingleProduct = ({ product }) => {
           <h5>${product.price}</h5>
         </div>
         <div className="single__product__action">
-          <button style={{ padding: "7px 0" }}>Add to cart</button>
+          <button
+            onClick={() => handleAddToCart(product.id)}
+            style={{ padding: "7px 0" }}
+          >
+            Add to cart
+          </button>
         </div>
       </div>
     </>

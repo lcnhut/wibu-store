@@ -12,8 +12,13 @@ export const productSlice = createSlice({
     list: [],
     loading: false,
     error: "",
+    cartItem: [],
   },
-  reducers: {},
+  reducers: {
+    addToCart: (state, action) => {
+      state.cartItem.unshift(action.payload);
+    },
+  },
   extraReducers: {
     [getAllAsync.pending]: (state) => {
       state.loading = true;
@@ -29,5 +34,5 @@ export const productSlice = createSlice({
   },
 });
 
-// export const {} = productSlice.actions;
+export const { addToCart } = productSlice.actions;
 export default productSlice.reducer;

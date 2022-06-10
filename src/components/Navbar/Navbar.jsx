@@ -6,9 +6,11 @@ import {
 } from "@ant-design/icons";
 import { Avatar, Badge } from "antd";
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./Navbar.scss";
 export default function Navbar() {
+  const cartItem = useSelector((state) => state.product.cartItem);
   return (
     <header>
       <nav className="navbar">
@@ -134,8 +136,8 @@ export default function Navbar() {
           <div>
             <SearchOutlined style={{ fontSize: 24 }} />
           </div>
-          <div>
-            <Badge count="1">
+          <div style={{ cursor: "pointer" }}>
+            <Badge count={cartItem.length}>
               <ShoppingOutlined style={{ fontSize: 24 }} />
             </Badge>
           </div>
