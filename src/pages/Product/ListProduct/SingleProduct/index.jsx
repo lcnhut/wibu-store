@@ -19,10 +19,6 @@ const SingleProduct = ({ product }) => {
     setIsModalVisible(true);
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
@@ -39,7 +35,7 @@ const SingleProduct = ({ product }) => {
           centered
           title="Product Details"
           visible={isModalVisible}
-          onOk={handleOk}
+          footer={null}
           onCancel={handleCancel}
           className="product__details__wrapper"
         >
