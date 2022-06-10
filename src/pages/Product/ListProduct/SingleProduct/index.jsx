@@ -4,6 +4,7 @@ import {
   HeartOutlined,
   PlusCircleOutlined,
   SearchOutlined,
+  ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { Image, Row, Col, Divider, Select, Space } from "antd";
 const { Option } = Select;
@@ -49,7 +50,6 @@ const SingleProduct = ({ product }) => {
           title="Product Details"
           visible={isModalVisible}
           onOk={() => {
-            handleOk();
             handleAddToCart(product.id);
           }}
           footer={null}
@@ -88,7 +88,10 @@ const SingleProduct = ({ product }) => {
                 className="product__details__content__btn"
                 onClick={() => handleAddToCart(product.id)}
               >
-                <PlusCircleOutlined />
+                <ShoppingCartOutlined
+                  style={{ fontSize: "20px", marginRight: "5px" }}
+                />
+                Add to cart
               </button>
             </Col>
           </Row>
@@ -115,11 +118,14 @@ const SingleProduct = ({ product }) => {
         </div>
         <div className="single__product__content">
           <h3>{product.name}</h3>
-          <h5>${product.price}</h5>
+          <h4>${product.price}</h4>
         </div>
         <div className="single__product__action">
           <button onClick={() => handleAddToCart(product.id)}>
-            <PlusCircleOutlined style={{ fontSize: "1rem" }} />
+            <ShoppingCartOutlined
+              style={{ fontSize: "20px", marginRight: "5px" }}
+            />
+            Add to cart
           </button>
         </div>
       </div>
