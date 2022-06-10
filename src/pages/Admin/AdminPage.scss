@@ -1,9 +1,14 @@
 .admin__page {
   padding: 20px;
+
   .search__input {
     width: 100%;
     max-width: 500px;
     margin-bottom: 20px;
     margin-right: 20px;
   }
+}
+.primary__button {
+  color: #1890ff !important;
+  border-color: #1890ff !important;
 }

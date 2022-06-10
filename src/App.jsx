@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import "./App.scss";
 import { Navbar } from "./components";
 import { AdminPage, Product } from "./pages";
+import "./App.scss";
 
 function App() {
   return (
