@@ -1,3 +1,26 @@
+.product__details__wrapper {
+  .product__details__content {
+    .product__details__content__btn {
+      background-color: #cea384;
+      padding: 5px 10px;
+      border: none;
+      outline: none;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        color: white;
+        background-color: black;
+      }
+    }
+  }
+}
+
 .single__product__wrapper {
   width: 100%;
   display: flex;
@@ -69,7 +92,7 @@
     h3 {
       font-weight: 500;
     }
-    h5 {
+    h4 {
       color: #cea384;
       font-weight: 800;
     }
@@ -86,7 +109,8 @@
   }
   .single__product__action {
     button {
-      min-width: 90px;
+      min-width: 50px;
+      padding: 5px 10px;
       border: none;
       outline: none;
       color: #cea384;
@@ -95,6 +119,10 @@
       cursor: pointer;
       transition: 0.3s;
       font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       &:hover {
         background-color: #cea384;
         color: white;
