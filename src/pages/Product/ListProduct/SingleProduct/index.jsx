@@ -1,20 +1,44 @@
 import React, { useState } from "react";
 import "./styles.scss";
-import { HeartOutlined, SearchOutlined } from "@ant-design/icons";
-import { Image, Row, Col, Divider, Select, Space } from "antd";
+import {
+  HeartOutlined,
+  PlusCircleOutlined,
+  SearchOutlined,
+  ShoppingCartOutlined,
+} from "@ant-design/icons";
+import {
+  Image,
+  Row,
+  Col,
+  Divider,
+  Select,
+  Space,
+  Form,
+  Input,
+  InputNumber,
+} from "antd";
 const { Option } = Select;
 import { Modal } from "antd";
 import instance from "../../../../utils/AxiosConfig/AxiosConfig";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../../../store/productStore";
 
 const SingleProduct = ({ product }) => {
+  const dispatch = useDispatch();
   const [singleProduct, setSingleProduct] = useState({});
   const getProduct = async (id) => {
     const { data } = await instance.get(`products/${id}`);
     data && setSingleProduct(data);
+    return data;
   };
 
+  const cartItem = useSelector((state) => state.product.cartItem);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  const handleAddToCart = async (id) => {
+    const data = await getProduct(id);
+    data && dispatch(addToCart(data));
+    setIsModalVisible(false);
+  };
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -35,6 +59,9 @@ const SingleProduct = ({ product }) => {
           centered
           title="Product Details"
           visible={isModalVisible}
+          onOk={() => {
+            handleAddToCart(product.id);
+          }}
           footer={null}
           onCancel={handleCancel}
           className="product__details__wrapper"
@@ -67,7 +94,18 @@ const SingleProduct = ({ product }) => {
                   <Option>Navy again</Option>
                 </Select>
               </div>
-              <button className="product__details__content__btn">
+              <Form>
+                <Form.Item>
+                  <InputNumber min={1} defaultValue={1} />
+                </Form.Item>
+              </Form>
+              <button
+                className="product__details__content__btn"
+                onClick={() => handleAddToCart(product.id)}
+              >
+                <ShoppingCartOutlined
+                  style={{ fontSize: "20px", marginRight: "5px" }}
+                />
                 Add to cart
               </button>
             </Col>
@@ -95,10 +133,15 @@ const SingleProduct = ({ product }) => {
         </div>
         <div className="single__product__content">
           <h3>{product.name}</h3>
-          <h5>${product.price}</h5>
+          <h4>${product.price}</h4>
         </div>
         <div className="single__product__action">
-          <button style={{ padding: "7px 0" }}>Add to cart</button>
+          <button onClick={() => handleAddToCart(product.id)}>
+            <ShoppingCartOutlined
+              style={{ fontSize: "20px", marginRight: "5px" }}
+            />
+            Add to cart
+          </button>
         </div>
       </div>
     </>
