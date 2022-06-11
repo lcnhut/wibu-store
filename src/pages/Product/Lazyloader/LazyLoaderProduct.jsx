@@ -1,12 +1,19 @@
 import { Space } from "antd";
 import React from "react";
+import { ButtonOfPage } from "../../../components";
 import "./LazyLoaderProduct.scss";
-export default function LazyLoaderProduct({ image }) {
+export default function LazyLoaderProduct({ image, title }) {
   return (
     // <Space>
     <div className="container-lazyloader">
       <div className="item-container">
-        <img className="item-container-image"/>
+        <div className="item-description">
+          <h1>{title}</h1>
+          <ButtonOfPage label="Shop Now" />
+        </div>
+        <img className="item-container-image" src={image} />
+        {/* <div>
+        </div> */}
       </div>
     </div>
 
