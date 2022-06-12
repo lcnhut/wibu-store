@@ -1,0 +1,92 @@
+.filter__container {
+  display: flex;
+  margin-top: 3rem;
+  &__filter {
+    flex: 6;
+    &__filterbtn {
+      font-size: 16px;
+      // filter__container__filterbtn
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #000;
+      letter-spacing: 2px;
+      padding: 8px 20px;
+      display: flex;
+      gap: 0.7rem;
+      transition: all 0.3s ease;
+      align-items: center;
+      width: fit-content;
+      margin-left: 8px;
+      cursor: pointer;
+      border: 1px solid #000;
+      p {
+        margin: 0;
+      }
+      .ant-btn {
+        border-radius: 0;
+        min-width: 128px;
+      }
+    }
+    &__filterbtn:hover {
+      color: #fff;
+      border: none;
+      background-color: var(--primary-color);
+    }
+
+    &__featuredbtn {
+      display: flex;
+      gap: 0.8rem;
+      flex: 2;
+      justify-content: flex-end;
+      align-items: center;
+
+      .featuredbtn {
+        border: 1px solid #000;
+        min-height: 42px;
+        min-width: 42px;
+        display: flex;
+        font-size: 16px;
+        align-items: center;
+        position: relative;
+        justify-content: center;
+        cursor: pointer;
+        .showGridFilter {
+          display: flex;
+          gap: 0.6rem;
+          opacity: 0;
+          position: absolute;
+          visibility: hidden;
+          transform: translateX(130px);
+          cursor: pointer;
+          transition: all 0.5s ease-in-out;
+          // transform: ;
+          &__item {
+            border: 1px solid #000;
+            min-height: 42px;
+            min-width: 42px;
+            display: flex;
+            font-size: 16px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+
+            transition: all 0.5s ease;
+          }
+          &__item:hover {
+            background-color: #000;
+            color: #fff;
+          }
+        }
+      }
+      .featuredbtn:hover {
+        .showGridFilter {
+          display: flex;
+          gap: 0.6rem;
+          opacity: 1;
+          visibility: visible;
+          transform: translateX(-100px);
+        }
+      }
+    }
+  }
+}
