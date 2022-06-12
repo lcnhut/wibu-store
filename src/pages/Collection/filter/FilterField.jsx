@@ -52,41 +52,82 @@ export default function filterField() {
   );
 
   return (
-    <div className="filter__container">
-      <div className="filter__container__filter">
-        <div className="filter__container__filter__filterbtn">
-          <div>
-            <FilterOutlined />
-          </div>
-          <p>filter</p>
-        </div>
-      </div>
-      <div className="filter__container__filter__featuredbtn">
-        <div className="featuredbtn">
-          <AppstoreOutlined style={{ fontSize: "24px" }} />
-          <div class="showGridFilter">
-            <div className="showGridFilter__item">2</div>
-            <div className="showGridFilter__item">4</div>
-            <div className="showGridFilter__item">3</div>
+    <>
+      <div className="filter__container">
+        <div className="filter__container__filter">
+          <div className="filter__container__filter__filterbtn">
+            <div>
+              <FilterOutlined />
+            </div>
+            <p>filter</p>
           </div>
         </div>
-        <Dropdown overlay={menu}>
-          <Button
-            style={{
-              padding: " 8px 20px",
-              minWidth: "128px",
-              minHeight: "42px",
-              border: " 1px solid #000",
-              color: "#000",
-            }}
-          >
-            <Space size="large">
-              Featured
-              <DownOutlined />
-            </Space>
-          </Button>
-        </Dropdown>
+        <div className="filter__container__filter__featuredbtn">
+          <div className="featuredbtn">
+            <AppstoreOutlined style={{ fontSize: "24px" }} />
+            <div class="showGridFilter">
+              <div className="showGridFilter__item">2</div>
+              <div className="showGridFilter__item">4</div>
+              <div className="showGridFilter__item">3</div>
+            </div>
+          </div>
+          <Dropdown overlay={menu}>
+            <Button
+              style={{
+                padding: " 8px 20px",
+                minWidth: "128px",
+                minHeight: "42px",
+                border: " 1px solid #000",
+                color: "#000",
+              }}
+            >
+              <Space size="large">
+                Featured
+                <DownOutlined />
+              </Space>
+            </Button>
+          </Dropdown>
+        </div>
       </div>
-    </div>
+      <div className="filter-selection">
+        <div className="filter-selection__container">
+          <div className="filter-selection-item">
+            <div className="filter-selection-item__title">
+              <h2>Categories</h2>
+            </div>
+            <div className="filter-selection-item__content">
+              <ul>
+                <li>item 1</li>
+                <li> item 2</li>
+                <li> item 3</li>
+              </ul>
+            </div>
+          </div>
+          <div className="filter-selection-item">
+            <div className="filter-selection-item__title">
+              <h2>Color Option</h2>
+            </div>
+          </div>
+          <div className="filter-selection-item">
+            <div className="filter-selection-item__title">
+              <h2>Size Option</h2>
+            </div>
+            <div>
+              
+            </div>
+          </div>
+          <div className="filter-selection-item">
+            <div className="filter-selection-item__title">
+              <h2>Price Filter</h2>
+            </div>
+          </div>
+          <div className="filter-selection-item">
+            <div className="filter-selection-item__title">
+              <h2>Tags</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

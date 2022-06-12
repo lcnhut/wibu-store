@@ -90,3 +90,17 @@
     }
   }
 }
+
+.filter-selection {
+  margin-top: 50px;
+  border: 1px solid var(--primary-color);
+  &__container {
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    
+    .filter-selection-item {
+      // min-width: 292px;
+    }
+  }
+}
