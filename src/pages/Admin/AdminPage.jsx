@@ -110,29 +110,27 @@ const AdminPage = () => {
           <>
             <b>Total: {record.inStock}</b>
             <Collapse ghost>
-              {record.colors.map((colorItem, index) => {
-                return (
-                  <Panel
-                    header={
-                      <Tag color={setColorTag(index)}>
-                        {colorItem.color.toUpperCase()}
-                      </Tag>
+              <Panel header={<Tag color="green">In Stock</Tag>}>
+                {record.colors.map((colorItem, index) => {
+                  let isStock = false;
+                  colorItem.sizes.forEach((sizeItem) => {
+                    if (sizeItem.inStock !== 0) {
+                      isStock = true;
+                    } else {
+                      isStock = false;
                     }
-                    key={index}
-                  >
-                    {colorItem.sizes.map((sizeItem, index) => {
-                      return (
-                        <p key={index}>
-                          <Tag color={setColorTag(index)}>
-                            Size {sizeItem.size}
-                          </Tag>
-                          : {sizeItem.inStock}
-                        </p>
-                      );
-                    })}
-                  </Panel>
-                );
-              })}
+                  });
+                  return (
+                    isStock && (
+                      <div style={{ marginBottom: "5px" }}>
+                        <Tag color={setColorTag(index)} key={index}>
+                          {colorItem.color.toUpperCase()}
+                        </Tag>
+                      </div>
+                    )
+                  );
+                })}
+              </Panel>
             </Collapse>
           </>
         );
@@ -172,7 +170,8 @@ const AdminPage = () => {
     const filteredData = productData.filter(
       (entry) =>
         entry.name.toLowerCase().includes(currValue) ||
-        entry.name.toLowerCase().includes(currValue)
+        entry.name.toUpperCase().includes(currValue) ||
+        entry.price.includes(currValue)
     );
     setProduct(filteredData);
   };
