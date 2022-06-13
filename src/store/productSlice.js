@@ -37,8 +37,25 @@ export const productSlice = createSlice({
       message.error("Something went wrong!!!");
     },
     [getAllAsync.fulfilled]: (state, action) => {
+      const data = action.payload.data;
+
+      const formattedData = data.map((item) => {
+        let total = 0;
+        item.colors.forEach((color) => {
+          color.sizes.map((size) => {
+            total += size.inStock;
+          });
+          return total;
+        });
+
+        return {
+          ...item,
+          inStock: total,
+        };
+      });
+
       state.isLoading = false;
-      state.list = action.payload.data;
+      state.list = formattedData;
     },
 
     [addProductAsync.pending]: (state) => {
