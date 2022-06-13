@@ -136,7 +136,6 @@ const AdminPage = () => {
         );
       },
     },
-    Table.SELECTION_COLUMN,
     {
       title: "Action",
       dataIndex: "id",
