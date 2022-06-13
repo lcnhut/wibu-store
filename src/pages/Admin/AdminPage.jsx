@@ -1,8 +1,12 @@
-import { Button, Image, Input, Space, Spin, Table } from "antd";
+import { Button, Image, Input, Modal, Space, Spin, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AddProductForm } from "../../components";
-import { addProductAsync, getAllAsync } from "../../store/productStore";
+import {
+  addProductAsync,
+  getAllAsync,
+  deleteProductAsync,
+} from "../../store/productStore";
 import "./AdminPage.scss";
 
 const AdminPage = () => {
@@ -14,6 +18,21 @@ const AdminPage = () => {
 
   const [visibleAddForm, setVisibleAddForm] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [idToDeleteProduct, setIdToDeleteProduct] = useState();
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    dispatch(deleteProductAsync(idToDeleteProduct));
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   const dispatch = useDispatch();
 
@@ -60,13 +79,22 @@ const AdminPage = () => {
     },
     {
       title: "Action",
-      render: () => {
+      dataIndex: "id",
+      key: "id",
+      render: (id) => {
         return (
           <Space size="middle">
             <Button className="primary__button" type="primary" ghost>
               Edit
             </Button>
-            <Button type="danger" ghost>
+            <Button
+              onClick={() => {
+                setIdToDeleteProduct(id);
+                setIsModalVisible(true);
+              }}
+              type="danger"
+              ghost
+            >
               Delete
             </Button>
           </Space>
@@ -128,6 +156,14 @@ const AdminPage = () => {
           dataSource={product}
           columns={columns}
         />
+        <Modal
+          title="Delete Product"
+          visible={isModalVisible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          This product will be delete?
+        </Modal>
       </div>
     </Spin>
   );

@@ -14,6 +14,13 @@ export const addProductAsync = createAsyncThunk(
     return response;
   }
 );
+export const deleteProductAsync = createAsyncThunk(
+  "prduct/deleteProduct",
+  async (id) => {
+    const response = await productApi.delete(id);
+    return response.data;
+  }
+);
 
 export const productSlice = createSlice({
   name: "product",
@@ -53,6 +60,19 @@ export const productSlice = createSlice({
       state.isLoading = false;
       state.list.push(newProduct);
       message.success("A new product is added!!!");
+    },
+
+    [deleteProductAsync.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [deleteProductAsync.rejected]: (state) => {
+      state.isLoading = false;
+      message.error("Delete product failed!");
+    },
+    [deleteProductAsync.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      const data = state.list.filter((item) => item.id !== action.payload.id);
+      state.list = data;
     },
   },
 });
