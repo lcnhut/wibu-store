@@ -9,7 +9,7 @@ import { Breadcrumb, Button, Dropdown, Menu, Space } from "antd";
 import React from "react";
 import { ButtonSize, CricleColor } from "../../../components";
 import "./FilterField.scss";
-export default function filterField({ showFilterButton }) {
+export default function filterField({ showFilterButton, setValueShowItem }) {
   const menu = (
     <Menu
       items={[
@@ -72,9 +72,38 @@ export default function filterField({ showFilterButton }) {
           <div className="featuredbtn">
             <AppstoreOutlined style={{ fontSize: "24px" }} />
             <div class="showGridFilter">
-              <div className="showGridFilter__item">2</div>
-              <div className="showGridFilter__item">4</div>
-              <div className="showGridFilter__item">3</div>
+              <div
+                className="showGridFilter__item"
+                onClick={() => {
+                  setValueShowItem(2);
+                }}
+              >
+                2
+              </div>
+              <div
+                className="showGridFilter__item"
+                onClick={() => {
+                  setValueShowItem(3);
+                }}
+              >
+                3
+              </div>
+              <div
+                className="showGridFilter__item"
+                onClick={() => {
+                  setValueShowItem(4);
+                }}
+              >
+                4
+              </div>
+              <div
+                className="showGridFilter__item"
+                onClick={() => {
+                  setValueShowItem(5);
+                }}
+              >
+                5
+              </div>
             </div>
           </div>
           <Dropdown overlay={menu}>

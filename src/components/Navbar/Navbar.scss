@@ -12,7 +12,7 @@ header {
   padding: 25px 0;
   align-items: center;
   position: absolute;
-  z-index: 99999;
+  z-index: 10;
   width: 100%;
   margin: 0 auto;
   max-width: 1670px;
@@ -106,6 +106,7 @@ header {
     display: flex;
     gap: 3rem;
     margin-bottom: 8px;
+
     .navbar__dropdown__lists {
       flex: 1;
       .title {
@@ -173,4 +174,43 @@ header {
 .ant-ribbon {
   font-size: 12px;
   transform: translate(-15px, -30px);
+}
+.search-field {
+  z-index: 7;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 400px;
+  transition: all 0.3s ease;
+  &__inputContent {
+    width: 40%;
+    font-size: 16px;
+    display: flex;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    &__input {
+      flex: 1;
+      outline: none;
+      border: none;
+    }
+  }
+}
+.bg_search_box {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000b3;
+  top: 0;
+  left: 0;
+  position: fixed;
+  // visibility: visible;
+  transition: all 0.5s ease;
+}
+.search-field__closeModal {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  top: 20px;
 }

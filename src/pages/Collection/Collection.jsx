@@ -7,6 +7,7 @@ import FilterField from "./filter/FilterField";
 export default function Collection() {
   const [products, setProducts] = useState();
   const [showProduct, setShowProduct] = useState(false);
+  const [filterValue, setFilterValue] = useState();
   const listProduct = useRef();
   const getAllProduct = () => {
     instance
@@ -42,7 +43,10 @@ export default function Collection() {
       </div>
 
       <div className="collection__container__product">
-        <FilterField showFilterButton={ShowFilter} />
+        <FilterField
+          showFilterButton={ShowFilter}
+          setValueShowItem={setFilterValue}
+        />
       </div>
       <div
         class="collection__container__product list__product"
@@ -58,11 +62,11 @@ export default function Collection() {
               (product, id) =>
                 id < 8 && (
                   <Col
-                    xs={{ span: 24 }}
-                    sm={{ span: 24 }}
-                    md={{ span: 12 }}
-                    lg={{ span: 8 }}
-                    xl={{ span: 6 }}
+                    xs={{ span: 24 / filterValue }}
+                    sm={{ span: 24 / filterValue }}
+                    md={{ span: 24 / filterValue }}
+                    lg={{ span: 24 / filterValue }}
+                    xl={{ span: 24 / filterValue }}
                     className="listproduct__item"
                     key={id}
                     span={6}

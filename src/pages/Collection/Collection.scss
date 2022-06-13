@@ -1,4 +1,6 @@
 .collection__container {
+
+  z-index: 5;
   &__title {
     background-image: url("https://cdn.shopify.com/s/files/1/0277/0472/1542/files/bg_page.jpg?v=1589354538");
     margin-top: 125px;
@@ -14,7 +16,6 @@
     margin: 0 auto;
   }
   .list__product {
-
     transition: all 0.3s ease;
     background-color: #fff;
   }
