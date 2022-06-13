@@ -1,9 +1,22 @@
-import { Button, Collapse, Image, Input, Space, Spin, Table, Tag } from "antd";
-import { size } from "lodash";
+import {
+  Button,
+  Collapse,
+  Image,
+  Input,
+  Modal,
+  Space,
+  Spin,
+  Table,
+  Tag,
+} from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AddProductForm } from "../../components";
-import { addProductAsync, getAllAsync } from "../../store/productSlice";
+import {
+  addProductAsync,
+  deleteProductAsync,
+  getAllAsync,
+} from "../../store/productSlice";
 import "./AdminPage.scss";
 
 const { Panel } = Collapse;
@@ -17,6 +30,17 @@ const AdminPage = () => {
 
   const [visibleAddForm, setVisibleAddForm] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [idToDeleteProduct, setIdToDeleteProduct] = useState();
+
+  const handleDelete = () => {
+    setIsModalVisible(false);
+    dispatch(deleteProductAsync(idToDeleteProduct));
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   const dispatch = useDispatch();
 
@@ -117,13 +141,22 @@ const AdminPage = () => {
     Table.SELECTION_COLUMN,
     {
       title: "Action",
-      render: () => {
+      dataIndex: "id",
+      key: "id",
+      render: (id) => {
         return (
           <Space size="middle">
             <Button className="primary__button" type="primary" ghost>
               Edit
             </Button>
-            <Button type="danger" ghost>
+            <Button
+              onClick={() => {
+                setIdToDeleteProduct(id);
+                setIsModalVisible(true);
+              }}
+              type="danger"
+              ghost
+            >
               Delete
             </Button>
           </Space>
@@ -185,6 +218,14 @@ const AdminPage = () => {
           dataSource={product}
           columns={columns}
         />
+        <Modal
+          title="Delete Product"
+          visible={isModalVisible}
+          onOk={handleDelete}
+          onCancel={handleCancel}
+        >
+          This product will be delete?
+        </Modal>
       </div>
     </Spin>
   );

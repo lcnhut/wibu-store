@@ -8,7 +8,6 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-
       <Routes>
         <Route path="/" index element={<Product />} />
         <Route path="/admin" element={<AdminPage />} />
