@@ -1,13 +1,25 @@
-import { Button, Image, Input, Modal, Space, Spin, Table } from "antd";
-import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AddProductForm } from "../../components";
 import {
   addProductAsync,
   getAllAsync,
   deleteProductAsync,
-} from "../../store/productStore";
+} from "../../store/productSlice";
+import {
+  Button,
+  Collapse,
+  Image,
+  Input,
+  Space,
+  Spin,
+  Table,
+  Tag,
+  Modal,
+} from "antd";
+import React, { useEffect, useState } from "react";
+import { AddProductForm } from "../../components";
 import "./AdminPage.scss";
+
+const { Panel } = Collapse;
 
 const AdminPage = () => {
   const productData = useSelector((state) => state.product.list);
@@ -45,6 +57,27 @@ const AdminPage = () => {
     setProduct(productData);
   }, [productData]);
 
+  const setColorTag = (index) => {
+    let color = "";
+    switch (index) {
+      case 0:
+        color = "volcano";
+        break;
+      case 1:
+        color = "blue";
+        break;
+      case 2:
+        color = "cyan";
+        break;
+      case 3:
+        color = "volcano";
+        break;
+      default:
+        color = "cyan";
+    }
+    return color;
+  };
+
   const columns = [
     {
       title: "Name",
@@ -76,7 +109,40 @@ const AdminPage = () => {
       dataIndex: "inStock",
       key: "inStock",
       sorter: (a, b) => a.inStock - b.inStock,
+      render: (_, record) => {
+        return (
+          <>
+            <b>Total: {record.inStock}</b>
+            <Collapse ghost>
+              {record.colors.map((colorItem, index) => {
+                return (
+                  <Panel
+                    header={
+                      <Tag color={setColorTag(index)}>
+                        {colorItem.color.toUpperCase()}
+                      </Tag>
+                    }
+                    key={index}
+                  >
+                    {colorItem.sizes.map((sizeItem, index) => {
+                      return (
+                        <p key={index}>
+                          <Tag color={setColorTag(index)}>
+                            Size {sizeItem.size}
+                          </Tag>
+                          : {sizeItem.inStock}
+                        </p>
+                      );
+                    })}
+                  </Panel>
+                );
+              })}
+            </Collapse>
+          </>
+        );
+      },
     },
+    Table.SELECTION_COLUMN,
     {
       title: "Action",
       dataIndex: "id",
