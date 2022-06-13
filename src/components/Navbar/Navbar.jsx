@@ -81,7 +81,7 @@ export default function Navbar() {
             </li>
           </Badge.Ribbon>
           <li className="navbar__link">
-            <NavLink to="/Collection"> FEATURE</NavLink>
+            <NavLink to="/Collection"> Collection </NavLink>
             <div className="navbar__dropdown">
               <div className="navbar__dropdown__content">
                 <div className="navbar__dropdown__lists">
