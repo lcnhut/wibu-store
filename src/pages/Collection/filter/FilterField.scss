@@ -1,6 +1,6 @@
 .filter__container {
   display: flex;
-  margin-top: 3rem;
+  margin-top: 2rem;
   &__filter {
     flex: 6;
     &__filterbtn {
@@ -29,7 +29,7 @@
     }
     &__filterbtn:hover {
       color: #fff;
-      border: none;
+      border: 1px solid var(--primary-color);
       background-color: var(--primary-color);
     }
 
@@ -92,15 +92,65 @@
 }
 
 .filter-selection {
-  margin-top: 50px;
+  margin-top: 25px;
   border: 1px solid var(--primary-color);
   &__container {
     padding: 30px;
     display: flex;
-    justify-content: space-between;
-    
     .filter-selection-item {
-      // min-width: 292px;
+      flex: 1;
+      &__title {
+        .title {
+          position: relative;
+        }
+        .title::after {
+          border-bottom: 2px solid #cea384;
+          bottom: 0;
+          content: "";
+          position: absolute;
+          transition: width 0.4s linear 0s;
+          left: 0;
+          width: 55px;
+        }
+      }
+      &__content {
+        .filter-selection-item__items {
+          list-style-type: none;
+          margin-top: 1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          cursor: pointer;
+          .filter-selection-item__item {
+            transition: all 0.3s ease;
+            font-weight: 500;
+          }
+          .filter-selection-item__item:hover {
+            color: var(--primary-color);
+          }
+        }
+      }
+      .filter-selection-item__cricles {
+        list-style-type: none;
+        display: flex;
+        gap: 0.6rem;
+        max-width: 250px;
+        flex-wrap: wrap;
+      }
+      .filter-selection-item__size {
+        &__list {
+          display: flex;
+          list-style-type: none;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+      }
+      .Breadcrumb-list {
+        li {
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
     }
   }
 }

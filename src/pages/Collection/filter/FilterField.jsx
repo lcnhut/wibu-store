@@ -5,10 +5,11 @@ import {
   HolderOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Dropdown, Menu, Space } from "antd";
+import { Breadcrumb, Button, Dropdown, Menu, Space } from "antd";
 import React from "react";
+import { ButtonSize, CricleColor } from "../../../components";
 import "./FilterField.scss";
-export default function filterField() {
+export default function filterField({ showFilterButton }) {
   const menu = (
     <Menu
       items={[
@@ -55,7 +56,12 @@ export default function filterField() {
     <>
       <div className="filter__container">
         <div className="filter__container__filter">
-          <div className="filter__container__filter__filterbtn">
+          <div
+            className="filter__container__filter__filterbtn"
+            onClick={() => {
+              showFilterButton();
+            }}
+          >
             <div>
               <FilterOutlined />
             </div>
@@ -93,37 +99,139 @@ export default function filterField() {
         <div className="filter-selection__container">
           <div className="filter-selection-item">
             <div className="filter-selection-item__title">
-              <h2>Categories</h2>
+              <h2 className="title">Categories</h2>
             </div>
             <div className="filter-selection-item__content">
-              <ul>
-                <li>item 1</li>
-                <li> item 2</li>
-                <li> item 3</li>
+              <ul className="filter-selection-item__items">
+                <li className="filter-selection-item__item">
+                  Arizona Slide Sandal
+                </li>
+                <li className="filter-selection-item__item">
+                  {" "}
+                  Reverse Leather Thong
+                </li>
+                <li className="filter-selection-item__item">
+                  {" "}
+                  Beaded Rope Sandals
+                </li>
+                <li className="filter-selection-item__item">
+                  {" "}
+                  Jenny Slide Sandals
+                </li>
+                <li className="filter-selection-item__item">
+                  {" "}
+                  Fragolina Sandals
+                </li>
               </ul>
             </div>
           </div>
           <div className="filter-selection-item">
             <div className="filter-selection-item__title">
-              <h2>Color Option</h2>
+              <h2 className="title">Color Option</h2>
+              <ul className="filter-selection-item__cricles">
+                <li>
+                  <CricleColor color="black" />
+                </li>
+                <li>
+                  <CricleColor color="Cornsilk" />
+                </li>
+                <li>
+                  <CricleColor color="hotpink" />
+                </li>
+                <li>
+                  <CricleColor color="hotpink" />
+                </li>
+                <li>
+                  <CricleColor color="hotpink" />
+                </li>
+                <li>
+                  <CricleColor color="Silver" />
+                </li>
+                <li>
+                  <CricleColor color="GoldenRod" />
+                </li>
+                <li>
+                  <CricleColor color="Gold" />
+                </li>
+                <li>
+                  <CricleColor color="White" />
+                </li>
+              </ul>
             </div>
           </div>
           <div className="filter-selection-item">
             <div className="filter-selection-item__title">
-              <h2>Size Option</h2>
+              <h2 className="title">Size Option</h2>
             </div>
-            <div>
-              
+            <div className="filter-selection-item__size">
+              <ul className="filter-selection-item__size__list">
+                <li>
+                  <ButtonSize number="36" />
+                </li>
+                <li>
+                  <ButtonSize number="37" />
+                </li>
+                <li>
+                  <ButtonSize number="38" />
+                </li>
+                <li>
+                  <ButtonSize number="39" />
+                </li>
+                <li>
+                  <ButtonSize number="40" />
+                </li>
+                <li>
+                  <ButtonSize number="41" />
+                </li>
+                <li>
+                  <ButtonSize number="42" />
+                </li>
+              </ul>
             </div>
           </div>
           <div className="filter-selection-item">
             <div className="filter-selection-item__title">
-              <h2>Price Filter</h2>
+              <h2 className="title">Price Filter</h2>
+            </div>
+            <div className="filter-selection-item__content">
+              <ul className="filter-selection-item__items">
+                <li className="filter-selection-item__item">Less than $50</li>
+                <li className="filter-selection-item__item">$50-$100</li>
+                <li className="filter-selection-item__item">$100-$150</li>
+              </ul>
             </div>
           </div>
           <div className="filter-selection-item">
             <div className="filter-selection-item__title">
-              <h2>Tags</h2>
+              <h2 className="title">Tags</h2>
+            </div>
+            <div style={{ fontSize: "16px" }} className="Breadcrumb-list">
+              <Breadcrumb>
+                <Breadcrumb.Item>$100-$150</Breadcrumb.Item>
+                <Breadcrumb.Item>
+                  <a href="">$50-$100</a>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                  <a href="">36</a>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item> 37</Breadcrumb.Item>
+                <Breadcrumb.Item> 38 </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                  <a href="">39</a>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                  <a href="">40</a>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>Black</Breadcrumb.Item>
+                <Breadcrumb.Item> Cornsilk</Breadcrumb.Item>
+                <Breadcrumb.Item> Gold</Breadcrumb.Item>
+                <Breadcrumb.Item> GoldenRod </Breadcrumb.Item>
+                <Breadcrumb.Item> Less than $50 </Breadcrumb.Item>
+                <Breadcrumb.Item> Navy </Breadcrumb.Item>
+                <Breadcrumb.Item> Pink </Breadcrumb.Item>
+                <Breadcrumb.Item> Silver </Breadcrumb.Item>
+                <Breadcrumb.Item> White </Breadcrumb.Item>
+              </Breadcrumb>
             </div>
           </div>
         </div>
