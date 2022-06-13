@@ -6,7 +6,7 @@ import "./Collection.scss";
 import FilterField from "./filter/FilterField";
 export default function Collection() {
   const [products, setProducts] = useState();
-  const [showProduct, setShowProduct] = useState(true);
+  const [showProduct, setShowProduct] = useState(false);
   const listProduct = useRef();
   const getAllProduct = () => {
     instance
@@ -46,7 +46,6 @@ export default function Collection() {
       </div>
       <div
         class="collection__container__product list__product"
-      
         ref={listProduct}
       >
         <Row
