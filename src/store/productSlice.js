@@ -15,7 +15,7 @@ export const addProductAsync = createAsyncThunk(
   }
 );
 export const deleteProductAsync = createAsyncThunk(
-  "prduct/deleteProduct",
+  "product/deleteProduct",
   async (id) => {
     const response = await productApi.delete(id);
     return response.data;
@@ -90,6 +90,7 @@ export const productSlice = createSlice({
       state.isLoading = false;
       const data = state.list.filter((item) => item.id !== action.payload.id);
       state.list = data;
+      message.success("A product is deleted!!!");
     },
   },
 });

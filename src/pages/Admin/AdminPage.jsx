@@ -1,22 +1,22 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addProductAsync,
-  getAllAsync,
-  deleteProductAsync,
-} from "../../store/productSlice";
 import {
   Button,
   Collapse,
   Image,
   Input,
+  Modal,
   Space,
   Spin,
   Table,
   Tag,
-  Modal,
 } from "antd";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { AddProductForm } from "../../components";
+import {
+  addProductAsync,
+  deleteProductAsync,
+  getAllAsync,
+} from "../../store/productSlice";
 import "./AdminPage.scss";
 
 const { Panel } = Collapse;
@@ -33,11 +33,7 @@ const AdminPage = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [idToDeleteProduct, setIdToDeleteProduct] = useState();
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
+  const handleDelete = () => {
     setIsModalVisible(false);
     dispatch(deleteProductAsync(idToDeleteProduct));
   };
@@ -225,7 +221,7 @@ const AdminPage = () => {
         <Modal
           title="Delete Product"
           visible={isModalVisible}
-          onOk={handleOk}
+          onOk={handleDelete}
           onCancel={handleCancel}
         >
           This product will be delete?
