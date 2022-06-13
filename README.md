@@ -17,6 +17,7 @@ Trello: https://trello.com/invite/b/HTiUAbHk/c0f783d981f2179a58eb8821aefa88a9/sn
 
 ### API Usage
   1. GET all products -> Endpoint: /product
+  
  Response:
  ```
     [
@@ -39,6 +40,8 @@ Trello: https://trello.com/invite/b/HTiUAbHk/c0f783d981f2179a58eb8821aefa88a9/sn
     ]
   ```
   2. POST create product -> Endpoint: /product
+ 
+ Params
  ```
     {
       "name": "string",
@@ -49,6 +52,8 @@ Trello: https://trello.com/invite/b/HTiUAbHk/c0f783d981f2179a58eb8821aefa88a9/sn
     }
  ```
    3. PUT edit product -> Endpoint: /product/{productId} 
+ 
+ Params
  ```
     {
       "name": "string",
