@@ -1,27 +1,24 @@
-import React, { useState } from "react";
-import "./styles.scss";
 import {
   HeartOutlined,
-  PlusCircleOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import {
-  Image,
-  Row,
   Col,
   Divider,
-  Select,
-  Space,
   Form,
-  Input,
+  Image,
   InputNumber,
+  Modal,
+  Row,
+  Select,
 } from "antd";
-const { Option } = Select;
-import { Modal } from "antd";
-import instance from "../../../../utils/AxiosConfig/AxiosConfig";
+import { useState, React } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../../../store/productStore";
+import { addToCart } from "../../../../store/productSlice";
+import instance from "../../../../utils/AxiosConfig/AxiosConfig";
+import "./styles.scss";
+const { Option } = Select;
 
 const SingleProduct = ({ product }) => {
   const dispatch = useDispatch();

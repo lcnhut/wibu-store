@@ -14,6 +14,13 @@ export const addProductAsync = createAsyncThunk(
     return response;
   }
 );
+export const deleteProductAsync = createAsyncThunk(
+  "product/deleteProduct",
+  async (id) => {
+    const response = await productApi.delete(id);
+    return response.data;
+  }
+);
 
 export const productSlice = createSlice({
   name: "product",
@@ -37,8 +44,25 @@ export const productSlice = createSlice({
       message.error("Something went wrong!!!");
     },
     [getAllAsync.fulfilled]: (state, action) => {
+      const data = action.payload.data;
+
+      const formattedData = data.map((item) => {
+        let total = 0;
+        item.colors.forEach((color) => {
+          color.sizes.map((size) => {
+            total += size.inStock;
+          });
+          return total;
+        });
+
+        return {
+          ...item,
+          inStock: total,
+        };
+      });
+
       state.isLoading = false;
-      state.list = action.payload.data;
+      state.list = formattedData;
     },
 
     [addProductAsync.pending]: (state) => {
@@ -53,6 +77,20 @@ export const productSlice = createSlice({
       state.isLoading = false;
       state.list.push(newProduct);
       message.success("A new product is added!!!");
+    },
+
+    [deleteProductAsync.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [deleteProductAsync.rejected]: (state) => {
+      state.isLoading = false;
+      message.error("Delete product failed!");
+    },
+    [deleteProductAsync.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      const data = state.list.filter((item) => item.id !== action.payload.id);
+      state.list = data;
+      message.success("A product is deleted!!!");
     },
   },
 });

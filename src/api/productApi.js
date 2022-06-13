@@ -25,5 +25,8 @@ const productApi = {
       .catch((e) => {
         console.log(e);
       }),
+  delete: (id) => {
+    return instance.delete(`/products/${id}`);
+  },
 };
 export default productApi;
