@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import instance from "../../../utils/AxiosConfig/AxiosConfig";
 import SingleProduct from "./SingleProduct";
 import "./styles.scss";
+
 const ListProduct = () => {
   const [products, setProducts] = useState();
   const getAllProduct = () => {
@@ -10,6 +11,7 @@ const ListProduct = () => {
       .get("/products")
       .then(function (response) {
         const { data } = response;
+        console.log(data);
         data && setProducts(data);
       })
       .catch(function (e) {
@@ -22,7 +24,6 @@ const ListProduct = () => {
   }, []);
   return (
     <>
-    
       <Row className="listproduct__title__wrapper">
         <Col className="listproduct__title__container" span={24}>
           <h1>Shop The Collection</h1>
