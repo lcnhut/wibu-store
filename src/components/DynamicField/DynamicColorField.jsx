@@ -36,14 +36,14 @@ export const DynamicColorField = () => {
                   label="Size"
                   rules={[{ required: true }]}
                 >
-                  <InputNumber />
+                  <InputNumber min={1} />
                 </Form.Item>
                 <Form.Item
                   name={[index, "quantity"]}
                   label="Quantity"
                   rules={[{ required: true }]}
                 >
-                  <InputNumber />
+                  <InputNumber min={1} />
                 </Form.Item>
               </div>
             ))}

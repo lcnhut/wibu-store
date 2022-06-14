@@ -177,12 +177,12 @@ const SingleProduct = ({ product }) => {
                   <InputNumber min={1} />
                 </Form.Item>
 
-                <Button type="primary" htmlType="submit">
+                <button className="add-to-cart__btn" type="submit">
                   <ShoppingCartOutlined
                     style={{ fontSize: "20px", marginRight: "5px" }}
                   />
                   Add to cart
-                </Button>
+                </button>
               </Form>
             </Col>
           </Row>

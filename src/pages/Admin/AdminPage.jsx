@@ -23,7 +23,6 @@ const { Panel } = Collapse;
 
 const AdminPage = () => {
   const productData = useSelector((state) => state.product.list);
-  console.log(productData);
   const isLoading = useSelector((state) => state.product.isLoading);
 
   const [product, setProduct] = useState(productData);

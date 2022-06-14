@@ -102,16 +102,12 @@ const AddProductForm = (props) => {
             },
           ]}
         >
-          <InputNumber />
+          <InputNumber min={1} />
         </Form.Item>
-        {/* <Form.Item name="image" label="Image">
-          <Input />
-        </Form.Item> */}
-        <DynamicImageField />
         <Form.Item name="description" label="Description">
           <Input />
         </Form.Item>
-
+        <DynamicImageField />
         <DynamicColorField />
       </Form>
     </Modal>
