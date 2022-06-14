@@ -89,7 +89,21 @@ export const productSlice = createSlice({
       message.error("Something went wrong!!!");
     },
     [addProductAsync.fulfilled]: (state, action) => {
-      const newProduct = action.payload.data;
+      let newProduct = action.payload.data;
+
+      let total = 0;
+      newProduct.colors.forEach((color) => {
+        color.sizes.map((size) => {
+          total += size.inStock;
+        });
+        return total;
+      });
+
+      newProduct = {
+        ...newProduct,
+        inStock: total,
+      };
+
       state.isLoading = false;
       state.list.push(newProduct);
       message.success("A new product is added!!!");

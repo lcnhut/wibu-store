@@ -16,8 +16,8 @@ const productApi = {
         name: product.name,
         image: product.image ? product.image : "",
         price: product.price,
-        inStock: product.quantity,
         description: product.description ? product.description : "",
+        colors: product.colors,
       })
       .then((response) => {
         return response;
