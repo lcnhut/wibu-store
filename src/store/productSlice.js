@@ -22,6 +22,22 @@ export const deleteProductAsync = createAsyncThunk(
   }
 );
 
+export const getByIdAsync = createAsyncThunk(
+  "product/get-by-id",
+  async (id) => {
+    const { data } = await productApi.getById(id);
+    return console.log(data);
+  }
+);
+
+export const updateProductAsync = createAsyncThunk(
+  "product/updateProduct",
+  async (data) => {
+    const response = await productApi.update(data.id);
+    return console.log(response);
+  }
+);
+
 export const productSlice = createSlice({
   name: "product",
   initialState: {

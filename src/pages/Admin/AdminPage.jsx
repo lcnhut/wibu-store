@@ -16,6 +16,7 @@ import {
   addProductAsync,
   deleteProductAsync,
   getAllAsync,
+  getByIdAsync,
 } from "../../store/productSlice";
 import "./AdminPage.scss";
 
@@ -146,7 +147,12 @@ const AdminPage = () => {
       render: (id) => {
         return (
           <Space size="middle">
-            <Button className="primary__button" type="primary" ghost>
+            <Button
+              onClick={() => dispatch(getByIdAsync(id))}
+              className="primary__button"
+              type="primary"
+              ghost
+            >
               Edit
             </Button>
             <Button

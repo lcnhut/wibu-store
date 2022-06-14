@@ -28,5 +28,11 @@ const productApi = {
   delete: (id) => {
     return instance.delete(`/products/${id}`);
   },
+  getById: (id) => {
+    return instance.get(`/products/${id}`);
+  },
+  update: (data) => {
+    return instance.put(`/products/${data.id}, ${data}`);
+  },
 };
 export default productApi;
