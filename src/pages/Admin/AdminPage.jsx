@@ -12,11 +12,11 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AddProductForm } from "../../components";
+import UpdateProductForm from "../../components/Form/AddProductForm/UpdateProductForm";
 import {
   addProductAsync,
   deleteProductAsync,
   getAllAsync,
-  getByIdAsync,
 } from "../../store/productSlice";
 import "./AdminPage.scss";
 
@@ -24,16 +24,25 @@ const { Panel } = Collapse;
 
 const AdminPage = () => {
   const productData = useSelector((state) => state.product.list);
-  console.log(productData);
   const isLoading = useSelector((state) => state.product.isLoading);
-
   const [product, setProduct] = useState(productData);
   const [value, setValue] = useState("");
+  const [productToUpdate, setProductToUpdate] = useState();
 
   const [visibleAddForm, setVisibleAddForm] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [idToDeleteProduct, setIdToDeleteProduct] = useState();
+  const [visibleUpdateForm, setVisibleUpdateForm] = useState(false);
+  const [idToUpdate, setIdToUpdate] = useState();
+
+  const handleOkUpdate = () => {
+    setVisibleUpdateForm(false);
+  };
+
+  const handleCancelUpdate = () => {
+    setVisibleUpdateForm(false);
+  };
 
   const handleDelete = () => {
     setIsModalVisible(false);
@@ -75,7 +84,6 @@ const AdminPage = () => {
     }
     return color;
   };
-
   const columns = [
     {
       title: "Name",
@@ -146,7 +154,13 @@ const AdminPage = () => {
         return (
           <Space size="middle">
             <Button
-              onClick={() => dispatch(getByIdAsync(id))}
+              onClick={() => {
+                setVisibleUpdateForm(true);
+                product.map((p) => {
+                  if (p.id === id) return setProductToUpdate(p);
+                });
+                setIdToUpdate(id);
+              }}
               className="primary__button"
               type="primary"
               ghost
@@ -199,30 +213,35 @@ const AdminPage = () => {
       setVisibleAddForm(isLoading);
     }
   };
-
   return (
     <Spin tip="Loading..." size="large" spinning={isLoading}>
       <div className="admin__page container-page">
-        <Input
-          className="search__input"
-          placeholder="Search product"
-          value={value}
-          onChange={(e) => onSearch(e.target.value)}
-        />
-        <Button type="primary" ghost onClick={showModalAddForm}>
-          Add new product
-        </Button>
-        <AddProductForm
-          handleSubmitForm={handleSubmitAddForm}
-          visible={visibleAddForm}
-          confirmLoading={confirmLoading}
-          onCancel={onCancelAddForm}
-        />
-        <Table
-          className="product__table"
-          dataSource={product}
-          columns={columns}
-        />
+        <div
+          style={{
+            padding: "3vh 6vw",
+          }}
+        >
+          <Input
+            className="search__input"
+            placeholder="Search product"
+            value={value}
+            onChange={(e) => onSearch(e.target.value)}
+          />
+          <Button type="primary" ghost onClick={showModalAddForm}>
+            Add new product
+          </Button>
+          <AddProductForm
+            handleSubmitForm={handleSubmitAddForm}
+            visible={visibleAddForm}
+            confirmLoading={confirmLoading}
+            onCancel={onCancelAddForm}
+          />
+          <Table
+            className="product__table"
+            dataSource={product}
+            columns={columns}
+          />
+        </div>
         <Modal
           title="Delete Product"
           visible={isModalVisible}
@@ -231,6 +250,15 @@ const AdminPage = () => {
         >
           This product will be delete?
         </Modal>
+        {productToUpdate && (
+          <UpdateProductForm
+            idToUpdate={idToUpdate}
+            productToUpdate={productToUpdate}
+            visibleUpdateForm={visibleUpdateForm}
+            handleOkUpdate={handleOkUpdate}
+            handleCancelUpdate={handleCancelUpdate}
+          />
+        )}
       </div>
     </Spin>
   );
