@@ -12,7 +12,7 @@ const AddProductForm = (props) => {
   };
 
   const onFinish = (values) => {
-    let transformData = [];
+    let transformData = {};
     const colorList = values.colors.map((color) => {
       return color.color;
     });
@@ -25,21 +25,30 @@ const AddProductForm = (props) => {
       return accumulator;
     }, []);
 
+    const colorArr = [];
+
     duplicateColor.forEach((color) => {
-      const arr = [];
       const listSameColor = values.colors.filter((el) => el.color === color);
+      const colorObj = {
+        color: color,
+        sizes: [],
+      };
 
       listSameColor.forEach((item) => {
-        arr.push({
+        colorObj.sizes.push({
           size: item.size,
           inStock: item.quantity,
         });
       });
-
-      console.log(arr);
+      colorArr.push(colorObj);
     });
 
-    // console.log(transformData);
+    transformData = {
+      ...values,
+      colors: colorArr,
+    };
+
+    handleSubmitForm(transformData);
   };
 
   return (
