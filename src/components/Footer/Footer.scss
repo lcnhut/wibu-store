@@ -1,5 +1,107 @@
 .footer-container {
-  height: 400px;
+  height: 350px;
   width: 100%;
-  background-color: red;
+  // position: fixed;
+  margin-top: 60px;
+  background-color: #f2f2f2;
+  &__content {
+    padding-top: 60px;
+    .title {
+      font-size: 21px;
+      color: #000;
+      font-weight: 500;
+      width: fit-content;
+
+      position: relative;
+      padding-bottom: 12px;
+    }
+    .title::after {
+      border-bottom: 1px solid #000;
+      bottom: 0;
+      content: "";
+      position: absolute;
+      transition: width 0.4s linear 0s;
+      left: 0;
+      width: 50%;
+    }
+    display: flex;
+    margin: 0 auto;
+    // width: 80%;
+    width: 100%;
+    max-width: 1670px;
+    &__item {
+      flex: 1;
+      &__content {
+        ul {
+          list-style-type: none;
+          display: flex;
+          flex-direction: column;
+          gap: 0.6rem;
+          li {
+            cursor: pointer;
+            transition: all 0.3s ease;
+          }
+          li:hover {
+            color: var(--primary-color);
+          }
+        }
+        .footer-container__content__icons {
+          display: flex;
+          gap: 1rem;
+          .container__content__icon {
+            padding: 3px;
+            border-radius: 50%;
+            width: 30px;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            height: 30px;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          }
+          .container__content__icon:hover {
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+          }
+        }
+        .footer-sumbit-mail {
+          display: flex;
+          max-width: 460px;
+          &__inputfield {
+            width: 100%;
+            input {
+              padding: 10px;
+              width: 100%;
+              outline: none;
+              border: none;
+              height: 52px;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__logo {
+    display: flex;
+    width: 100%;
+    border-top: 1px solid #e8e8f2;
+    justify-content: center;
+    align-items: center;
+    .Footer__logo {
+      width: 150px;
+      height: 65px;
+    }
+    .footer_payment {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .copyright {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
