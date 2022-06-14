@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components";
-import { AdminPage, Product } from "./pages";
+import { AdminPage, Product, Collection } from "./pages";
 import "./App.scss";
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" index element={<Product />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/Collection" element={<Collection />} />
       </Routes>
     </div>
   );

@@ -1,0 +1,19 @@
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  border: 1px solid black;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  p {
+    margin: 0;
+    font-weight: 600;
+    padding: 8px 12px;
+  }
+}
+.btn-container:hover {
+  color: #fff;
+  background-color: #000;
+}

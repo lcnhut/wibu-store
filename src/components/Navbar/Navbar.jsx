@@ -1,19 +1,22 @@
 import {
+  CloseOutlined,
   HeartOutlined,
   SearchOutlined,
   ShoppingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Avatar, Badge } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import "./Navbar.scss";
 export default function Navbar() {
   const cartItem = useSelector((state) => state.product.cartItem);
+  const [onActive, SetOnActive] = useState(false);
+  console.log(onActive);
   return (
     <header>
-      <nav className="navbar">
+      <nav className="navbar" style={{ zIndex: onActive ? "0" : "99" }}>
         <img
           src="https://cdn.shopify.com/s/files/1/0277/0472/1542/files/logo.png?v=1589452027"
           className="navbar__logo"
@@ -81,7 +84,7 @@ export default function Navbar() {
             </li>
           </Badge.Ribbon>
           <li className="navbar__link">
-            <NavLink to="/Feature"> FEATURE</NavLink>
+            <NavLink to="/Collection"> Collection </NavLink>
             <div className="navbar__dropdown">
               <div className="navbar__dropdown__content">
                 <div className="navbar__dropdown__lists">
@@ -133,7 +136,12 @@ export default function Navbar() {
           <div>
             <HeartOutlined style={{ fontSize: 24 }} />
           </div>
-          <div>
+          <div
+            onClick={() => {
+              SetOnActive(!onActive);
+            }}
+            style={{ cursor: "pointer" }}
+          >
             <SearchOutlined style={{ fontSize: 24 }} />
           </div>
           <div style={{ cursor: "pointer" }}>
@@ -145,6 +153,44 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      <div
+        className="search-field"
+        style={{
+          visibility: onActive ? "visible" : "hidden",
+          opacity: onActive ? "1" : "0",
+          height: onActive ? "400px " : "0",
+          zIndex: onActive ? "101" : "0",
+        }}
+      >
+        <h1>Start typing and hit Enter</h1>
+        <div className="search-field__inputContent">
+          <input
+            className="search-field__inputContent__input"
+            placeholder="Search anything"
+          />
+          <SearchOutlined style={{ fontSize: "18px" }} />
+        </div>
+        <div className="search-field__closeModal">
+          <CloseOutlined
+            style={{ fontSize: "18px" }}
+            onClick={() => {
+              console.log("hello");
+              SetOnActive(!onActive);
+            }}
+          />
+        </div>
+      </div>
+      <div
+        className="bg_search_box"
+        style={{
+          visibility: onActive ? "visible" : "hidden",
+          opacity: onActive ? "1" : "0",
+          zIndex: onActive ? "100" : "0",
+        }}
+        onClick={() => {
+          SetOnActive(!onActive);
+        }}
+      ></div>
     </header>
   );
 }

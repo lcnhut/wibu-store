@@ -22,6 +22,7 @@ const ListProduct = () => {
   }, []);
   return (
     <>
+    
       <Row className="listproduct__title__wrapper">
         <Col className="listproduct__title__container" span={24}>
           <h1>Shop The Collection</h1>
@@ -34,20 +35,23 @@ const ListProduct = () => {
       </Row>
       <Row gutter={[16, 26]} className="listproduct__wrapper">
         {products &&
-          products.map((product, id) => (
-            <Col
-              xs={{ span: 24 }}
-              sm={{ span: 24 }}
-              md={{ span: 12 }}
-              lg={{ span: 8 }}
-              xl={{ span: 6 }}
-              className="listproduct__item"
-              key={id}
-              span={6}
-            >
-              <SingleProduct product={product} />
-            </Col>
-          ))}
+          products.map(
+            (product, id) =>
+              id < 8 && (
+                <Col
+                  xs={{ span: 24 }}
+                  sm={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 8 }}
+                  xl={{ span: 6 }}
+                  className="listproduct__item"
+                  key={id}
+                  span={6}
+                >
+                  <SingleProduct product={product} />
+                </Col>
+              )
+          )}
       </Row>
     </>
   );
