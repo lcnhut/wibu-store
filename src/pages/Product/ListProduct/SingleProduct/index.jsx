@@ -4,6 +4,7 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import {
+  Button,
   Col,
   Divider,
   Form,
@@ -13,31 +14,51 @@ import {
   Row,
   Select,
 } from "antd";
-import { useState, React } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, React, useEffect } from "react";
 import { addToCart } from "../../../../store/productSlice";
+import { useDispatch } from "react-redux";
 import instance from "../../../../utils/AxiosConfig/AxiosConfig";
 import "./styles.scss";
+import { size } from "lodash";
 const { Option } = Select;
 
 const SingleProduct = ({ product }) => {
+  const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [singleProduct, setSingleProduct] = useState({});
+
   const getProduct = async (id) => {
     const { data } = await instance.get(`products/${id}`);
     data && setSingleProduct(data);
-    return data;
+    // console.log(singleProduct);
+    // return data;
   };
 
-  const cartItem = useSelector((state) => state.product.cartItem);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const handleAddToCart = async (id) => {
-    const data = await getProduct(id);
-    data && dispatch(addToCart(data));
+
+  const handleAddToCart = (values) => {
+    // console.log(values);
+    // console.log(product);
+    const submitData = {
+      ...values,
+      name: product.name,
+      image: product.image,
+      description: product.description,
+    };
+    dispatch(addToCart(submitData));
     setIsModalVisible(false);
   };
-  const showModal = () => {
-    setIsModalVisible(true);
+
+  const onFinish = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        form.resetFields();
+        handleAddToCart(values);
+      })
+      .catch((info) => {
+        console.log("Validate Failed:", info);
+      });
   };
 
   const handleCancel = () => {
@@ -49,16 +70,42 @@ const SingleProduct = ({ product }) => {
     getProduct(id);
   };
 
+  const colorOption = product.colors.map((color) => color.color);
+  const selectedColor = colorOption[0];
+  const [sizeOption, setSizeOption] = useState([]);
+  const [selectedSize, setSelectedSize] = useState(sizeOption[0]);
+
+  useEffect(() => {
+    product.colors.forEach((item) => {
+      if (item.color === selectedColor) {
+        const size = item.sizes.map((size) => size.size);
+        setSizeOption(size);
+      }
+    });
+  }, [selectedColor]);
+
+  useEffect(() => {
+    form.setFieldsValue({
+      size: sizeOption[0],
+    });
+  }, [sizeOption]);
+
+  // handle color change
+  const onChangeColor = (selectedColor) => {
+    product.colors.forEach((item) => {
+      if (item.color === selectedColor) {
+        const size = item.sizes.map((size) => size.size);
+        setSizeOption(size);
+      }
+    });
+  };
+
   return (
     <>
       {singleProduct && (
         <Modal
           centered
-          title="Product Details"
           visible={isModalVisible}
-          onOk={() => {
-            handleAddToCart(product.id);
-          }}
           footer={null}
           onCancel={handleCancel}
           className="product__details__wrapper"
@@ -75,36 +122,58 @@ const SingleProduct = ({ product }) => {
               <Divider />
               <span>{singleProduct.description}</span>
               <Divider />
-              <div>
-                <span style={{ marginRight: "10px" }}>Size:</span>
-                <Select style={{ width: "100%" }} defaultValue="38">
-                  <Option>38</Option>
-                  <Option>39</Option>
-                  <Option>40</Option>
-                </Select>
-              </div>
-              <div style={{ margin: "10px 0" }}>
-                <span style={{ marginRight: "10px" }}>Color:</span>
-                <Select style={{ width: "100%" }} defaultValue="Navy">
-                  <Option>Navy</Option>
-                  <Option>Another Navy</Option>
-                  <Option>Navy again</Option>
-                </Select>
-              </div>
-              <Form>
-                <Form.Item>
-                  <InputNumber min={1} defaultValue={1} />
-                </Form.Item>
-              </Form>
-              <button
-                className="product__details__content__btn"
-                onClick={() => handleAddToCart(product.id)}
+              <Form
+                layout="vertical"
+                initialValues={{
+                  size: selectedSize,
+                  color: selectedColor,
+                  quantity: 1,
+                }}
+                form={form}
+                onFinish={onFinish}
               >
-                <ShoppingCartOutlined
-                  style={{ fontSize: "20px", marginRight: "5px" }}
-                />
-                Add to cart
-              </button>
+                <Form.Item name="color" label="Color">
+                  <Select
+                    style={{ width: "100%" }}
+                    onSelect={(item) => onChangeColor(item)}
+                  >
+                    {colorOption.map((color, index) => {
+                      return (
+                        <Option value={color} key={index}>
+                          {color}
+                        </Option>
+                      );
+                    })}
+                  </Select>
+                </Form.Item>
+
+                <Form.Item name="size" label="Size">
+                  <Select style={{ width: "100%" }}>
+                    {sizeOption
+                      ? sizeOption
+                          .sort((a, b) => a - b)
+                          .map((size, index) => {
+                            return (
+                              <Option value={size} key={index}>
+                                {size}
+                              </Option>
+                            );
+                          })
+                      : ""}
+                  </Select>
+                </Form.Item>
+
+                <Form.Item name="quantity" label="Quantity">
+                  <InputNumber min={1} />
+                </Form.Item>
+
+                <Button type="primary" htmlType="submit">
+                  <ShoppingCartOutlined
+                    style={{ fontSize: "20px", marginRight: "5px" }}
+                  />
+                  Add to cart
+                </Button>
+              </Form>
             </Col>
           </Row>
         </Modal>
@@ -133,7 +202,7 @@ const SingleProduct = ({ product }) => {
           <h4>${product.price}</h4>
         </div>
         <div className="single__product__action">
-          <button onClick={() => handleAddToCart(product.id)}>
+          <button onClick={() => setIsModalVisible(true)}>
             <ShoppingCartOutlined
               style={{ fontSize: "20px", marginRight: "5px" }}
             />
