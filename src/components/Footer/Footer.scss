@@ -1,11 +1,13 @@
 .footer-container {
-  height: 350px;
   width: 100%;
-  // position: fixed;
   margin-top: 60px;
   background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   &__content {
-    padding-top: 60px;
+    padding: 50px 0;
     .title {
       font-size: 21px;
       color: #000;
@@ -83,11 +85,12 @@
     }
   }
   &__logo {
-    display: flex;
+    padding: 25px 0;
+    display: grid;
     width: 100%;
+    max-width: 1670px;
     border-top: 1px solid #e8e8f2;
-    justify-content: center;
-    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
     .Footer__logo {
       width: 150px;
       height: 65px;
@@ -100,8 +103,9 @@
     }
     .copyright {
       display: flex;
-      justify-content: center;
+      justify-content: right;
       align-items: center;
+      color: #6c6c6c;
     }
   }
 }

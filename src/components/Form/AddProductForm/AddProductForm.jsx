@@ -1,6 +1,7 @@
 import { Form, Input, InputNumber, Modal } from "antd";
 import React from "react";
 import { DynamicColorField } from "../../DynamicField/DynamicColorField";
+import { DynamicImageField } from "../../DynamicField/DynamicImageField";
 
 const AddProductForm = (props) => {
   const [form] = Form.useForm();
@@ -12,6 +13,7 @@ const AddProductForm = (props) => {
   };
 
   const onFinish = (values) => {
+    console.log(values);
     let transformData = {};
     const colorList = values.colors.map((color) => {
       return color.color;
@@ -79,6 +81,10 @@ const AddProductForm = (props) => {
         wrapperCol={{
           span: 16,
         }}
+        initialValues={{
+          images: [""],
+          colors: [""],
+        }}
       >
         <Form.Item
           name="name"
@@ -100,15 +106,12 @@ const AddProductForm = (props) => {
             },
           ]}
         >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item name="image" label="Image">
-          <Input />
+          <InputNumber min={1} />
         </Form.Item>
         <Form.Item name="description" label="Description">
           <Input />
         </Form.Item>
-
+        <DynamicImageField />
         <DynamicColorField />
       </Form>
     </Modal>

@@ -1,17 +1,17 @@
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Divider, Form, Input, InputNumber } from "antd";
+import { Button, Divider, Form, Input } from "antd";
 import React from "react";
 
-export const DynamicColorField = () => {
+export const DynamicImageField = () => {
   return (
-    <Form.List name="colors">
+    <Form.List name="images">
       {(fields, { add, remove }) => {
         return (
           <div>
             {fields.map((field, index) => (
               <div key={field.key}>
                 <Divider>
-                  Color {index + 1}
+                  Image {index + 1}
                   {fields.length > 0 ? (
                     <span>
                       <Button
@@ -25,25 +25,11 @@ export const DynamicColorField = () => {
                   ) : null}
                 </Divider>
                 <Form.Item
-                  name={[index, "color"]}
-                  label="Color"
+                  name={[index, "src"]}
+                  label="Image"
                   rules={[{ required: true }]}
                 >
                   <Input />
-                </Form.Item>
-                <Form.Item
-                  name={[index, "size"]}
-                  label="Size"
-                  rules={[{ required: true }]}
-                >
-                  <InputNumber min={1} />
-                </Form.Item>
-                <Form.Item
-                  name={[index, "quantity"]}
-                  label="Quantity"
-                  rules={[{ required: true }]}
-                >
-                  <InputNumber min={1} />
                 </Form.Item>
               </div>
             ))}
@@ -54,7 +40,7 @@ export const DynamicColorField = () => {
                 onClick={() => add()}
                 style={{ width: "60%" }}
               >
-                <PlusOutlined /> Add Color
+                <PlusOutlined /> Add Image
               </Button>
             </Form.Item>
           </div>

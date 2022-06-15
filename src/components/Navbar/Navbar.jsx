@@ -5,14 +5,14 @@ import {
   ShoppingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Avatar, Badge } from "antd";
-import React, { useRef, useState } from "react";
+import { Badge } from "antd";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import ButtonOfPage from "../Button/ButtonOfPage";
 import "./Navbar.scss";
 export default function Navbar() {
-  const cartItem = useSelector((state) => state.product.cartItem);
+  const cartItem = useSelector((state) => state.product.cart);
   const [onActive, SetOnActive] = useState(false);
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
