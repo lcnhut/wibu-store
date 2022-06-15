@@ -6,17 +6,25 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Avatar, Badge } from "antd";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
+import ButtonOfPage from "../Button/ButtonOfPage";
 import "./Navbar.scss";
 export default function Navbar() {
   const cartItem = useSelector((state) => state.product.cartItem);
   const [onActive, SetOnActive] = useState(false);
-  
+  const [onCartActive, setOnCartActive] = useState(false);
+  const [onSearchActive, setOnSearchActive] = useState(false);
+  const navbar = useRef();
+
   return (
     <header>
-      <nav className="navbar" style={{ zIndex: onActive ? "0" : "99" }}>
+      <nav
+        className="navbar"
+        ref={navbar}
+        // style={{ zIndex: onActive ? "8" : "99" }}
+      >
         <img
           src="https://cdn.shopify.com/s/files/1/0277/0472/1542/files/logo.png?v=1589452027"
           className="navbar__logo"
@@ -139,27 +147,34 @@ export default function Navbar() {
           <div
             onClick={() => {
               SetOnActive(!onActive);
+              setOnSearchActive(!onSearchActive);
             }}
             style={{ cursor: "pointer" }}
           >
             <SearchOutlined style={{ fontSize: 24 }} />
           </div>
-          <div style={{ cursor: "pointer" }}>
-            <Link to="/cart">
-              <Badge count={cartItem.length}>
-                <ShoppingOutlined style={{ fontSize: 24 }} />
-              </Badge>
-            </Link>
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              SetOnActive(!onActive);
+              setOnCartActive(!onSearchActive);
+            }}
+          >
+            {/* <Link to="/cart"> */}
+            <Badge count={cartItem.length}>
+              <ShoppingOutlined style={{ fontSize: 24 }} />
+            </Badge>
+            {/* </Link> */}
           </div>
         </div>
       </nav>
       <div
         className="search-field"
         style={{
-          visibility: onActive ? "visible" : "hidden",
-          opacity: onActive ? "1" : "0",
-          height: onActive ? "400px " : "0",
-          zIndex: onActive ? "101" : "0",
+          visibility: onSearchActive ? "visible" : "hidden",
+          opacity: onSearchActive ? "1" : "0",
+          height: onSearchActive ? "400px " : "0",
+          zIndex: onSearchActive ? "101" : "0",
         }}
       >
         <h1>Start typing and hit Enter</h1>
@@ -174,10 +189,44 @@ export default function Navbar() {
           <CloseOutlined
             style={{ fontSize: "18px" }}
             onClick={() => {
-              console.log("hello");
               SetOnActive(!onActive);
+              setOnSearchActive(!onSearchActive);
             }}
           />
+        </div>
+      </div>
+      <div
+        className="cart_field"
+        style={{
+          opacity: onCartActive ? "1" : "0",
+          visibility: onCartActive ? "visible" : "hidden",
+          zIndex: onCartActive ? "101" : "-1",
+          width: onCartActive ? "350px" : "0",
+        }}
+      >
+        <div className="cart_field__header">
+          <div className="cart_field__header__icon">
+            {" "}
+            <CloseOutlined
+              style={{ fontSize: "18px" }}
+              onClick={() => {
+                setOnCartActive(false);
+                SetOnActive(!onActive);
+              }}
+            />
+          </div>
+          <div className="cart_field__header__content">
+            <p>Shopping Cart</p>
+          </div>
+          <div className="cart_field__header__total">
+            <p>0</p>
+          </div>
+        </div>
+        <div className="cart__field__body">
+          <div className="cart__field__body__title">
+            <h3>Your shopping bag is empty</h3>
+          </div>
+          <ButtonOfPage label="Shop Now" />
         </div>
       </div>
       <div
@@ -188,7 +237,8 @@ export default function Navbar() {
           zIndex: onActive ? "100" : "0",
         }}
         onClick={() => {
-          SetOnActive(!onActive);
+          SetOnActive(false);
+          setOnCartActive(false);
         }}
       ></div>
     </header>
