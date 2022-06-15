@@ -74,6 +74,7 @@ const ProductDetailModal = (props) => {
                         marginRight: "10px",
                         marginBottom: "5px",
                         textTransform: "capitalize",
+                        cursor: "pointer",
                       }}
                       color={setColorTag(index)}
                     >
