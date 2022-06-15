@@ -12,7 +12,7 @@ export const DynamicImageField = () => {
               <div key={field.key}>
                 <Divider>
                   Image {index + 1}
-                  {fields.length > 0 ? (
+                  {index > 0 ? (
                     <span>
                       <Button
                         type="danger"

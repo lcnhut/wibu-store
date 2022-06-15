@@ -12,7 +12,7 @@ export const DynamicColorField = () => {
               <div key={field.key}>
                 <Divider>
                   Color {index + 1}
-                  {fields.length > 0 ? (
+                  {index > 0 ? (
                     <span>
                       <Button
                         type="danger"
