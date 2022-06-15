@@ -14,7 +14,7 @@ const productApi = {
     instance
       .post("products", {
         name: product.name,
-        image: product.image ? product.image : "",
+        image: product.images ? product.images : [],
         price: product.price,
         description: product.description ? product.description : "",
         colors: product.colors,

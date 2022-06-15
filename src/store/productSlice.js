@@ -36,11 +36,11 @@ export const productSlice = createSlice({
     list: [],
     isLoading: false,
     error: "",
-    cartItem: [],
+    cart: [],
   },
   reducers: {
     addToCart: (state, action) => {
-      state.cartItem.unshift(action.payload);
+      state.cart.unshift(action.payload);
     },
   },
   extraReducers: {
