@@ -49,7 +49,7 @@ export default function Collection() {
         />
       </div>
       <div
-        class="collection__container__product list__product"
+        className="collection__container__product list__product"
         ref={listProduct}
       >
         <Row

@@ -13,7 +13,7 @@ import "./Navbar.scss";
 export default function Navbar() {
   const cartItem = useSelector((state) => state.product.cart);
   const [onActive, SetOnActive] = useState(false);
-  console.log(onActive);
+  
   return (
     <header>
       <nav className="navbar" style={{ zIndex: onActive ? "0" : "99" }}>
