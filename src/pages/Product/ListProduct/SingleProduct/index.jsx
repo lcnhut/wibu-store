@@ -173,16 +173,24 @@ const SingleProduct = ({ product }) => {
                   </Select>
                 </Form.Item>
 
-                <Form.Item name="quantity" label="Quantity">
-                  <InputNumber min={1} />
-                </Form.Item>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Form.Item name="quantity" label="Quantity">
+                    <InputNumber min={1} />
+                  </Form.Item>
 
-                <button className="add-to-cart__btn" type="submit">
-                  <ShoppingCartOutlined
-                    style={{ fontSize: "20px", marginRight: "5px" }}
-                  />
-                  Add to cart
-                </button>
+                  <button className="add-to-cart__btn" type="submit">
+                    <ShoppingCartOutlined
+                      style={{ fontSize: "20px", marginRight: "5px" }}
+                    />
+                    Add to cart
+                  </button>
+                </div>
               </Form>
             </Col>
           </Row>
@@ -208,8 +216,10 @@ const SingleProduct = ({ product }) => {
           </div>
         </div>
         <div className="single__product__content">
-          <h3>{product.name}</h3>
-          <h4>${product.price}</h4>
+          <h4>
+            <a>{product.name}</a>
+          </h4>
+          <p>${product.price}</p>
         </div>
         <div className="single__product__action">
           <button onClick={() => handleClick(product.id)}>
