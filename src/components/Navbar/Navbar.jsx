@@ -145,11 +145,9 @@ export default function Navbar() {
             <SearchOutlined style={{ fontSize: 24 }} />
           </div>
           <div style={{ cursor: "pointer" }}>
-            <Link to="/cart">
-              <Badge count={cartItem.length}>
-                <ShoppingOutlined style={{ fontSize: 24 }} />
-              </Badge>
-            </Link>
+            <Badge count={cartItem.length}>
+              <ShoppingOutlined style={{ fontSize: 24 }} />
+            </Badge>
           </div>
         </div>
       </nav>
