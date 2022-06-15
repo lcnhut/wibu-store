@@ -81,6 +81,10 @@ const AddProductForm = (props) => {
         wrapperCol={{
           span: 16,
         }}
+        initialValues={{
+          images: [""],
+          colors: [""],
+        }}
       >
         <Form.Item
           name="name"
