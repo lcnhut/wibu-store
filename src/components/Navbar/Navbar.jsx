@@ -6,10 +6,11 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Badge } from "antd";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import ButtonOfPage from "../Button/ButtonOfPage";
+import ProductCart from "../ProductCart/ProductCart";
 import "./Navbar.scss";
 export default function Navbar() {
   const cartItem = useSelector((state) => state.product.cart);
@@ -20,11 +21,7 @@ export default function Navbar() {
 
   return (
     <header>
-      <nav
-        className="navbar"
-        ref={navbar}
-        // style={{ zIndex: onActive ? "8" : "99" }}
-      >
+      <nav className="navbar" ref={navbar}>
         <img
           src="https://cdn.shopify.com/s/files/1/0277/0472/1542/files/logo.png?v=1589452027"
           className="navbar__logo"
@@ -219,14 +216,41 @@ export default function Navbar() {
             <p>Shopping Cart</p>
           </div>
           <div className="cart_field__header__total">
-            <p>0</p>
+            <p className="cart_field__header__total__value">
+              {cartItem.length}
+            </p>
           </div>
         </div>
-        <div className="cart__field__body">
-          <div className="cart__field__body__title">
-            <h3>Your shopping bag is empty</h3>
+        <div
+          className="cart_field__body"
+          style={{ justifyContent: cartItem.length ? "flex-start" : "center" }}
+        >
+          {cartItem.length === 0 ? (
+            <>
+              <div className="cart_field__body__title">
+                <h3>Your shopping bag is empty</h3>
+              </div>
+              <ButtonOfPage label="Shop Now" />
+            </>
+          ) : (
+            <>
+              <div className="cart_field__body__product">
+                <ProductCart image="http://img.mwc.com.vn//Upload/2022/06/z3476015760940-a0db3b5573397fae42f90d1afd262627.jpg" />
+                <ProductCart image="http://img.mwc.com.vn//Upload/2022/06/z3476015760940-a0db3b5573397fae42f90d1afd262627.jpg" />
+                <ProductCart image="http://img.mwc.com.vn//Upload/2022/06/z3476015760940-a0db3b5573397fae42f90d1afd262627.jpg" />
+              </div>
+            </>
+          )}
+        </div>
+        <div className="cart_field__footer">
+          <div className="cart_field__footer__total">
+            <div>Total:</div>
+            <div>$125.000</div>
           </div>
-          <ButtonOfPage label="Shop Now" />
+          <div className="cart_field__footer__button">
+            <ButtonOfPage label="view cart" />
+            <ButtonOfPage label="Check out" />
+          </div>
         </div>
       </div>
       <div
