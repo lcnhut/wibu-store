@@ -1,10 +1,9 @@
 import { Breadcrumb, Col, Row } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 
+import { FilterField, SingleProduct } from '../../components';
 import { axiosInstance } from '../../utils/AxiosConfig/AxiosConfig';
-import SingleProduct from '../Product/ListProduct/SingleProduct';
 import './Collection.scss';
-import FilterField from './filter/FilterField';
 
 export default function Collection() {
   const [products, setProducts] = useState();

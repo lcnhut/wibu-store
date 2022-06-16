@@ -8,7 +8,7 @@ import {
 import { Badge } from 'antd';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './Navbar.scss';
 
@@ -79,7 +79,7 @@ export default function Navbar() {
                   <iframe
                     style={{ width: ' 100%' }}
                     src="https://player.vimeo.com/video/348288278?background=1&quality=1080p&loop=1"
-                    frameborder="0"
+                    frameBorder="0"
                   ></iframe>
                 </div>
               </div>
@@ -147,11 +147,9 @@ export default function Navbar() {
             <SearchOutlined style={{ fontSize: 24 }} />
           </div>
           <div style={{ cursor: 'pointer' }}>
-            <Link to="/cart">
-              <Badge count={cartItem.length}>
-                <ShoppingOutlined style={{ fontSize: 24 }} />
-              </Badge>
-            </Link>
+            <Badge count={cartItem.length}>
+              <ShoppingOutlined style={{ fontSize: 24 }} />
+            </Badge>
           </div>
         </div>
       </nav>

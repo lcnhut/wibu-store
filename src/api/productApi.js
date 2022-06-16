@@ -28,5 +28,8 @@ const productApi = {
   delete: (id) => {
     return axiosInstance.delete(`/products/${id}`);
   },
+  update: (data) => {
+    return instance.put(`/products/${data.id}, ${data}`);
+  },
 };
 export default productApi;
