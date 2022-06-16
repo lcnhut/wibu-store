@@ -2,7 +2,7 @@ import {
   HeartOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 import {
   Button,
   Col,
@@ -13,12 +13,14 @@ import {
   Modal,
   Row,
   Select,
-} from "antd";
-import { useState, React, useEffect } from "react";
-import { addToCart } from "../../../../store/productSlice";
-import { useDispatch } from "react-redux";
-import "./styles.scss";
-import instance from "../../../../utils/AxiosConfig/AxiosConfig";
+} from 'antd';
+import { React, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { addToCart } from '../../../../store/productSlice';
+import instance from '../../../../utils/AxiosConfig/AxiosConfig';
+import './styles.scss';
+
 const { Option } = Select;
 
 const SingleProduct = ({ product }) => {
@@ -47,7 +49,7 @@ const SingleProduct = ({ product }) => {
         handleAddToCart(values);
       })
       .catch((info) => {
-        console.log("Validate Failed:", info);
+        console.log('Validate Failed:', info);
       });
   };
 
@@ -124,7 +126,7 @@ const SingleProduct = ({ product }) => {
                         />
                       );
                     })
-                  : ""}
+                  : ''}
               </div>
             </Col>
             <Col className="product__details__content" span={12}>
@@ -144,7 +146,7 @@ const SingleProduct = ({ product }) => {
               >
                 <Form.Item name="color" label="Color">
                   <Select
-                    style={{ width: "100%" }}
+                    style={{ width: '100%' }}
                     onSelect={(item) => onChangeColor(item)}
                   >
                     {colorOption.map((color, index) => {
@@ -158,7 +160,7 @@ const SingleProduct = ({ product }) => {
                 </Form.Item>
 
                 <Form.Item name="size" label="Size">
-                  <Select style={{ width: "100%" }}>
+                  <Select style={{ width: '100%' }}>
                     {sizeOption
                       ? sizeOption
                           .sort((a, b) => a - b)
@@ -169,15 +171,15 @@ const SingleProduct = ({ product }) => {
                               </Option>
                             );
                           })
-                      : ""}
+                      : ''}
                   </Select>
                 </Form.Item>
 
                 <div
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
                   }}
                 >
                   <Form.Item name="quantity" label="Quantity">
@@ -186,7 +188,7 @@ const SingleProduct = ({ product }) => {
 
                   <button className="add-to-cart__btn" type="submit">
                     <ShoppingCartOutlined
-                      style={{ fontSize: "20px", marginRight: "5px" }}
+                      style={{ fontSize: '20px', marginRight: '5px' }}
                     />
                     Add to cart
                   </button>
@@ -224,7 +226,7 @@ const SingleProduct = ({ product }) => {
         <div className="single__product__action">
           <button onClick={() => handleClick(product.id)}>
             <ShoppingCartOutlined
-              style={{ fontSize: "20px", marginRight: "5px" }}
+              style={{ fontSize: '20px', marginRight: '5px' }}
             />
             Add to cart
           </button>

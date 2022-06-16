@@ -1,9 +1,11 @@
-import { Breadcrumb, Col, Row } from "antd";
-import React, { useEffect, useRef, useState } from "react";
-import instance from "../../utils/AxiosConfig/AxiosConfig";
-import SingleProduct from "../Product/ListProduct/SingleProduct";
-import "./Collection.scss";
-import FilterField from "./filter/FilterField";
+import { Breadcrumb, Col, Row } from 'antd';
+import React, { useEffect, useRef, useState } from 'react';
+
+import instance from '../../utils/AxiosConfig/AxiosConfig';
+import SingleProduct from '../Product/ListProduct/SingleProduct';
+import './Collection.scss';
+import FilterField from './filter/FilterField';
+
 export default function Collection() {
   const [products, setProducts] = useState();
   const [showProduct, setShowProduct] = useState(false);
@@ -11,7 +13,7 @@ export default function Collection() {
   const listProduct = useRef();
   const getAllProduct = () => {
     instance
-      .get("/products")
+      .get('/products')
       .then(function (response) {
         const { data } = response;
         data && setProducts(data);
@@ -26,9 +28,9 @@ export default function Collection() {
   }, []);
   function ShowFilter() {
     if (showProduct) {
-      listProduct.current.style.transform = "translateY(0)";
+      listProduct.current.style.transform = 'translateY(0)';
     } else {
-      listProduct.current.style.transform = "translateY(-280px)";
+      listProduct.current.style.transform = 'translateY(-280px)';
     }
     setShowProduct(!showProduct);
   }
@@ -55,7 +57,7 @@ export default function Collection() {
         <Row
           gutter={[16, 26]}
           className="listproduct__wrapper"
-          style={{ padding: "0", marginTop: "25px" }}
+          style={{ padding: '0', marginTop: '25px' }}
         >
           {products &&
             products.map(

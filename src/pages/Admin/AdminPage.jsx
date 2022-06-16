@@ -8,17 +8,18 @@ import {
   Spin,
   Table,
   Tag,
-} from "antd";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AddProductForm, ProductDetailModal } from "../../components";
+} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { AddProductForm, ProductDetailModal } from '../../components';
 import {
   addProductAsync,
   deleteProductAsync,
   getAllAsync,
-} from "../../store/productSlice";
-import "./AdminPage.scss";
-import { setColorTag } from "../../utils/AxiosConfig/setTagColor";
+} from '../../store/productSlice';
+import { setColorTag } from '../../utils/AxiosConfig/setTagColor';
+import './AdminPage.scss';
 
 const { Panel } = Collapse;
 
@@ -27,7 +28,7 @@ const AdminPage = () => {
   const isLoading = useSelector((state) => state.product.isLoading);
 
   const [product, setProduct] = useState(productData);
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
 
   const [visibleAddForm, setVisibleAddForm] = useState(false);
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
@@ -66,14 +67,14 @@ const AdminPage = () => {
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
       render: (_, record) => {
         return (
           <Button
             type="link"
-            style={{ color: "#1890ff" }}
+            style={{ color: '#1890ff' }}
             onClick={() => openProductDetailModal(record)}
           >
             {record.name}
@@ -82,9 +83,9 @@ const AdminPage = () => {
       },
     },
     {
-      title: "Image",
-      dataIndex: "image",
-      key: "image",
+      title: 'Image',
+      dataIndex: 'image',
+      key: 'image',
       render: (_, record) => {
         return (
           <Image
@@ -96,15 +97,15 @@ const AdminPage = () => {
       },
     },
     {
-      title: "Price",
-      dataIndex: "price",
-      key: "price",
+      title: 'Price',
+      dataIndex: 'price',
+      key: 'price',
       sorter: (a, b) => a.price - b.price,
     },
     {
-      title: "In Stock",
-      dataIndex: "inStock",
-      key: "inStock",
+      title: 'In Stock',
+      dataIndex: 'inStock',
+      key: 'inStock',
       sorter: (a, b) => a.inStock - b.inStock,
       render: (_, record) => {
         return (
@@ -123,7 +124,7 @@ const AdminPage = () => {
                   });
                   return (
                     isStock && (
-                      <div style={{ marginBottom: "5px" }}>
+                      <div style={{ marginBottom: '5px' }}>
                         <Tag color={setColorTag(index)} key={index}>
                           {colorItem.color.toUpperCase()}
                         </Tag>
@@ -138,9 +139,9 @@ const AdminPage = () => {
       },
     },
     {
-      title: "Action",
-      dataIndex: "id",
-      key: "id",
+      title: 'Action',
+      dataIndex: 'id',
+      key: 'id',
       render: (id) => {
         return (
           <Space size="middle">

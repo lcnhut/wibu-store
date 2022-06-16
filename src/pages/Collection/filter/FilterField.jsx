@@ -4,48 +4,50 @@ import {
   FilterOutlined,
   HolderOutlined,
   UserOutlined,
-} from "@ant-design/icons";
-import { Breadcrumb, Button, Dropdown, Menu, Space } from "antd";
-import React from "react";
-import { ButtonSize, CricleColor } from "../../../components";
-import "./FilterField.scss";
+} from '@ant-design/icons';
+import { Breadcrumb, Button, Dropdown, Menu, Space } from 'antd';
+import React from 'react';
+
+import { ButtonSize, CricleColor } from '../../../components';
+import './FilterField.scss';
+
 export default function filterField({ showFilterButton, setValueShowItem }) {
   const menu = (
     <Menu
       items={[
         {
-          label: "Featured",
-          key: "1",
+          label: 'Featured',
+          key: '1',
           // icon: <UserOutlined />,
         },
         {
-          label: "Best Selling",
-          key: "2",
+          label: 'Best Selling',
+          key: '2',
           // icon: <UserOutlined />,
         },
         {
-          label: "Alphabetically, A-Z",
-          key: "3",
+          label: 'Alphabetically, A-Z',
+          key: '3',
           // icon: <UserOutlined />,
         },
         {
-          label: "Alphabetically, Z-A",
-          key: "4",
+          label: 'Alphabetically, Z-A',
+          key: '4',
           // icon: <UserOutlined />,
         },
         {
-          label: "Price, low to high",
-          key: "5",
+          label: 'Price, low to high',
+          key: '5',
           // icon: <UserOutlined />,
         },
         {
-          label: "Date, new to old",
-          key: "6",
+          label: 'Date, new to old',
+          key: '6',
           // icon: <UserOutlined />,
         },
         {
-          label: "Date, old to new",
-          key: "7",
+          label: 'Date, old to new',
+          key: '7',
           // icon: <UserOutlined />,
         },
       ]}
@@ -70,7 +72,7 @@ export default function filterField({ showFilterButton, setValueShowItem }) {
         </div>
         <div className="filter__container__filter__featuredbtn">
           <div className="featuredbtn">
-            <AppstoreOutlined style={{ fontSize: "24px" }} />
+            <AppstoreOutlined style={{ fontSize: '24px' }} />
             <div class="showGridFilter">
               <div
                 className="showGridFilter__item"
@@ -109,11 +111,11 @@ export default function filterField({ showFilterButton, setValueShowItem }) {
           <Dropdown overlay={menu}>
             <Button
               style={{
-                padding: " 8px 20px",
-                minWidth: "128px",
-                minHeight: "42px",
-                border: " 1px solid #000",
-                color: "#000",
+                padding: ' 8px 20px',
+                minWidth: '128px',
+                minHeight: '42px',
+                border: ' 1px solid #000',
+                color: '#000',
               }}
             >
               <Space size="large">
@@ -136,19 +138,19 @@ export default function filterField({ showFilterButton, setValueShowItem }) {
                   Arizona Slide Sandal
                 </li>
                 <li className="filter-selection-item__item">
-                  {" "}
+                  {' '}
                   Reverse Leather Thong
                 </li>
                 <li className="filter-selection-item__item">
-                  {" "}
+                  {' '}
                   Beaded Rope Sandals
                 </li>
                 <li className="filter-selection-item__item">
-                  {" "}
+                  {' '}
                   Jenny Slide Sandals
                 </li>
                 <li className="filter-selection-item__item">
-                  {" "}
+                  {' '}
                   Fragolina Sandals
                 </li>
               </ul>
@@ -234,7 +236,7 @@ export default function filterField({ showFilterButton, setValueShowItem }) {
             <div className="filter-selection-item__title">
               <h2 className="title">Tags</h2>
             </div>
-            <div style={{ fontSize: "16px" }} className="Breadcrumb-list">
+            <div style={{ fontSize: '16px' }} className="Breadcrumb-list">
               <Breadcrumb>
                 <Breadcrumb.Item>$100-$150</Breadcrumb.Item>
                 <Breadcrumb.Item>

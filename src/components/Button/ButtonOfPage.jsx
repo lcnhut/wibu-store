@@ -1,5 +1,7 @@
-import React from "react";
-import "./ButtonOfPage.scss";
+import React from 'react';
+
+import './ButtonOfPage.scss';
+
 const ButtonOfPage = (props) => {
   // eslint-disable-next-line react/prop-types
   const { label } = props;

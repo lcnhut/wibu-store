@@ -8,10 +8,11 @@ import {
   Modal,
   Row,
   Tag,
-} from "antd";
-import React, { useState } from "react";
-import { setColorTag } from "../../utils/AxiosConfig/setTagColor";
-import "./ProductDetailModal.scss";
+} from 'antd';
+import React, { useState } from 'react';
+
+import { setColorTag } from '../../utils/AxiosConfig/setTagColor';
+import './ProductDetailModal.scss';
 
 const ProductDetailModal = (props) => {
   // eslint-disable-next-line react/prop-types
@@ -71,10 +72,10 @@ const ProductDetailModal = (props) => {
                   >
                     <Tag
                       style={{
-                        marginRight: "10px",
-                        marginBottom: "5px",
-                        textTransform: "capitalize",
-                        cursor: "pointer",
+                        marginRight: '10px',
+                        marginBottom: '5px',
+                        textTransform: 'capitalize',
+                        cursor: 'pointer',
                       }}
                       color={setColorTag(index)}
                     >
