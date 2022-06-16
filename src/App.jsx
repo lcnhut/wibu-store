@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import './App.scss';
 import { Footer, Navbar } from './components';
-import { AdminPage, Collection, Product } from './pages';
+import { AdminPage, Collection, Details, Product } from './pages';
 
 function App() {
   return (

@@ -15,6 +15,7 @@ import {
 } from 'antd';
 import { React, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { addToCart } from '../../../../store/product/productSlice';
 import { axiosInstance } from '../../../../utils/AxiosConfig/AxiosConfig';
@@ -224,14 +225,6 @@ const SingleProduct = ({ product }) => {
             <h4>{product.name}</h4>
           </Link>
           <p>${product.price}</p>
-        </div>
-        <div className="single__product__action">
-          <button onClick={() => handleClick(product.id)}>
-            <ShoppingCartOutlined
-              style={{ fontSize: '20px', marginRight: '5px' }}
-            />
-            Add to cart
-          </button>
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-import { Space } from 'antd';
+import { Col, Row, Space } from 'antd';
 import React from 'react';
 
 import Carousel from './Carousel';
@@ -27,8 +27,8 @@ export default function Product() {
           <h1>Shop The Collection</h1>
           <div className="listproduct__title__line"></div>
           <div className="listproduct__title__action">
-            <button style={{ padding: "7px 0" }}>MEN</button>
-            <button style={{ padding: "7px 0" }}>WOMEN</button>
+            <button style={{ padding: '7px 0' }}>MEN</button>
+            <button style={{ padding: '7px 0' }}>WOMEN</button>
           </div>
         </Col>
       </Row>

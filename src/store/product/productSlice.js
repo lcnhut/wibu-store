@@ -23,6 +23,14 @@ export const deleteProductAsync = createAsyncThunk(
   }
 );
 
+export const getByIdAsync = createAsyncThunk(
+  'product/get-by-id',
+  async (id) => {
+    const { data } = await productApi.getById(id);
+    return data;
+  }
+);
+
 export const productSlice = createSlice({
   name: 'product',
   initialState: {
@@ -30,6 +38,7 @@ export const productSlice = createSlice({
     isLoading: false,
     error: '',
     cart: [],
+    singleProduct: {},
   },
   reducers: {
     addToCart: (state, action) => {
@@ -107,6 +116,19 @@ export const productSlice = createSlice({
       const data = state.list.filter((item) => item.id !== action.payload.id);
       state.list = data;
       message.success('A product is deleted!!!');
+    },
+
+    [getByIdAsync.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getByIdAsync.rejected]: (state) => {
+      state.isLoading = false;
+      // message.error('get product by id failed!');
+    },
+    [getByIdAsync.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.singleProduct = action.payload;
+      // message.success('get product by id is success!!!');
     },
   },
 });

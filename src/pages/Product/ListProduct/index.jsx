@@ -1,25 +1,14 @@
 import { Col, Row } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { axiosInstance } from '../../../utils/AxiosConfig/AxiosConfig';
+import { getAllAsync } from '../../../store/product/productSlice';
 import SingleProduct from './SingleProduct';
 import './styles.scss';
 
 const ListProduct = () => {
-  const [products, setProducts] = useState();
-  const getAllProduct = () => {
-    axiosInstance
-      .get('/products')
-      .then(function (response) {
-        const { data } = response;
-        console.log(data);
-        data && setProducts(data);
-      })
-      .catch(function (e) {
-        console.log(e);
-      });
-  };
-
+  const products = useSelector((state) => state.product.list);
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllAsync());
   }, []);
