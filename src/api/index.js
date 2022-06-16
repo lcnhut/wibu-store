@@ -1,3 +1,3 @@
-import productApi from "./productApi";
+import productApi from './productApi';
 
 export { productApi };

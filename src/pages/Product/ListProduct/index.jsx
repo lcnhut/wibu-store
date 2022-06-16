@@ -1,14 +1,15 @@
-import { Col, Row } from "antd";
-import React, { useEffect, useState } from "react";
-import instance from "../../../utils/AxiosConfig/AxiosConfig";
-import SingleProduct from "./SingleProduct";
-import "./styles.scss";
+import { Col, Row } from 'antd';
+import React, { useEffect, useState } from 'react';
+
+import { axiosInstance } from '../../../utils/AxiosConfig/AxiosConfig';
+import SingleProduct from './SingleProduct';
+import './styles.scss';
 
 const ListProduct = () => {
   const [products, setProducts] = useState();
   const getAllProduct = () => {
-    instance
-      .get("/products")
+    axiosInstance
+      .get('/products')
       .then(function (response) {
         const { data } = response;
         console.log(data);
@@ -29,8 +30,8 @@ const ListProduct = () => {
           <h1>Shop The Collection</h1>
           <div className="listproduct__title__line"></div>
           <div className="listproduct__title__action">
-            <button style={{ padding: "7px 0" }}>MEN</button>
-            <button style={{ padding: "7px 0" }}>WOMEN</button>
+            <button style={{ padding: '7px 0' }}>MEN</button>
+            <button style={{ padding: '7px 0' }}>WOMEN</button>
           </div>
         </Col>
       </Row>

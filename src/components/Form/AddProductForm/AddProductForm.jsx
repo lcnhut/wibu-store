@@ -1,7 +1,8 @@
-import { Form, Input, InputNumber, Modal } from "antd";
-import React from "react";
-import { DynamicColorField } from "../../DynamicField/DynamicColorField";
-import { DynamicImageField } from "../../DynamicField/DynamicImageField";
+import { Form, Input, InputNumber, Modal } from 'antd';
+import React from 'react';
+
+import { DynamicColorField } from '../../DynamicField/DynamicColorField';
+import { DynamicImageField } from '../../DynamicField/DynamicImageField';
 
 const AddProductForm = (props) => {
   const [form] = Form.useForm();
@@ -66,7 +67,7 @@ const AddProductForm = (props) => {
             onFinish(values);
           })
           .catch((info) => {
-            console.log("Validate Failed:", info);
+            console.log('Validate Failed:', info);
           });
       }}
       confirmLoading={confirmLoading}
@@ -82,8 +83,8 @@ const AddProductForm = (props) => {
           span: 16,
         }}
         initialValues={{
-          images: [""],
-          colors: [""],
+          images: [''],
+          colors: [''],
         }}
       >
         <Form.Item
