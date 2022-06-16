@@ -260,6 +260,7 @@ header {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
   }
   &__header {
     display: flex;
@@ -277,7 +278,6 @@ header {
       border-right: none;
       justify-content: center;
       height: 45px;
-
       align-items: center;
     }
     &__icon {
@@ -297,7 +297,4 @@ header {
       align-items: center;
     }
   }
-  // .cart__field__body {
-
-  // }
 }

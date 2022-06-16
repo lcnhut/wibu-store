@@ -18,7 +18,7 @@ export default function Navbar() {
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
   const navbar = useRef();
-
+  console.log(cartItem);
   return (
     <header>
       <nav className="navbar" ref={navbar}>
@@ -233,15 +233,24 @@ export default function Navbar() {
               <ButtonOfPage label="Shop Now" />
             </>
           ) : (
-            <>
-              <div className="cart_field__body__product">
-                <ProductCart image="http://img.mwc.com.vn//Upload/2022/06/z3476015760940-a0db3b5573397fae42f90d1afd262627.jpg" />
-                <ProductCart image="http://img.mwc.com.vn//Upload/2022/06/z3476015760940-a0db3b5573397fae42f90d1afd262627.jpg" />
-                <ProductCart image="http://img.mwc.com.vn//Upload/2022/06/z3476015760940-a0db3b5573397fae42f90d1afd262627.jpg" />
-              </div>
-            </>
+            <div className="cart_field__body__product">
+              {
+                // console.log(cartItem)
+                cartItem.map((item) => {
+                  return (
+                    <ProductCart
+                      image={item.image}
+                      name={item.name}
+                      color={item.color}
+                      quantity={item.quantity}
+                    />
+                  );
+                })
+              }
+            </div>
           )}
         </div>
+
         <div className="cart_field__footer">
           <div className="cart_field__footer__total">
             <div>Total:</div>

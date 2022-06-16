@@ -11,7 +11,6 @@ const ListProduct = () => {
       .get("/products")
       .then(function (response) {
         const { data } = response;
-        console.log(data);
         data && setProducts(data);
       })
       .catch(function (e) {
