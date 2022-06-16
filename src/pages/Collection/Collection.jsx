@@ -1,15 +1,15 @@
-import { Breadcrumb, Col, Row } from "antd";
+import { Breadcrumb, Col, Row } from 'antd';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import React, { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {  productSelector, selectList } from "../../store/productSelector";
-import { getAllAsync } from "../../store/productSlice";
-import instance from "../../utils/AxiosConfig/AxiosConfig";
-import ListProduct from "../Product/ListProduct";
-import SingleProduct from "../Product/ListProduct/SingleProduct";
-import "./Collection.scss";
+import { productSelector, selectList } from '../../store/productSelector';
+// import { getAllAsync } from "../../store/productSlice";
+// import instance from "../../utils/AxiosConfig/AxiosConfig";
+import ListProduct from '../Product/ListProduct';
+import SingleProduct from '../Product/ListProduct/SingleProduct';
+import './Collection.scss';
+import FilterField from './filter/FilterField';
 
-import FilterField from "./filter/FilterField";
 export default function Collection() {
   const [products, setProducts] = useState();
   const [showProduct, setShowProduct] = useState(false);

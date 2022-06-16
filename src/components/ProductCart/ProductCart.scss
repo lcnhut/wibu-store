@@ -1,9 +1,10 @@
 .product-cart {
   display: flex;
   gap: 1rem;
-  margin-top: 10px;
+  margin: 10px;
   border-bottom: 1px solid var(--primary-color);
   transition: all 0.3s ease;
+  // padding: 5px;
   &__image {
     img {
       width: 76px;
