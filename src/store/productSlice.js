@@ -35,6 +35,9 @@ export const productSlice = createSlice({
       state.cart.unshift(action.payload);
       message.success("An item is added to cart!!!");
     },
+    removeItemToCart: (state, action) => {
+      console.log(action.payload);
+    },
   },
   extraReducers: {
     [getAllAsync.pending]: (state) => {
@@ -46,7 +49,6 @@ export const productSlice = createSlice({
     },
     [getAllAsync.fulfilled]: (state, action) => {
       const data = action.payload.data;
-
       const formattedData = data.map((item) => {
         let total = 0;
         item.colors.forEach((color) => {
@@ -110,5 +112,5 @@ export const productSlice = createSlice({
   },
 });
 
-export const { addToCart } = productSlice.actions;
+export const { addToCart, removeItemToCart } = productSlice.actions;
 export default productSlice.reducer;

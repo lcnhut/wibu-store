@@ -2,7 +2,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import React from "react";
 import "./ProductCart.scss";
 export default function ProductCart(props) {
-  const { image, name, size, quantity, color } = props;
+  const { image, name, size, quantity, color, id } = props;
   // console.log(object);
   return (
     <div className="product-cart">

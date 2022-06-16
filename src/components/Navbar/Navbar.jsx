@@ -18,7 +18,7 @@ export default function Navbar() {
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
   const navbar = useRef();
-  console.log(cartItem);
+
   return (
     <header>
       <nav className="navbar" ref={navbar}>
@@ -234,19 +234,16 @@ export default function Navbar() {
             </>
           ) : (
             <div className="cart_field__body__product">
-              {
-                // console.log(cartItem)
-                cartItem.map((item) => {
-                  return (
-                    <ProductCart
-                      image={item.image}
-                      name={item.name}
-                      color={item.color}
-                      quantity={item.quantity}
-                    />
-                  );
-                })
-              }
+              {cartItem.map((item) => {
+                return (
+                  <ProductCart
+                    image={item.image}
+                    name={item.name}
+                    color={item.color}
+                    quantity={item.quantity}
+                  />
+                );
+              })}
             </div>
           )}
         </div>

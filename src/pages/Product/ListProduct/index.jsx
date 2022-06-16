@@ -8,19 +8,20 @@ const ListProduct = () => {
   const [products, setProducts] = useState();
   const getAllProduct = () => {
     instance
-      .get("/products")
-      .then(function (response) {
-        const { data } = response;
-        data && setProducts(data);
-      })
-      .catch(function (e) {
-        console.log(e);
-      });
+    .get("/products")
+    .then(function (response) {
+      const { data } = response;
+      data && setProducts(data);
+    })
+    .catch(function (e) {
+      console.log(e);
+    });
   };
-
+  
   useEffect(() => {
     getAllProduct();
   }, []);
+
   return (
     <>
       <Row className="listproduct__title__wrapper">
