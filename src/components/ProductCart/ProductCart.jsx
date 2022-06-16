@@ -1,9 +1,14 @@
-import { CloseOutlined } from "@ant-design/icons";
-import React from "react";
-import "./ProductCart.scss";
+import { CloseOutlined } from '@ant-design/icons';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
+import { removeItemFromCart } from '../../store/product/productSlice';
+import './ProductCart.scss';
+
 export default function ProductCart(props) {
   const { image, name, size, quantity, color, id } = props;
-  // console.log(object);
+  const dispatch = useDispatch();
+
   return (
     <div className="product-cart">
       <div className="product-cart__image">
@@ -16,8 +21,12 @@ export default function ProductCart(props) {
         <p>QTY : {quantity}</p>
         <p> $125.00</p>
       </div>
-      <div>
-        <CloseOutlined style={{ fontSize: "18px" }} />
+      <div
+        onClick={() => {
+          dispatch(removeItemFromCart(id));
+        }}
+      >
+        <CloseOutlined style={{ fontSize: '18px' }} />
       </div>
     </div>
   );

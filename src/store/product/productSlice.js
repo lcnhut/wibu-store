@@ -36,8 +36,13 @@ export const productSlice = createSlice({
       state.cart.unshift(action.payload);
       message.success('An item is added to cart!!!');
     },
-    removeItemToCart: (state, action) => {
-      console.log(action.payload);
+    removeItemFromCart: (state, action) => {
+      let { id } = action.payload;
+
+      let newList = state.cart.filter((item, index) => item.id !== id);
+      console.log(newList);
+      // let newCart = [...state.cart.slice(0, id), ...state.cart.slice(id + 1)];
+      state.cart = newList;
     },
   },
   extraReducers: {
@@ -113,5 +118,5 @@ export const productSlice = createSlice({
   },
 });
 
-export const { addToCart, removeItemToCart } = productSlice.actions;
+export const { addToCart, removeItemFromCart } = productSlice.actions;
 export default productSlice.reducer;

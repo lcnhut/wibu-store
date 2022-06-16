@@ -239,6 +239,7 @@ export default function Navbar() {
               {cartItem.map((item) => {
                 return (
                   <ProductCart
+                    id={item.id}
                     image={item.image}
                     name={item.name}
                     color={item.color}
