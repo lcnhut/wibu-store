@@ -3,7 +3,7 @@ import "./Product.scss";
 import Carousel from "./Carousel";
 import ListProduct from "./ListProduct";
 import LazyLoaderProduct from "./Lazyloader/LazyLoaderProduct";
-import { Space } from "antd";
+import { Col, Row, Space } from "antd";
 
 export default function Product() {
   return (
@@ -21,6 +21,16 @@ export default function Product() {
         ></LazyLoaderProduct>
         {/* </Space> */}
       </div>
+      <Row className="listproduct__title__wrapper">
+        <Col className="listproduct__title__container" span={24}>
+          <h1>Shop The Collection</h1>
+          <div className="listproduct__title__line"></div>
+          <div className="listproduct__title__action">
+            <button style={{ padding: "7px 0" }}>MEN</button>
+            <button style={{ padding: "7px 0" }}>WOMEN</button>
+          </div>
+        </Col>
+      </Row>
       <ListProduct />
     </>
   );

@@ -4,7 +4,6 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import {
-  Button,
   Col,
   Divider,
   Form,
@@ -19,6 +18,7 @@ import { addToCart } from "../../../../store/productSlice";
 import { useDispatch } from "react-redux";
 import "./styles.scss";
 import instance from "../../../../utils/AxiosConfig/AxiosConfig";
+import { Link } from "react-router-dom";
 const { Option } = Select;
 
 const SingleProduct = ({ product }) => {
@@ -206,28 +206,23 @@ const SingleProduct = ({ product }) => {
             <div className="single__product__image__boxmodal">
               <div className="single__product__icon">
                 <span>
-                  <HeartOutlined />
+                  <HeartOutlined className="single__product__icon__item" />
                 </span>
                 <span onClick={() => handleClick(product.id)}>
-                  <SearchOutlined />
+                  <SearchOutlined className="single__product__icon__item" />
                 </span>
               </div>
             </div>
           </div>
         </div>
         <div className="single__product__content">
-          <h4>
-            <a>{product.name}</a>
-          </h4>
+          <Link
+            className="single__product__content__link"
+            to={`/details/${product.id}`}
+          >
+            <h4>{product.name}</h4>
+          </Link>
           <p>${product.price}</p>
-        </div>
-        <div className="single__product__action">
-          <button onClick={() => handleClick(product.id)}>
-            <ShoppingCartOutlined
-              style={{ fontSize: "20px", marginRight: "5px" }}
-            />
-            Add to cart
-          </button>
         </div>
       </div>
     </>

@@ -13,7 +13,11 @@ const ListProduct = () => {
   }, []);
   return (
     <>
-      <Row gutter={[16, 26]} className="listproduct__wrapper">
+      <Row
+        style={{ paddingLeft: "7vw", paddingRight: "7vw" }}
+        gutter={[26, 26]}
+        className="listproduct__wrapper"
+      >
         {products &&
           products.map(
             (product, id) =>
