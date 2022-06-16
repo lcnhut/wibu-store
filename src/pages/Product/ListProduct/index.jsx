@@ -8,17 +8,17 @@ import './styles.scss';
 const ListProduct = () => {
   const [products, setProducts] = useState();
   const getAllProduct = () => {
-    instance
-    .get("/products")
-    .then(function (response) {
-      const { data } = response;
-      data && setProducts(data);
-    })
-    .catch(function (e) {
-      console.log(e);
-    });
+    axiosInstance
+      .get('/products')
+      .then(function (response) {
+        const { data } = response;
+        data && setProducts(data);
+      })
+      .catch(function (e) {
+        console.log(e);
+      });
   };
-  
+
   useEffect(() => {
     getAllProduct();
   }, []);
