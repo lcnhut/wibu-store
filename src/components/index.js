@@ -5,7 +5,7 @@ import Footer from './Footer/Footer';
 import AddProductForm from './Form/AddProductForm/AddProductForm';
 import Navbar from './Navbar/Navbar';
 import ProductDetailModal from './ProductDetailModal/ProductDetailModal';
-
+import ProductCart from './ProductCart/ProductCart';
 export {
   ButtonOfPage,
   AddProductForm,
