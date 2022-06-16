@@ -1,0 +1,16 @@
+.image__group {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  img {
+    width: 100%;
+    max-width: 100px;
+    opacity: 1;
+    transition: all 0.2s ease;
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+    }
+  }
+}

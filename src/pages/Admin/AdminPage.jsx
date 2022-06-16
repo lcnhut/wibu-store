@@ -11,13 +11,14 @@ import {
 } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AddProductForm } from "../../components";
+import { AddProductForm, ProductDetailModal } from "../../components";
 import {
   addProductAsync,
   deleteProductAsync,
   getAllAsync,
 } from "../../store/productSlice";
 import "./AdminPage.scss";
+import { setColorTag } from "../../utils/AxiosConfig/setTagColor";
 
 const { Panel } = Collapse;
 
@@ -26,20 +27,18 @@ const AdminPage = () => {
   const isLoading = useSelector((state) => state.product.isLoading);
 
   const [product, setProduct] = useState(productData);
-  const [value, setValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
 
   const [visibleAddForm, setVisibleAddForm] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [idToDeleteProduct, setIdToDeleteProduct] = useState();
+  const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
+  const [visibleViewProduct, setVisibleViewProduct] = useState(false);
 
-  const handleDelete = () => {
-    setIsModalVisible(false);
-    dispatch(deleteProductAsync(idToDeleteProduct));
-  };
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [idToDeleteProduct, setIdToDeleteProduct] = useState();
+  const [productDetail, setProductDetail] = useState({});
 
   const handleCancel = () => {
-    setIsModalVisible(false);
+    setVisibleDeleteModal(false);
   };
 
   const dispatch = useDispatch();
@@ -53,32 +52,34 @@ const AdminPage = () => {
     setProduct(productData);
   }, [productData]);
 
-  const setColorTag = (index) => {
-    let color = "";
-    switch (index) {
-      case 0:
-        color = "volcano";
-        break;
-      case 1:
-        color = "blue";
-        break;
-      case 2:
-        color = "cyan";
-        break;
-      case 3:
-        color = "volcano";
-        break;
-      default:
-        color = "cyan";
-    }
-    return color;
+  // Start handle view product detail
+  const openProductDetailModal = (product) => {
+    setVisibleViewProduct(true);
+    setProductDetail(product);
   };
+
+  const closeProductDetailModal = () => {
+    setVisibleViewProduct(false);
+  };
+
+  // End handle view product detail
 
   const columns = [
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      render: (_, record) => {
+        return (
+          <Button
+            type="link"
+            style={{ color: "#1890ff" }}
+            onClick={() => openProductDetailModal(record)}
+          >
+            {record.name}
+          </Button>
+        );
+      },
     },
     {
       title: "Image",
@@ -149,7 +150,7 @@ const AdminPage = () => {
             <Button
               onClick={() => {
                 setIdToDeleteProduct(id);
-                setIsModalVisible(true);
+                setVisibleDeleteModal(true);
               }}
               type="danger"
               ghost
@@ -165,7 +166,7 @@ const AdminPage = () => {
   // Handle search product by name
   const onSearch = (value) => {
     const currValue = value;
-    setValue(value);
+    setSearchValue(value);
     const filteredData = productData.filter(
       (entry) =>
         entry.name.toLowerCase().includes(currValue) ||
@@ -175,7 +176,7 @@ const AdminPage = () => {
     setProduct(filteredData);
   };
 
-  // Add product form
+  // Start handle add product
   const showModalAddForm = () => {
     setVisibleAddForm(true);
   };
@@ -192,6 +193,14 @@ const AdminPage = () => {
       setVisibleAddForm(isLoading);
     }
   };
+  // End handle add product
+
+  // Start handle delete
+  const handleDelete = () => {
+    setVisibleDeleteModal(false);
+    dispatch(deleteProductAsync(idToDeleteProduct));
+  };
+  // End handle delete
 
   return (
     <Spin tip="Loading..." size="large" spinning={isLoading}>
@@ -199,7 +208,7 @@ const AdminPage = () => {
         <Input
           className="search__input"
           placeholder="Search product"
-          value={value}
+          value={searchValue}
           onChange={(e) => onSearch(e.target.value)}
         />
         <Button type="primary" ghost onClick={showModalAddForm}>
@@ -216,9 +225,16 @@ const AdminPage = () => {
           dataSource={product}
           columns={columns}
         />
+        {visibleViewProduct && (
+          <ProductDetailModal
+            closeProductDetailModal={closeProductDetailModal}
+            isVisible={true}
+            product={productDetail}
+          />
+        )}
         <Modal
           title="Delete Product"
-          visible={isModalVisible}
+          visible={visibleDeleteModal}
           onOk={handleDelete}
           onCancel={handleCancel}
         >
