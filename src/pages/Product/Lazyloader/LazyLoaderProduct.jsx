@@ -1,7 +1,9 @@
-import { Space } from "antd";
-import React from "react";
-import { ButtonOfPage } from "../../../components";
-import "./LazyLoaderProduct.scss";
+import { Space } from 'antd';
+import React from 'react';
+
+import { ButtonOfPage } from '../../../components';
+import './LazyLoaderProduct.scss';
+
 export default function LazyLoaderProduct({ image, title }) {
   return (
     // <Space>

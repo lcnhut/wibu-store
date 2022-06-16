@@ -1,6 +1,6 @@
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Divider, Form, Input } from "antd";
-import React from "react";
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, Divider, Form, Input } from 'antd';
+import React from 'react';
 
 export const DynamicImageField = () => {
   return (
@@ -19,13 +19,13 @@ export const DynamicImageField = () => {
                         className="dynamic-delete-button"
                         onClick={() => remove(field.name)}
                         icon={<MinusCircleOutlined />}
-                        style={{ marginLeft: "10px" }}
+                        style={{ marginLeft: '10px' }}
                       />
                     </span>
                   ) : null}
                 </Divider>
                 <Form.Item
-                  name={[index, "src"]}
+                  name={[index, 'src']}
                   label="Image"
                   rules={[{ required: true }]}
                 >
@@ -38,7 +38,7 @@ export const DynamicImageField = () => {
               <Button
                 type="dashed"
                 onClick={() => add()}
-                style={{ width: "60%" }}
+                style={{ width: '60%' }}
               >
                 <PlusOutlined /> Add Image
               </Button>

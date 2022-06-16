@@ -1,20 +1,20 @@
 export const setColorTag = (index) => {
-  let color = "";
+  let color = '';
   switch (index) {
     case 0:
-      color = "volcano";
+      color = 'volcano';
       break;
     case 1:
-      color = "blue";
+      color = 'blue';
       break;
     case 2:
-      color = "cyan";
+      color = 'cyan';
       break;
     case 3:
-      color = "volcano";
+      color = 'volcano';
       break;
     default:
-      color = "cyan";
+      color = 'cyan';
   }
   return color;
 };

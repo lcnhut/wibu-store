@@ -1,8 +1,9 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import { Footer, Navbar } from "./components";
-import { AdminPage, Product, Collection, Details } from "./pages";
-import "./App.scss";
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import './App.scss';
+import { Footer, Navbar } from './components';
+import { AdminPage, Collection, Product } from './pages';
 
 function App() {
   return (

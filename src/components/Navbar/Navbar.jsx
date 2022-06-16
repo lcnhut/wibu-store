@@ -4,19 +4,21 @@ import {
   SearchOutlined,
   ShoppingOutlined,
   UserOutlined,
-} from "@ant-design/icons";
-import { Badge } from "antd";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
-import "./Navbar.scss";
+} from '@ant-design/icons';
+import { Badge } from 'antd';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
+
+import './Navbar.scss';
+
 export default function Navbar() {
   const cartItem = useSelector((state) => state.product.cart);
   const [onActive, SetOnActive] = useState(false);
-  
+
   return (
     <header>
-      <nav className="navbar" style={{ zIndex: onActive ? "0" : "99" }}>
+      <nav className="navbar" style={{ zIndex: onActive ? '0' : '99' }}>
         <img
           src="https://cdn.shopify.com/s/files/1/0277/0472/1542/files/logo.png?v=1589452027"
           className="navbar__logo"
@@ -45,7 +47,7 @@ export default function Navbar() {
               <div className="navbar__dropdown">
                 <div
                   className="navbar__dropdown__content"
-                  style={{ width: "700px" }}
+                  style={{ width: '700px' }}
                 >
                   <div className="navbar__dropdown__lists">
                     <div className="title">SHOP LAYOUTS</div>
@@ -75,7 +77,7 @@ export default function Navbar() {
                 </div>
                 <div className="navbar__video">
                   <iframe
-                    style={{ width: " 100%" }}
+                    style={{ width: ' 100%' }}
                     src="https://player.vimeo.com/video/348288278?background=1&quality=1080p&loop=1"
                     frameborder="0"
                   ></iframe>
@@ -140,11 +142,11 @@ export default function Navbar() {
             onClick={() => {
               SetOnActive(!onActive);
             }}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
           >
             <SearchOutlined style={{ fontSize: 24 }} />
           </div>
-          <div style={{ cursor: "pointer" }}>
+          <div style={{ cursor: 'pointer' }}>
             <Link to="/cart">
               <Badge count={cartItem.length}>
                 <ShoppingOutlined style={{ fontSize: 24 }} />
@@ -156,10 +158,10 @@ export default function Navbar() {
       <div
         className="search-field"
         style={{
-          visibility: onActive ? "visible" : "hidden",
-          opacity: onActive ? "1" : "0",
-          height: onActive ? "400px " : "0",
-          zIndex: onActive ? "101" : "0",
+          visibility: onActive ? 'visible' : 'hidden',
+          opacity: onActive ? '1' : '0',
+          height: onActive ? '400px ' : '0',
+          zIndex: onActive ? '101' : '0',
         }}
       >
         <h1>Start typing and hit Enter</h1>
@@ -168,13 +170,13 @@ export default function Navbar() {
             className="search-field__inputContent__input"
             placeholder="Search anything"
           />
-          <SearchOutlined style={{ fontSize: "18px" }} />
+          <SearchOutlined style={{ fontSize: '18px' }} />
         </div>
         <div className="search-field__closeModal">
           <CloseOutlined
-            style={{ fontSize: "18px" }}
+            style={{ fontSize: '18px' }}
             onClick={() => {
-              console.log("hello");
+              console.log('hello');
               SetOnActive(!onActive);
             }}
           />
@@ -183,9 +185,9 @@ export default function Navbar() {
       <div
         className="bg_search_box"
         style={{
-          visibility: onActive ? "visible" : "hidden",
-          opacity: onActive ? "1" : "0",
-          zIndex: onActive ? "100" : "0",
+          visibility: onActive ? 'visible' : 'hidden',
+          opacity: onActive ? '1' : '0',
+          zIndex: onActive ? '100' : '0',
         }}
         onClick={() => {
           SetOnActive(!onActive);

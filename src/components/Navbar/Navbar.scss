@@ -58,7 +58,7 @@ header {
 .navbar__link a:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
-  content: "";
+  content: '';
   display: block;
   height: 2px;
   left: 50%;
@@ -115,7 +115,7 @@ header {
       .title::after {
         border-bottom: 1px solid #cea384;
         bottom: 0;
-        content: "";
+        content: '';
         position: absolute;
         transition: width 0.4s linear 0s;
         left: 0;

@@ -1,9 +1,10 @@
-import React from "react";
-import "./Product.scss";
-import Carousel from "./Carousel";
-import ListProduct from "./ListProduct";
-import LazyLoaderProduct from "./Lazyloader/LazyLoaderProduct";
-import { Col, Row, Space } from "antd";
+import { Space } from 'antd';
+import React from 'react';
+
+import Carousel from './Carousel';
+import LazyLoaderProduct from './Lazyloader/LazyLoaderProduct';
+import ListProduct from './ListProduct';
+import './Product.scss';
 
 export default function Product() {
   return (
