@@ -1,5 +1,4 @@
 .circle-color-border {
-  //   background-color: #000;
   border: 1px solid #fff;
   border-radius: 50%;
   cursor: pointer;
@@ -9,11 +8,9 @@
   display: flex;
   justify-content: center;
   transition: all 0.3s ease;
- 
+
   align-items: center;
   .circle-color {
-    // padding: 5px;
-    //   max-width: fit-content;
     border-radius: 50%;
     width: 20px;
     height: 20px;

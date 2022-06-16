@@ -50,7 +50,7 @@ export default function Navbar() {
               <div className="navbar__dropdown">
                 <div
                   className="navbar__dropdown__content"
-                  style={{ width: "700px" }}
+                  style={{ width: '700px' }}
                 >
                   <div className="navbar__dropdown__lists">
                     <div className="title">SHOP LAYOUTS</div>
@@ -80,7 +80,7 @@ export default function Navbar() {
                 </div>
                 <div className="navbar__video">
                   <iframe
-                    style={{ width: " 100%" }}
+                    style={{ width: ' 100%' }}
                     src="https://player.vimeo.com/video/348288278?background=1&quality=1080p&loop=1"
                     frameborder="0"
                   ></iframe>
@@ -146,7 +146,7 @@ export default function Navbar() {
               SetOnActive(!onActive);
               setOnSearchActive(!onSearchActive);
             }}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
           >
             <SearchOutlined style={{ fontSize: 24 }} />
           </div>
@@ -180,11 +180,11 @@ export default function Navbar() {
             className="search-field__inputContent__input"
             placeholder="Search anything"
           />
-          <SearchOutlined style={{ fontSize: "18px" }} />
+          <SearchOutlined style={{ fontSize: '18px' }} />
         </div>
         <div className="search-field__closeModal">
           <CloseOutlined
-            style={{ fontSize: "18px" }}
+            style={{ fontSize: '18px' }}
             onClick={() => {
               SetOnActive(!onActive);
               setOnSearchActive(!onSearchActive);
@@ -262,9 +262,9 @@ export default function Navbar() {
       <div
         className="bg_search_box"
         style={{
-          visibility: onActive ? "visible" : "hidden",
-          opacity: onActive ? "1" : "0",
-          zIndex: onActive ? "100" : "0",
+          visibility: onActive ? 'visible' : 'hidden',
+          opacity: onActive ? '1' : '0',
+          zIndex: onActive ? '100' : '0',
         }}
         onClick={() => {
           SetOnActive(false);
