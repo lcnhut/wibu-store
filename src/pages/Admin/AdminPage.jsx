@@ -8,54 +8,45 @@ import {
   Spin,
   Table,
   Tag,
-} from "antd";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import UpdateProductForm from "../../components/Form/AddProductForm/UpdateProductForm";
-import { AddProductForm, ProductDetailModal } from "../../components";
+} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  AddProductForm,
+  ProductDetailModal,
+  UpdateProductForm,
+} from '../../components';
 import {
   addProductAsync,
   deleteProductAsync,
   getAllAsync,
-} from "../../store/productSlice";
-import "./AdminPage.scss";
-import { setColorTag } from "../../utils/AxiosConfig/setTagColor";
+} from '../../store/product/productSlice';
+import { setColorTag } from '../../utils/SetTagColor/setTagColor';
+import './AdminPage.scss';
 
 const { Panel } = Collapse;
 
 const AdminPage = () => {
+  const dispatch = useDispatch();
+
   const productData = useSelector((state) => state.product.list);
   const isLoading = useSelector((state) => state.product.isLoading);
+
   const [product, setProduct] = useState(productData);
-  const [value, setValue] = useState("");
-  const [productToUpdate, setProductToUpdate] = useState();
-
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [visibleUpdateForm, setVisibleUpdateForm] = useState(false);
-  const [idToUpdate, setIdToUpdate] = useState();
-
-  const handleOkUpdate = () => {
-    setVisibleUpdateForm(false);
-  };
-
-  const handleCancelUpdate = () => {
-    setVisibleUpdateForm(false);
-  };
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
+  const [confirmLoading, setConfirmLoading] = useState(false);
 
   const [visibleAddForm, setVisibleAddForm] = useState(false);
+  const [visibleUpdateForm, setVisibleUpdateForm] = useState(false);
   const [visibleDeleteModal, setVisibleDeleteModal] = useState(false);
   const [visibleViewProduct, setVisibleViewProduct] = useState(false);
 
-  const [confirmLoading, setConfirmLoading] = useState(false);
   const [idToDeleteProduct, setIdToDeleteProduct] = useState();
+  const [idToUpdate, setIdToUpdate] = useState();
+
+  const [productToUpdate, setProductToUpdate] = useState();
   const [productDetail, setProductDetail] = useState({});
-
-  const handleCancel = () => {
-    setVisibleDeleteModal(false);
-  };
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllAsync());
@@ -80,14 +71,14 @@ const AdminPage = () => {
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
       render: (_, record) => {
         return (
           <Button
             type="link"
-            style={{ color: "#1890ff" }}
+            style={{ color: '#1890ff' }}
             onClick={() => openProductDetailModal(record)}
           >
             {record.name}
@@ -96,9 +87,9 @@ const AdminPage = () => {
       },
     },
     {
-      title: "Image",
-      dataIndex: "image",
-      key: "image",
+      title: 'Image',
+      dataIndex: 'image',
+      key: 'image',
       render: (_, record) => {
         return (
           <Image
@@ -110,15 +101,15 @@ const AdminPage = () => {
       },
     },
     {
-      title: "Price",
-      dataIndex: "price",
-      key: "price",
+      title: 'Price',
+      dataIndex: 'price',
+      key: 'price',
       sorter: (a, b) => a.price - b.price,
     },
     {
-      title: "In Stock",
-      dataIndex: "inStock",
-      key: "inStock",
+      title: 'In Stock',
+      dataIndex: 'inStock',
+      key: 'inStock',
       sorter: (a, b) => a.inStock - b.inStock,
       render: (_, record) => {
         return (
@@ -137,7 +128,7 @@ const AdminPage = () => {
                   });
                   return (
                     isStock && (
-                      <div style={{ marginBottom: "5px" }}>
+                      <div style={{ marginBottom: '5px' }}>
                         <Tag color={setColorTag(index)} key={index}>
                           {colorItem.color.toUpperCase()}
                         </Tag>
@@ -152,9 +143,9 @@ const AdminPage = () => {
       },
     },
     {
-      title: "Action",
-      dataIndex: "id",
-      key: "id",
+      title: 'Action',
+      dataIndex: 'id',
+      key: 'id',
       render: (id) => {
         return (
           <Space size="middle">
@@ -220,10 +211,23 @@ const AdminPage = () => {
   };
   // End handle add product
 
+  // Start handle update product
+  const handleOkUpdate = () => {
+    setVisibleUpdateForm(false);
+  };
+
+  const handleCancelUpdate = () => {
+    setVisibleUpdateForm(false);
+  };
+
   // Start handle delete
   const handleDelete = () => {
     setVisibleDeleteModal(false);
     dispatch(deleteProductAsync(idToDeleteProduct));
+  };
+
+  const handleCancelDelete = () => {
+    setVisibleDeleteModal(false);
   };
   // End handle delete
 
@@ -261,7 +265,7 @@ const AdminPage = () => {
           title="Delete Product"
           visible={visibleDeleteModal}
           onOk={handleDelete}
-          onCancel={handleCancel}
+          onCancel={handleCancelDelete}
         >
           This product will be delete?
         </Modal>

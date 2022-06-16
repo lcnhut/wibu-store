@@ -1,21 +1,8 @@
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import {
-  Form,
-  Image,
-  Input,
-  InputNumber,
-  Collapse,
-  Modal,
-  Row,
-  Col,
-  Button,
-  Space,
-} from "antd";
-import _ from "lodash";
-import React, { useEffect } from "react";
-import { DynamicColorField } from "../../DynamicField/DynamicColorField";
-import DynamicUpdateProduct from "../../DynamicField/DynamicUpdateProduct";
-const { Panel } = Collapse;
+import { Form, Image, Input, InputNumber, Modal } from 'antd';
+import React, { useEffect } from 'react';
+
+import DynamicColorFieldUpdate from '../../DynamicField/DynamicColorFieldUpdate';
+
 const UpdateProductForm = (props) => {
   const [form] = Form.useForm();
   const {
@@ -25,13 +12,16 @@ const UpdateProductForm = (props) => {
     productToUpdate,
     idToUpdate,
   } = props;
+
   useEffect(() => {
     form.setFieldsValue({
       name: productToUpdate.name,
       price: productToUpdate.price,
       description: productToUpdate.description,
+      colors: productToUpdate.colors,
     });
   }, [idToUpdate]);
+
   return (
     <>
       {productToUpdate && (
@@ -49,9 +39,6 @@ const UpdateProductForm = (props) => {
             }}
             wrapperCol={{
               span: 18,
-            }}
-            initialValues={{
-              colors: [...productToUpdate.colors],
             }}
           >
             <Form.Item
@@ -87,10 +74,13 @@ const UpdateProductForm = (props) => {
             >
               {productToUpdate.image.map((img, id) => (
                 <>
-                  <Image width={100} src={img.src} />
-                  <Input type="file" />
+                  <Image
+                    width={100}
+                    src={img.src}
+                    style={{ marginBottom: '20px' }}
+                  />
                   <Form.Item>
-                    <Input placeholder="or pass link image here" />
+                    <Input placeholder="Update new image here with a link" />
                   </Form.Item>
                 </>
               ))}
@@ -106,7 +96,7 @@ const UpdateProductForm = (props) => {
             >
               <Input />
             </Form.Item>
-            <DynamicUpdateProduct
+            <DynamicColorFieldUpdate
               colors={productToUpdate.colors}
               productToUpdate={productToUpdate}
             />

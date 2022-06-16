@@ -45,7 +45,7 @@
       }
       &::before {
         box-sizing: inherit;
-        content: "";
+        content: '';
         position: absolute;
         width: 90%;
         height: calc(90% - 10px);
@@ -59,7 +59,7 @@
       }
       &::after {
         box-sizing: inherit;
-        content: "";
+        content: '';
         position: absolute;
         width: calc(90% - 10px);
         height: 90%;

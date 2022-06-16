@@ -9,11 +9,13 @@ import {
   TwitterOutlined,
   YoutubeFilled,
   YoutubeOutlined,
-} from "@ant-design/icons";
-import { Space } from "antd";
-import React from "react";
-import ButtonOfPage from "../Button/ButtonOfPage";
-import "./Footer.scss";
+} from '@ant-design/icons';
+import { Space } from 'antd';
+import React from 'react';
+
+import ButtonOfPage from '../Button/ButtonOfPage';
+import './Footer.scss';
+
 export default function Footer() {
   return (
     <div className="footer-container">
@@ -78,7 +80,7 @@ export default function Footer() {
                 </Space>
               </li>
               <li>
-                {" "}
+                {' '}
                 <Space>
                   <TagOutlined />
                   1201 Broadway Suite 600
@@ -87,23 +89,23 @@ export default function Footer() {
             </ul>
             <div className="footer-container__content__icons">
               <div className="container__content__icon">
-                <TwitterOutlined style={{ fontSize: "16px" }} />
+                <TwitterOutlined style={{ fontSize: '16px' }} />
               </div>
               <div className="container__content__icon">
-                <InstagramFilled style={{ fontSize: "16px" }} />
+                <InstagramFilled style={{ fontSize: '16px' }} />
               </div>
               <div className="container__content__icon">
-                <FacebookFilled style={{ fontSize: "16px" }} />
+                <FacebookFilled style={{ fontSize: '16px' }} />
               </div>
               <div className="container__content__icon">
-                <YoutubeFilled style={{ fontSize: "16px" }} />
+                <YoutubeFilled style={{ fontSize: '16px' }} />
               </div>
             </div>
           </div>
         </div>
         <div
           className="footer-container__content__item"
-          style={{ flex: "1.5" }}
+          style={{ flex: '1.5' }}
         >
           <div className="footer-container__content__item__title">
             <h2 className="title">Newsletters</h2>

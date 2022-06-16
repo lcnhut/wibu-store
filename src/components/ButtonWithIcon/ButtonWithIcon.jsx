@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function ButtonWithIcon() {
-  return (
-    <div>ButtonWithIcon</div>
-  )
+  return <div>ButtonWithIcon</div>;
 }

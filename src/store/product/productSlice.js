@@ -1,21 +1,22 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { message } from "antd";
-import { productApi } from "../api";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { message } from 'antd';
 
-export const getAllAsync = createAsyncThunk("product/getAll", async () => {
+import { productApi } from '../../api';
+
+export const getAllAsync = createAsyncThunk('product/getAll', async () => {
   const response = await productApi.getAll();
   return response;
 });
 
 export const addProductAsync = createAsyncThunk(
-  "product/addProduct",
+  'product/addProduct',
   async (product) => {
     const response = await productApi.add(product);
     return response;
   }
 );
 export const deleteProductAsync = createAsyncThunk(
-  "product/deleteProduct",
+  'product/deleteProduct',
   async (id) => {
     const response = await productApi.delete(id);
     return response.data;
@@ -23,7 +24,7 @@ export const deleteProductAsync = createAsyncThunk(
 );
 
 export const updateProductAsync = createAsyncThunk(
-  "product/updateProduct",
+  'product/updateProduct',
   async (data) => {
     const response = await productApi.update(data.id);
     return console.log(response);
@@ -31,17 +32,17 @@ export const updateProductAsync = createAsyncThunk(
 );
 
 export const productSlice = createSlice({
-  name: "product",
+  name: 'product',
   initialState: {
     list: [],
     isLoading: false,
-    error: "",
+    error: '',
     cart: [],
   },
   reducers: {
     addToCart: (state, action) => {
       state.cart.unshift(action.payload);
-      message.success("An item is added to cart!!!");
+      message.success('An item is added to cart!!!');
     },
   },
   extraReducers: {
@@ -50,7 +51,7 @@ export const productSlice = createSlice({
     },
     [getAllAsync.rejected]: (state) => {
       state.isLoading = false;
-      message.error("Something went wrong!!!");
+      message.error('Something went wrong!!!');
     },
     [getAllAsync.fulfilled]: (state, action) => {
       const data = action.payload.data;
@@ -79,7 +80,7 @@ export const productSlice = createSlice({
     },
     [addProductAsync.rejected]: (state) => {
       state.isLoading = false;
-      message.error("Something went wrong!!!");
+      message.error('Something went wrong!!!');
     },
     [addProductAsync.fulfilled]: (state, action) => {
       let newProduct = action.payload.data;
@@ -99,7 +100,7 @@ export const productSlice = createSlice({
 
       state.isLoading = false;
       state.list.push(newProduct);
-      message.success("A new product is added!!!");
+      message.success('A new product is added!!!');
     },
 
     [deleteProductAsync.pending]: (state) => {
@@ -107,13 +108,13 @@ export const productSlice = createSlice({
     },
     [deleteProductAsync.rejected]: (state) => {
       state.isLoading = false;
-      message.error("Delete product failed!");
+      message.error('Delete product failed!');
     },
     [deleteProductAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
       const data = state.list.filter((item) => item.id !== action.payload.id);
       state.list = data;
-      message.success("A product is deleted!!!");
+      message.success('A product is deleted!!!');
     },
   },
 });
