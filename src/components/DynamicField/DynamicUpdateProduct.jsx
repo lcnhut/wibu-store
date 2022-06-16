@@ -3,7 +3,7 @@ import { Button, Divider, Form, Input, InputNumber, Space } from "antd";
 import React from "react";
 import UpdateProductForm from "../Form/AddProductForm/UpdateProductForm";
 
-const DynamicUpdateProduct = ({ productToUpdate }) => {
+const DynamicUpdateProduct = ({ productToUpdate, colors }) => {
   return (
     <div>
       <Form.List name="colors">
@@ -13,7 +13,6 @@ const DynamicUpdateProduct = ({ productToUpdate }) => {
               {fields.map((field, index) => (
                 <div key={field.key}>
                   <Divider>
-                    {console.log(field)}
                     Color {index + 1}
                     {fields.length > 0 ? (
                       <span>

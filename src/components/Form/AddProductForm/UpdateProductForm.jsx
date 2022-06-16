@@ -25,16 +25,11 @@ const UpdateProductForm = (props) => {
     productToUpdate,
     idToUpdate,
   } = props;
-  console.log(productToUpdate);
   useEffect(() => {
     form.setFieldsValue({
       name: productToUpdate.name,
       price: productToUpdate.price,
       description: productToUpdate.description,
-      colors: productToUpdate.colors.map((c, id) => c.color),
-      size: productToUpdate.colors.map((c, id) =>
-        c.sizes.map((size) => size.size)
-      ),
     });
   }, [idToUpdate]);
   return (
@@ -111,7 +106,10 @@ const UpdateProductForm = (props) => {
             >
               <Input />
             </Form.Item>
-            <DynamicUpdateProduct productToUpdate={productToUpdate} />
+            <DynamicUpdateProduct
+              colors={productToUpdate.colors}
+              productToUpdate={productToUpdate}
+            />
           </Form>
         </Modal>
       )}
