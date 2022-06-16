@@ -4,10 +4,8 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    // background-color: #cea384;
     height: 10rem;
     h1 {
-      // background-color: #cea384;
       font-weight: 700;
       font-size: 37px;
       letter-spacing: 3px;
@@ -21,7 +19,7 @@
       margin-top: 1rem;
       button {
         min-width: 105px;
-        padding: "20px 0";
+        padding: '20px 0';
         border: none;
         outline: none;
         color: #cea384;
@@ -36,7 +34,7 @@
         &:last-child {
           &:hover {
             transition: 0.3s;
-            background-color: #cea384;
+            background-color: var(--primary-color);
             color: white;
           }
         }
@@ -51,9 +49,12 @@
   padding: 5rem;
   margin: 0;
   left: 0;
+  z-index: 3;
+  transition: all 0.3s ease;
   .listproduct__item {
     overflow: hidden;
     display: flex;
+    transition: all 0.3s ease;
     justify-content: center;
     align-items: center;
   }

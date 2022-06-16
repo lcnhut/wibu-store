@@ -1,5 +1,8 @@
-import { Form, Input, InputNumber, Modal } from "antd";
-import React from "react";
+import { Form, Input, InputNumber, Modal } from 'antd';
+import React from 'react';
+
+import { DynamicColorField } from '../../DynamicField/DynamicColorField';
+import { DynamicImageField } from '../../DynamicField/DynamicImageField';
 
 const AddProductForm = (props) => {
   const [form] = Form.useForm();
@@ -11,7 +14,44 @@ const AddProductForm = (props) => {
   };
 
   const onFinish = (values) => {
-    handleSubmitForm(values);
+    console.log(values);
+    let transformData = {};
+    const colorList = values.colors.map((color) => {
+      return color.color;
+    });
+
+    const duplicateColor = colorList.reduce((accumulator, curValue) => {
+      if (accumulator.indexOf(curValue) === -1) {
+        accumulator.push(curValue);
+      }
+
+      return accumulator;
+    }, []);
+
+    const colorArr = [];
+
+    duplicateColor.forEach((color) => {
+      const listSameColor = values.colors.filter((el) => el.color === color);
+      const colorObj = {
+        color: color,
+        sizes: [],
+      };
+
+      listSameColor.forEach((item) => {
+        colorObj.sizes.push({
+          size: item.size,
+          inStock: item.quantity,
+        });
+      });
+      colorArr.push(colorObj);
+    });
+
+    transformData = {
+      ...values,
+      colors: colorArr,
+    };
+
+    handleSubmitForm(transformData);
   };
 
   return (
@@ -27,7 +67,7 @@ const AddProductForm = (props) => {
             onFinish(values);
           })
           .catch((info) => {
-            console.log("Validate Failed:", info);
+            console.log('Validate Failed:', info);
           });
       }}
       confirmLoading={confirmLoading}
@@ -42,6 +82,10 @@ const AddProductForm = (props) => {
         wrapperCol={{
           span: 16,
         }}
+        initialValues={{
+          images: [''],
+          colors: [''],
+        }}
       >
         <Form.Item
           name="name"
@@ -55,17 +99,6 @@ const AddProductForm = (props) => {
           <Input />
         </Form.Item>
         <Form.Item
-          name="quantity"
-          label="Quantity"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item
           name="price"
           label="Price"
           rules={[
@@ -74,14 +107,13 @@ const AddProductForm = (props) => {
             },
           ]}
         >
-          <InputNumber />
-        </Form.Item>
-        <Form.Item name="image" label="Image">
-          <Input />
+          <InputNumber min={1} />
         </Form.Item>
         <Form.Item name="description" label="Description">
           <Input />
         </Form.Item>
+        <DynamicImageField />
+        <DynamicColorField />
       </Form>
     </Modal>
   );

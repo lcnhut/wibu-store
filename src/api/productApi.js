@@ -1,9 +1,9 @@
-import instance from "../utils/AxiosConfig/AxiosConfig";
+import { axiosInstance } from '../utils/AxiosConfig/AxiosConfig';
 
 const productApi = {
   getAll: () =>
-    instance
-      .get("products")
+    axiosInstance
+      .get('products')
       .then((response) => {
         return response;
       })
@@ -11,13 +11,13 @@ const productApi = {
         console.log(e);
       }),
   add: (product) =>
-    instance
-      .post("products", {
+    axiosInstance
+      .post('products', {
         name: product.name,
-        image: product.image ? product.image : "",
+        image: product.images ? product.images : [],
         price: product.price,
-        inStock: product.quantity,
-        description: product.description ? product.description : "",
+        description: product.description ? product.description : '',
+        colors: product.colors,
       })
       .then((response) => {
         return response;
@@ -25,5 +25,8 @@ const productApi = {
       .catch((e) => {
         console.log(e);
       }),
+  delete: (id) => {
+    return axiosInstance.delete(`/products/${id}`);
+  },
 };
 export default productApi;
