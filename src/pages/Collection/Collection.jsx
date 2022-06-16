@@ -31,7 +31,7 @@ export default function Collection() {
   };
 
   useEffect(() => {
-    dispatch(getAllAsync());
+    // dispatch(getAllAsync());
   }, []);
   function ShowFilter() {
     if (showProduct) {
