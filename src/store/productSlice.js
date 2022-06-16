@@ -33,6 +33,7 @@ export const productSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       state.cart.unshift(action.payload);
+      message.success("An item is added to cart!!!");
     },
   },
   extraReducers: {

@@ -25,7 +25,7 @@ const SingleProduct = ({ product }) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [visibleModalAddToCart, setVisibleModalAddToCart] = useState(false);
   const [singleProduct, setSingleProduct] = useState({});
 
   const handleAddToCart = (values) => {
@@ -36,7 +36,7 @@ const SingleProduct = ({ product }) => {
       description: product.description,
     };
     dispatch(addToCart(submitData));
-    setIsModalVisible(false);
+    setVisibleModalAddToCart(false);
   };
 
   const onFinish = () => {
@@ -52,7 +52,7 @@ const SingleProduct = ({ product }) => {
   };
 
   const handleCancel = () => {
-    setIsModalVisible(false);
+    setVisibleModalAddToCart(false);
   };
 
   const getProduct = async (id) => {
@@ -60,7 +60,7 @@ const SingleProduct = ({ product }) => {
     data && setSingleProduct(data);
   };
   const handleClick = (id) => {
-    setIsModalVisible(true);
+    setVisibleModalAddToCart(true);
     getProduct(id);
   };
 
@@ -83,7 +83,7 @@ const SingleProduct = ({ product }) => {
     form.setFieldsValue({
       size: sizeOption[0],
     });
-  }, [sizeOption]);
+  }, [sizeOption, visibleModalAddToCart]);
 
   // update size after changing color
   const onChangeColor = (selectedColor) => {
@@ -100,7 +100,7 @@ const SingleProduct = ({ product }) => {
       {singleProduct && (
         <Modal
           centered
-          visible={isModalVisible}
+          visible={visibleModalAddToCart}
           footer={null}
           onCancel={handleCancel}
           className="product__details__wrapper"
@@ -173,16 +173,24 @@ const SingleProduct = ({ product }) => {
                   </Select>
                 </Form.Item>
 
-                <Form.Item name="quantity" label="Quantity">
-                  <InputNumber min={1} />
-                </Form.Item>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Form.Item name="quantity" label="Quantity">
+                    <InputNumber min={1} />
+                  </Form.Item>
 
-                <button className="add-to-cart__btn" type="submit">
-                  <ShoppingCartOutlined
-                    style={{ fontSize: "20px", marginRight: "5px" }}
-                  />
-                  Add to cart
-                </button>
+                  <button className="add-to-cart__btn" type="submit">
+                    <ShoppingCartOutlined
+                      style={{ fontSize: "20px", marginRight: "5px" }}
+                    />
+                    Add to cart
+                  </button>
+                </div>
               </Form>
             </Col>
           </Row>
@@ -208,8 +216,10 @@ const SingleProduct = ({ product }) => {
           </div>
         </div>
         <div className="single__product__content">
-          <h3>{product.name}</h3>
-          <h4>${product.price}</h4>
+          <h4>
+            <a>{product.name}</a>
+          </h4>
+          <p>${product.price}</p>
         </div>
         <div className="single__product__action">
           <button onClick={() => handleClick(product.id)}>
