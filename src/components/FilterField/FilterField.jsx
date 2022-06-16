@@ -2,16 +2,15 @@ import {
   AppstoreOutlined,
   DownOutlined,
   FilterOutlined,
-  HolderOutlined,
-  UserOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Button, Dropdown, Menu, Space } from 'antd';
 import React from 'react';
 
-import { ButtonSize, CircleColor } from '../../../components';
+import ButtonSize from '../ButtonSize/ButtonSize';
+import CircleColor from '../CircleColor/CircleColor.jsx';
 import './FilterField.scss';
 
-export default function filterField({ showFilterButton, setValueShowItem }) {
+export default function FilterField({ showFilterButton, setValueShowItem }) {
   const menu = (
     <Menu
       items={[
@@ -73,7 +72,7 @@ export default function filterField({ showFilterButton, setValueShowItem }) {
         <div className="filter__container__filter__featuredbtn">
           <div className="featuredbtn">
             <AppstoreOutlined style={{ fontSize: '24px' }} />
-            <div class="showGridFilter">
+            <div className="showGridFilter">
               <div
                 className="showGridFilter__item"
                 onClick={() => {

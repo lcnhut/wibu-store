@@ -31,5 +31,8 @@ const productApi = {
   getById: (id) => {
     return axiosInstance.get(`/products/${id}`);
   },
+  update: (data) => {
+    return instance.put(`/products/${data.id}, ${data}`);
+  },
 };
 export default productApi;

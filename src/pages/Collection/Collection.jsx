@@ -1,30 +1,22 @@
 import { Breadcrumb, Col, Row } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { axiosInstance } from '../../utils/AxiosConfig/AxiosConfig';
-import SingleProduct from '../Product/ListProduct/SingleProduct';
+import { FilterField, ListProduct } from '../../components';
+import { productSelector, selectList } from '../../store/productSelector';
 import './Collection.scss';
-import FilterField from './filter/FilterField';
 
 export default function Collection() {
   const [products, setProducts] = useState();
   const [showProduct, setShowProduct] = useState(false);
   const [filterValue, setFilterValue] = useState();
   const listProduct = useRef();
-  const getAllProduct = () => {
-    axiosInstance
-      .get('/products')
-      .then(function (response) {
-        const { data } = response;
-        data && setProducts(data);
-      })
-      .catch(function (e) {
-        console.log(e);
-      });
-  };
+  const selector = useSelector(productSelector);
+
+  const getAllProduct = () => {};
 
   useEffect(() => {
-    getAllProduct();
+    // dispatch(getAllAsync());
   }, []);
   function ShowFilter() {
     if (showProduct) {
@@ -54,30 +46,7 @@ export default function Collection() {
         className="collection__container__product list__product"
         ref={listProduct}
       >
-        <Row
-          gutter={[16, 26]}
-          className="listproduct__wrapper"
-          style={{ padding: '0', marginTop: '25px' }}
-        >
-          {products &&
-            products.map(
-              (product, id) =>
-                id < 8 && (
-                  <Col
-                    xs={{ span: 24 / filterValue }}
-                    sm={{ span: 24 / filterValue }}
-                    md={{ span: 24 / filterValue }}
-                    lg={{ span: 24 / filterValue }}
-                    xl={{ span: 24 / filterValue }}
-                    className="listproduct__item"
-                    key={id}
-                    span={6}
-                  >
-                    <SingleProduct product={product} />
-                  </Col>
-                )
-            )}
-        </Row>
+        <ListProduct />
       </div>
     </div>
   );

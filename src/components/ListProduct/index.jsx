@@ -12,6 +12,7 @@ const ListProduct = () => {
   useEffect(() => {
     dispatch(getAllAsync());
   }, []);
+
   return (
     <>
       <Row className="listproduct__title__wrapper">
