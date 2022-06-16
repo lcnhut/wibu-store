@@ -8,7 +8,7 @@ import {
 import { Breadcrumb, Button, Dropdown, Menu, Space } from 'antd';
 import React from 'react';
 
-import { ButtonSize, CricleColor } from '../../../components';
+import { ButtonSize, CircleColor } from '../../../components';
 import './FilterField.scss';
 
 export default function filterField({ showFilterButton, setValueShowItem }) {
@@ -161,31 +161,31 @@ export default function filterField({ showFilterButton, setValueShowItem }) {
               <h2 className="title">Color Option</h2>
               <ul className="filter-selection-item__cricles">
                 <li>
-                  <CricleColor color="black" />
+                  <CircleColor color="black" />
                 </li>
                 <li>
-                  <CricleColor color="Cornsilk" />
+                  <CircleColor color="Cornsilk" />
                 </li>
                 <li>
-                  <CricleColor color="hotpink" />
+                  <CircleColor color="hotpink" />
                 </li>
                 <li>
-                  <CricleColor color="hotpink" />
+                  <CircleColor color="hotpink" />
                 </li>
                 <li>
-                  <CricleColor color="hotpink" />
+                  <CircleColor color="hotpink" />
                 </li>
                 <li>
-                  <CricleColor color="Silver" />
+                  <CircleColor color="Silver" />
                 </li>
                 <li>
-                  <CricleColor color="GoldenRod" />
+                  <CircleColor color="GoldenRod" />
                 </li>
                 <li>
-                  <CricleColor color="Gold" />
+                  <CircleColor color="Gold" />
                 </li>
                 <li>
-                  <CricleColor color="White" />
+                  <CircleColor color="White" />
                 </li>
               </ul>
             </div>

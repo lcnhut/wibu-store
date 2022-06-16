@@ -11,7 +11,7 @@ import {
 } from 'antd';
 import React, { useState } from 'react';
 
-import { setColorTag } from '../../utils/AxiosConfig/setTagColor';
+import { setColorTag } from '../../utils/SetTagColor/setTagColor';
 import './ProductDetailModal.scss';
 
 const ProductDetailModal = (props) => {

@@ -1,7 +1,7 @@
 import { Breadcrumb, Col, Row } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 
-import instance from '../../utils/AxiosConfig/AxiosConfig';
+import { axiosInstance } from '../../utils/AxiosConfig/AxiosConfig';
 import SingleProduct from '../Product/ListProduct/SingleProduct';
 import './Collection.scss';
 import FilterField from './filter/FilterField';
@@ -12,7 +12,7 @@ export default function Collection() {
   const [filterValue, setFilterValue] = useState();
   const listProduct = useRef();
   const getAllProduct = () => {
-    instance
+    axiosInstance
       .get('/products')
       .then(function (response) {
         const { data } = response;

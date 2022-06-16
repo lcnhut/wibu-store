@@ -17,8 +17,8 @@ import {
   addProductAsync,
   deleteProductAsync,
   getAllAsync,
-} from '../../store/productSlice';
-import { setColorTag } from '../../utils/AxiosConfig/setTagColor';
+} from '../../store/product/productSlice';
+import { setColorTag } from '../../utils/SetTagColor/setTagColor';
 import './AdminPage.scss';
 
 const { Panel } = Collapse;

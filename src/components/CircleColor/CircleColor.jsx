@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './CricleColor.scss';
+import './CircleColor.scss';
 
-export default function CricleColor({ color }) {
+export default function CircleColor({ color }) {
   return (
     <div className="circle-color-border">
       <div className="circle-color" style={{ backgroundColor: color }}></div>

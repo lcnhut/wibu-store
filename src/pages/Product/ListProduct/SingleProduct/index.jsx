@@ -17,8 +17,8 @@ import {
 import { React, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addToCart } from '../../../../store/productSlice';
-import instance from '../../../../utils/AxiosConfig/AxiosConfig';
+import { addToCart } from '../../../../store/product/productSlice';
+import { axiosInstance } from '../../../../utils/AxiosConfig/AxiosConfig';
 import './styles.scss';
 
 const { Option } = Select;
@@ -58,7 +58,7 @@ const SingleProduct = ({ product }) => {
   };
 
   const getProduct = async (id) => {
-    const { data } = await instance.get(`products/${id}`);
+    const { data } = await axiosInstance.get(`products/${id}`);
     data && setSingleProduct(data);
   };
   const handleClick = (id) => {
