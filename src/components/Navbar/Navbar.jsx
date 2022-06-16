@@ -4,14 +4,16 @@ import {
   SearchOutlined,
   ShoppingOutlined,
   UserOutlined,
-} from "@ant-design/icons";
-import { Badge } from "antd";
-import React, { useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
-import ButtonOfPage from "../Button/ButtonOfPage";
-import ProductCart from "../ProductCart/ProductCart";
-import "./Navbar.scss";
+} from '@ant-design/icons';
+import { Badge } from 'antd';
+import React, { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
+
+import ButtonOfPage from '../Button/ButtonOfPage';
+import ProductCart from '../ProductCart/ProductCart';
+import './Navbar.scss';
+
 export default function Navbar() {
   const cartItem = useSelector((state) => state.product.cart);
   const [onActive, SetOnActive] = useState(false);
@@ -151,7 +153,7 @@ export default function Navbar() {
             <SearchOutlined style={{ fontSize: 24 }} />
           </div>
           <div
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
             onClick={() => {
               SetOnActive(!onActive);
               setOnCartActive(!onSearchActive);
@@ -168,10 +170,10 @@ export default function Navbar() {
       <div
         className="search-field"
         style={{
-          visibility: onSearchActive ? "visible" : "hidden",
-          opacity: onSearchActive ? "1" : "0",
-          height: onSearchActive ? "400px " : "0",
-          zIndex: onSearchActive ? "101" : "0",
+          visibility: onSearchActive ? 'visible' : 'hidden',
+          opacity: onSearchActive ? '1' : '0',
+          height: onSearchActive ? '400px ' : '0',
+          zIndex: onSearchActive ? '101' : '0',
         }}
       >
         <h1>Start typing and hit Enter</h1>
@@ -195,17 +197,17 @@ export default function Navbar() {
       <div
         className="cart_field"
         style={{
-          opacity: onCartActive ? "1" : "0",
-          visibility: onCartActive ? "visible" : "hidden",
-          zIndex: onCartActive ? "101" : "-1",
-          width: onCartActive ? "350px" : "0",
+          opacity: onCartActive ? '1' : '0',
+          visibility: onCartActive ? 'visible' : 'hidden',
+          zIndex: onCartActive ? '101' : '-1',
+          width: onCartActive ? '350px' : '0',
         }}
       >
         <div className="cart_field__header">
           <div className="cart_field__header__icon">
-            {" "}
+            {' '}
             <CloseOutlined
-              style={{ fontSize: "18px" }}
+              style={{ fontSize: '18px' }}
               onClick={() => {
                 setOnCartActive(false);
                 SetOnActive(!onActive);
@@ -223,7 +225,7 @@ export default function Navbar() {
         </div>
         <div
           className="cart_field__body"
-          style={{ justifyContent: cartItem.length ? "flex-start" : "center" }}
+          style={{ justifyContent: cartItem.length ? 'flex-start' : 'center' }}
         >
           {cartItem.length === 0 ? (
             <>
@@ -269,6 +271,7 @@ export default function Navbar() {
         onClick={() => {
           SetOnActive(false);
           setOnCartActive(false);
+          setOnSearchActive(false);
         }}
       ></div>
     </header>
