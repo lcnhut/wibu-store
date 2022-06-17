@@ -1,4 +1,5 @@
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect';
+
 export const selectList = (state) => state.product.list;
 export const selectCart = (state) => state.product.cart;
 // const selectProduct = (state) => state.product
