@@ -1,17 +1,20 @@
 /* eslint-disable react/prop-types */
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Form, Input, Radio, Select, Space } from 'antd';
 import React from 'react';
 
+import paypal_logo from '../../../assets/images/paypal_logo.png';
 import './CheckoutForm.scss';
 
 const { Option } = Select;
 
-const CheckoutForm = ({ handleFinishInformation, loadingButton }) => {
+const CheckoutForm = ({
+  handleFinishInformation,
+  loadingButton,
+  paymentValue,
+  onChangeCountry,
+  onChangePayment,
+}) => {
   const [form] = Form.useForm();
-
-  const onChange = (value) => {
-    console.log(`selected ${value}`);
-  };
 
   return (
     <Form
@@ -31,7 +34,7 @@ const CheckoutForm = ({ handleFinishInformation, loadingButton }) => {
           });
       }}
     >
-      <div className="section__contact">
+      <section className="section__contact">
         <h2>Contact information</h2>
 
         <div className="input__group">
@@ -69,10 +72,10 @@ const CheckoutForm = ({ handleFinishInformation, loadingButton }) => {
             },
           ]}
         >
-          <Input placeholder="Email or mobile phone number" />
+          <Input placeholder="Mobile phone number" />
         </Form.Item>
-      </div>
-      <div className="section__address">
+      </section>
+      <section className="section__address">
         <h2>Shipping address</h2>
         <Form.Item
           name="country"
@@ -82,10 +85,10 @@ const CheckoutForm = ({ handleFinishInformation, loadingButton }) => {
             },
           ]}
         >
-          <Select placeholder="Select country" onChange={onChange}>
+          <Select placeholder="Select country" onChange={onChangeCountry}>
             <Option value="vietnam">Vietnam</Option>
             <Option value="usa">USA</Option>
-            <Option value="eu">EU</Option>
+            <Option value="china">China</Option>
           </Select>
         </Form.Item>
 
@@ -129,16 +132,64 @@ const CheckoutForm = ({ handleFinishInformation, loadingButton }) => {
             <Input placeholder="Postal code (optional)" />
           </Form.Item>
         </div>
+      </section>
+      <section className="section__delivery">
+        <h2>Shipping method</h2>
+        <Form.Item>
+          <div className="radio__button">
+            <Radio defaultChecked="true">Standard</Radio>
+            <span className="radio__logo">Free</span>
+          </div>
+        </Form.Item>
+      </section>
 
-        <Button
-          loading={loadingButton}
-          type="primary"
-          size={'large'}
-          htmlType="submit"
+      <section className="section__payment">
+        <h2>Payment method</h2>
+        <Form.Item
+          name="payment"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
         >
-          Continue to shipping
-        </Button>
-      </div>
+          <Radio.Group
+            style={{ width: '100%' }}
+            onChange={onChangePayment}
+            value={paymentValue}
+          >
+            <Space direction="vertical" style={{ width: '100%' }}>
+              <div>
+                <Radio value={1} className="radio__button">
+                  Paypal
+                  <span className="radio__logo">
+                    <img src={paypal_logo} alt="" style={{ width: '25px' }} />
+                  </span>
+                </Radio>
+              </div>
+              <Radio value={2} className="radio__button">
+                Cash on delivery (COD)
+                <span className="radio__logo">
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8dkI2tu70n35oCEbOvavHq1jjhPkZGFEqQkJumJHPxMtbN7PMv3qVlifVyCtcEIAuap8&usqp=CAU"
+                    alt=""
+                    style={{ width: '25px' }}
+                  />
+                </span>
+              </Radio>
+            </Space>
+          </Radio.Group>
+        </Form.Item>
+      </section>
+
+      <Button
+        loading={loadingButton}
+        type="primary"
+        size={'large'}
+        htmlType="submit"
+      >
+        Continue to shipping
+      </Button>
     </Form>
   );
 };

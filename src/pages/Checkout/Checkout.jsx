@@ -1,29 +1,23 @@
-import { PageHeader } from 'antd';
+import { HomeOutlined } from '@ant-design/icons';
+import { Breadcrumb } from 'antd';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { CheckoutForm } from '../../components';
 import './Checkout.scss';
 
 const Checkout = () => {
+  const [paymentValue, setPaymentValue] = useState(1);
   const [loadingButton, setLoadingButton] = useState(false);
-  const routes = [
-    {
-      path: '/',
-      breadcrumbName: 'Home',
-    },
-    {
-      path: '/checkout',
-      breadcrumbName: 'Checkout',
-    },
-    {
-      path: '/shipping',
-      breadcrumbName: 'Shipping',
-    },
-    {
-      path: '/payment',
-      breadcrumbName: 'Payment',
-    },
-  ];
+
+  const onChangeCountry = (value) => {
+    console.log(`selected ${value}`);
+  };
+
+  const onChangePayment = (e) => {
+    setPaymentValue(e.target.value);
+    console.log(e.target.value);
+  };
 
   const handleFinishInformation = (values) => {
     setLoadingButton(true);
@@ -35,15 +29,21 @@ const Checkout = () => {
 
   return (
     <div className="checkout__container">
-      <PageHeader
-        className="site-page-header"
-        breadcrumb={{
-          routes,
-        }}
-      />
+      <Breadcrumb>
+        <Breadcrumb.Item href="">
+          <Link to="/">
+            <HomeOutlined />
+            <span style={{ marginLeft: '5px' }}>Home</span>
+          </Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item href="">Checkout</Breadcrumb.Item>
+      </Breadcrumb>
       <CheckoutForm
         handleFinishInformation={handleFinishInformation}
         loadingButton={loadingButton}
+        paymentValue={paymentValue}
+        onChangeCountry={onChangeCountry}
+        onChangePayment={onChangePayment}
       />
     </div>
   );
