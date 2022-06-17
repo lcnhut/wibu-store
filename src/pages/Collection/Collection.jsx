@@ -46,7 +46,7 @@ export default function Collection() {
         className="collection__container__product list__product"
         ref={listProduct}
       >
-        <ListProduct />
+        <ListProduct view_list={filterValue} />
       </div>
     </div>
   );

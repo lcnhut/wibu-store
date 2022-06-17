@@ -6,7 +6,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { Badge } from 'antd';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -17,13 +17,25 @@ import './Navbar.scss';
 export default function Navbar() {
   const cartItem = useSelector((state) => state.product.cart);
   const [onActive, SetOnActive] = useState(false);
+  const [onActiveNavbar, setOnActiveNavbar] = useState(false);
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
   const navbar = useRef();
-
+  window.onscroll = () => {
+    // console.log(document.documentElement.scrollTop);
+    if (document.documentElement.scrollTop < 100) {
+      setOnActiveNavbar(true);
+    } else {
+      setOnActiveNavbar(false);
+    }
+  };
+  useEffect(() => {}, []);
   return (
     <header>
-      <nav className="navbar" ref={navbar}>
+      <nav
+        className={onActiveNavbar ? 'navbar' : 'navbar postionfixed'}
+        ref={navbar}
+      >
         <img
           src="https://cdn.shopify.com/s/files/1/0277/0472/1542/files/logo.png?v=1589452027"
           className="navbar__logo"

@@ -5,7 +5,8 @@ import { axiosInstance } from '../../utils/AxiosConfig/AxiosConfig';
 import SingleProduct from '../SingleProduct';
 import './styles.scss';
 
-const ListProduct = () => {
+const ListProduct = (props) => {
+  let { view_list } = props;
   const [products, setProducts] = useState();
   const getAllProduct = () => {
     axiosInstance
@@ -14,11 +15,8 @@ const ListProduct = () => {
         const { data } = response;
         data && setProducts(data);
       })
-      .catch(function (e) {
-        console.log(e);
-      });
+      .catch(function (e) {});
   };
-
   useEffect(() => {
     getAllProduct();
   }, []);
@@ -41,11 +39,11 @@ const ListProduct = () => {
             (product, id) =>
               id < 8 && (
                 <Col
-                  xs={{ span: 24 }}
-                  sm={{ span: 24 }}
-                  md={{ span: 12 }}
-                  lg={{ span: 8 }}
-                  xl={{ span: 6 }}
+                  xs={{ span: view_list ? 6 / view_list : 24 }}
+                  sm={{ span: view_list ? 8 / view_list : 24 }}
+                  md={{ span: view_list ? 12 / view_list : 12 }}
+                  lg={{ span: view_list ? 24 / view_list : 8 }}
+                  xl={{ span: view_list ? 24 / view_list : 6 }}
                   className="listproduct__item"
                   key={id}
                   span={6}
