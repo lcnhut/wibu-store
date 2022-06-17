@@ -25,9 +25,9 @@ export const deleteProductAsync = createAsyncThunk(
 
 export const updateProductAsync = createAsyncThunk(
   'product/updateProduct',
-  async (data) => {
-    const response = await productApi.update(data.id);
-    return console.log(response);
+  async (product) => {
+    const response = await productApi.update(product);
+    return response;
   }
 );
 
@@ -115,6 +115,37 @@ export const productSlice = createSlice({
       const data = state.list.filter((item) => item.id !== action.payload.id);
       state.list = data;
       message.success('A product is deleted!!!');
+    },
+
+    [updateProductAsync.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [updateProductAsync.rejected]: (state) => {
+      state.isLoading = false;
+      message.error('Something went wrong!!!');
+    },
+    [updateProductAsync.fulfilled]: (state, action) => {
+      const updateProduct = action.payload.data;
+      let total = 0;
+      updateProduct.colors.forEach((color) => {
+        color.sizes.map((size) => {
+          total += size.inStock;
+        });
+        return total;
+      });
+
+      const productIndex = state.list.findIndex(
+        (item) => item.id === updateProduct.id
+      );
+
+      if (productIndex >= 0) {
+        state.list[productIndex] = {
+          ...updateProduct,
+          inStock: total,
+        };
+        state.isLoading = false;
+        message.success('A product is updated!!!');
+      }
     },
   },
 });

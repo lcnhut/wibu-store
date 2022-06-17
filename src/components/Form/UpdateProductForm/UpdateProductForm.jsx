@@ -1,7 +1,10 @@
-import { Form, Image, Input, InputNumber, Modal } from 'antd';
+/* eslint-disable react/prop-types */
+import { Form, Input, InputNumber, Modal } from 'antd';
 import React, { useEffect } from 'react';
 
-import DynamicColorFieldUpdate from '../../DynamicField/DynamicColorFieldUpdate';
+import formatSubmitData from '../../../utils/FormatSubmitData/formatSubmitData';
+import { DynamicColorField } from '../../DynamicField/DynamicColorField';
+import { DynamicImageField } from '../../DynamicField/DynamicImageField';
 
 const UpdateProductForm = (props) => {
   const [form] = Form.useForm();
@@ -10,17 +13,34 @@ const UpdateProductForm = (props) => {
     handleOkUpdate,
     handleCancelUpdate,
     productToUpdate,
-    idToUpdate,
   } = props;
+
+  const updateColorsData = [];
+
+  productToUpdate.colors.forEach((curr) => {
+    curr.sizes.forEach((size) => {
+      updateColorsData.push({
+        color: curr.color,
+        size: size.size,
+        quantity: size.inStock,
+      });
+    });
+  });
 
   useEffect(() => {
     form.setFieldsValue({
       name: productToUpdate.name,
       price: productToUpdate.price,
       description: productToUpdate.description,
-      colors: productToUpdate.colors,
+      images: productToUpdate.image,
+      colors: updateColorsData,
     });
-  }, [idToUpdate]);
+  }, [productToUpdate]);
+
+  const onFinish = (values) => {
+    const transformData = formatSubmitData(values);
+    handleOkUpdate(transformData);
+  };
 
   return (
     <>
@@ -28,7 +48,17 @@ const UpdateProductForm = (props) => {
         <Modal
           title="Update Product"
           visible={visibleUpdateForm}
-          onOk={handleOkUpdate}
+          onOk={() => {
+            form
+              .validateFields()
+              .then((values) => {
+                form.resetFields();
+                onFinish(values);
+              })
+              .catch((info) => {
+                console.log('Validate Failed:', info);
+              });
+          }}
           onCancel={handleCancelUpdate}
         >
           <Form
@@ -63,40 +93,11 @@ const UpdateProductForm = (props) => {
             >
               <InputNumber />
             </Form.Item>
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-              name="image"
-              label="Images"
-            >
-              {productToUpdate.image.map((img, id) => (
-                <>
-                  <Image
-                    width={100}
-                    src={img.src}
-                    style={{ marginBottom: '20px' }}
-                  />
-                  <Form.Item>
-                    <Input placeholder="Update new image here with a link" />
-                  </Form.Item>
-                </>
-              ))}
-            </Form.Item>
-            <Form.Item
-              name="description"
-              label="Description"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}
-            >
+            <DynamicImageField />
+            <Form.Item name="description" label="Description">
               <Input />
             </Form.Item>
-            <DynamicColorFieldUpdate
+            <DynamicColorField
               colors={productToUpdate.colors}
               productToUpdate={productToUpdate}
             />
