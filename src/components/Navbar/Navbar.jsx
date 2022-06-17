@@ -8,7 +8,7 @@ import {
 import { Badge } from 'antd';
 import React, { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import ButtonOfPage from '../Button/ButtonOfPage';
 import ProductCart from '../ProductCart/ProductCart';
@@ -84,7 +84,7 @@ export default function Navbar() {
                   <iframe
                     style={{ width: ' 100%' }}
                     src="https://player.vimeo.com/video/348288278?background=1&quality=1080p&loop=1"
-                    frameborder="0"
+                    frameBorder="0"
                   ></iframe>
                 </div>
               </div>

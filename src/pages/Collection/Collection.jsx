@@ -8,7 +8,6 @@ import { productSelector, selectList } from '../../store/productSelector';
 import ListProduct from '../Product/ListProduct';
 import SingleProduct from '../Product/ListProduct/SingleProduct';
 import './Collection.scss';
-import FilterField from './filter/FilterField';
 
 export default function Collection() {
   const [products, setProducts] = useState();
