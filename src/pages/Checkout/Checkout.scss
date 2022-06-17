@@ -1,11 +1,18 @@
 .checkout {
   &__container {
+    padding: 0 20%;
+    width: 100%;
+    margin: 0 auto;
     margin-top: 125px;
-    padding: 0 5%;
-    width: 90%;
-    max-width: 78.5714285714em;
+  }
+
+  &__content {
     display: flex;
-    flex-direction: column;
-    flex: 1 0 auto;
+    justify-content: space-between;
+  }
+
+  &__list__product {
+    border-left: 1px solid #ccc;
+    padding-left: 50px;
   }
 }

@@ -1,5 +1,5 @@
 import { HomeOutlined } from '@ant-design/icons';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Table } from 'antd';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -27,9 +27,64 @@ const Checkout = () => {
     }, 3000);
   };
 
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: 'Size',
+      dataIndex: 'quantity',
+      key: 'quantity',
+    },
+    {
+      title: 'Color',
+      dataIndex: 'color',
+      key: 'color',
+    },
+    {
+      title: 'Quantity',
+      dataIndex: 'quantity',
+      key: 'quantity',
+    },
+    {
+      title: 'Price',
+      dataIndex: 'price',
+      key: 'price',
+    },
+  ];
+  const data = [
+    {
+      key: '1',
+      name: 'John Brown',
+      quantity: 32,
+      color: 'White',
+      size: 42,
+      price: 200,
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      quantity: 42,
+      color: 'Red',
+      size: 42,
+      price: 200,
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      quantity: 32,
+      color: 'Blue',
+      size: 42,
+      price: 200,
+    },
+  ];
+
   return (
     <div className="checkout__container">
-      <Breadcrumb>
+      <Breadcrumb className="checkout__nav">
         <Breadcrumb.Item href="">
           <Link to="/">
             <HomeOutlined />
@@ -38,13 +93,20 @@ const Checkout = () => {
         </Breadcrumb.Item>
         <Breadcrumb.Item href="">Checkout</Breadcrumb.Item>
       </Breadcrumb>
-      <CheckoutForm
-        handleFinishInformation={handleFinishInformation}
-        loadingButton={loadingButton}
-        paymentValue={paymentValue}
-        onChangeCountry={onChangeCountry}
-        onChangePayment={onChangePayment}
-      />
+      <div className="checkout__content">
+        <div className="checkout__form">
+          <CheckoutForm
+            handleFinishInformation={handleFinishInformation}
+            loadingButton={loadingButton}
+            paymentValue={paymentValue}
+            onChangeCountry={onChangeCountry}
+            onChangePayment={onChangePayment}
+          />
+        </div>
+        <div className="checkout__list__product">
+          <Table columns={columns} dataSource={data} pagination={false} />
+        </div>
+      </div>
     </div>
   );
 };
