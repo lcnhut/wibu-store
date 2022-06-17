@@ -11,6 +11,7 @@ import ListProduct from './ListProduct';
 import Navbar from './Navbar/Navbar';
 import ProductCart from './ProductCart/ProductCart';
 import ProductDetailModal from './ProductDetailModal/ProductDetailModal';
+import SingleProduct from './SingleProduct';
 
 export {
   ButtonOfPage,
@@ -26,4 +27,5 @@ export {
   ListProduct,
   Carousel,
   FilterField,
+  SingleProduct,
 };

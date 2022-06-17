@@ -2,11 +2,8 @@ import { Breadcrumb, Col, Row } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { FilterField, ListProduct } from '../../components';
 import { productSelector, selectList } from '../../store/productSelector';
-// import { getAllAsync } from "../../store/productSlice";
-// import instance from "../../utils/AxiosConfig/AxiosConfig";
-import ListProduct from '../Product/ListProduct';
-import SingleProduct from '../Product/ListProduct/SingleProduct';
 import './Collection.scss';
 
 export default function Collection() {
@@ -15,19 +12,8 @@ export default function Collection() {
   const [filterValue, setFilterValue] = useState();
   const listProduct = useRef();
   const selector = useSelector(productSelector);
-  const dispatch = useDispatch();
-  console.log(selector);
-  const getAllProduct = () => {
-    // instance
-    //   .get("/products")
-    //   .then(function (response) {
-    //     const { data } = response;
-    //     data && setProducts(data);
-    //   })
-    //   .catch(function (e) {
-    //     console.log(e);
-    //   });
-  };
+
+  const getAllProduct = () => {};
 
   useEffect(() => {
     // dispatch(getAllAsync());
