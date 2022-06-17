@@ -33,6 +33,7 @@ const SingleProduct = ({ product }) => {
   const handleAddToCart = (values) => {
     const submitData = {
       ...values,
+      id: singleProduct.id,
       name: product.name,
       image: product.image,
       description: product.description,
@@ -45,6 +46,7 @@ const SingleProduct = ({ product }) => {
     form
       .validateFields()
       .then((values) => {
+        // console.log(singleProduct);
         form.resetFields();
         handleAddToCart(values);
       })
@@ -59,7 +61,8 @@ const SingleProduct = ({ product }) => {
 
   const getProduct = async (id) => {
     const { data } = await axiosInstance.get(`products/${id}`);
-    data && setSingleProduct(data);
+    console.log(id);
+    data && setSingleProduct({ id: id, ...data });
   };
   const handleClick = (id) => {
     setVisibleModalAddToCart(true);
