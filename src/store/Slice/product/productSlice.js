@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { message } from 'antd';
 
-import { productApi } from '../../api';
+import { productApi } from '../../../api';
 
 export const getAllAsync = createAsyncThunk('product/getAll', async () => {
   const response = await productApi.getAll();
@@ -51,6 +51,12 @@ export const productSlice = createSlice({
       console.log(newList);
       // let newCart = [...state.cart.slice(0, id), ...state.cart.slice(id + 1)];
       state.cart = newList;
+    },
+    addFilter: (state, action) => {
+      switch (action.type) {
+        case 'PRICE_PRODUCT': {
+        }
+      }
     },
   },
   extraReducers: {

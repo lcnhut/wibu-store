@@ -3,7 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FilterField, ListProduct } from '../../components';
-import { productSelector, selectList } from '../../store/productSelector';
+import {
+  productSelector,
+  selectList,
+} from '../../store/Selector/product/productSelector';
+import { getAllAsync } from '../../store/Slice/product/productSlice';
 import './Collection.scss';
 
 export default function Collection() {
@@ -11,12 +15,10 @@ export default function Collection() {
   const [showProduct, setShowProduct] = useState(false);
   const [filterValue, setFilterValue] = useState();
   const listProduct = useRef();
-  const selector = useSelector(productSelector);
-
-  const getAllProduct = () => {};
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(getAllAsync());
+    dispatch(getAllAsync());
   }, []);
   function ShowFilter() {
     if (showProduct) {

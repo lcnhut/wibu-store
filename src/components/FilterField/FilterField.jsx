@@ -5,54 +5,82 @@ import {
 } from '@ant-design/icons';
 import { Breadcrumb, Button, Dropdown, Menu, Space } from 'antd';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import {
+  // addFilterColorForProduct,
+  getAllColorOfProduct,
+  getAllProduct,
+  getFilterCategories,
+  getFilterColor,
+  getFilterPrice,
+  getFilterSize,
+} from '../../store/Selector/product/filterProductSelector';
+import {
+  addFilterCategoriesForProduct,
+  addFilterForProduct,
+  addFilterPriceForProduct,
+} from '../../store/Slice/product/FilterSlice';
 import ButtonSize from '../ButtonSize/ButtonSize';
 import CircleColor from '../CircleColor/CircleColor.jsx';
 import './FilterField.scss';
 
 export default function FilterField({ showFilterButton, setValueShowItem }) {
+  const dispatch = useDispatch();
+  const categoriesFilter = useSelector(getFilterCategories);
+  const sizeFilter = useSelector(getFilterSize);
+  const colorFilter = useSelector(getFilterColor);
+  const priceFilter = useSelector(getFilterPrice);
+
   const menu = (
     <Menu
       items={[
         {
           label: 'Featured',
           key: '1',
-          // icon: <UserOutlined />,
         },
         {
           label: 'Best Selling',
           key: '2',
-          // icon: <UserOutlined />,
         },
         {
           label: 'Alphabetically, A-Z',
           key: '3',
-          // icon: <UserOutlined />,
         },
         {
           label: 'Alphabetically, Z-A',
           key: '4',
-          // icon: <UserOutlined />,
         },
         {
           label: 'Price, low to high',
           key: '5',
-          // icon: <UserOutlined />,
         },
         {
           label: 'Date, new to old',
           key: '6',
-          // icon: <UserOutlined />,
         },
         {
           label: 'Date, old to new',
           key: '7',
-          // icon: <UserOutlined />,
         },
       ]}
     />
   );
+  let getAllColorProduct = useSelector(getAllColorOfProduct);
 
+  function addFilterCategories(nameCategory) {
+    dispatch(addFilterCategoriesForProduct(nameCategory));
+  }
+  function addFilterColor(colorFilter) {
+    // dispatch(addFilterColorForProduct(colorFilter));
+  }
+
+  function addFilterSize(addNewFilterSize) {
+    dispatch(addFilterForProduct(addfilterSize));
+  }
+  function addFilterPrice(newPrice) {
+    dispatch(addFilterPriceForProduct(newPrice));
+  }
   return (
     <>
       <div className="filter__container">
@@ -133,25 +161,21 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
             </div>
             <div className="filter-selection-item__content">
               <ul className="filter-selection-item__items">
-                <li className="filter-selection-item__item">
-                  Arizona Slide Sandal
-                </li>
-                <li className="filter-selection-item__item">
-                  {' '}
-                  Reverse Leather Thong
-                </li>
-                <li className="filter-selection-item__item">
-                  {' '}
-                  Beaded Rope Sandals
-                </li>
-                <li className="filter-selection-item__item">
-                  {' '}
-                  Jenny Slide Sandals
-                </li>
-                <li className="filter-selection-item__item">
-                  {' '}
-                  Fragolina Sandals
-                </li>
+                {categoriesFilter &&
+                  categoriesFilter.map((category) => {
+                    return (
+                      <li
+                        className="filter-selection-item__item"
+                        value={category}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          addFilterCategories(e.target.innerText);
+                        }}
+                      >
+                        {category}
+                      </li>
+                    );
+                  })}
               </ul>
             </div>
           </div>
@@ -159,33 +183,21 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
             <div className="filter-selection-item__title">
               <h2 className="title">Color Option</h2>
               <ul className="filter-selection-item__cricles">
-                <li>
-                  <CircleColor color="black" />
-                </li>
-                <li>
-                  <CircleColor color="Cornsilk" />
-                </li>
-                <li>
-                  <CircleColor color="hotpink" />
-                </li>
-                <li>
-                  <CircleColor color="hotpink" />
-                </li>
-                <li>
-                  <CircleColor color="hotpink" />
-                </li>
-                <li>
-                  <CircleColor color="Silver" />
-                </li>
-                <li>
-                  <CircleColor color="GoldenRod" />
-                </li>
-                <li>
-                  <CircleColor color="Gold" />
-                </li>
-                <li>
-                  <CircleColor color="White" />
-                </li>
+                {colorFilter &&
+                  colorFilter.map((color, index) => {
+                    return (
+                      <li
+                        key={index}
+                        value={color}
+                        onClick={() => {
+                          dispatch(addFilterColorForProduct(color));
+                          // console.log(color);
+                        }}
+                      >
+                        <CircleColor color={color} />
+                      </li>
+                    );
+                  })}
               </ul>
             </div>
           </div>
@@ -195,27 +207,14 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
             </div>
             <div className="filter-selection-item__size">
               <ul className="filter-selection-item__size__list">
-                <li>
-                  <ButtonSize number="36" />
-                </li>
-                <li>
-                  <ButtonSize number="37" />
-                </li>
-                <li>
-                  <ButtonSize number="38" />
-                </li>
-                <li>
-                  <ButtonSize number="39" />
-                </li>
-                <li>
-                  <ButtonSize number="40" />
-                </li>
-                <li>
-                  <ButtonSize number="41" />
-                </li>
-                <li>
-                  <ButtonSize number="42" />
-                </li>
+                {sizeFilter &&
+                  sizeFilter.map((size) => {
+                    return (
+                      <li>
+                        <ButtonSize number={size} />
+                      </li>
+                    );
+                  })}
               </ul>
             </div>
           </div>

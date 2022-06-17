@@ -22,14 +22,13 @@ export default function Navbar() {
   const [onSearchActive, setOnSearchActive] = useState(false);
   const navbar = useRef();
   window.onscroll = () => {
-    // console.log(document.documentElement.scrollTop);
     if (document.documentElement.scrollTop < 100) {
       setOnActiveNavbar(true);
     } else {
       setOnActiveNavbar(false);
     }
   };
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
   return (
     <header>
       <nav

@@ -1,8 +1,9 @@
-import { createSelector } from "reselect";
+import { createSelector } from 'reselect';
+
 export const selectList = (state) => state.product.list;
 export const selectCart = (state) => state.product.cart;
 // const selectProduct = (state) => state.product
-console.log(selectList);
+// console.log(selectList);
 
 export const productSelector = createSelector(
   selectList,
@@ -11,3 +12,5 @@ export const productSelector = createSelector(
     return list;
   }
 );
+
+// export const
