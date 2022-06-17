@@ -9,6 +9,7 @@ import UpdateProductForm from './Form/UpdateProductForm/UpdateProductForm';
 import LazyLoaderProduct from './Lazyloader/LazyLoaderProduct';
 import ListProduct from './ListProduct';
 import Navbar from './Navbar/Navbar';
+import ProductCart from './ProductCart/ProductCart';
 import ProductDetailModal from './ProductDetailModal/ProductDetailModal';
 import SingleProduct from './SingleProduct';
 
@@ -20,6 +21,7 @@ export {
   CircleColor,
   ButtonSize,
   Footer,
+  ProductCart,
   ProductDetailModal,
   LazyLoaderProduct,
   ListProduct,
