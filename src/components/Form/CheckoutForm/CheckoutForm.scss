@@ -1,0 +1,16 @@
+.checkout__form__wrapper {
+  width: 500px;
+  padding: 0 24px !important;
+
+  h2 {
+    font-family: Helvetica Neue, sans-serif;
+    font-size: 1.2857142857em;
+    line-height: 1.3em;
+    color: #333;
+  }
+
+  .input__group {
+    display: flex;
+    justify-content: space-between;
+  }
+}

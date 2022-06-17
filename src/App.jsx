@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './App.scss';
 import { Footer, Navbar } from './components';
-import { AdminPage, Collection, Product } from './pages';
+import { AdminPage, Checkout, Collection, Product } from './pages';
 import { store } from './store/store';
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
             <Route path="/" index element={<Product />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/Collection" element={<Collection />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
           <Footer />
         </Provider>
