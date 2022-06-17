@@ -1,20 +1,27 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import './App.scss';
 import { Footer, Navbar } from './components';
 import { AdminPage, Collection, Product } from './pages';
+import { store } from './store/store';
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      <Routes>
-        <Route path="/" index element={<Product />} />
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/Collection" element={<Collection />} />
-      </Routes>
-      <Footer />
+      <BrowserRouter>
+        <Provider store={store}>
+          <Navbar />
+          <Routes>
+            <Route path="/" index element={<Product />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/Collection" element={<Collection />} />
+          </Routes>
+          <Footer />
+        </Provider>
+      </BrowserRouter>
     </div>
   );
 }
