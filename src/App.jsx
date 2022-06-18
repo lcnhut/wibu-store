@@ -13,14 +13,14 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Provider store={store}>
-          <Navbar />
+          {/* <Navbar /> */}
           <Routes>
             <Route path="/" index element={<Product />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/Collection" element={<Collection />} />
             <Route path="/checkout" element={<Checkout />} />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </Provider>
       </BrowserRouter>
     </div>

@@ -1,6 +1,8 @@
 .checkout__form__wrapper {
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
   margin-top: 25px !important;
+
   h2 {
     font-family: Helvetica Neue, sans-serif;
     font-size: 1.2857142857em;

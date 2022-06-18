@@ -1,6 +1,7 @@
 import ButtonOfPage from './Button/ButtonOfPage';
 import ButtonSize from './ButtonSize/ButtonSize';
 import Carousel from './Carousel';
+import CartItemCheckout from './CartItemCheckout/CartItemCheckout';
 import CircleColor from './CircleColor/CircleColor';
 import FilterField from './FilterField/FilterField';
 import Footer from './Footer/Footer';
@@ -30,4 +31,5 @@ export {
   Carousel,
   FilterField,
   SingleProduct,
+  CartItemCheckout,
 };

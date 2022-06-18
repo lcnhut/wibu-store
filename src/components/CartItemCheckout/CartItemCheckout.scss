@@ -1,0 +1,40 @@
+.cart {
+  &__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__image {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 70px;
+    max-height: 70px;
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+  }
+
+  &__name,
+  &__price {
+    color: #323232;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18.2px;
+  }
+  &__description {
+    color: #717171;
+    font-size: 12px;
+    text-transform: capitalize;
+  }
+}
