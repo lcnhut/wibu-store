@@ -1,3 +1,4 @@
+import AppLayout from './AppLayout/AppLayout';
 import ButtonOfPage from './Button/ButtonOfPage';
 import ButtonSize from './ButtonSize/ButtonSize';
 import Carousel from './Carousel';
@@ -16,6 +17,7 @@ import ProductDetailModal from './ProductDetailModal/ProductDetailModal';
 import SingleProduct from './SingleProduct';
 
 export {
+  AppLayout,
   ButtonOfPage,
   AddProductForm,
   UpdateProductForm,
