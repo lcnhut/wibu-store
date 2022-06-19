@@ -35,7 +35,7 @@ export const productSlice = createSlice({
   name: 'product',
   initialState: {
     list: [],
-    isLoading: false,
+    isLoading: true,
     error: '',
     cart: [],
   },
@@ -48,8 +48,7 @@ export const productSlice = createSlice({
       let { id } = action.payload;
 
       let newList = state.cart.filter((item, index) => item.id !== id);
-      console.log(newList);
-      // let newCart = [...state.cart.slice(0, id), ...state.cart.slice(id + 1)];
+
       state.cart = newList;
     },
     addFilter: (state, action) => {
@@ -84,8 +83,8 @@ export const productSlice = createSlice({
         };
       });
 
-      state.isLoading = false;
       state.list = formattedData;
+      state.isLoading = false;
     },
 
     [addProductAsync.pending]: (state) => {

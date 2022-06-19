@@ -2,15 +2,7 @@ import { createSelector } from 'reselect';
 
 export const selectList = (state) => state.product.list;
 export const selectCart = (state) => state.product.cart;
-// const selectProduct = (state) => state.product
-// console.log(selectList);
 
-export const productSelector = createSelector(
-  selectList,
-  selectCart,
-  (list, cart) => {
-    return list;
-  }
-);
+// loading state of the product
 
-// export const
+export const getLoadingOfProduct = (state) => state.product.isLoading;

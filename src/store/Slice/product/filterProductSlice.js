@@ -9,15 +9,7 @@ const initialState = {
     'Jenny Slide Sandals',
     'Fragolina Sandals',
   ],
-  color: [
-    'black',
-    'Cornsilk',
-    'hotpink',
-    'Silver',
-    'GoldenRod',
-    'Gold',
-    'White',
-  ],
+  color: [],
   size: [36, 37, 38, 39, 40, 41, 42],
 };
 

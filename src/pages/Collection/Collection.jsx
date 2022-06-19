@@ -7,24 +7,17 @@ import {
   getFilterCategories,
   getFilterProductSelector,
 } from '../../store/Selector/product/filterProductSelector';
-import {
-  getLoadingOfProduct,
-  productSelector,
-  selectList,
-} from '../../store/Selector/product/productSelector';
+import { getLoadingOfProduct } from '../../store/Selector/product/productSelector';
 import { getAllAsync } from '../../store/Slice/product/productSlice';
 import './Collection.scss';
 
 export default function Collection() {
-  const [products, setProducts] = useState();
   const [showProduct, setShowProduct] = useState(false);
   const [filterValue, setFilterValue] = useState();
   const listProduct = useRef();
   const dispatch = useDispatch();
   const getFilter = useSelector(getFilterProductSelector);
-  const getCategory = useSelector(getFilterCategories);
   const loading = useSelector(getLoadingOfProduct);
-  // console.log(getCategory);
   useEffect(() => {
     dispatch(getAllAsync());
   }, []);
