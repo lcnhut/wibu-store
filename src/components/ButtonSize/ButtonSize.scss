@@ -7,6 +7,11 @@
   border: 1px solid black;
   transition: all 0.3s ease;
   cursor: pointer;
+  &.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+  }
   p {
     margin: 0;
     font-weight: 600;
