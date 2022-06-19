@@ -24,6 +24,7 @@ import {
   addFilterSizeForProduct,
 } from '../../store/Slice/product/FilterSlice';
 import {
+  getAllCategoryExitInProduct,
   getAllColorExitInProduct,
   getAllSizeExitInProduct,
 } from '../../utils/filterFunction';
@@ -33,12 +34,13 @@ import './FilterField.scss';
 
 export default function FilterField({ showFilterButton, setValueShowItem }) {
   const dispatch = useDispatch();
-  const categoriesFilter = useSelector(getFilterCategoriesProduct);
+  // const categoriesFilter = useSelector(getFilterCategoriesProduct);
   const AllProduct = useSelector(getAllProduct);
   const sizeCurrentForFilter = useSelector(getFilterSize);
   const colorCurrentForFilter = useSelector(getFilterColor);
   const colorFilter = getAllColorExitInProduct(AllProduct);
   const sizeFilter = getAllSizeExitInProduct(AllProduct);
+  const categoriesFilter = getAllCategoryExitInProduct(AllProduct);
 
   const menu = (
     <Menu
@@ -160,6 +162,16 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
             </div>
             <div className="filter-selection-item__content">
               <ul className="filter-selection-item__items">
+                <li
+                  className="filter-selection-item__item"
+                  value={'All'}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    addFilterCategories('');
+                  }}
+                >
+                  All Categories
+                </li>
                 {categoriesFilter &&
                   categoriesFilter.map((category) => {
                     return (

@@ -7,6 +7,7 @@ export const convertAllProductToFilterData = (AllProduct) => {
       id: eachProduct.id,
       colors: colorsOfEachProduct,
       sizes: sizeOfEachProduct,
+      categories: eachProduct.categories,
     };
   });
   // console.log(result)
@@ -32,6 +33,8 @@ const __getFilterForSize = (dataColor) => {
   return Array.from(new Set(size));
 };
 
+// create filter data Categories
+
 export const getAllColorExitInProduct = (AllProduct) => {
   let allColor = [];
   AllProduct.map((eachProduct) => {
@@ -48,4 +51,12 @@ export const getAllSizeExitInProduct = (AllProduct) => {
     allSize.push(...sizeOfEachProduct);
   });
   return Array.from(new Set(allSize));
+};
+
+export const getAllCategoryExitInProduct = (AllProduct) => {
+  let allCategory = [];
+  AllProduct.map((eachProduct) => {
+    allCategory.push(eachProduct.categories);
+  });
+  return Array.from(new Set(allCategory));
 };

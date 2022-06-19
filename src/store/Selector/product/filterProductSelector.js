@@ -21,8 +21,8 @@ export const getFilterPrice = (state) => state.filter.price;
 export const getFilterSize = (state) => state.filter.size;
 
 export const getFilterProductSelector = createSelector(
-  [getAllProduct, getFilterColor, getFilterSize],
-  (getAllProduct, getFilterColor, getFilterSize) => {
+  [getAllProduct, getFilterColor, getFilterSize, getFilterCategories],
+  (getAllProduct, getFilterColor, getFilterSize, getFilterCategories) => {
     //filter color
     let dataBeforFilter = convertAllProductToFilterData(getAllProduct)
       .filter((item) => {
@@ -37,6 +37,13 @@ export const getFilterProductSelector = createSelector(
       .filter((item) => {
         if (getFilterSize !== 0) {
           return item.sizes.includes(getFilterSize);
+        } else {
+          return true;
+        }
+      })
+      .filter((item) => {
+        if (getFilterCategories && getFilterCategories !== '') {
+          return item.categories === getFilterCategories;
         } else {
           return true;
         }
