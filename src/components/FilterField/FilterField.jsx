@@ -8,29 +8,37 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-  // addFilterColorForProduct,
-  getAllColorOfProduct,
   getAllProduct,
-  getFilterCategories,
+  getFilterCategoriesProduct,
   getFilterColor,
-  getFilterPrice,
+  getFilterColorProduct,
+  getFilterPriceProduct,
+  getFilterProductSelector,
   getFilterSize,
+  getFilterSizeProduct,
 } from '../../store/Selector/product/filterProductSelector';
 import {
   addFilterCategoriesForProduct,
-  addFilterForProduct,
+  addFilterColorForProduct,
   addFilterPriceForProduct,
+  addFilterSizeForProduct,
 } from '../../store/Slice/product/FilterSlice';
+import {
+  getAllColorExitInProduct,
+  getAllSizeExitInProduct,
+} from '../../utils/filterFunction';
 import ButtonSize from '../ButtonSize/ButtonSize';
 import CircleColor from '../CircleColor/CircleColor.jsx';
 import './FilterField.scss';
 
 export default function FilterField({ showFilterButton, setValueShowItem }) {
   const dispatch = useDispatch();
-  const categoriesFilter = useSelector(getFilterCategories);
-  const sizeFilter = useSelector(getFilterSize);
-  const colorFilter = useSelector(getFilterColor);
-  const priceFilter = useSelector(getFilterPrice);
+  const categoriesFilter = useSelector(getFilterCategoriesProduct);
+  const AllProduct = useSelector(getAllProduct);
+  const sizeCurrentForFilter = useSelector(getFilterSize);
+  const colorCurrentForFilter = useSelector(getFilterColor);
+  const colorFilter = getAllColorExitInProduct(AllProduct);
+  const sizeFilter = getAllSizeExitInProduct(AllProduct);
 
   const menu = (
     <Menu
@@ -66,17 +74,16 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
       ]}
     />
   );
-  let getAllColorProduct = useSelector(getAllColorOfProduct);
 
   function addFilterCategories(nameCategory) {
     dispatch(addFilterCategoriesForProduct(nameCategory));
   }
   function addFilterColor(colorFilter) {
-    // dispatch(addFilterColorForProduct(colorFilter));
+    dispatch(addFilterColorForProduct(colorFilter));
   }
 
   function addFilterSize(addNewFilterSize) {
-    dispatch(addFilterForProduct(addfilterSize));
+    dispatch(addFilterSizeForProduct(addNewFilterSize));
   }
   function addFilterPrice(newPrice) {
     dispatch(addFilterPriceForProduct(newPrice));
@@ -125,14 +132,6 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
               >
                 4
               </div>
-              <div
-                className="showGridFilter__item"
-                onClick={() => {
-                  setValueShowItem(5);
-                }}
-              >
-                5
-              </div>
             </div>
           </div>
           <Dropdown overlay={menu}>
@@ -169,7 +168,7 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
                         value={category}
                         onClick={(e) => {
                           e.preventDefault();
-                          addFilterCategories(e.target.innerText);
+                          addFilterCategories(category);
                         }}
                       >
                         {category}
@@ -190,11 +189,15 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
                         key={index}
                         value={color}
                         onClick={() => {
-                          dispatch(addFilterColorForProduct(color));
-                          // console.log(color);
+                          addFilterColor(color);
                         }}
                       >
-                        <CircleColor color={color} />
+                        <CircleColor
+                          color={color}
+                          active={
+                            colorCurrentForFilter.includes(color) ? true : false
+                          }
+                        />
                       </li>
                     );
                   })}
@@ -207,11 +210,28 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
             </div>
             <div className="filter-selection-item__size">
               <ul className="filter-selection-item__size__list">
+                <li
+                  onClick={() => {
+                    addFilterSize(0);
+                  }}
+                >
+                  <ButtonSize
+                    number={0}
+                    active={sizeCurrentForFilter === 0 ? true : false}
+                  />
+                </li>
                 {sizeFilter &&
                   sizeFilter.map((size) => {
                     return (
-                      <li>
-                        <ButtonSize number={size} />
+                      <li
+                        onClick={() => {
+                          addFilterSize(size);
+                        }}
+                      >
+                        <ButtonSize
+                          number={size}
+                          active={sizeCurrentForFilter === size ? true : false}
+                        />
                       </li>
                     );
                   })}

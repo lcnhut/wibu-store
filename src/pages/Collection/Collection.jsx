@@ -3,7 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FilterField, ListProduct } from '../../components';
+import { getFilterProductSelector } from '../../store/Selector/product/filterProductSelector';
 import {
+  getLoadingOfProduct,
   productSelector,
   selectList,
 } from '../../store/Selector/product/productSelector';
@@ -16,6 +18,8 @@ export default function Collection() {
   const [filterValue, setFilterValue] = useState();
   const listProduct = useRef();
   const dispatch = useDispatch();
+  const getFilter = useSelector(getFilterProductSelector);
+  const loading = useSelector(getLoadingOfProduct);
 
   useEffect(() => {
     dispatch(getAllAsync());
@@ -48,7 +52,11 @@ export default function Collection() {
         className="collection__container__product list__product"
         ref={listProduct}
       >
-        <ListProduct view_list={filterValue} />
+        <ListProduct
+          view_list={filterValue}
+          data={getFilter}
+          loading={loading}
+        />
       </div>
     </div>
   );
