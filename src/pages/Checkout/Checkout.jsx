@@ -39,13 +39,16 @@ const Checkout = () => {
 
   const onChangePayment = (e) => {
     setPaymentValue(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleFinishInformation = (values) => {
     setLoadingButton(true);
     setTimeout(() => {
-      console.log(values);
+      console.log({
+        ...values,
+        productData: productData,
+        totalPrice: totalPrice,
+      });
       setLoadingButton(false);
     }, 3000);
   };
@@ -90,23 +93,23 @@ const Checkout = () => {
             <div className="checkout__summary__total">
               <div className="checkout__summary__calculate">
                 <div className="checkout__summary__line">
-                  <span>Subtotal</span>
-                  <span className="checkout__summary__price">
+                  <div>Subtotal</div>
+                  <div className="checkout__summary__price">
                     ${subTotalPrice}
-                  </span>
+                  </div>
                 </div>
                 <div className="checkout__summary__line">
-                  <span>Shipping</span>
-                  <span>free</span>
+                  <div>Shipping</div>
+                  <div>free</div>
                 </div>
                 <div className="checkout__summary__line">
-                  <span>Taxes (estimated)</span>
-                  <span className="checkout__summary__price">${tax}</span>
+                  <div>Taxes (estimated)</div>
+                  <div className="checkout__summary__price">${tax}</div>
                 </div>
               </div>
               <div className="checkout__summary__total__price">
-                <span>Total</span>
-                <span className="final__price">${totalPrice}</span>
+                <div>Total</div>
+                <div className="final__price">${totalPrice}</div>
               </div>
             </div>
           </div>

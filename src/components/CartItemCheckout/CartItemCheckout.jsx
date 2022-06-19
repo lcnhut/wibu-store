@@ -40,13 +40,13 @@ const CartItemCheckout = ({ product, index }) => {
       </Badge>
       <div className="cart__content">
         <div className="cart__title">
-          <span className="cart__name">{product.name}</span>
-          <span className="cart__description">
+          <div className="cart__name">{product.name}</div>
+          <div className="cart__description">
             {product.size} / {product.color}
-          </span>
+          </div>
         </div>
         <InputNumber onChange={onQuantityChange} min={1} defaultValue={1} />
-        <span className="cart__price">${price}</span>
+        <div className="cart__price">${price}</div>
       </div>
     </div>
   );

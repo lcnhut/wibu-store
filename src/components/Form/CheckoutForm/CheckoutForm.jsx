@@ -188,7 +188,7 @@ const CheckoutForm = ({
         size={'large'}
         htmlType="submit"
       >
-        Continue to shipping
+        Checkout
       </Button>
     </Form>
   );

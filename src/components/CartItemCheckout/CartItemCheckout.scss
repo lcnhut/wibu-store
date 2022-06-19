@@ -25,7 +25,16 @@
     margin-left: 15px;
   }
 
-  &__name,
+  &__name {
+    width: 200px;
+    color: #323232;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   &__price {
     color: #323232;
     font-weight: 500;

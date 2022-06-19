@@ -135,6 +135,21 @@ export default function Navbar() {
               </div>
             </div>
           </li>
+          <li className="navbar__link">
+            <NavLink to="/checkout">Checkout</NavLink>
+            <div className="navbar__dropdown">
+              <div className="navbar__dropdown__content">
+                <div className="navbar__dropdown__lists">
+                  <div className="title">SHOP LAYOUTS</div>
+                  <ul className="list__dropdown__items">
+                    <li className="list__dropdown__item">Pagination</li>
+                    <li className="list__dropdown__item">Ajax Load More</li>
+                    <li className="list__dropdown__item">Ajax Load More</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
         </ul>
         <div className="navbar__icon">
           <div>
