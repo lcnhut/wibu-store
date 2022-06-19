@@ -45,7 +45,7 @@ const CartItemCheckout = ({ product, index }) => {
             {product.size} / {product.color}
           </div>
         </div>
-        <InputNumber onChange={onQuantityChange} min={1} defaultValue={1} />
+        <InputNumber onChange={onQuantityChange} min={1} value={quantity} />
         <div className="cart__price">${price}</div>
       </div>
     </div>
