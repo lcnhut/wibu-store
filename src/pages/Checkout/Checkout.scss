@@ -15,7 +15,7 @@
     padding: 10% 0;
   }
 
-  &__list {
+  &__summary {
     &__container {
       padding: 10% 5%;
       width: 100%;
@@ -25,6 +25,42 @@
     &__wrapper {
       width: 100%;
       max-width: 70%;
+    }
+
+    &__product {
+      border-bottom: 1px solid #ccc;
+    }
+
+    &__calculate {
+      padding: 5% 0;
+      border-bottom: 1px solid #ccc;
+    }
+
+    &__line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      color: #535353;
+    }
+
+    &__price {
+      font-weight: 500;
+    }
+
+    &__total__price {
+      display: flex;
+      padding-top: 5%;
+      justify-content: space-between;
+      color: #535353;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 18px;
+
+      .final__price {
+        color: #323232;
+        font-size: 24px;
+        line-height: 24px;
+      }
     }
   }
 }

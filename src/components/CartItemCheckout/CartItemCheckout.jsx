@@ -1,18 +1,29 @@
+/* eslint-disable react/prop-types */
 import { Badge, Image, InputNumber } from 'antd';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { updateQuantity } from '../../store/product/productSlice';
 import './CartItemCheckout.scss';
 
-const CartItemCheckout = ({ product }) => {
+const CartItemCheckout = ({ product, index }) => {
   const [quantity, setQuantity] = useState(product.quantity);
   const [price, setPrice] = useState(product.price * product.quantity);
+  const dispatch = useDispatch();
 
   const onQuantityChange = (value) => {
     const productPrice = value * product.price;
     setQuantity(value);
     setPrice(productPrice);
+    dispatch(
+      updateQuantity({
+        ...product,
+        index: index,
+        quantity: value,
+      })
+    );
   };
+
   return (
     <div className="cart__item">
       <Badge
@@ -21,7 +32,11 @@ const CartItemCheckout = ({ product }) => {
         size="large"
         overflowCount={99}
       >
-        <Image className="cart__image" preview={false} src={product.imgSrc} />
+        <Image
+          className="cart__image"
+          preview={false}
+          src={product.image[0].src}
+        />
       </Badge>
       <div className="cart__content">
         <div className="cart__title">

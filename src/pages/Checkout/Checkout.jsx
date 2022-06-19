@@ -1,6 +1,8 @@
 import { HomeOutlined } from '@ant-design/icons';
-import { Breadcrumb, Table } from 'antd';
+import { Breadcrumb } from 'antd';
 import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { CartItemCheckout, CheckoutForm } from '../../components';
@@ -9,6 +11,27 @@ import './Checkout.scss';
 const Checkout = () => {
   const [paymentValue, setPaymentValue] = useState(1);
   const [loadingButton, setLoadingButton] = useState(false);
+  const productData = useSelector((state) => state.product.cart);
+
+  const [subTotalPrice, setSubTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [tax, setTax] = useState(0);
+
+  useEffect(() => {
+    let total = 0;
+    productData.forEach((product) => {
+      total += product.quantity * product.price;
+    });
+    setSubTotalPrice(total);
+  }, [productData]);
+
+  useEffect(() => {
+    setTax(subTotalPrice * 0.1);
+  }, [subTotalPrice]);
+
+  useEffect(() => {
+    setTotalPrice(subTotalPrice + tax);
+  }, [tax]);
 
   const onChangeCountry = (value) => {
     console.log(`selected ${value}`);
@@ -50,31 +73,41 @@ const Checkout = () => {
             />
           </div>
         </div>
-        <div className="checkout__list__container">
-          <div className="checkout__list__wrapper">
-            <div className="checkout__list__item">
-              <CartItemCheckout
-                product={{
-                  imgSrc:
-                    'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/4.1_small.jpg?v=1588574459',
-                  size: 36,
-                  name: 'Palm Print EVA Flip Flops',
-                  color: 'white',
-                  price: 50,
-                  quantity: 1,
-                }}
-              />
-              <CartItemCheckout
-                product={{
-                  imgSrc:
-                    'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/15.1_small.jpg?v=1588567889',
-                  size: 38,
-                  name: 'Perth Fabric Twist Sliders',
-                  price: 50,
-                  color: 'brown',
-                  quantity: 3,
-                }}
-              />
+        <div className="checkout__summary__container">
+          <div className="checkout__summary__wrapper">
+            <div className="checkout__summary__product">
+              {productData.map((product, index) => {
+                return (
+                  <CartItemCheckout
+                    key={index}
+                    product={product}
+                    setSubTotalPrice={setSubTotalPrice}
+                    index={index}
+                  />
+                );
+              })}
+            </div>
+            <div className="checkout__summary__total">
+              <div className="checkout__summary__calculate">
+                <div className="checkout__summary__line">
+                  <span>Subtotal</span>
+                  <span className="checkout__summary__price">
+                    ${subTotalPrice}
+                  </span>
+                </div>
+                <div className="checkout__summary__line">
+                  <span>Shipping</span>
+                  <span>free</span>
+                </div>
+                <div className="checkout__summary__line">
+                  <span>Taxes (estimated)</span>
+                  <span className="checkout__summary__price">${tax}</span>
+                </div>
+              </div>
+              <div className="checkout__summary__total__price">
+                <span>Total</span>
+                <span className="final__price">${totalPrice}</span>
+              </div>
             </div>
           </div>
         </div>
