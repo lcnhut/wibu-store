@@ -99,6 +99,10 @@ export const productSlice = createSlice({
         };
       }
     },
+
+    clearCart: (state) => {
+      state.cart = [];
+    },
   },
   extraReducers: {
     [getAllAsync.pending]: (state) => {
@@ -204,6 +208,6 @@ export const productSlice = createSlice({
   },
 });
 
-export const { addToCart, removeItemFromCart, updateQuantity } =
+export const { addToCart, removeItemFromCart, updateQuantity, clearCart } =
   productSlice.actions;
 export default productSlice.reducer;

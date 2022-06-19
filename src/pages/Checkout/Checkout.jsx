@@ -1,11 +1,12 @@
 import { HomeOutlined } from '@ant-design/icons';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, message } from 'antd';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { CartItemCheckout, CheckoutForm } from '../../components';
+import { clearCart } from '../../store/product/productSlice';
 import './Checkout.scss';
 
 const Checkout = () => {
@@ -16,6 +17,9 @@ const Checkout = () => {
   const [subTotalPrice, setSubTotalPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [tax, setTax] = useState(0);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let total = 0;
@@ -50,6 +54,9 @@ const Checkout = () => {
         totalPrice: totalPrice,
       });
       setLoadingButton(false);
+      message.success('Order successfully!!!');
+      dispatch(clearCart());
+      navigate('/');
     }, 3000);
   };
 
