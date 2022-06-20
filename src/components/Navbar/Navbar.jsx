@@ -9,7 +9,7 @@ import { Badge } from 'antd';
 import { sum } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import ButtonOfPage from '../Button/ButtonOfPage';
 import ProductCart from '../ProductCart/ProductCart';
@@ -200,6 +200,7 @@ export default function Navbar() {
           opacity: onSearchActive ? '1' : '0',
           height: onSearchActive ? '400px ' : '0',
           zIndex: onSearchActive ? '101' : '0',
+          position: onSearchActive ? 'fixed' : 'relative',
         }}
       >
         <h1>Start typing and hit Enter</h1>
