@@ -1,10 +1,11 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   price: [],
   categories: '',
   colors: [],
-  size: [],
+  size: 0,
+  isLoading: false,
 };
 
 const filterProductSlice = createSlice({
@@ -18,10 +19,18 @@ const filterProductSlice = createSlice({
       state.categories = action.payload;
     },
     addFilterColorForProduct: (state, action) => {
-      state.colors.push(action.payload);
+      if (!state.colors.includes(action.payload))
+        state.colors.push(action.payload);
+      else {
+        let findIndex = state.colors.indexOf(action.payload);
+        state.colors = [
+          ...state.colors.slice(0, findIndex),
+          ...state.colors.slice(findIndex + 1),
+        ];
+      }
     },
-    addFilterForProduct: (state, action) => {
-      state.size.push(action.payload);
+    addFilterSizeForProduct: (state, action) => {
+      state.size = action.payload;
     },
   },
 });
@@ -30,6 +39,6 @@ export const {
   addFilterPriceForProduct,
   addFilterCategoriesForProduct,
   addFilterColorForProduct,
-  addFilterForProduct,
+  addFilterSizeForProduct,
 } = filterProductSlice.actions;
 export default filterProductSlice.reducer;

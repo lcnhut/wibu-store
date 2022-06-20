@@ -17,7 +17,7 @@ import './Navbar.scss';
 export default function Navbar() {
   const cartItem = useSelector((state) => state.product.cart);
   const [onActive, SetOnActive] = useState(false);
-  const [onActiveNavbar, setOnActiveNavbar] = useState(false);
+  const [onActiveNavbar, setOnActiveNavbar] = useState(true);
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
   const navbar = useRef();
