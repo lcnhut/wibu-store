@@ -5,6 +5,7 @@ import { AdminLayout, AppLayout } from '../components';
 import {
   Checkout,
   Collection,
+  Details,
   Invoice,
   Product,
   ProductAdmin,
@@ -25,6 +26,7 @@ export const Router = () => {
             <Route element={<AppLayout />}>
               <Route path="/" index element={<Product />} />
               <Route path="/collection" element={<Collection />} />
+              <Route path="/details/:id" element={<Details />} />
             </Route>
             <Route path="/checkout" element={<Checkout />} />
           </>

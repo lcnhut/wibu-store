@@ -28,6 +28,9 @@ const productApi = {
   delete: (id) => {
     return axiosInstance.delete(`/products/${id}`);
   },
+  getById: (id) => {
+    return axiosInstance.get(`/products/${id}`);
+  },
   update: (product) => {
     return axiosInstance.put(`/products/${product.id}`, {
       name: product.name,
