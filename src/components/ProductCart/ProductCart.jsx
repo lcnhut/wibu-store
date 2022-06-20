@@ -16,7 +16,7 @@ export default function ProductCart(props) {
       </div>
       <div className="product-cart__content">
         <p>
-          {name} - size / {color}
+          {name} - {size} / {color}
         </p>
         <p>QTY : {quantity}</p>
         <p> $ {price}</p>

@@ -271,6 +271,7 @@ export default function Navbar() {
                     image={item.image}
                     name={item.name}
                     color={item.color}
+                    size={item.size}
                     quantity={item.quantity}
                     price={item.price}
                   />
