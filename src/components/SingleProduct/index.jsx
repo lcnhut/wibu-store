@@ -17,7 +17,7 @@ import {
 import { React, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addToCart } from '../../store/product/productSlice';
+import { addToCart } from '../../store/Slice/product/productSlice';
 import { axiosInstance } from '../../utils/AxiosConfig/AxiosConfig';
 import './styles.scss';
 

@@ -3,7 +3,7 @@ import { Badge, Image, InputNumber } from 'antd';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { updateQuantity } from '../../store/product/productSlice';
+import { updateQuantity } from '../../store/Slice/product/productSlice';
 import './CartItemCheckout.scss';
 
 const CartItemCheckout = ({ product, index }) => {

@@ -2,7 +2,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { removeItemFromCart } from '../../store/product/productSlice';
+import { removeItemFromCart } from '../../store/Slice/product/productSlice';
 import './ProductCart.scss';
 
 export default function ProductCart(props) {

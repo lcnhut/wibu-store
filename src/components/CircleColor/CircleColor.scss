@@ -8,7 +8,9 @@
   display: flex;
   justify-content: center;
   transition: all 0.3s ease;
-
+  &.active {
+    border: 1px solid black;
+  }
   align-items: center;
   .circle-color {
     border-radius: 50%;

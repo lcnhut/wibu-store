@@ -3,20 +3,23 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { FilterField, ListProduct } from '../../components';
-import { productSelector, selectList } from '../../store/productSelector';
+import {
+  getFilterCategories,
+  getFilterProductSelector,
+} from '../../store/Selector/product/filterProductSelector';
+import { getLoadingOfProduct } from '../../store/Selector/product/productSelector';
+import { getAllAsync } from '../../store/Slice/product/productSlice';
 import './Collection.scss';
 
 export default function Collection() {
-  const [products, setProducts] = useState();
   const [showProduct, setShowProduct] = useState(false);
   const [filterValue, setFilterValue] = useState();
   const listProduct = useRef();
-  const selector = useSelector(productSelector);
-
-  const getAllProduct = () => {};
-
+  const dispatch = useDispatch();
+  const getFilter = useSelector(getFilterProductSelector);
+  const loading = useSelector(getLoadingOfProduct);
   useEffect(() => {
-    // dispatch(getAllAsync());
+    dispatch(getAllAsync());
   }, []);
   function ShowFilter() {
     if (showProduct) {
@@ -46,7 +49,11 @@ export default function Collection() {
         className="collection__container__product list__product"
         ref={listProduct}
       >
-        <ListProduct />
+        <ListProduct
+          view_list={filterValue}
+          data={getFilter}
+          loading={loading}
+        />
       </div>
     </div>
   );
