@@ -104,12 +104,10 @@ export const productSlice = createSlice({
         });
         return total;
       });
-
       newProduct = {
         ...newProduct,
         inStock: total,
       };
-
       state.isLoading = false;
       state.list.push(newProduct);
       message.success('A new product is added!!!');

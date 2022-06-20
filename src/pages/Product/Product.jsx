@@ -1,13 +1,24 @@
 import { Space } from 'antd';
 import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Carousel, LazyLoaderProduct, ListProduct } from '../../components';
+import { getAllProduct } from '../../store/Selector/product/filterProductSelector';
+import { getLoadingOfProduct } from '../../store/Selector/product/productSelector';
+import { getAllAsync } from '../../store/Slice/product/productSlice';
 // import Carousel from './Carousel';
 // import LazyLoaderProduct from './Lazyloader/LazyLoaderProduct';
 // import ListProduct from './ListProduct';
 import './Product.scss';
 
 export default function Product() {
+  const loading = useSelector(getLoadingOfProduct);
+  const AllProduct = useSelector(getAllProduct);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllAsync());
+  }, []);
   return (
     <>
       <Carousel />
@@ -23,7 +34,7 @@ export default function Product() {
         ></LazyLoaderProduct>
         {/* </Space> */}
       </div>
-      <ListProduct />
+      <ListProduct view_list={4} data={AllProduct} loading={loading} />
     </>
   );
 }

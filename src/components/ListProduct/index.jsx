@@ -18,6 +18,7 @@ const ListProduct = (props) => {
       setLoadingChangeProduct(false);
     }, 300);
   }, [data]);
+
   return (
     <>
       <Row className="listproduct__title__wrapper">
