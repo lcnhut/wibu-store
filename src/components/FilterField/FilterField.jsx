@@ -256,43 +256,31 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
             </div>
             <div className="filter-selection-item__content">
               <ul className="filter-selection-item__items">
-                <li className="filter-selection-item__item">Less than $50</li>
-                <li className="filter-selection-item__item">$50-$100</li>
-                <li className="filter-selection-item__item">$100-$150</li>
+                <li
+                  className="filter-selection-item__item"
+                  onClick={() => {
+                    addFilterPrice(50);
+                  }}
+                >
+                  Less than $50
+                </li>
+                <li
+                  className="filter-selection-item__item"
+                  onClick={() => {
+                    addFilterPrice(100);
+                  }}
+                >
+                  $50-$100
+                </li>
+                <li
+                  className="filter-selection-item__item"
+                  onClick={() => {
+                    addFilterPrice(150);
+                  }}
+                >
+                  $100-$150
+                </li>
               </ul>
-            </div>
-          </div>
-          <div className="filter-selection-item">
-            <div className="filter-selection-item__title">
-              <h2 className="title">Tags</h2>
-            </div>
-            <div style={{ fontSize: '16px' }} className="Breadcrumb-list">
-              <Breadcrumb>
-                <Breadcrumb.Item>$100-$150</Breadcrumb.Item>
-                <Breadcrumb.Item>
-                  <a href="">$50-$100</a>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item>
-                  <a href="">36</a>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item> 37</Breadcrumb.Item>
-                <Breadcrumb.Item> 38 </Breadcrumb.Item>
-                <Breadcrumb.Item>
-                  <a href="">39</a>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item>
-                  <a href="">40</a>
-                </Breadcrumb.Item>
-                <Breadcrumb.Item>Black</Breadcrumb.Item>
-                <Breadcrumb.Item> Cornsilk</Breadcrumb.Item>
-                <Breadcrumb.Item> Gold</Breadcrumb.Item>
-                <Breadcrumb.Item> GoldenRod </Breadcrumb.Item>
-                <Breadcrumb.Item> Less than $50 </Breadcrumb.Item>
-                <Breadcrumb.Item> Navy </Breadcrumb.Item>
-                <Breadcrumb.Item> Pink </Breadcrumb.Item>
-                <Breadcrumb.Item> Silver </Breadcrumb.Item>
-                <Breadcrumb.Item> White </Breadcrumb.Item>
-              </Breadcrumb>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ export const convertAllProductToFilterData = (AllProduct) => {
       id: eachProduct.id,
       colors: colorsOfEachProduct,
       sizes: sizeOfEachProduct,
+      prices: eachProduct.price,
       categories: eachProduct.categories,
     };
   });

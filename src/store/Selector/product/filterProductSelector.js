@@ -21,8 +21,20 @@ export const getFilterPrice = (state) => state.filter.price;
 export const getFilterSize = (state) => state.filter.size;
 
 export const getFilterProductSelector = createSelector(
-  [getAllProduct, getFilterColor, getFilterSize, getFilterCategories],
-  (getAllProduct, getFilterColor, getFilterSize, getFilterCategories) => {
+  [
+    getAllProduct,
+    getFilterColor,
+    getFilterSize,
+    getFilterCategories,
+    getFilterPrice,
+  ],
+  (
+    getAllProduct,
+    getFilterColor,
+    getFilterSize,
+    getFilterCategories,
+    getFilterPrice
+  ) => {
     //filter color
     let dataBeforFilter = convertAllProductToFilterData(getAllProduct)
       .filter((item) => {
@@ -46,6 +58,12 @@ export const getFilterProductSelector = createSelector(
           return item.categories === getFilterCategories;
         } else {
           return true;
+        }
+      })
+      .filter((item) => {
+        if (getFilterPrice < 100) return item.prices <= getFilterPrice;
+        else {
+          return item.prices >= getFilterPrice;
         }
       });
 

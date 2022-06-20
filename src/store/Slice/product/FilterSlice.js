@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  price: [],
+  price: 0,
   categories: '',
   colors: [],
   size: 0,
@@ -13,7 +13,7 @@ const filterProductSlice = createSlice({
   initialState,
   reducers: {
     addFilterPriceForProduct: (state, action) => {
-      state.price.push(action.payload);
+      state.price = action.payload;
     },
     addFilterCategoriesForProduct: (state, action) => {
       state.categories = action.payload;
