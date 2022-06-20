@@ -44,6 +44,7 @@ export const productSlice = createSlice({
     list: [],
     isLoading: false,
     error: '',
+    singleProduct: {},
     cart: [
       {
         color: 'brown',

@@ -32,7 +32,6 @@ const SingleProduct = ({ product }) => {
   const [singleProduct, setSingleProduct] = useState({});
 
   const handleAddToCart = (values) => {
-    console.log(values);
     const submitData = {
       ...values,
       id: singleProduct.id,
@@ -62,7 +61,6 @@ const SingleProduct = ({ product }) => {
 
   const getProduct = async (id) => {
     const { data } = await axiosInstance.get(`products/${id}`);
-    console.log(id);
     data && setSingleProduct({ id: id, ...data });
   };
   const handleClick = (id) => {
