@@ -6,9 +6,10 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { Badge } from 'antd';
+import { sum } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import ButtonOfPage from '../Button/ButtonOfPage';
 import ProductCart from '../ProductCart/ProductCart';
@@ -20,6 +21,7 @@ export default function Navbar() {
   const [onActiveNavbar, setOnActiveNavbar] = useState(true);
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
+
   const navbar = useRef();
   window.onscroll = () => {
     if (document.documentElement.scrollTop < 100) {
@@ -170,11 +172,9 @@ export default function Navbar() {
               setOnCartActive(!onSearchActive);
             }}
           >
-            {/* <Link to="/cart"> */}
             <Badge count={cartItem.length}>
               <ShoppingOutlined style={{ fontSize: 24 }} />
             </Badge>
-            {/* </Link> */}
           </div>
         </div>
       </nav>
@@ -185,6 +185,7 @@ export default function Navbar() {
           opacity: onSearchActive ? '1' : '0',
           height: onSearchActive ? '400px ' : '0',
           zIndex: onSearchActive ? '101' : '0',
+          position: onSearchActive ? 'fixed' : 'relative',
         }}
       >
         <h1>Start typing and hit Enter</h1>
@@ -255,24 +256,26 @@ export default function Navbar() {
                     image={item.image}
                     name={item.name}
                     color={item.color}
+                    size={item.size}
                     quantity={item.quantity}
+                    price={item.price}
                   />
                 );
               })}
             </div>
           )}
         </div>
-
-        <div className="cart_field__footer">
-          <div className="cart_field__footer__total">
-            <div>Total:</div>
-            <div>$125.000</div>
+        {cartItem.length !== 0 && (
+          <div className="cart_field__footer">
+            <div className="cart_field__footer__total">
+              <div>Total:</div>
+              <div>{sum(cartItem.map((item) => item.price))}</div>
+            </div>
+            <div className="cart_field__footer__button">
+              <ButtonOfPage label="Check out" />
+            </div>
           </div>
-          <div className="cart_field__footer__button">
-            <ButtonOfPage label="view cart" />
-            <ButtonOfPage label="Check out" />
-          </div>
-        </div>
+        )}
       </div>
       <div
         className="bg_search_box"
