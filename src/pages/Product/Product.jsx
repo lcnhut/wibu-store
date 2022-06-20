@@ -1,4 +1,4 @@
-import { Space } from 'antd';
+import { Col, Row, Space } from 'antd';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
