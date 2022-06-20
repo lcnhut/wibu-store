@@ -27,10 +27,6 @@ const ListProduct = (props) => {
         <Col className="listproduct__title__container" span={24}>
           <h1>Shop The Collection</h1>
           <div className="listproduct__title__line"></div>
-          <div className="listproduct__title__action">
-            <button style={{ padding: '7px 0' }}>MEN</button>
-            <button style={{ padding: '7px 0' }}>WOMEN</button>
-          </div>
         </Col>
       </Row>
       <Row gutter={[16, 26]} className="listproduct__wrapper" ref={ListData}>
@@ -40,11 +36,11 @@ const ListProduct = (props) => {
               .fill(1)
               .map((card, index) => (
                 <Col
-                  xs={{ span: view_list ? 6 / view_list : 24 }}
-                  sm={{ span: view_list ? 8 / view_list : 24 }}
-                  md={{ span: view_list ? 12 / view_list : 12 }}
-                  lg={{ span: view_list ? 24 / view_list : 8 }}
-                  xl={{ span: view_list ? 24 / view_list : 6 }}
+                  xs={{ span: 24 }}
+                  sm={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 8 }}
+                  xl={{ span: 6 }}
                   className="listproduct__item"
                   key={index}
                   span={6}
@@ -59,11 +55,11 @@ const ListProduct = (props) => {
             return (
               id < ROW_SHOW_IN_PAGE && (
                 <Col
-                  xs={{ span: view_list ? 6 / view_list : 24 }}
-                  sm={{ span: view_list ? 8 / view_list : 24 }}
-                  md={{ span: view_list ? 12 / view_list : 12 }}
-                  lg={{ span: view_list ? 24 / view_list : 8 }}
-                  xl={{ span: view_list ? 24 / view_list : 6 }}
+                  xs={{ span: 24 }}
+                  sm={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 8 }}
+                  xl={{ span: 6 }}
                   className="listproduct__item animate__animated animate__fadeIn"
                   key={id}
                   span={6}
