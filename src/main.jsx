@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 import App from './App';
 import './index.scss';
-import './style/customize-theme.css';
+import './style/antd-customized.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
