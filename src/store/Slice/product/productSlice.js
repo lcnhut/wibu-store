@@ -37,7 +37,44 @@ export const productSlice = createSlice({
     list: [],
     isLoading: true,
     error: '',
-    cart: [],
+    cart: [
+      {
+        color: 'brown',
+        image: [
+          {
+            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/15.1_small.jpg?v=1588567889',
+          },
+          {
+            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/15.1_small.jpg?v=1588567889',
+          },
+          {
+            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/15.1_small.jpg?v=1588567889',
+          },
+        ],
+        name: 'Perth Fabric Twist Sliders',
+        price: 50,
+        quantity: 1,
+        size: 38,
+      },
+      {
+        color: 'black',
+        image: [
+          {
+            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/14.1_small.jpg?v=1588567113',
+          },
+          {
+            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/14.1_small.jpg?v=1588567113',
+          },
+          {
+            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/14.1_small.jpg?v=1588567113',
+          },
+        ],
+        name: 'Nautical Stripe EVA Flip Flops',
+        price: 100,
+        quantity: 1,
+        size: 36,
+      },
+    ],
   },
   reducers: {
     addToCart: (state, action) => {
@@ -51,11 +88,19 @@ export const productSlice = createSlice({
 
       state.cart = newList;
     },
-    addFilter: (state, action) => {
-      switch (action.type) {
-        case 'PRICE_PRODUCT': {
-        }
+
+    updateQuantity: (state, action) => {
+      let { index } = action.payload;
+      if (index >= 0) {
+        state.cart[index] = {
+          ...action.payload,
+          quantity: action.payload.quantity,
+        };
       }
+    },
+
+    clearCart: (state) => {
+      state.cart = [];
     },
   },
   extraReducers: {
@@ -160,5 +205,6 @@ export const productSlice = createSlice({
   },
 });
 
-export const { addToCart, removeItemFromCart } = productSlice.actions;
+export const { addToCart, removeItemFromCart, updateQuantity, clearCart } =
+  productSlice.actions;
 export default productSlice.reducer;

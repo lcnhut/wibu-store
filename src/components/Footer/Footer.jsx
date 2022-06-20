@@ -1,14 +1,11 @@
 import {
   FacebookFilled,
-  FacebookOutlined,
   InstagramFilled,
-  InstagramOutlined,
   MailOutlined,
   PhoneOutlined,
   TagOutlined,
   TwitterOutlined,
   YoutubeFilled,
-  YoutubeOutlined,
 } from '@ant-design/icons';
 import { Space } from 'antd';
 import React from 'react';

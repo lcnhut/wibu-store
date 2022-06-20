@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "less": "lessc --js src/style/antd-customized.less src/style/antd-customized.css"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -32,6 +33,7 @@
     "@vitejs/plugin-react": "^1.3.0",
     "eslint": "^8.17.0",
     "eslint-plugin-react": "^7.30.0",
+    "less": "^4.1.3",
     "prettier": "^2.7.0",
     "vite": "^2.9.9"
   },

@@ -1,0 +1,33 @@
+.checkout__form__wrapper {
+  max-width: 500px;
+  width: 100%;
+  margin-top: 25px !important;
+
+  h2 {
+    font-family: Helvetica Neue, sans-serif;
+    font-size: 1.2857142857em;
+    line-height: 1.3em;
+    color: #333;
+    font-weight: 700;
+  }
+
+  .input__group {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .radio__button {
+    height: 40px;
+    width: 100%;
+    position: relative;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    color: rgba(0, 0, 0, 0.85);
+    padding: 6.5px 11px;
+  }
+
+  .radio__logo {
+    position: absolute;
+    right: 11px;
+  }
+}

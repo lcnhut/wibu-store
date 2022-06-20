@@ -102,7 +102,7 @@ export default function Navbar() {
             </li>
           </Badge.Ribbon>
           <li className="navbar__link">
-            <NavLink to="/Collection"> Collection </NavLink>
+            <NavLink to="/collection">Collection</NavLink>
             <div className="navbar__dropdown">
               <div className="navbar__dropdown__content">
                 <div className="navbar__dropdown__lists">
@@ -117,7 +117,7 @@ export default function Navbar() {
             </div>
           </li>
           <li className="navbar__link">
-            <NavLink to="/Pages"> PAGES</NavLink>
+            <NavLink to="/pages"> PAGES</NavLink>
             <div className="navbar__dropdown">
               <div className="navbar__dropdown__content">
                 <div className="navbar__dropdown__lists">
@@ -133,6 +133,21 @@ export default function Navbar() {
           </li>
           <li className="navbar__link">
             <NavLink to="/admin"> Admin</NavLink>
+            <div className="navbar__dropdown">
+              <div className="navbar__dropdown__content">
+                <div className="navbar__dropdown__lists">
+                  <div className="title">SHOP LAYOUTS</div>
+                  <ul className="list__dropdown__items">
+                    <li className="list__dropdown__item">Pagination</li>
+                    <li className="list__dropdown__item">Ajax Load More</li>
+                    <li className="list__dropdown__item">Ajax Load More</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li className="navbar__link">
+            <NavLink to="/checkout">Checkout</NavLink>
             <div className="navbar__dropdown">
               <div className="navbar__dropdown__content">
                 <div className="navbar__dropdown__lists">
@@ -247,9 +262,10 @@ export default function Navbar() {
             </>
           ) : (
             <div className="cart_field__body__product">
-              {cartItem.map((item) => {
+              {cartItem.map((item, index) => {
                 return (
                   <ProductCart
+                    key={index}
                     id={item.id}
                     image={item.image}
                     name={item.name}

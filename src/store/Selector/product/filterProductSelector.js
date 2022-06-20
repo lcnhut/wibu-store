@@ -61,7 +61,8 @@ export const getFilterProductSelector = createSelector(
         }
       })
       .filter((item) => {
-        if (getFilterPrice < 100) return item.prices <= getFilterPrice;
+        if (getFilterPrice === 0) return true;
+        else if (getFilterPrice < 100) return item.prices <= getFilterPrice;
         else {
           return item.prices >= getFilterPrice;
         }
