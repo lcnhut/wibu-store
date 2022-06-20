@@ -1,26 +1,28 @@
 import 'animate.css';
 import { Col, Row, Skeleton, Space } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { axiosInstance } from '../../utils/AxiosConfig/AxiosConfig';
+// import { getAllAsync } from '../../store/slice/product/productSlice';
+import { getAllAsync } from '../../store/Slice/product/productSlice';
 import SingleProduct from '../SingleProduct';
 import './styles.scss';
 
-let ROW_SHOW_IN_PAGE = 8;
-
 const ListProduct = (props) => {
+  const ListData = useRef();
   let { view_list, data, loading } = props;
   const [loadingChangeProduct, setLoadingChangeProduct] = useState(loading);
-  const ListData = useRef();
+
   useEffect(() => {
     setLoadingChangeProduct(!loadingChangeProduct);
     setTimeout(() => {
       setLoadingChangeProduct(false);
     }, 300);
   }, [data]);
+  const ROW_SHOW_IN_PAGE = 8;
 
   return (
-    <>
+    <div className="collection__container">
       <Row className="listproduct__title__wrapper">
         <Col className="listproduct__title__container" span={24}>
           <h1>Shop The Collection</h1>
@@ -73,7 +75,7 @@ const ListProduct = (props) => {
           })
         )}
       </Row>
-    </>
+    </div>
   );
 };
 

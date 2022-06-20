@@ -2,7 +2,10 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { AdminLayout, AppLayout } from '../components';
-import { AdminPage, Checkout, Collection, Product } from '../pages/';
+import { AdminPage, Checkout, Collection, Details, Product } from '../pages/';
+
+// import { AdminLayout, AppLayout } from '../components';
+// import { AdminPage, Checkout, Collection, Product } from '../pages/';
 
 export const Router = () => {
   const role = window.localStorage.getItem('role');
@@ -18,6 +21,7 @@ export const Router = () => {
             <Route element={<AppLayout />}>
               <Route path="/" index element={<Product />} />
               <Route path="/collection" element={<Collection />} />
+              <Route path="/details/:id" element={<Details />} />
             </Route>
             <Route path="/checkout" element={<Checkout />} />
           </>
