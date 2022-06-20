@@ -37,44 +37,7 @@ export const productSlice = createSlice({
     list: [],
     isLoading: true,
     error: '',
-    cart: [
-      {
-        color: 'brown',
-        image: [
-          {
-            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/15.1_small.jpg?v=1588567889',
-          },
-          {
-            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/15.1_small.jpg?v=1588567889',
-          },
-          {
-            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/15.1_small.jpg?v=1588567889',
-          },
-        ],
-        name: 'Perth Fabric Twist Sliders',
-        price: 50,
-        quantity: 1,
-        size: 38,
-      },
-      {
-        color: 'black',
-        image: [
-          {
-            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/14.1_small.jpg?v=1588567113',
-          },
-          {
-            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/14.1_small.jpg?v=1588567113',
-          },
-          {
-            src: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/products/14.1_small.jpg?v=1588567113',
-          },
-        ],
-        name: 'Nautical Stripe EVA Flip Flops',
-        price: 100,
-        quantity: 1,
-        size: 36,
-      },
-    ],
+    cart: [],
   },
   reducers: {
     addToCart: (state, action) => {
@@ -82,10 +45,8 @@ export const productSlice = createSlice({
       message.success('An item is added to cart!!!');
     },
     removeItemFromCart: (state, action) => {
-      let { id } = action.payload;
-
+      let id = action.payload;
       let newList = state.cart.filter((item, index) => item.id !== id);
-
       state.cart = newList;
     },
 

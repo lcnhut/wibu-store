@@ -6,6 +6,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { Badge } from 'antd';
+import { sum } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -20,6 +21,7 @@ export default function Navbar() {
   const [onActiveNavbar, setOnActiveNavbar] = useState(true);
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
+
   const navbar = useRef();
   window.onscroll = () => {
     if (document.documentElement.scrollTop < 100) {
@@ -185,11 +187,9 @@ export default function Navbar() {
               setOnCartActive(!onSearchActive);
             }}
           >
-            {/* <Link to="/cart"> */}
             <Badge count={cartItem.length}>
               <ShoppingOutlined style={{ fontSize: 24 }} />
             </Badge>
-            {/* </Link> */}
           </div>
         </div>
       </nav>
@@ -271,23 +271,24 @@ export default function Navbar() {
                     name={item.name}
                     color={item.color}
                     quantity={item.quantity}
+                    price={item.price}
                   />
                 );
               })}
             </div>
           )}
         </div>
-
-        <div className="cart_field__footer">
-          <div className="cart_field__footer__total">
-            <div>Total:</div>
-            <div>$125.000</div>
+        {cartItem.length !== 0 && (
+          <div className="cart_field__footer">
+            <div className="cart_field__footer__total">
+              <div>Total:</div>
+              <div>{sum(cartItem.map((item) => item.price))}</div>
+            </div>
+            <div className="cart_field__footer__button">
+              <ButtonOfPage label="Check out" />
+            </div>
           </div>
-          <div className="cart_field__footer__button">
-            <ButtonOfPage label="view cart" />
-            <ButtonOfPage label="Check out" />
-          </div>
-        </div>
+        )}
       </div>
       <div
         className="bg_search_box"

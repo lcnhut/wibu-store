@@ -6,7 +6,7 @@ import { removeItemFromCart } from '../../store/Slice/product/productSlice';
 import './ProductCart.scss';
 
 export default function ProductCart(props) {
-  const { image, name, size, quantity, color, id } = props;
+  const { image, name, size, quantity, color, id, price } = props;
   const dispatch = useDispatch();
 
   return (
@@ -19,9 +19,10 @@ export default function ProductCart(props) {
           {name} - size / {color}
         </p>
         <p>QTY : {quantity}</p>
-        <p> $125.00</p>
+        <p> $ {price}</p>
       </div>
       <div
+        style={{ cursor: 'pointer' }}
         onClick={() => {
           dispatch(removeItemFromCart(id));
         }}
