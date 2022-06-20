@@ -13,12 +13,11 @@ const AdminNavbar = () => {
 
   const handleActiveItem = (value) => {
     switch (value) {
-      case 'pet':
+      case 'invoices':
         window.localStorage.setItem('activeSidebar', '2');
         break;
-      case 'invoices':
+      case 'setting':
         window.localStorage.setItem('activeSidebar', '3');
-
         break;
       default:
         window.localStorage.setItem('activeSidebar', '1');
