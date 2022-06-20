@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { AppLayout } from '../components';
+import { AdminLayout, AppLayout } from '../components';
 import { AdminPage, Checkout, Collection, Product } from '../pages/';
 
 export const Router = () => {
@@ -10,7 +10,9 @@ export const Router = () => {
     <>
       <Routes>
         {role === 'admin' ? (
-          <Route path="/" element={<AdminPage />} />
+          <Route element={<AdminLayout />}>
+            <Route path="/" element={<AdminPage />} />
+          </Route>
         ) : (
           <>
             <Route element={<AppLayout />}>
