@@ -43,10 +43,9 @@ export const productSlice = createSlice({
   initialState: {
     list: [],
     isLoading: true,
-      singleProduct: {},
+    singleProduct: {},
     error: '',
     cart: [],
-
   },
   reducers: {
     addToCart: (state, action) => {

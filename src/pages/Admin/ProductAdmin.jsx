@@ -23,11 +23,11 @@ import {
   getAllAsync,
 } from '../../store/Slice/product/productSlice';
 import { setColorTag } from '../../utils/SetTagColor/setTagColor';
-import './AdminPage.scss';
+import './ProductAdmin.scss';
 
 const { Panel } = Collapse;
 
-const AdminPage = () => {
+const ProductAdmin = () => {
   const dispatch = useDispatch();
 
   const productData = useSelector((state) => state.product.list);
@@ -294,4 +294,4 @@ const AdminPage = () => {
   );
 };
 
-export default AdminPage;
+export default ProductAdmin;
