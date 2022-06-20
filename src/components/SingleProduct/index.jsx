@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   HeartOutlined,
   SearchOutlined,
@@ -31,12 +32,13 @@ const SingleProduct = ({ product }) => {
   const [singleProduct, setSingleProduct] = useState({});
 
   const handleAddToCart = (values) => {
+    console.log(values);
     const submitData = {
       ...values,
       id: singleProduct.id,
       name: product.name,
       image: product.image,
-      description: product.description,
+      price: product.price,
     };
     dispatch(addToCart(submitData));
     setVisibleModalAddToCart(false);
@@ -46,7 +48,6 @@ const SingleProduct = ({ product }) => {
     form
       .validateFields()
       .then((values) => {
-        // console.log(singleProduct);
         form.resetFields();
         handleAddToCart(values);
       })
