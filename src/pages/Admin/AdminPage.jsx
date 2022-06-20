@@ -21,8 +21,7 @@ import {
   addProductAsync,
   deleteProductAsync,
   getAllAsync,
-  updateProductAsync,
-} from '../../store/product/productSlice';
+} from '../../store/Slice/product/productSlice';
 import { setColorTag } from '../../utils/SetTagColor/setTagColor';
 import './AdminPage.scss';
 
@@ -246,7 +245,7 @@ const AdminPage = () => {
 
   return (
     <Spin tip="Loading..." size="large" spinning={isLoading}>
-      <div className="admin__page container-page">
+      <div className="admin__page">
         <Input
           className="search__input"
           placeholder="Search product"

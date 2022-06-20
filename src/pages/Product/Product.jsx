@@ -1,13 +1,24 @@
 import { Col, Row, Space } from 'antd';
 import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Carousel, LazyLoaderProduct, ListProduct } from '../../components';
+import { getAllProduct } from '../../store/Selector/product/filterProductSelector';
+import { getLoadingOfProduct } from '../../store/Selector/product/productSelector';
+import { getAllAsync } from '../../store/Slice/product/productSlice';
 // import Carousel from './Carousel';
 // import LazyLoaderProduct from './Lazyloader/LazyLoaderProduct';
 // import ListProduct from './ListProduct';
 import './Product.scss';
 
 export default function Product() {
+  const loading = useSelector(getLoadingOfProduct);
+  const AllProduct = useSelector(getAllProduct);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllAsync());
+  }, []);
   return (
     <>
       <Carousel />
@@ -23,17 +34,7 @@ export default function Product() {
         ></LazyLoaderProduct>
         {/* </Space> */}
       </div>
-      <Row className="listproduct__title__wrapper">
-        <Col className="listproduct__title__container" span={24}>
-          <h1>Shop The Collection</h1>
-          <div className="listproduct__title__line"></div>
-          <div className="listproduct__title__action">
-            <button style={{ padding: '7px 0' }}>MEN</button>
-            <button style={{ padding: '7px 0' }}>WOMEN</button>
-          </div>
-        </Col>
-      </Row>
-      <ListProduct />
+      <ListProduct view_list={4} data={AllProduct} loading={loading} />
     </>
   );
 }

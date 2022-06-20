@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { message } from 'antd';
 
-import { productApi } from '../../api';
+import { productApi } from '../../../api';
 
 export const getAllAsync = createAsyncThunk('product/getAll', async () => {
   const response = await productApi.getAll();
@@ -42,7 +42,7 @@ export const productSlice = createSlice({
   name: 'product',
   initialState: {
     list: [],
-    isLoading: false,
+    isLoading: true,
     error: '',
     singleProduct: {},
     cart: [
@@ -93,8 +93,7 @@ export const productSlice = createSlice({
       let { id } = action.payload;
 
       let newList = state.cart.filter((item, index) => item.id !== id);
-      console.log(newList);
-      // let newCart = [...state.cart.slice(0, id), ...state.cart.slice(id + 1)];
+
       state.cart = newList;
     },
 
@@ -137,8 +136,8 @@ export const productSlice = createSlice({
         };
       });
 
-      state.isLoading = false;
       state.list = formattedData;
+      state.isLoading = false;
     },
 
     [addProductAsync.pending]: (state) => {
@@ -158,12 +157,10 @@ export const productSlice = createSlice({
         });
         return total;
       });
-
       newProduct = {
         ...newProduct,
         inStock: total,
       };
-
       state.isLoading = false;
       state.list.push(newProduct);
       message.success('A new product is added!!!');

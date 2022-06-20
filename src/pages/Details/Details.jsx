@@ -20,7 +20,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { addToCart, getByIdAsync } from '../../store/product/productSlice';
+import {
+  addToCart,
+  getByIdAsync,
+} from '../../store/Slice/product/productSlice';
 import './index.less';
 import './styles.scss';
 
