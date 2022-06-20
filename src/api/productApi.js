@@ -28,8 +28,14 @@ const productApi = {
   delete: (id) => {
     return axiosInstance.delete(`/products/${id}`);
   },
-  update: (data) => {
-    return instance.put(`/products/${data.id}, ${data}`);
+  update: (product) => {
+    return axiosInstance.put(`/products/${product.id}`, {
+      name: product.name,
+      image: product.images ? product.images : [],
+      price: product.price,
+      description: product.description ? product.description : '',
+      colors: product.colors,
+    });
   },
 };
 export default productApi;

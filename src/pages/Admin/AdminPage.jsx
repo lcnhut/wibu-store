@@ -21,7 +21,8 @@ import {
   addProductAsync,
   deleteProductAsync,
   getAllAsync,
-} from '../../store/Slice/product/productSlice';
+  updateProductAsync,
+} from '../../store/product/productSlice';
 import { setColorTag } from '../../utils/SetTagColor/setTagColor';
 import './AdminPage.scss';
 
@@ -43,7 +44,6 @@ const AdminPage = () => {
   const [visibleViewProduct, setVisibleViewProduct] = useState(false);
 
   const [idToDeleteProduct, setIdToDeleteProduct] = useState();
-  const [idToUpdate, setIdToUpdate] = useState();
 
   const [productToUpdate, setProductToUpdate] = useState();
   const [productDetail, setProductDetail] = useState({});
@@ -56,18 +56,6 @@ const AdminPage = () => {
   useEffect(() => {
     setProduct(productData);
   }, [productData]);
-
-  // Start handle view product detail
-  const openProductDetailModal = (product) => {
-    setVisibleViewProduct(true);
-    setProductDetail(product);
-  };
-
-  const closeProductDetailModal = () => {
-    setVisibleViewProduct(false);
-  };
-
-  // End handle view product detail
 
   const columns = [
     {
@@ -153,9 +141,12 @@ const AdminPage = () => {
               onClick={() => {
                 setVisibleUpdateForm(true);
                 product.map((p) => {
-                  if (p.id === id) return setProductToUpdate(p);
+                  if (p.id === id)
+                    return setProductToUpdate({
+                      ...p,
+                      id: id,
+                    });
                 });
-                setIdToUpdate(id);
               }}
               className="primary__button"
               type="primary"
@@ -192,7 +183,18 @@ const AdminPage = () => {
     setProduct(filteredData);
   };
 
-  // Start handle add product
+  // -------------Start handle view product detail------------
+  const openProductDetailModal = (product) => {
+    setVisibleViewProduct(true);
+    setProductDetail(product);
+  };
+
+  const closeProductDetailModal = () => {
+    setVisibleViewProduct(false);
+  };
+  // ------------End handle view product detail------------
+
+  // ------------Start handle add product------------
   const showModalAddForm = () => {
     setVisibleAddForm(true);
   };
@@ -209,27 +211,38 @@ const AdminPage = () => {
       setVisibleAddForm(isLoading);
     }
   };
-  // End handle add product
+  // ------------End handle add product------------
 
-  // Start handle update product
-  const handleOkUpdate = () => {
-    setVisibleUpdateForm(false);
+  // ------------Start handle update product------------
+  const handleOkUpdate = (values) => {
+    setConfirmLoading(isLoading);
+    const result = dispatch(
+      updateProductAsync({
+        ...values,
+        id: productToUpdate.id,
+      })
+    );
+    if (result) {
+      setConfirmLoading(isLoading);
+      setVisibleUpdateForm(false);
+    }
   };
 
   const handleCancelUpdate = () => {
     setVisibleUpdateForm(false);
   };
+  // ------------End handle update product------------
 
-  // Start handle delete
+  // ------------Start handle delete------------
   const handleDelete = () => {
-    setVisibleDeleteModal(false);
     dispatch(deleteProductAsync(idToDeleteProduct));
+    setVisibleDeleteModal(false);
   };
 
   const handleCancelDelete = () => {
     setVisibleDeleteModal(false);
   };
-  // End handle delete
+  // ------------End handle delete------------
 
   return (
     <Spin tip="Loading..." size="large" spinning={isLoading}>
@@ -271,7 +284,6 @@ const AdminPage = () => {
         </Modal>
         {productToUpdate && (
           <UpdateProductForm
-            idToUpdate={idToUpdate}
             productToUpdate={productToUpdate}
             visibleUpdateForm={visibleUpdateForm}
             handleOkUpdate={handleOkUpdate}
