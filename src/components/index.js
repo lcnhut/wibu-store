@@ -1,3 +1,5 @@
+import AdminLayout from './AdminLayout/AdminLayout';
+import AdminNavbar from './AdminNavbar/AdminNavbar';
 import AppLayout from './AppLayout/AppLayout';
 import ButtonOfPage from './Button/ButtonOfPage';
 import ButtonSize from './ButtonSize/ButtonSize';
@@ -34,4 +36,6 @@ export {
   FilterField,
   SingleProduct,
   CartItemCheckout,
+  AdminLayout,
+  AdminNavbar,
 };
