@@ -2,7 +2,14 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { AppLayout } from '../components';
-import { AdminPage, Checkout, Collection, Details, Product } from '../pages/';
+import {
+  AdminPage,
+  Checkout,
+  Collection,
+  Details,
+  NotFound,
+  Product,
+} from '../pages/';
 
 export const Router = () => {
   return (
@@ -15,7 +22,7 @@ export const Router = () => {
           <Route path="/collection" element={<Collection />} />
         </Route>
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="*" element={<div>Not found</div>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
