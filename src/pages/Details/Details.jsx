@@ -48,8 +48,10 @@ export default function Details() {
     form.setFieldsValue({
       color: selectedColor,
       qty: qty,
+      size: sizes[0],
     });
-  }, [selectedColor]);
+  }, [selectedColor, sizes]);
+  console.log(sizes[0]);
   useEffect(() => {
     product.colors &&
       product.colors.forEach((cl) => {
@@ -84,12 +86,6 @@ export default function Details() {
         console.log('Validate Failed:', info);
       });
   };
-
-  useEffect(() => {
-    form.setFieldsValue({
-      size: sizes[0],
-    });
-  }, [sizes]);
   const data = [
     {
       Title: 'Why Choose Us ?',
