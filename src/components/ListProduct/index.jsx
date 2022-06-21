@@ -1,10 +1,7 @@
 import 'animate.css';
-import { Col, Row, Skeleton, Space } from 'antd';
+import { Col, Pagination, Row, Skeleton, Space } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
-// import { getAllAsync } from '../../store/slice/product/productSlice';
-import { getAllAsync } from '../../store/Slice/product/productSlice';
 import SingleProduct from '../SingleProduct';
 import './styles.scss';
 
@@ -20,7 +17,6 @@ const ListProduct = (props) => {
     }, 300);
   }, [data]);
   const ROW_SHOW_IN_PAGE = 8;
-
   return (
     <div className="collection__container">
       <Row className="listproduct__title__wrapper">
@@ -70,6 +66,7 @@ const ListProduct = (props) => {
             );
           })
         )}
+        <Col>{data && <Pagination defaultCurrent={1} total={50} />}</Col>
       </Row>
     </div>
   );
