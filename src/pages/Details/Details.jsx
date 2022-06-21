@@ -18,7 +18,7 @@ import { set } from 'lodash';
 import { useForm } from 'rc-field-form';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { addToCart, getByIdAsync } from '../../store/product/productSlice';
 import './index.less';
@@ -125,7 +125,9 @@ export default function Details() {
         {product && (
           <div className="container-page" style={{ padding: '0 7vw' }}>
             <Space className="details__page__title__container">
-              <h1 className="details__page__title__h1">Home</h1>
+              <Link to="/">
+                <h1 className="details__page__title__h1">Home</h1>
+              </Link>
               <h3 className="details__page__title__h3"> &gt; {product.name}</h3>
             </Space>
             <Row gutter={[26, 0]}>
@@ -133,7 +135,7 @@ export default function Details() {
                 <Carousel dotPosition="bottom" autoplay autoplaySpeed={1500}>
                   {product.image ? (
                     product.image.map((img, key) => (
-                      <Image key={key} src={img.src} />
+                      <Image preview={false} key={key} src={img.src} />
                     ))
                   ) : (
                     <h1>loading</h1>
