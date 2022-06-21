@@ -18,6 +18,10 @@ const Invoice = () => {
     dispatch(getAllInvoiceAsync());
   }, []);
 
+  useEffect(() => {
+    setInvoice(invoiceData);
+  }, [invoiceData]);
+
   const columns = [
     {
       title: 'Customer',
