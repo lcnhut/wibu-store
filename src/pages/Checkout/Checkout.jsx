@@ -1,6 +1,7 @@
 import { HomeOutlined } from '@ant-design/icons';
 import { Breadcrumb, message } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -17,6 +18,8 @@ const Checkout = () => {
   const [subTotalPrice, setSubTotalPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [tax, setTax] = useState(0);
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -74,10 +77,10 @@ const Checkout = () => {
             <Breadcrumb.Item href="">
               <Link to="/">
                 <HomeOutlined />
-                <span style={{ marginLeft: '5px' }}>Home</span>
+                <span style={{ marginLeft: '5px' }}>{t('checkout.home')}</span>
               </Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item href="">Checkout</Breadcrumb.Item>
+            <Breadcrumb.Item href="">{t('checkout.checkout')}</Breadcrumb.Item>
           </Breadcrumb>
           <div className="checkout__form">
             <CheckoutForm
@@ -106,22 +109,22 @@ const Checkout = () => {
             <div className="checkout__summary__total">
               <div className="checkout__summary__calculate">
                 <div className="checkout__summary__line">
-                  <div>Subtotal</div>
+                  <div>{t('checkout.total')}</div>
                   <div className="checkout__summary__price">
                     ${subTotalPrice}
                   </div>
                 </div>
                 <div className="checkout__summary__line">
-                  <div>Shipping</div>
-                  <div>free</div>
+                  <div>{t('checkout.shipping_fee')}</div>
+                  <div>{t('checkout.free')}</div>
                 </div>
                 <div className="checkout__summary__line">
-                  <div>Taxes (estimated)</div>
+                  <div>{t('checkout.tax')}</div>
                   <div className="checkout__summary__price">${tax}</div>
                 </div>
               </div>
               <div className="checkout__summary__total__price">
-                <div>Total</div>
+                <div>{t('checkout.amount')}</div>
                 <div className="final__price">${totalPrice}</div>
               </div>
             </div>
