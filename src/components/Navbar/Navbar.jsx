@@ -1,16 +1,21 @@
 import {
   CloseOutlined,
+  DownOutlined,
   HeartOutlined,
   SearchOutlined,
   ShoppingOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Badge } from 'antd';
+import { Badge, Button, Dropdown, Menu, Select, Space } from 'antd';
+import { Option } from 'antd/lib/mentions';
 import { sum } from 'lodash';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
+import englandIcon from '../../../src/assets/images/englandIcon.jpg';
+import vietnamIcon from '../../assets/images/vietnamIcon.png';
 import ButtonOfPage from '../Button/ButtonOfPage';
 import ProductCart from '../ProductCart/ProductCart';
 import './Navbar.scss';
@@ -21,7 +26,7 @@ export default function Navbar() {
   const [onActiveNavbar, setOnActiveNavbar] = useState(true);
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
-
+  const { t, i18n } = useTranslation();
   const navbar = useRef();
   window.onscroll = () => {
     if (document.documentElement.scrollTop < 100) {
@@ -30,7 +35,22 @@ export default function Navbar() {
       setOnActiveNavbar(false);
     }
   };
-  // useEffect(() => {}, []);
+  const languageOptions = [
+    {
+      key: 'en',
+      value: 'en',
+      icon: englandIcon,
+    },
+    {
+      key: 'vi',
+      value: 'vi',
+      icon: vietnamIcon,
+    },
+  ];
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   return (
     <header>
       <nav
@@ -43,13 +63,13 @@ export default function Navbar() {
         />
         <ul className="navbar__links">
           <li className="navbar__link">
-            <NavLink to="/">HOME</NavLink>
+            <NavLink to="/">{t('cta.home')}</NavLink>
             <div className="navbar__dropdown">
               <div className="navbar__dropdown__content">
                 <div className="navbar__dropdown__lists">
                   <div className="title">SHOP LAYOUTS</div>
                   <ul className="list__dropdown__items">
-                    <li className="list__dropdown__item">Pagination</li>
+                    <li className="list__dropdown__item">{t('cta.home')}</li>
                     <li className="list__dropdown__item">Ajax Load More</li>
                     <li className="list__dropdown__item">Ajax Load More</li>
                   </ul>
@@ -60,7 +80,7 @@ export default function Navbar() {
 
           <Badge.Ribbon text="hot" color="red" size="12px">
             <li className="navbar__link">
-              <NavLink to="/Shop">SHOP</NavLink>
+              <NavLink to="/Shop">{t('cta.shop')}</NavLink>
 
               <div className="navbar__dropdown">
                 <div
@@ -104,7 +124,7 @@ export default function Navbar() {
             </li>
           </Badge.Ribbon>
           <li className="navbar__link">
-            <NavLink to="/collection">Collection</NavLink>
+            <NavLink to="/collection">{t('cta.collection')}</NavLink>
             <div className="navbar__dropdown">
               <div className="navbar__dropdown__content">
                 <div className="navbar__dropdown__lists">
@@ -119,7 +139,7 @@ export default function Navbar() {
             </div>
           </li>
           <li className="navbar__link">
-            <NavLink to="/pages"> PAGES</NavLink>
+            <NavLink to="/pages"> {t('cta.pages')}</NavLink>
             <div className="navbar__dropdown">
               <div className="navbar__dropdown__content">
                 <div className="navbar__dropdown__lists">
@@ -134,7 +154,7 @@ export default function Navbar() {
             </div>
           </li>
           <li className="navbar__link">
-            <NavLink to="/checkout">Checkout</NavLink>
+            <NavLink to="/checkout">{t('cta.checkout')}</NavLink>
             <div className="navbar__dropdown">
               <div className="navbar__dropdown__content">
                 <div className="navbar__dropdown__lists">
@@ -175,6 +195,13 @@ export default function Navbar() {
             <Badge count={cartItem.length}>
               <ShoppingOutlined style={{ fontSize: 24 }} />
             </Badge>
+          </div>
+          <div>
+            <Select
+              defaultValue={languageOptions[0]}
+              options={languageOptions}
+              onChange={changeLanguage}
+            />
           </div>
         </div>
       </nav>
