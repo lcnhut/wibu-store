@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { CartItemCheckout, CheckoutForm } from '../../components';
-import { clearCart } from '../../store/product/productSlice';
+import { clearCart } from '../../store/Slice/product/productSlice';
 import './Checkout.scss';
 
 const Checkout = () => {

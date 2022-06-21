@@ -6,9 +6,10 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { Badge } from 'antd';
-import React, { useRef, useState } from 'react';
+import { sum } from 'lodash';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import ButtonOfPage from '../Button/ButtonOfPage';
 import ProductCart from '../ProductCart/ProductCart';
@@ -17,13 +18,25 @@ import './Navbar.scss';
 export default function Navbar() {
   const cartItem = useSelector((state) => state.product.cart);
   const [onActive, SetOnActive] = useState(false);
+  const [onActiveNavbar, setOnActiveNavbar] = useState(true);
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
-  const navbar = useRef();
 
+  const navbar = useRef();
+  window.onscroll = () => {
+    if (document.documentElement.scrollTop < 100) {
+      setOnActiveNavbar(true);
+    } else {
+      setOnActiveNavbar(false);
+    }
+  };
+  // useEffect(() => {}, []);
   return (
     <header>
-      <nav className="navbar" ref={navbar}>
+      <nav
+        className={onActiveNavbar ? 'navbar' : 'navbar postionfixed'}
+        ref={navbar}
+      >
         <img
           src="https://cdn.shopify.com/s/files/1/0277/0472/1542/files/logo.png?v=1589452027"
           className="navbar__logo"
@@ -121,21 +134,6 @@ export default function Navbar() {
             </div>
           </li>
           <li className="navbar__link">
-            <NavLink to="/admin"> Admin</NavLink>
-            <div className="navbar__dropdown">
-              <div className="navbar__dropdown__content">
-                <div className="navbar__dropdown__lists">
-                  <div className="title">SHOP LAYOUTS</div>
-                  <ul className="list__dropdown__items">
-                    <li className="list__dropdown__item">Pagination</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li className="navbar__link">
             <NavLink to="/checkout">Checkout</NavLink>
             <div className="navbar__dropdown">
               <div className="navbar__dropdown__content">
@@ -174,11 +172,9 @@ export default function Navbar() {
               setOnCartActive(!onSearchActive);
             }}
           >
-            {/* <Link to="/cart"> */}
             <Badge count={cartItem.length}>
               <ShoppingOutlined style={{ fontSize: 24 }} />
             </Badge>
-            {/* </Link> */}
           </div>
         </div>
       </nav>
@@ -189,6 +185,7 @@ export default function Navbar() {
           opacity: onSearchActive ? '1' : '0',
           height: onSearchActive ? '400px ' : '0',
           zIndex: onSearchActive ? '101' : '0',
+          position: onSearchActive ? 'fixed' : 'relative',
         }}
       >
         <h1>Start typing and hit Enter</h1>
@@ -259,24 +256,26 @@ export default function Navbar() {
                     image={item.image}
                     name={item.name}
                     color={item.color}
+                    size={item.size}
                     quantity={item.quantity}
+                    price={item.price}
                   />
                 );
               })}
             </div>
           )}
         </div>
-
-        <div className="cart_field__footer">
-          <div className="cart_field__footer__total">
-            <div>Total:</div>
-            <div>$125.000</div>
+        {cartItem.length !== 0 && (
+          <div className="cart_field__footer">
+            <div className="cart_field__footer__total">
+              <div>Total:</div>
+              <div>{sum(cartItem.map((item) => item.price))}</div>
+            </div>
+            <div className="cart_field__footer__button">
+              <ButtonOfPage label="Check out" />
+            </div>
           </div>
-          <div className="cart_field__footer__button">
-            <ButtonOfPage label="view cart" />
-            <ButtonOfPage label="Check out" />
-          </div>
-        </div>
+        )}
       </div>
       <div
         className="bg_search_box"

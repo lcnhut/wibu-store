@@ -95,8 +95,11 @@
   &__container {
     padding: 30px;
     display: flex;
+    justify-content: center;
+    gap: 3rem;
     .filter-selection-item {
       flex: 1;
+      max-width: 350px;
       &__title {
         .title {
           position: relative;
