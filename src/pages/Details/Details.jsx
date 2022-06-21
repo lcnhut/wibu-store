@@ -21,8 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
 import { addToCart, getByIdAsync } from '../../store/product/productSlice';
-import './index.less';
-import './styles.scss';
+import './Details.scss';
 
 const { Option } = Select;
 export default function Details() {
