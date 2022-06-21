@@ -1,11 +1,9 @@
 import 'animate.css';
-import { Col, Row, Skeleton, Space } from 'antd';
+import { Col, Pagination, Row, Skeleton, Space } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-// import { getAllAsync } from '../../store/slice/product/productSlice';
-import { getAllAsync } from '../../store/Slice/product/productSlice';
 import SingleProduct from '../SingleProduct';
 import './styles.scss';
 
@@ -14,6 +12,8 @@ const ListProduct = (props) => {
   let { view_list, data, loading } = props;
   const [loadingChangeProduct, setLoadingChangeProduct] = useState(loading);
   const { t, i18n } = useTranslation();
+  const [numPagination, setNumPagination] = useState(1);
+
   useEffect(() => {
     setLoadingChangeProduct(!loadingChangeProduct);
     setTimeout(() => {
@@ -21,7 +21,7 @@ const ListProduct = (props) => {
     }, 300);
   }, [data]);
   const ROW_SHOW_IN_PAGE = 8;
-
+  const sliceData = data.slice((numPagination - 1) * 8, numPagination * 8);
   return (
     <div className="collection__container">
       <Row className="listproduct__title__wrapper">
@@ -51,8 +51,8 @@ const ListProduct = (props) => {
               ))}
           </>
         ) : (
-          data &&
-          data.map((product, id) => {
+          sliceData &&
+          sliceData.map((product, id) => {
             return (
               id < ROW_SHOW_IN_PAGE && (
                 <Col
@@ -61,7 +61,7 @@ const ListProduct = (props) => {
                   md={{ span: 12 }}
                   lg={{ span: 8 }}
                   xl={{ span: 6 }}
-                  className="listproduct__item animate__animated animate__fadeIn"
+                  className="listproduct__item"
                   key={id}
                   span={6}
                 >
@@ -71,6 +71,27 @@ const ListProduct = (props) => {
             );
           })
         )}
+        <Col
+          xs={{ span: 24 }}
+          sm={{ span: 24 }}
+          md={{ span: 24 }}
+          lg={{ span: 24 }}
+          xl={{ span: 24 }}
+        >
+          {data && (
+            <Pagination
+              showSizeChanger
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+              onChange={(value) => setNumPagination(value)}
+              defaultCurrent={1}
+              total={data.length}
+              defaultPageSize={8}
+            />
+          )}
+        </Col>
       </Row>
     </div>
   );

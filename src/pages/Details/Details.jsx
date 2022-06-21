@@ -51,7 +51,6 @@ export default function Details() {
       size: sizes[0],
     });
   }, [selectedColor, sizes]);
-  console.log(sizes[0]);
   useEffect(() => {
     product.colors &&
       product.colors.forEach((cl) => {
@@ -109,6 +108,7 @@ export default function Details() {
       ...values,
       id: product.id,
       image: product.image,
+      price: qty ? product.price * qty : product.price * 1,
       color: values.color,
       sizes: values.sizes,
       quantity: values.qty ? values.qty : 1,
