@@ -24,8 +24,7 @@ import {
   addToCart,
   getByIdAsync,
 } from '../../store/Slice/product/productSlice';
-import './index.less';
-import './styles.scss';
+import './Details.scss';
 
 const { Option } = Select;
 export default function Details() {
@@ -88,10 +87,9 @@ export default function Details() {
 
   useEffect(() => {
     form.setFieldsValue({
-      sizes: sizes[0],
+      size: sizes[0],
     });
   }, [sizes]);
-
   const data = [
     {
       Title: 'Why Choose Us ?',
@@ -121,7 +119,6 @@ export default function Details() {
       name: product.name,
     };
     dispatch(addToCart(submitData));
-    // console.log(submitData);
   };
   return (
     <Spin spinning={isLoading}>
@@ -191,7 +188,7 @@ export default function Details() {
                   </Form.Item>
                   <Form.Item
                     rules={[{ required: true }]}
-                    name="sizes"
+                    name="size"
                     label="Size"
                   >
                     <Select>
