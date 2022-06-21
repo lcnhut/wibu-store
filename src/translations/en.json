@@ -98,5 +98,40 @@
     "input_name_requirement": "Vui lòng nhập tên!",
     "input_phone_requirement": "Vui lòng nhập số điện thoại!",
     "input_address_requirement": "Vui lòng nhập địa chỉ!"
+  },
+  "admin": {
+    "product": {
+      "products": "Products",
+      "invoices": "Invoices",
+      "add_new_product": "Add new product",
+      "edit": "Edit",
+      "delete": "Delete",
+      "name": "Product name",
+      "image": "Image",
+      "price": "Price",
+      "in_stock": "In stock",
+      "action": "Action",
+      "description": "Description",
+      "color": "Color",
+      "quantity": "Quantity",
+      "size": "Size",
+      "total": "Total",
+      "in_stock_tag": "Available",
+      "add_image": "Add image",
+      "add_color": "Add color",
+      "update_modal_label": "Update product",
+      "delete_modal_label": "Delete product",
+      "delete_modal_content": "This product will be deleted?",
+      "search_placehoder": "Search product"
+    },
+    "invoice": {
+      "customer_name": "Customer name",
+      "address": "Address",
+      "contact": "Contact",
+      "total_price": "Total price",
+      "order_date": "Order date",
+      "status": "Status",
+      "search_placehoder": "Search orders (customer name, total price, contact...)"
+    }
   }
 }

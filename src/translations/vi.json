@@ -98,5 +98,40 @@
     "input_name_requirement": "Vui lòng nhập tên!",
     "input_phone_requirement": "Vui lòng nhập số điện thoại!",
     "input_address_requirement": "Vui lòng nhập địa chỉ!"
+  },
+  "admin": {
+    "product": {
+      "products": "Sản phẩm",
+      "invoices": "Hóa đơn",
+      "add_new_product": "Thêm mới sản phẩm",
+      "edit": "Sửa",
+      "delete": "Xóa",
+      "name": "Tên sản phẩm",
+      "image": "Hình ảnh",
+      "price": "Đơn giá",
+      "in_stock": "Tồn kho",
+      "action": "Thao tác",
+      "description": "Mô tả",
+      "color": "Màu",
+      "quantity": "Số lượng",
+      "size": "Kích cỡ",
+      "total": "Tổng cộng",
+      "in_stock_tag": "Còn hàng",
+      "add_image": "Thêm ảnh",
+      "add_color": "Thêm màu",
+      "update_modal_label": "Cập nhật sản phẩm",
+      "delete_modal_label": "Xóa sản phẩm",
+      "delete_modal_content": "Sản phẩm này sẽ bị xóa vĩnh viển?",
+      "search_placehoder": "Tìm kiếm sản phẩm"
+    },
+    "invoice": {
+      "customer_name": "Tên khách hàng",
+      "address": "Địa chỉ",
+      "contact": "Liên hệ",
+      "total_price": "Tổng tiền",
+      "order_date": "Ngày đặt",
+      "status": "Trạng thái",
+      "search_placehoder": "Tìm kiếm đơn hàng (tên khách hàng, giá tiền, số điện thoại...)"
+    }
   }
 }

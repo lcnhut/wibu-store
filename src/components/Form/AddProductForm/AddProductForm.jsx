@@ -1,5 +1,6 @@
 import { Form, Input, InputNumber, Modal } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import formatSubmitData from '../../../utils/FormatSubmitData/formatSubmitData';
 import { DynamicColorField } from '../../DynamicField/DynamicColorField';
@@ -7,6 +8,7 @@ import { DynamicImageField } from '../../DynamicField/DynamicImageField';
 
 const AddProductForm = (props) => {
   const [form] = Form.useForm();
+  const { t } = useTranslation();
   // eslint-disable-next-line react/prop-types
   const { handleSubmitForm, visible, onCancel, confirmLoading } = props;
 
@@ -42,7 +44,7 @@ const AddProductForm = (props) => {
         form={form}
         name="control-hooks"
         labelCol={{
-          span: 4,
+          span: 6,
         }}
         wrapperCol={{
           span: 16,
@@ -54,7 +56,7 @@ const AddProductForm = (props) => {
       >
         <Form.Item
           name="name"
-          label="Name"
+          label={t('admin.product.name')}
           rules={[
             {
               required: true,
@@ -65,7 +67,7 @@ const AddProductForm = (props) => {
         </Form.Item>
         <Form.Item
           name="price"
-          label="Price"
+          label={t('admin.product.price')}
           rules={[
             {
               required: true,
@@ -74,7 +76,7 @@ const AddProductForm = (props) => {
         >
           <InputNumber min={1} />
         </Form.Item>
-        <Form.Item name="description" label="Description">
+        <Form.Item name="description" label={t('admin.product.description')}>
           <Input />
         </Form.Item>
         <DynamicImageField />
