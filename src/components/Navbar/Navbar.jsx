@@ -40,12 +40,20 @@ export default function Navbar() {
     {
       key: 'en',
       value: 'en',
-      icon: englandIcon,
+      label: (
+        <div>
+          <img src={englandIcon} alt="" style={{ width: '20px' }} />
+        </div>
+      ),
     },
     {
       key: 'vi',
       value: 'vi',
-      icon: vietnamIcon,
+      label: (
+        <div>
+          <img src={vietnamIcon} alt="" style={{ width: '20px' }} />
+        </div>
+      ),
     },
   ];
 
@@ -262,7 +270,7 @@ export default function Navbar() {
               <div className="cart_field__body__title">
                 <h3>Your shopping bag is empty</h3>
               </div>
-              <ButtonOfPage to="collection" label="Shop Now" />
+              <ButtonOfPage path="collection" label="Shop Now" />
             </>
           ) : (
             <div className="cart_field__body__product">
@@ -290,7 +298,7 @@ export default function Navbar() {
               <div>{sum(cartItem.map((item) => item.price))}</div>
             </div>
             <div className="cart_field__footer__button">
-              <ButtonOfPage to="checkout" label="Check out" />
+              <ButtonOfPage path="checkout" label="Check out" />
             </div>
           </div>
         )}

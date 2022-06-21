@@ -5,6 +5,7 @@ import {
 } from '@ant-design/icons';
 import { Breadcrumb, Button, Dropdown, Menu, Space } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -36,7 +37,7 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
   const colorFilter = getAllColorExitInProduct(AllProduct);
   const sizeFilter = getAllSizeExitInProduct(AllProduct);
   const categoriesFilter = getAllCategoryExitInProduct(AllProduct);
-
+  const { t, i18n } = useTranslation();
   const menu = (
     <Menu
       items={[
@@ -98,7 +99,7 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
             <div>
               <FilterOutlined />
             </div>
-            <p>filter</p>
+            <p>{t('filter.filter_option')}</p>
           </div>
         </div>
         <div className="filter__container__filter__featuredbtn">
@@ -142,7 +143,7 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
               }}
             >
               <Space size="large">
-                Featured
+                {t('filter.feature')}
                 <DownOutlined />
               </Space>
             </Button>
@@ -153,7 +154,7 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
         <div className="filter-selection__container">
           <div className="filter-selection-item">
             <div className="filter-selection-item__title">
-              <h2 className="title">Categories</h2>
+              <h2 className="title">{t('filter.Categories')}</h2>
             </div>
             <div className="filter-selection-item__content">
               <ul className="filter-selection-item__items">
@@ -187,7 +188,7 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
           </div>
           <div className="filter-selection-item">
             <div className="filter-selection-item__title">
-              <h2 className="title">Color Option</h2>
+              <h2 className="title">{t('filter.color_option')}</h2>
               <ul className="filter-selection-item__cricles">
                 {colorFilter &&
                   colorFilter.map((color, index) => {
@@ -213,7 +214,7 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
           </div>
           <div className="filter-selection-item">
             <div className="filter-selection-item__title">
-              <h2 className="title">Size Option</h2>
+              <h2 className="title">{t('filter.size_option')}</h2>
             </div>
             <div className="filter-selection-item__size">
               <ul className="filter-selection-item__size__list">
@@ -247,7 +248,7 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
           </div>
           <div className="filter-selection-item">
             <div className="filter-selection-item__title">
-              <h2 className="title">Price Filter</h2>
+              <h2 className="title">{t('filter.price')}</h2>
             </div>
             <div className="filter-selection-item__content">
               <ul className="filter-selection-item__items">
