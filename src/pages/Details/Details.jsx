@@ -114,10 +114,11 @@ export default function Details() {
       image: product.image,
       color: values.color,
       sizes: values.sizes,
-      qty: values.qty ? values.qty : 1,
+      quantity: values.qty ? values.qty : 1,
       name: product.name,
     };
     dispatch(addToCart(submitData));
+    // console.log(submitData);
   };
   return (
     <Spin spinning={isLoading}>
@@ -171,7 +172,11 @@ export default function Details() {
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
-                  <Form.Item name="color" label="Color">
+                  <Form.Item
+                    rules={[{ required: true }]}
+                    name="color"
+                    label="Color"
+                  >
                     <Select onSelect={(item) => handleSelectColor(item)}>
                       {colors &&
                         colors.map((item, key) => (
@@ -181,7 +186,11 @@ export default function Details() {
                         ))}
                     </Select>
                   </Form.Item>
-                  <Form.Item name="sizes" label="Size">
+                  <Form.Item
+                    rules={[{ required: true }]}
+                    name="sizes"
+                    label="Size"
+                  >
                     <Select>
                       {sizes &&
                         sizes
@@ -193,7 +202,11 @@ export default function Details() {
                           ))}
                     </Select>
                   </Form.Item>
-                  <Form.Item name="qty" label="Quantity">
+                  <Form.Item
+                    rules={[{ required: true }]}
+                    name="qty"
+                    label="Quantity"
+                  >
                     <InputNumber min={1} />
                   </Form.Item>
                   <Button htmlType="submit">Add To Cart</Button>
