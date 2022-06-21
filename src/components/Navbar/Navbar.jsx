@@ -262,7 +262,7 @@ export default function Navbar() {
               <div className="cart_field__body__title">
                 <h3>Your shopping bag is empty</h3>
               </div>
-              <ButtonOfPage label="Shop Now" />
+              <ButtonOfPage to="collection" label="Shop Now" />
             </>
           ) : (
             <div className="cart_field__body__product">
@@ -290,7 +290,7 @@ export default function Navbar() {
               <div>{sum(cartItem.map((item) => item.price))}</div>
             </div>
             <div className="cart_field__footer__button">
-              <ButtonOfPage label="Check out" />
+              <ButtonOfPage to="checkout" label="Check out" />
             </div>
           </div>
         )}

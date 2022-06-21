@@ -11,7 +11,7 @@ export default function LazyLoaderProduct({ image, title }) {
       <div className="item-container">
         <div className="item-description">
           <h1>{title}</h1>
-          <ButtonOfPage label="Shop Now" />
+          <ButtonOfPage to="collection" label="Shop Now" />
         </div>
         <img className="item-container-image" src={image} />
         {/* <div>
