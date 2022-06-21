@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Card,
   Col,
@@ -10,14 +11,15 @@ import {
   Tag,
 } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { setColorTag } from '../../utils/SetTagColor/setTagColor';
 import './ProductDetailModal.scss';
 
 const ProductDetailModal = (props) => {
-  // eslint-disable-next-line react/prop-types
   const { isVisible, product, closeProductDetailModal } = props;
   const [bigImage, setBigImage] = useState(product.image[0].src);
+  const { t } = useTranslation();
 
   return (
     <Modal
@@ -60,7 +62,8 @@ const ProductDetailModal = (props) => {
                           return {
                             label: (
                               <span>
-                                Size: {size.size} - In Stock: {size.inStock}
+                                {t('admin.product.size')}: {size.size} -{' '}
+                                {t('admin.product.in_stock')}: {size.inStock}
                               </span>
                             ),
                             key: index,
