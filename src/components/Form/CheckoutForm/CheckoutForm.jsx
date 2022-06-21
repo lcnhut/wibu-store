@@ -86,9 +86,9 @@ const CheckoutForm = ({
           ]}
         >
           <Select placeholder="Select country" onChange={onChangeCountry}>
-            <Option value="vietnam">Vietnam</Option>
-            <Option value="usa">USA</Option>
-            <Option value="china">China</Option>
+            <Option value="Vietnam">Vietnam</Option>
+            <Option value="USA">USA</Option>
+            <Option value="China">China</Option>
           </Select>
         </Form.Item>
 
