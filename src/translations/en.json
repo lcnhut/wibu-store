@@ -101,7 +101,8 @@
     "address": "Address",
     "apartment": "Apartment, suite, etc. (optional)",
     "city": "City",
-    "postal_code": "Postal code"
+    "postal_code": "Postal code",
+    "price_formatted": "{{val, currency(currency: USD)}}"
   },
   "admin": {
     "product": {

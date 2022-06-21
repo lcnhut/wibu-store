@@ -99,7 +99,8 @@
     "address": "Địa chỉ",
     "apartment": "Căn hộ, phòng suite, v.v. (tùy chọn)",
     "city": "Thành phố",
-    "postal_code": "Mã bưu chính"
+    "postal_code": "Mã bưu chính",
+    "price_formatted": "{{val, currency(currency: VND)}}"
   },
   "admin": {
     "product": {
