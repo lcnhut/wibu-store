@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Badge, Image, InputNumber } from 'antd';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import { updateQuantity } from '../../store/Slice/product/productSlice';
@@ -9,7 +10,9 @@ import './CartItemCheckout.scss';
 const CartItemCheckout = ({ product, index }) => {
   const [quantity, setQuantity] = useState(product.quantity);
   const [price, setPrice] = useState(product.price * product.quantity);
+
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const onQuantityChange = (value) => {
     const productPrice = value * product.price;
@@ -46,7 +49,9 @@ const CartItemCheckout = ({ product, index }) => {
           </div>
         </div>
         <InputNumber onChange={onQuantityChange} min={1} value={quantity} />
-        <div className="cart__price">${price}</div>
+        <div className="cart__price">
+          {t('checkout.price_formatted', { val: price })}
+        </div>
       </div>
     </div>
   );

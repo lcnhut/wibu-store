@@ -1,36 +1,45 @@
 import { HomeOutlined } from '@ant-design/icons';
 import { Breadcrumb, message } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { invoiceApi } from '../../api';
 import { CartItemCheckout, CheckoutForm } from '../../components';
+import i18n from '../../i18n';
 import { clearCart } from '../../store/Slice/product/productSlice';
 import './Checkout.scss';
 
 const Checkout = () => {
+  const productData = useSelector((state) => state.product.cart);
+
   const [paymentValue, setPaymentValue] = useState(1);
   const [loadingButton, setLoadingButton] = useState(false);
-  const productData = useSelector((state) => state.product.cart);
+  const [productList, setProductList] = useState([]);
 
   const [subTotalPrice, setSubTotalPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [tax, setTax] = useState(0);
+
+  const EXCHANGE_RATE = 23000;
+  const TAX_PERCENT = 0.1;
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     let total = 0;
-    productData.forEach((product) => {
+    productList.forEach((product) => {
       total += product.quantity * product.price;
     });
     setSubTotalPrice(total);
-  }, [productData]);
+  }, [productList]);
 
   useEffect(() => {
-    setTax(subTotalPrice * 0.1);
+    setTax(subTotalPrice * TAX_PERCENT);
   }, [subTotalPrice]);
 
   useEffect(() => {
@@ -66,6 +75,21 @@ const Checkout = () => {
     }
   };
 
+  const currentLanguage = i18n.language;
+  useEffect(() => {
+    if (currentLanguage === 'vi') {
+      const formatData = productData.map((product) => {
+        return {
+          ...product,
+          price: product.price * EXCHANGE_RATE,
+        };
+      });
+      setProductList(formatData);
+    } else {
+      setProductList(productData);
+    }
+  }, []);
+
   return (
     <div className="checkout__container">
       <div className="checkout__content">
@@ -74,10 +98,10 @@ const Checkout = () => {
             <Breadcrumb.Item href="">
               <Link to="/">
                 <HomeOutlined />
-                <span style={{ marginLeft: '5px' }}>Home</span>
+                <span style={{ marginLeft: '5px' }}>{t('checkout.home')}</span>
               </Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item href="">Checkout</Breadcrumb.Item>
+            <Breadcrumb.Item href="">{t('checkout.checkout')}</Breadcrumb.Item>
           </Breadcrumb>
           <div className="checkout__form">
             <CheckoutForm
@@ -92,12 +116,11 @@ const Checkout = () => {
         <div className="checkout__summary__container">
           <div className="checkout__summary__wrapper">
             <div className="checkout__summary__product">
-              {productData.map((product, index) => {
+              {productList.map((product, index) => {
                 return (
                   <CartItemCheckout
                     key={index}
                     product={product}
-                    setSubTotalPrice={setSubTotalPrice}
                     index={index}
                   />
                 );
@@ -106,23 +129,27 @@ const Checkout = () => {
             <div className="checkout__summary__total">
               <div className="checkout__summary__calculate">
                 <div className="checkout__summary__line">
-                  <div>Subtotal</div>
+                  <div>{t('checkout.total')}</div>
                   <div className="checkout__summary__price">
-                    ${subTotalPrice}
+                    {t('checkout.price_formatted', { val: subTotalPrice })}
                   </div>
                 </div>
                 <div className="checkout__summary__line">
-                  <div>Shipping</div>
-                  <div>free</div>
+                  <div>{t('checkout.shipping_fee')}</div>
+                  <div>{t('checkout.free')}</div>
                 </div>
                 <div className="checkout__summary__line">
-                  <div>Taxes (estimated)</div>
-                  <div className="checkout__summary__price">${tax}</div>
+                  <div>{t('checkout.tax')}</div>
+                  <div className="checkout__summary__price">
+                    {t('checkout.price_formatted', { val: tax })}
+                  </div>
                 </div>
               </div>
               <div className="checkout__summary__total__price">
-                <div>Total</div>
-                <div className="final__price">${totalPrice}</div>
+                <div>{t('checkout.amount')}</div>
+                <div className="final__price">
+                  {t('checkout.price_formatted', { val: totalPrice })}
+                </div>
               </div>
             </div>
           </div>
