@@ -19,9 +19,30 @@ export default function Collection() {
   const getFilter = useSelector(getFilterProductSelector);
   const loading = useSelector(getLoadingOfProduct);
   const { t, i18n } = useTranslation();
+
   useEffect(() => {
     dispatch(getAllAsync());
   }, []);
+
+  const [productList, setProductList] = useState([]);
+  const EXCHANGE_RATE = 23231;
+
+  const currentLanguage = i18n.language;
+
+  useEffect(() => {
+    if (currentLanguage === 'vi') {
+      const formatData = getFilter.map((product) => {
+        return {
+          ...product,
+          price: product.price * EXCHANGE_RATE,
+        };
+      });
+      setProductList(formatData);
+    } else {
+      setProductList(getFilter);
+    }
+  }, [getFilter, currentLanguage]);
+
   function ShowFilter() {
     if (showProduct) {
       listProduct.current.style.transform = 'translateY(0)';
@@ -30,6 +51,7 @@ export default function Collection() {
     }
     setShowProduct(!showProduct);
   }
+
   return (
     <div className="collection__container">
       <div className="collection__container__title">
@@ -57,7 +79,7 @@ export default function Collection() {
       >
         <ListProduct
           view_list={filterValue}
-          data={getFilter}
+          data={productList}
           loading={loading}
         />
       </div>
