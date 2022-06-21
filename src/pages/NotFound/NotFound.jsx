@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import NotFoundGif from '../../assets/images/NotFoundGif.gif';
-import './NotFound.less';
+import './NotFound.scss';
 
 const NotFound = () => {
   return (
