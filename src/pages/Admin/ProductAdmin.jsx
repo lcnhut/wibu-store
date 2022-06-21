@@ -21,6 +21,7 @@ import {
   addProductAsync,
   deleteProductAsync,
   getAllAsync,
+  updateProductAsync,
 } from '../../store/Slice/product/productSlice';
 import { setColorTag } from '../../utils/SetTagColor/setTagColor';
 import './ProductAdmin.scss';

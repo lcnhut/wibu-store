@@ -1,10 +1,10 @@
 import { HomeOutlined } from '@ant-design/icons';
 import { Breadcrumb, message } from 'antd';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { invoiceApi } from '../../api';
 import { CartItemCheckout, CheckoutForm } from '../../components';
 import { clearCart } from '../../store/Slice/product/productSlice';
 import './Checkout.scss';
@@ -45,19 +45,25 @@ const Checkout = () => {
     setPaymentValue(e.target.value);
   };
 
-  const handleFinishInformation = (values) => {
-    setLoadingButton(true);
-    setTimeout(() => {
-      console.log({
-        ...values,
-        productData: productData,
+  const handleFinishInformation = async (values) => {
+    if (productData && productData.length > 0) {
+      setLoadingButton(true);
+      const response = await invoiceApi.add({
+        customerName: `${values.firstName} ${values.lastName}`,
+        address: `${values.apartment}, ${values.address}, ${values.city}, ${values.country}`,
+        contact: values.contact,
+        products: productData,
         totalPrice: totalPrice,
       });
-      setLoadingButton(false);
-      message.success('Order successfully!!!');
-      dispatch(clearCart());
-      navigate('/');
-    }, 3000);
+      if (response.status === 201) {
+        setLoadingButton(false);
+        dispatch(clearCart());
+        navigate('/');
+        message.success('Order successfully!!!');
+      }
+    } else {
+      message.error('You cart is empty!!!');
+    }
   };
 
   return (
