@@ -11,28 +11,34 @@
       "placeholder": "Tìm sản phẩm..."
     }
   },
+
   "error": {
     "not_choose_size": "Hãy chọn size của bạn!"
   },
   "price_product": "{{val, currency(currency: VND)}}",
   "price_product_null": "Liên hệ",
   "navbar": {
-    "home": "Trang chủ",
-    "collection": "Bộ sưu tập",
-    "brands": "Thương hiệu",
-    "categories": "Loại",
-    "sale": "Khuyến mãi",
-    "releases": "Hàng mới",
+    "home": "Home",
+    "collection": "Collection",
+    "brands": "Brands",
+    "categories": "Categories",
+    "sale": "Sale",
+    "releases": "Releases",
     "blog": "Blog",
     "locations": "Vị trí shop"
   },
   "product_list": {
-    "collection": "BỘ SƯU TẬP"
+    "shop_collection": "Shop The Collection"
   },
   "filter": {
-    "brand": "Thương hiệu",
-    "price": "Giá",
-    "size": "Size"
+    "filter_option": "Filter",
+    "feature": "Feature",
+    "brand": "Grand",
+    "price": "Price Filter",
+    "size": "Size Option",
+    "Categories": "Categories",
+    "color_option": "Colors",
+    "size_option": "Sizes"
   },
   "home": {
     "announcement": "Để tìm được size giày phù hợp. Vui lòng xem",

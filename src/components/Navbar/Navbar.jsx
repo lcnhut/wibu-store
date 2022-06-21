@@ -12,7 +12,7 @@ import { sum } from 'lodash';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import englandIcon from '../../../src/assets/images/englandIcon.jpg';
 import vietnamIcon from '../../assets/images/vietnamIcon.png';
@@ -27,6 +27,7 @@ export default function Navbar() {
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
   const { t, i18n } = useTranslation();
+  let navigate = useNavigate();
   const navbar = useRef();
   window.onscroll = () => {
     if (document.documentElement.scrollTop < 100) {
@@ -39,12 +40,20 @@ export default function Navbar() {
     {
       key: 'en',
       value: 'en',
-      icon: englandIcon,
+      label: (
+        <div>
+          <img src={englandIcon} alt="" style={{ width: '20px' }} />
+        </div>
+      ),
     },
     {
       key: 'vi',
       value: 'vi',
-      icon: vietnamIcon,
+      label: (
+        <div>
+          <img src={vietnamIcon} alt="" style={{ width: '20px' }} />
+        </div>
+      ),
     },
   ];
 
@@ -60,6 +69,9 @@ export default function Navbar() {
         <img
           src="https://cdn.shopify.com/s/files/1/0277/0472/1542/files/logo.png?v=1589452027"
           className="navbar__logo"
+          onClick={() => {
+            navigate('/');
+          }}
         />
         <ul className="navbar__links">
           <li className="navbar__link">
@@ -138,21 +150,7 @@ export default function Navbar() {
               </div>
             </div>
           </li>
-          <li className="navbar__link">
-            <NavLink to="/pages"> {t('cta.pages')}</NavLink>
-            <div className="navbar__dropdown">
-              <div className="navbar__dropdown__content">
-                <div className="navbar__dropdown__lists">
-                  <div className="title">SHOP LAYOUTS</div>
-                  <ul className="list__dropdown__items">
-                    <li className="list__dropdown__item">Pagination</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
+
           <li className="navbar__link">
             <NavLink to="/checkout">{t('cta.checkout')}</NavLink>
             <div className="navbar__dropdown">
@@ -176,6 +174,7 @@ export default function Navbar() {
           <div>
             <HeartOutlined style={{ fontSize: 24 }} />
           </div>
+
           <div
             onClick={() => {
               SetOnActive(!onActive);
@@ -271,7 +270,7 @@ export default function Navbar() {
               <div className="cart_field__body__title">
                 <h3>Your shopping bag is empty</h3>
               </div>
-              <ButtonOfPage label="Shop Now" />
+              <ButtonOfPage path="collection" label="Shop Now" />
             </>
           ) : (
             <div className="cart_field__body__product">
@@ -299,7 +298,7 @@ export default function Navbar() {
               <div>{sum(cartItem.map((item) => item.price))}</div>
             </div>
             <div className="cart_field__footer__button">
-              <ButtonOfPage label="Check out" />
+              <ButtonOfPage path="checkout" label="Check out" />
             </div>
           </div>
         )}

@@ -1,10 +1,12 @@
 import 'animate.css';
 import { Carousel as CarouselAnt } from 'antd';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './styles.scss';
 
 const Carousel = () => {
+  const navigate = useNavigate();
   const data = [
     {
       img: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/files/slide2.2.jpg?v=1589334520',
@@ -47,6 +49,9 @@ const Carousel = () => {
               <button
                 style={{ padding: '10px 35px' }}
                 className="carousel__content__btn"
+                onClick={() => {
+                  navigate('/collection');
+                }}
               >
                 SHOP NOW
               </button>

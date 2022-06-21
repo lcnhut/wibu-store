@@ -34,7 +34,9 @@ export default function Product() {
         ></LazyLoaderProduct>
         {/* </Space> */}
       </div>
-      <ListProduct view_list={4} data={AllProduct} loading={loading} />
+      <div className="list_product">
+        <ListProduct view_list={4} data={AllProduct} loading={loading} />
+      </div>
     </>
   );
 }

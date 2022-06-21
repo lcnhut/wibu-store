@@ -27,12 +27,16 @@
     "locations": "Vị trí shop"
   },
   "product_list": {
-    "collection": "BỘ SƯU TẬP"
+    "shop_collection": "BỘ SƯU TẬP"
   },
   "filter": {
+    "filter_option": "Bộ lọc",
+    "feature": "Chức năng",
     "brand": "Thương hiệu",
     "price": "Giá",
-    "size": "Size"
+    "Categories": "Danh mục",
+    "color_option": "Tùy chọn màu",
+    "size_option": "Size"
   },
   "home": {
     "announcement": "Để tìm được size giày phù hợp. Vui lòng xem",

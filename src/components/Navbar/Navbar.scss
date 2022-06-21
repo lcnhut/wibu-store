@@ -20,17 +20,17 @@ header {
 }
 .postionfixed {
   position: fixed;
-  z-index: 15;
+  z-index: 20;
   background-color: #ffff;
 }
 .navbar__logo {
   width: 100%;
-  background-repeat: none;
-}
-.navbar__logo {
   width: 150px;
   height: 65px;
+  background-repeat: none;
+  cursor: pointer;
 }
+
 .navbar__links {
   display: flex;
   list-style-type: none;

@@ -1,6 +1,8 @@
 import 'animate.css';
 import { Col, Pagination, Row, Skeleton, Space } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 import SingleProduct from '../SingleProduct';
 import './styles.scss';
@@ -9,6 +11,7 @@ const ListProduct = (props) => {
   const ListData = useRef();
   let { view_list, data, loading } = props;
   const [loadingChangeProduct, setLoadingChangeProduct] = useState(loading);
+  const { t, i18n } = useTranslation();
   const [numPagination, setNumPagination] = useState(1);
 
   useEffect(() => {
@@ -23,7 +26,7 @@ const ListProduct = (props) => {
     <div className="collection__container">
       <Row className="listproduct__title__wrapper">
         <Col className="listproduct__title__container" span={24}>
-          <h1>Shop The Collection</h1>
+          <h1>{t('product_list.shop_collection')}</h1>
           <div className="listproduct__title__line"></div>
         </Col>
       </Row>

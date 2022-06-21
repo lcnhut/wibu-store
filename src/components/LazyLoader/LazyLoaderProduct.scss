@@ -47,10 +47,10 @@
         box-sizing: inherit;
         content: '';
         position: absolute;
-        width: 90%;
-        height: calc(90% - 10px);
-        top: 25px;
-        left: 40px;
+        // width: 90%;
+        // height: calc(90% - 10px);
+        // top: 25px;
+        // left: 40px;
         background: transparent;
         // transform: translate(50%, 50%);
         transform: translateX(1rem);
@@ -61,11 +61,11 @@
         box-sizing: inherit;
         content: '';
         position: absolute;
-        width: calc(90% - 10px);
-        height: 90%;
-        top: 20px;
-        background: transparent;
-        left: 45px;
+        // width: calc(90% - 10px);
+        // height: 90%;
+        // top: 20px;
+        // background: transparent;
+        // left: 45px;
         // transform: translate(50%, 50%);
         transform-origin: center; // Ensure scaling is done from the center (expands outwards)
       }
