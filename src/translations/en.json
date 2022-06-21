@@ -1,0 +1,102 @@
+{
+  "cta": {
+    "shop": "shop",
+    "home": "Home",
+    "collection": "collection",
+    "pages": "pages",
+    "checkout": "checkout"
+  },
+  "field": {
+    "search_nav": {
+      "placeholder": "Tìm sản phẩm..."
+    }
+  },
+  "error": {
+    "not_choose_size": "Hãy chọn size của bạn!"
+  },
+  "price_product": "{{val, currency(currency: VND)}}",
+  "price_product_null": "Liên hệ",
+  "navbar": {
+    "home": "Trang chủ",
+    "collection": "Bộ sưu tập",
+    "brands": "Thương hiệu",
+    "categories": "Loại",
+    "sale": "Khuyến mãi",
+    "releases": "Hàng mới",
+    "blog": "Blog",
+    "locations": "Vị trí shop"
+  },
+  "product_list": {
+    "collection": "BỘ SƯU TẬP"
+  },
+  "filter": {
+    "brand": "Thương hiệu",
+    "price": "Giá",
+    "size": "Size"
+  },
+  "home": {
+    "announcement": "Để tìm được size giày phù hợp. Vui lòng xem",
+    "announcement_link": "hướng dẫn chọn size của chúng tôi",
+    "new_arrival": "SẢN PHẨM MỚI VỀ",
+    "best_seller": "SẢN PHẨM BÁN CHẠY",
+    "new_releases": "SẢN PHẨM MỚI",
+    "feature_blog": "BÀI VIẾT HÀNG ĐẦU"
+  },
+  "footer": {
+    "contact_info": "Thông tin liên lạc",
+    "address": "Địa chỉ: Phường Cái Khế, Quận Ninh Kiều, Thành phố Cần Thơ",
+    "hotline": "Số điện thoại",
+    "email": "Email: dangkhoa.duong@nfq.asia",
+    "work_time": "Thời gian làm việc",
+    "customer_support": "Hỗ trợ khách hàng",
+    "sign_email": "Đăng ký nhận thông tin mới nhất để nhận khuyến mãi sớm nhất."
+  },
+  "detail_product": {
+    "description": "Mô tả",
+    "shipping": "Giao hàng",
+    "comments": "Bình luận",
+    "description_content": "{{name}} kết hợp giữa phong cách thời trang và đường phố để mang đến cho bạn một đôi giày sneaker hầm hố. Phần trên bằng chất liệu hỗn hợp có các tấm lưới trong suốt giúp thoáng khí, trong khi phần gót có thể thu gọn lại mang đến nét nữ tính cho Nike b-ball.",
+    "detail": "Chi tiết sản phẩm",
+    "package_dimensions": "Kích thước gói hàng",
+    "date_first_available": "Ngày có sẵn đầu tiên",
+    "manufacturer": "Nhà chế tạo",
+    "item_model_number": "Số mô hình mặt hàng",
+    "weight": "Trọng lượng",
+    "no_support": "Không hỗ trợ",
+    "related_items": "Sản phẩm tương tự",
+    "products_in_stock": "Còn {{quantity}} sản phẩm trong kho"
+  },
+  "checkout": {
+    "empty": "Giỏ hàng của bạn trống",
+    "home": "TRANG CHỦ",
+    "cart": "GIỎ HÀNG",
+    "back_home": "Về trang chủ",
+    "your_cart": "GIỎ HÀNG CỦA BẠN",
+    "total": "TỔNG CỘNG:",
+    "image": "Hình ảnh",
+    "name": "Tên sản phẩm",
+    "price": "Giá",
+    "quantity": "Số lượng",
+    "amount": "Thành giá",
+    "payment_methods": "CÁCH THỨC THANH TOÁN",
+    "cash_direct": "Thanh toán trực tiếp tại cửa hàng",
+    "cash_direct_description1": "- Quý khách mua hàng tại shop vui lòng thanh toán trực tiếp tại cửa hàng:",
+    "cash_direct_description2": "Địa chỉ: Phường Cái Khế, Quận Ninh Kiều, TP Cần Thơ",
+    "cash_direct_description3": "- Ngay sau khi bạn hoàn tất thanh toán, nhân viên sẽ gửi hóa đơn mua hàng cho bạn.",
+    "cash_deli": "Thanh toán khi nhận hàng",
+    "cash_deli_description1": "- Quý khách thanh toán cho nhân viên giao hàng toàn bộ hoặc toàn bộ giá trị đơn hàng đã mua (nếu đã đặt cọc)",
+    "cash_deli_description2": "- Hình thức thanh toán này chỉ áp dụng cho các lệnh nhờ thu.",
+    "banking": "Chuyển khoản",
+    "banking_description": "- Sau khi đặt hàng thành công vui lòng liên hệ hotline: 0833495422",
+    "deli_info": "THÔNG TIN GIAO HÀNG:",
+    "input_name": "Nhập tên của bạn...",
+    "input_phone": "Nhập số điện thoại...",
+    "input_email": "Nhập email...",
+    "input_address": "Nhập địa chỉ của bạn...",
+    "input_requirements": "Yêu cầu khác... (tùy chọn)",
+    "checkout": "THANH TOÁN",
+    "input_name_requirement": "Vui lòng nhập tên!",
+    "input_phone_requirement": "Vui lòng nhập số điện thoại!",
+    "input_address_requirement": "Vui lòng nhập địa chỉ!"
+  }
+}
