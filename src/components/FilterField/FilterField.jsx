@@ -9,13 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   getAllProduct,
-  getFilterCategoriesProduct,
   getFilterColor,
-  getFilterColorProduct,
-  getFilterPriceProduct,
-  getFilterProductSelector,
   getFilterSize,
-  getFilterSizeProduct,
 } from '../../store/Selector/product/filterProductSelector';
 import {
   addFilterCategoriesForProduct,

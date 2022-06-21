@@ -25,7 +25,7 @@ export default function Collection() {
     if (showProduct) {
       listProduct.current.style.transform = 'translateY(0)';
     } else {
-      listProduct.current.style.transform = 'translateY(-280px)';
+      listProduct.current.style.transform = 'translateY(-290px)';
     }
     setShowProduct(!showProduct);
   }

@@ -11,6 +11,7 @@
       "placeholder": "Tìm sản phẩm..."
     }
   },
+
   "error": {
     "not_choose_size": "Hãy chọn size của bạn!"
   },
