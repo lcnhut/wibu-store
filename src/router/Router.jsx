@@ -7,6 +7,7 @@ import {
   Collection,
   Details,
   Invoice,
+  NotFound,
   Product,
   ProductAdmin,
 } from '../pages/';
@@ -32,7 +33,7 @@ export const Router = () => {
           </>
         )}
 
-        <Route path="*" element={<div>Not found</div>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

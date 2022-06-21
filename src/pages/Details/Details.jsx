@@ -18,14 +18,13 @@ import { set } from 'lodash';
 import { useForm } from 'rc-field-form';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import {
   addToCart,
   getByIdAsync,
 } from '../../store/Slice/product/productSlice';
-import './index.less';
-import './styles.scss';
+import './Details.scss';
 
 const { Option } = Select;
 export default function Details() {
@@ -49,8 +48,10 @@ export default function Details() {
     form.setFieldsValue({
       color: selectedColor,
       qty: qty,
+      size: sizes[0],
     });
-  }, [selectedColor]);
+  }, [selectedColor, sizes]);
+  console.log(sizes[0]);
   useEffect(() => {
     product.colors &&
       product.colors.forEach((cl) => {
@@ -85,13 +86,6 @@ export default function Details() {
         console.log('Validate Failed:', info);
       });
   };
-
-  useEffect(() => {
-    form.setFieldsValue({
-      sizes: sizes[0],
-    });
-  }, [sizes]);
-
   const data = [
     {
       Title: 'Why Choose Us ?',
@@ -117,7 +111,7 @@ export default function Details() {
       image: product.image,
       color: values.color,
       sizes: values.sizes,
-      qty: values.qty ? values.qty : 1,
+      quantity: values.qty ? values.qty : 1,
       name: product.name,
     };
     dispatch(addToCart(submitData));
@@ -128,7 +122,9 @@ export default function Details() {
         {product && (
           <div className="container-page" style={{ padding: '0 7vw' }}>
             <Space className="details__page__title__container">
-              <h1 className="details__page__title__h1">Home</h1>
+              <Link to="/">
+                <h1 className="details__page__title__h1">Home</h1>
+              </Link>
               <h3 className="details__page__title__h3"> &gt; {product.name}</h3>
             </Space>
             <Row gutter={[26, 0]}>
@@ -136,7 +132,7 @@ export default function Details() {
                 <Carousel dotPosition="bottom" autoplay autoplaySpeed={1500}>
                   {product.image ? (
                     product.image.map((img, key) => (
-                      <Image key={key} src={img.src} />
+                      <Image preview={false} key={key} src={img.src} />
                     ))
                   ) : (
                     <h1>loading</h1>
@@ -172,7 +168,11 @@ export default function Details() {
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
                 >
-                  <Form.Item name="color" label="Color">
+                  <Form.Item
+                    rules={[{ required: true }]}
+                    name="color"
+                    label="Color"
+                  >
                     <Select onSelect={(item) => handleSelectColor(item)}>
                       {colors &&
                         colors.map((item, key) => (
@@ -182,7 +182,11 @@ export default function Details() {
                         ))}
                     </Select>
                   </Form.Item>
-                  <Form.Item name="sizes" label="Size">
+                  <Form.Item
+                    rules={[{ required: true }]}
+                    name="size"
+                    label="Size"
+                  >
                     <Select>
                       {sizes &&
                         sizes
@@ -194,7 +198,11 @@ export default function Details() {
                           ))}
                     </Select>
                   </Form.Item>
-                  <Form.Item name="qty" label="Quantity">
+                  <Form.Item
+                    rules={[{ required: true }]}
+                    name="qty"
+                    label="Quantity"
+                  >
                     <InputNumber min={1} />
                   </Form.Item>
                   <Button htmlType="submit">Add To Cart</Button>

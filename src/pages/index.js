@@ -3,6 +3,15 @@ import Checkout from './Checkout/Checkout';
 import Collection from './Collection/Collection';
 import Details from './Details/Details';
 import Invoice from './Invoice/Invoice';
+import NotFound from './NotFound/NotFound';
 import Product from './Product/Product';
 
-export { Product, ProductAdmin, Collection, Details, Checkout, Invoice };
+export {
+  Product,
+  ProductAdmin,
+  Collection,
+  Details,
+  Checkout,
+  Invoice,
+  NotFound,
+};
