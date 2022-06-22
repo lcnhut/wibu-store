@@ -6,6 +6,22 @@
     "pages": "pages",
     "checkout": "checkout"
   },
+  "details__page": {
+    "home": "Home",
+    "no_review": "No review",
+    "color": "Color",
+    "size": "Size",
+    "quantity": "Quantity",
+    "add_to_cart": "Add to cart",
+    "why_choose_us": "Why choose us",
+    "return": "Return",
+    "shipping": "Shipping",
+    "why_choose_us_description": "Official Herschel stockist Australian warranty assistance & support Australian shipping & returns.Customer first experience environmentally focused",
+    "return_description": "Return this product within 100 days if you change your mind. Get a refund/replacement & free return shipping if it arrives damaged or not as described",
+    "shipping_description": "Free if stated near price. $9.95 Australia wide (up to 10 items). $18.95 for Express Post (generally 1 business day).",
+    "hurry": "HURRY! ONLY {{inStock}} LEFT IN STOCK",
+    "price_product": "{{prices}} USD"
+  },
   "field": {
     "search_nav": {
       "placeholder": "Tìm sản phẩm..."

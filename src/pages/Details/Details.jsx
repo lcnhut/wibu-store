@@ -17,6 +17,7 @@ import {
 import { set } from 'lodash';
 import { useForm } from 'rc-field-form';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
@@ -28,6 +29,7 @@ import './Details.scss';
 
 const { Option } = Select;
 export default function Details() {
+  const { t, i18n } = useTranslation();
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -69,7 +71,7 @@ export default function Details() {
       }
     });
   };
-
+  console.log(i18n.language);
   const onFinish = () => {
     form
       .validateFields()
@@ -87,19 +89,16 @@ export default function Details() {
   };
   const data = [
     {
-      Title: 'Why Choose Us ?',
-      content:
-        'Official Herschel stockist Australian warranty assistance & support Australian shipping & returns.Customer first experience environmentally focused',
+      Title: 'why_choose_us',
+      content: 'why_choose_us_description',
     },
     {
-      Title: 'Return',
-      content:
-        'Return this product within 100 days if you change your mind. Get a refund/replacement & free return shipping if it arrives damaged or not as described',
+      Title: 'return',
+      content: 'return_description',
     },
     {
-      Title: 'Shipping',
-      content:
-        'Free if stated near price. $9.95 Australia wide (up to 10 items). $18.95 for Express Post (generally 1 business day).',
+      Title: 'shipping',
+      content: 'shipping_description',
     },
   ];
 
@@ -123,7 +122,9 @@ export default function Details() {
           <div className="container-page" style={{ padding: '0 7vw' }}>
             <Space className="details__page__title__container">
               <Link to="/">
-                <h1 className="details__page__title__h1">Home</h1>
+                <h1 className="details__page__title__h1">
+                  {t('details__page.home')}
+                </h1>
               </Link>
               <h3 className="details__page__title__h3"> &gt; {product.name}</h3>
             </Space>
@@ -142,14 +143,21 @@ export default function Details() {
               <Col xl={{ span: 9 }} lg={{ span: 8 }} md={{ span: 12 }}>
                 <Space direction="vertical">
                   <h1>{product.name}</h1>
-                  <h3 style={{ color: '#CEA384' }}>${product.price} USD</h3>
+                  <h3 style={{ color: '#CEA384' }}>
+                    {t(`details__page.price_product`, {
+                      prices:
+                        i18n.language === 'vi'
+                          ? product.price * 23000
+                          : product.price,
+                    })}
+                  </h3>
                   <Space style={{ color: '#CEA384' }}>
                     <StarOutlined />
                     <StarOutlined />
                     <StarOutlined />
                     <StarOutlined />
                     <StarOutlined />
-                    No reviews
+                    {t('details__page.no_review')}
                   </Space>
                 </Space>
                 <Divider />
@@ -160,7 +168,7 @@ export default function Details() {
                   Add a touch of glam to any sunny-day ensemble with these
                   sparkly sliders. The buckled straps are drenched in teeny
                   diamantes and the footbeds are moulded for comfort.
-                  <h1>HURRY! ONLY {countQty} LEFT IN STOCK</h1>
+                  <h1>{t(`details__page.hurry`, { inStock: countQty })}</h1>
                 </Space>
                 <Form
                   onFinish={onFinish}
@@ -171,7 +179,7 @@ export default function Details() {
                   <Form.Item
                     rules={[{ required: true }]}
                     name="color"
-                    label="Color"
+                    label={t('details__page.color')}
                   >
                     <Select onSelect={(item) => handleSelectColor(item)}>
                       {colors &&
@@ -185,7 +193,7 @@ export default function Details() {
                   <Form.Item
                     rules={[{ required: true }]}
                     name="size"
-                    label="Size"
+                    label={t('details__page.size')}
                   >
                     <Select>
                       {sizes &&
@@ -201,11 +209,13 @@ export default function Details() {
                   <Form.Item
                     rules={[{ required: true }]}
                     name="qty"
-                    label="Quantity"
+                    label={t('details__page.quantity')}
                   >
                     <InputNumber min={1} />
                   </Form.Item>
-                  <Button htmlType="submit">Add To Cart</Button>
+                  <Button htmlType="submit">
+                    {t('details__page.add_to_cart')}
+                  </Button>
                 </Form>
               </Col>
               <Col xl={{ span: 5 }} lg={{ span: 8 }} md={{ span: 24 }}>
@@ -213,8 +223,11 @@ export default function Details() {
                   {data.map((item, key) => (
                     <Col key={key} sm={8} md={8} lg={24} xl={24}>
                       <Space style={{ textAlign: 'center' }}>
-                        <Card hoverable title={item.Title}>
-                          {item.content}
+                        <Card
+                          hoverable
+                          title={t(`details__page.${item.Title}`)}
+                        >
+                          {t(`details__page.${item.content}`)}
                         </Card>
                       </Space>
                     </Col>
