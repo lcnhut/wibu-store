@@ -15,6 +15,7 @@ import {
   Select,
 } from 'antd';
 import { React, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -27,7 +28,7 @@ const { Option } = Select;
 const SingleProduct = ({ product }) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-
+  const { t, i18n } = useTranslation();
   const [visibleModalAddToCart, setVisibleModalAddToCart] = useState(false);
   const [singleProduct, setSingleProduct] = useState({});
 
@@ -146,7 +147,7 @@ const SingleProduct = ({ product }) => {
                 form={form}
                 onFinish={onFinish}
               >
-                <Form.Item name="color" label="Color">
+                <Form.Item name="color" label={t('filter.color_option')}>
                   <Select
                     style={{ width: '100%' }}
                     onSelect={(item) => onChangeColor(item)}
@@ -161,7 +162,7 @@ const SingleProduct = ({ product }) => {
                   </Select>
                 </Form.Item>
 
-                <Form.Item name="size" label="Size">
+                <Form.Item name="size" label={t('filter.size_option')}>
                   <Select style={{ width: '100%' }}>
                     {sizeOption
                       ? sizeOption
@@ -176,7 +177,6 @@ const SingleProduct = ({ product }) => {
                       : ''}
                   </Select>
                 </Form.Item>
-
                 <div
                   style={{
                     display: 'flex',
@@ -184,7 +184,7 @@ const SingleProduct = ({ product }) => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Form.Item name="quantity" label="Quantity">
+                  <Form.Item name="quantity" label={t('checkout.add_to_cart')}>
                     <InputNumber min={1} />
                   </Form.Item>
 
@@ -192,7 +192,7 @@ const SingleProduct = ({ product }) => {
                     <ShoppingCartOutlined
                       style={{ fontSize: '20px', marginRight: '5px' }}
                     />
-                    Add to cart
+                    {t('checkout.add_to_cart')}
                   </button>
                 </div>
               </Form>

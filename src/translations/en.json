@@ -38,7 +38,7 @@
     "size": "Size Option",
     "Categories": "Categories",
     "color_option": "Colors",
-    "size_option": "Sizes"
+    "size_option": "Size"
   },
   "home": {
     "announcement": "Để tìm được size giày phù hợp. Vui lòng xem",
@@ -80,6 +80,7 @@
     "your_cart": "GIỎ HÀNG CỦA BẠN",
     "total": "TỔNG CỘNG:",
     "image": "Hình ảnh",
+    "shop_now": "Shop now",
     "name": "Tên sản phẩm",
     "price": "Giá",
     "quantity": "Số lượng",

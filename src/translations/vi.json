@@ -47,6 +47,10 @@
     "feature_blog": "BÀI VIẾT HÀNG ĐẦU"
   },
   "footer": {
+    "infomation": "Thông tin",
+    "About": "Về chúng tôi",
+    "follow_us": "Theo Dõi",
+
     "contact_info": "Thông tin liên lạc",
     "address": "Địa chỉ: Phường Cái Khế, Quận Ninh Kiều, Thành phố Cần Thơ",
     "hotline": "Số điện thoại",
@@ -76,9 +80,11 @@
     "cart": "GIỎ HÀNG",
     "back_home": "Về trang chủ",
     "your_cart": "GIỎ HÀNG CỦA BẠN",
+    "add_to_cart": "Thêm vào giỏ hàng",
     "total": "TỔNG CỘNG:",
     "image": "Hình ảnh",
     "name": "Tên sản phẩm",
+    "shop_now": "Mua Ngay",
     "price": "Giá",
     "quantity": "Số lượng",
     "amount": "Thành giá",
