@@ -6,12 +6,12 @@ import './ButtonOfPage.scss';
 const ButtonOfPage = (props) => {
   // eslint-disable-next-line react/prop-types
   let navigate = useNavigate();
-  const { label } = props;
+  const { label, path } = props;
   return (
     <button
       className="Button-of-page"
       onClick={() => {
-        navigate('/checkout', { replace: true });
+        navigate(`/${path}`, { replace: true });
       }}
     >
       {label}

@@ -1,8 +1,11 @@
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, Form, Input, InputNumber } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const DynamicColorField = () => {
+  const { t } = useTranslation();
+
   return (
     <Form.List name="colors">
       {(fields, { add, remove }) => {
@@ -11,7 +14,7 @@ export const DynamicColorField = () => {
             {fields.map((field, index) => (
               <div key={field.key}>
                 <Divider>
-                  Color {index + 1}
+                  {t('admin.product.color') + ' '} {index + 1}
                   {index > 0 ? (
                     <span>
                       <Button
@@ -26,21 +29,21 @@ export const DynamicColorField = () => {
                 </Divider>
                 <Form.Item
                   name={[index, 'color']}
-                  label="Color"
+                  label={t('admin.product.color')}
                   rules={[{ required: true }]}
                 >
                   <Input />
                 </Form.Item>
                 <Form.Item
                   name={[index, 'size']}
-                  label="Size"
+                  label={t('admin.product.size')}
                   rules={[{ required: true }]}
                 >
                   <InputNumber min={1} />
                 </Form.Item>
                 <Form.Item
                   name={[index, 'quantity']}
-                  label="Quantity"
+                  label={t('admin.product.quantity')}
                   rules={[{ required: true }]}
                 >
                   <InputNumber min={1} />
@@ -54,7 +57,7 @@ export const DynamicColorField = () => {
                 onClick={() => add()}
                 style={{ width: '60%' }}
               >
-                <PlusOutlined /> Add Color
+                <PlusOutlined /> {t('admin.product.add_color')}
               </Button>
             </Form.Item>
           </div>

@@ -10,6 +10,7 @@ import {
   Tag,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -48,6 +49,8 @@ const ProductAdmin = () => {
   const [productToUpdate, setProductToUpdate] = useState();
   const [productDetail, setProductDetail] = useState({});
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     dispatch(getAllAsync());
   }, []);
@@ -59,7 +62,7 @@ const ProductAdmin = () => {
 
   const columns = [
     {
-      title: 'Name',
+      title: t('admin.product.name'),
       dataIndex: 'name',
       key: 'name',
       render: (_, record) => {
@@ -75,7 +78,7 @@ const ProductAdmin = () => {
       },
     },
     {
-      title: 'Image',
+      title: t('admin.product.image'),
       dataIndex: 'image',
       key: 'image',
       render: (_, record) => {
@@ -89,22 +92,28 @@ const ProductAdmin = () => {
       },
     },
     {
-      title: 'Price',
+      title: t('admin.product.price'),
       dataIndex: 'price',
       key: 'price',
       sorter: (a, b) => a.price - b.price,
     },
     {
-      title: 'In Stock',
+      title: t('admin.product.in_stock'),
       dataIndex: 'inStock',
       key: 'inStock',
       sorter: (a, b) => a.inStock - b.inStock,
       render: (_, record) => {
         return (
           <>
-            <b>Total: {record.inStock}</b>
+            <b>
+              {t('admin.product.total')}: {record.inStock}
+            </b>
             <Collapse ghost>
-              <Panel header={<Tag color="green">In Stock</Tag>}>
+              <Panel
+                header={
+                  <Tag color="green">{t('admin.product.in_stock_tag')}</Tag>
+                }
+              >
                 {record.colors.map((colorItem, index) => {
                   let isStock = false;
                   colorItem.sizes.forEach((sizeItem) => {
@@ -131,7 +140,7 @@ const ProductAdmin = () => {
       },
     },
     {
-      title: 'Action',
+      title: t('admin.product.action'),
       dataIndex: 'id',
       key: 'id',
       render: (id) => {
@@ -152,7 +161,7 @@ const ProductAdmin = () => {
               type="primary"
               ghost
             >
-              Edit
+              {t('admin.product.edit')}
             </Button>
             <Button
               onClick={() => {
@@ -162,7 +171,7 @@ const ProductAdmin = () => {
               type="danger"
               ghost
             >
-              Delete
+              {t('admin.product.delete')}
             </Button>
           </Space>
         );
@@ -254,7 +263,7 @@ const ProductAdmin = () => {
           onChange={(e) => onSearch(e.target.value)}
         />
         <Button type="primary" ghost onClick={showModalAddForm}>
-          Add new product
+          {t('admin.product.add_new_product')}
         </Button>
         <AddProductForm
           handleSubmitForm={handleSubmitAddForm}
@@ -275,12 +284,12 @@ const ProductAdmin = () => {
           />
         )}
         <Modal
-          title="Delete Product"
+          title={t('admin.product.delete_modal_label')}
           visible={visibleDeleteModal}
           onOk={handleDelete}
           onCancel={handleCancelDelete}
         >
-          This product will be delete?
+          {t('admin.product.delete_modal_content')}
         </Modal>
         {productToUpdate && (
           <UpdateProductForm

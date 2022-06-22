@@ -3,6 +3,7 @@ import { Input, Spin, Table } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getAllInvoiceAsync } from '../../store/Slice/invoice/invoiceSlice';
@@ -14,6 +15,8 @@ const Invoice = () => {
   const [invoice, setInvoice] = useState(invoiceData);
   const [searchValue, setSearchValue] = useState('');
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     dispatch(getAllInvoiceAsync());
   }, []);
@@ -24,28 +27,28 @@ const Invoice = () => {
 
   const columns = [
     {
-      title: 'Customer',
+      title: t('admin.invoice.customer_name'),
       dataIndex: 'customerName',
       key: 'customerName',
     },
     {
-      title: 'Address',
+      title: t('admin.invoice.address'),
       dataIndex: 'address',
       key: 'address',
     },
     {
-      title: 'Contact',
+      title: t('admin.invoice.contact'),
       dataIndex: 'contact',
       key: 'contact',
     },
     {
-      title: 'Price',
+      title: t('admin.invoice.total_price'),
       dataIndex: 'price',
       key: 'price',
       sorter: (a, b) => a.price - b.price,
     },
     {
-      title: 'Order Date',
+      title: t('admin.invoice.order_date'),
       dataIndex: 'createdAt',
       key: 'createdAt',
       render: (_, record) => {
@@ -53,7 +56,7 @@ const Invoice = () => {
       },
     },
     {
-      title: 'Status',
+      title: t('admin.invoice.status'),
       dataIndex: 'status',
       key: 'status',
       render: (_, record) => {
@@ -85,7 +88,7 @@ const Invoice = () => {
       <div className="admin__page">
         <Input
           className="search__input"
-          placeholder="Search product"
+          placeholder={t('admin.invoice.search_placehoder')}
           value={searchValue}
           onChange={(e) => onSearch(e.target.value)}
         />

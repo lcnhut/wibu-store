@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 import { Form, Input, InputNumber, Modal } from 'antd';
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import formatSubmitData from '../../../utils/FormatSubmitData/formatSubmitData';
 import { DynamicColorField } from '../../DynamicField/DynamicColorField';
 import { DynamicImageField } from '../../DynamicField/DynamicImageField';
 
 const UpdateProductForm = (props) => {
+  const { t } = useTranslation();
   const [form] = Form.useForm();
   const {
     visibleUpdateForm,
@@ -46,7 +48,7 @@ const UpdateProductForm = (props) => {
     <>
       {productToUpdate && (
         <Modal
-          title="Update Product"
+          title={t('admin.product.update_modal_label')}
           visible={visibleUpdateForm}
           onOk={() => {
             form
@@ -73,7 +75,7 @@ const UpdateProductForm = (props) => {
           >
             <Form.Item
               name="name"
-              label="Name"
+              label={t('admin.product.name')}
               rules={[
                 {
                   required: true,
@@ -84,7 +86,7 @@ const UpdateProductForm = (props) => {
             </Form.Item>
             <Form.Item
               name="price"
-              label="Price"
+              label={t('admin.product.price')}
               rules={[
                 {
                   required: true,
@@ -94,7 +96,10 @@ const UpdateProductForm = (props) => {
               <InputNumber />
             </Form.Item>
             <DynamicImageField />
-            <Form.Item name="description" label="Description">
+            <Form.Item
+              name="description"
+              label={t('admin.product.description')}
+            >
               <Input />
             </Form.Item>
             <DynamicColorField
