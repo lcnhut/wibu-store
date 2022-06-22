@@ -7,20 +7,18 @@ import {
   Divider,
   Form,
   Image,
-  Input,
   InputNumber,
   Row,
   Select,
   Space,
   Spin,
 } from 'antd';
-import { set } from 'lodash';
-import { useForm } from 'rc-field-form';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
+import { productApi } from '../../api';
 import {
   addToCart,
   getByIdAsync,
@@ -33,29 +31,41 @@ export default function Details() {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [qty, setQty] = useState(1);
+  const [qty] = useState(1);
   const [countQty, setCountQty] = useState(1);
 
-  const product = useSelector((state) => state.product.singleProduct);
+  const [product, setProduct] = useState();
+  const [productData, setProductData] = useState();
   const isLoading = useSelector((state) => state.product.isLoading);
-  useEffect(() => {
-    dispatch(getByIdAsync(id));
-  }, [id]);
 
-  const colors = product.colors && product.colors.map((color) => color.color);
+  const colors =
+    productData &&
+    productData.colors &&
+    productData.colors.map((color) => color.color);
   const selectedColor = colors && colors[0];
   const [sizes, setSizes] = useState([]);
 
   useEffect(() => {
-    form.setFieldsValue({
-      color: selectedColor,
-      qty: qty,
-      size: sizes[0],
-    });
-  }, [selectedColor, sizes]);
+    dispatch(getByIdAsync(id));
+    const getProduct = async (id) => {
+      const response = await productApi.getById(id);
+      setProduct(response.data);
+    };
+    getProduct(id);
+  }, []);
+
   useEffect(() => {
-    product.colors &&
-      product.colors.forEach((cl) => {
+    product &&
+      form.setFieldsValue({
+        color: product.colors[0].color,
+        size: product.colors[0].sizes[0].size,
+      });
+  }, [product]);
+
+  useEffect(() => {
+    productData &&
+      productData.colors &&
+      productData.colors.forEach((cl) => {
         cl.sizes.forEach((item) => setCountQty((pre) => (pre += item.inStock)));
         if (cl.color === selectedColor) {
           const sizes = cl.sizes.map((s) => s.size);
@@ -63,30 +73,39 @@ export default function Details() {
         }
       });
   }, []);
+
+  useEffect(() => {
+    form.setFieldsValue({
+      qty: qty,
+      size: sizes[0],
+    });
+  }, [selectedColor, sizes]);
+
   const handleSelectColor = (selectedColor) => {
-    product.colors.forEach((item) => {
+    productData.colors.forEach((item) => {
       if (item.color === selectedColor) {
         const sizes = item.sizes.map((s) => s.size);
         setSizes(sizes);
       }
     });
   };
-  console.log(i18n.language);
-  const onFinish = () => {
-    form
-      .validateFields()
-      .then((values) => {
-        form.setFieldsValue({
-          sizes: sizes[0],
-          color: selectedColor,
-          qty: 1,
-        });
-        handleAddToCart(values);
-      })
-      .catch((info) => {
-        console.log('Validate Failed:', info);
-      });
-  };
+
+  // handle price of current language
+  const EXCHANGE_RATE = 23231;
+  const currentLanguage = i18n.language;
+
+  useEffect(() => {
+    if (currentLanguage === 'vi') {
+      const formatProduct = {
+        ...product,
+        price: product.price * EXCHANGE_RATE,
+      };
+      setProductData(formatProduct);
+    } else {
+      setProductData(product);
+    }
+  }, [product, currentLanguage]);
+
   const data = [
     {
       Title: 'why_choose_us',
@@ -105,20 +124,36 @@ export default function Details() {
   const handleAddToCart = (values) => {
     const submitData = {
       ...values,
-      id: product.id,
-      image: product.image,
-      price: qty ? product.price * qty : product.price * 1,
+      id: productData.id,
+      image: productData.image,
+      price: qty ? productData.price * qty : productData.price * 1,
       color: values.color,
       sizes: values.sizes,
       quantity: values.qty ? values.qty : 1,
-      name: product.name,
+      name: productData.name,
     };
     dispatch(addToCart(submitData));
   };
+
+  const onFinish = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        handleAddToCart(values);
+        form.setFieldsValue({
+          sizes: product.colors[0].sizes[0].size,
+          color: product.colors[0].color,
+        });
+      })
+      .catch((info) => {
+        console.log('Validate Failed:', info);
+      });
+  };
+
   return (
     <Spin spinning={isLoading}>
       <>
-        {product && (
+        {productData && (
           <div className="container-page" style={{ padding: '0 7vw' }}>
             <Space className="details__page__title__container">
               <Link to="/">
@@ -126,13 +161,16 @@ export default function Details() {
                   {t('details__page.home')}
                 </h1>
               </Link>
-              <h3 className="details__page__title__h3"> &gt; {product.name}</h3>
+              <h3 className="details__page__title__h3">
+                {' '}
+                &gt; {productData.name}
+              </h3>
             </Space>
             <Row gutter={[26, 0]}>
               <Col xl={{ span: 10 }} lg={{ span: 8 }} md={{ span: 12 }}>
                 <Carousel dotPosition="bottom" autoplay autoplaySpeed={1500}>
-                  {product.image ? (
-                    product.image.map((img, key) => (
+                  {productData.image ? (
+                    productData.image.map((img, key) => (
                       <Image preview={false} key={key} src={img.src} />
                     ))
                   ) : (
@@ -142,13 +180,10 @@ export default function Details() {
               </Col>
               <Col xl={{ span: 9 }} lg={{ span: 8 }} md={{ span: 12 }}>
                 <Space direction="vertical">
-                  <h1>{product.name}</h1>
+                  <h1>{productData.name}</h1>
                   <h3 style={{ color: '#CEA384' }}>
                     {t(`details__page.price_product`, {
-                      prices:
-                        i18n.language === 'vi'
-                          ? product.price * 23000
-                          : product.price,
+                      prices: productData.price,
                     })}
                   </h3>
                   <Space style={{ color: '#CEA384' }}>
@@ -165,9 +200,7 @@ export default function Details() {
                   style={{ color: 'rgba(0,0,0,0.5)' }}
                   direction="vertical"
                 >
-                  Add a touch of glam to any sunny-day ensemble with these
-                  sparkly sliders. The buckled straps are drenched in teeny
-                  diamantes and the footbeds are moulded for comfort.
+                  {productData.description}
                   <h1>{t(`details__page.hurry`, { inStock: countQty })}</h1>
                 </Space>
                 <Form
