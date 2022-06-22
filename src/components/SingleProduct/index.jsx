@@ -15,6 +15,7 @@ import {
   Select,
 } from 'antd';
 import { React, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -30,6 +31,8 @@ const SingleProduct = ({ product }) => {
 
   const [visibleModalAddToCart, setVisibleModalAddToCart] = useState(false);
   const [singleProduct, setSingleProduct] = useState({});
+
+  const { t } = useTranslation();
 
   const handleAddToCart = (values) => {
     const submitData = {
@@ -71,7 +74,7 @@ const SingleProduct = ({ product }) => {
   const colorOption = product.colors.map((color) => color.color);
   const selectedColor = colorOption[0];
   const [sizeOption, setSizeOption] = useState([]);
-  const [selectedSize, setSelectSize] = useState(sizeOption[0]);
+  const [selectedSize] = useState(sizeOption[0]);
   const [bigImage, setBigImage] = useState(product.image[0].src);
 
   useEffect(() => {
@@ -146,7 +149,7 @@ const SingleProduct = ({ product }) => {
                 form={form}
                 onFinish={onFinish}
               >
-                <Form.Item name="color" label="Color">
+                <Form.Item name="color" label={t('admin.product.color')}>
                   <Select
                     style={{ width: '100%' }}
                     onSelect={(item) => onChangeColor(item)}
@@ -161,7 +164,7 @@ const SingleProduct = ({ product }) => {
                   </Select>
                 </Form.Item>
 
-                <Form.Item name="size" label="Size">
+                <Form.Item name="size" label={t('admin.product.size')}>
                   <Select style={{ width: '100%' }}>
                     {sizeOption
                       ? sizeOption
@@ -184,7 +187,10 @@ const SingleProduct = ({ product }) => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Form.Item name="quantity" label="Quantity">
+                  <Form.Item
+                    name="quantity"
+                    label={t('admin.product.quantity')}
+                  >
                     <InputNumber min={1} />
                   </Form.Item>
 
@@ -192,7 +198,7 @@ const SingleProduct = ({ product }) => {
                     <ShoppingCartOutlined
                       style={{ fontSize: '20px', marginRight: '5px' }}
                     />
-                    Add to cart
+                    {t('checkout.add_to_cart')}
                   </button>
                 </div>
               </Form>
@@ -227,7 +233,7 @@ const SingleProduct = ({ product }) => {
           >
             <h4>{product.name}</h4>
           </Link>
-          <p>${product.price}</p>
+          <p>{t('checkout.price_formatted', { val: product.price })}</p>
         </div>
       </div>
     </>

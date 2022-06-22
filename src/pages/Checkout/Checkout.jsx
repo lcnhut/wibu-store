@@ -7,7 +7,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { invoiceApi } from '../../api';
 import { CartItemCheckout, CheckoutForm } from '../../components';
-import i18n from '../../i18n';
 import { clearCart } from '../../store/Slice/product/productSlice';
 import './Checkout.scss';
 
@@ -16,13 +15,11 @@ const Checkout = () => {
 
   const [paymentValue, setPaymentValue] = useState(1);
   const [loadingButton, setLoadingButton] = useState(false);
-  const [productList, setProductList] = useState([]);
 
   const [subTotalPrice, setSubTotalPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [tax, setTax] = useState(0);
 
-  const EXCHANGE_RATE = 23000;
   const TAX_PERCENT = 0.1;
 
   const { t } = useTranslation();
@@ -32,11 +29,11 @@ const Checkout = () => {
 
   useEffect(() => {
     let total = 0;
-    productList.forEach((product) => {
+    productData.forEach((product) => {
       total += product.quantity * product.price;
     });
     setSubTotalPrice(total);
-  }, [productList]);
+  }, [productData]);
 
   useEffect(() => {
     setTax(subTotalPrice * TAX_PERCENT);
@@ -75,21 +72,6 @@ const Checkout = () => {
     }
   };
 
-  const currentLanguage = i18n.language;
-  useEffect(() => {
-    if (currentLanguage === 'vi') {
-      const formatData = productData.map((product) => {
-        return {
-          ...product,
-          price: product.price * EXCHANGE_RATE,
-        };
-      });
-      setProductList(formatData);
-    } else {
-      setProductList(productData);
-    }
-  }, []);
-
   return (
     <div className="checkout__container">
       <div className="checkout__content">
@@ -116,7 +98,7 @@ const Checkout = () => {
         <div className="checkout__summary__container">
           <div className="checkout__summary__wrapper">
             <div className="checkout__summary__product">
-              {productList.map((product, index) => {
+              {productData.map((product, index) => {
                 return (
                   <CartItemCheckout
                     key={index}

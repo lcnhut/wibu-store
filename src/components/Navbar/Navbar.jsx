@@ -1,13 +1,11 @@
 import {
   CloseOutlined,
-  DownOutlined,
   HeartOutlined,
   SearchOutlined,
   ShoppingOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Badge, Button, Dropdown, Menu, Select, Space } from 'antd';
-import { Option } from 'antd/lib/mentions';
+import { Badge, Select } from 'antd';
 import { sum } from 'lodash';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -26,9 +24,11 @@ export default function Navbar() {
   const [onActiveNavbar, setOnActiveNavbar] = useState(true);
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
+
   const { t, i18n } = useTranslation();
   let navigate = useNavigate();
   const navbar = useRef();
+
   window.onscroll = () => {
     if (document.documentElement.scrollTop < 100) {
       setOnActiveNavbar(true);
@@ -36,6 +36,7 @@ export default function Navbar() {
       setOnActiveNavbar(false);
     }
   };
+
   const languageOptions = [
     {
       key: 'en',
@@ -60,6 +61,7 @@ export default function Navbar() {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
+
   return (
     <header>
       <nav
@@ -137,22 +139,6 @@ export default function Navbar() {
           </Badge.Ribbon>
           <li className="navbar__link">
             <NavLink to="/collection">{t('cta.collection')}</NavLink>
-            <div className="navbar__dropdown">
-              <div className="navbar__dropdown__content">
-                <div className="navbar__dropdown__lists">
-                  <div className="title">SHOP LAYOUTS</div>
-                  <ul className="list__dropdown__items">
-                    <li className="list__dropdown__item">Pagination</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                    <li className="list__dropdown__item">Ajax Load More</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-
-          <li className="navbar__link">
-            <NavLink to="/checkout">{t('cta.checkout')}</NavLink>
             <div className="navbar__dropdown">
               <div className="navbar__dropdown__content">
                 <div className="navbar__dropdown__lists">
@@ -253,7 +239,7 @@ export default function Navbar() {
             />
           </div>
           <div className="cart_field__header__content">
-            <p>Shopping Cart</p>
+            <p>{t('checkout.your_cart')}</p>
           </div>
           <div className="cart_field__header__total">
             <p className="cart_field__header__total__value">
@@ -268,9 +254,9 @@ export default function Navbar() {
           {cartItem.length === 0 ? (
             <>
               <div className="cart_field__body__title">
-                <h3>Your shopping bag is empty</h3>
+                <h3>{t('checkout.empty')}</h3>
               </div>
-              <ButtonOfPage path="collection" label="Shop Now" />
+              <ButtonOfPage path="collection" label={t('checkout.shop_now')} />
             </>
           ) : (
             <div className="cart_field__body__product">
@@ -294,11 +280,15 @@ export default function Navbar() {
         {cartItem.length !== 0 && (
           <div className="cart_field__footer">
             <div className="cart_field__footer__total">
-              <div>Total:</div>
-              <div>{sum(cartItem.map((item) => item.price))}</div>
+              <div>{t('checkout.total')}</div>
+              <div>
+                {t('checkout.price_formatted', {
+                  val: sum(cartItem.map((item) => item.price)),
+                })}
+              </div>
             </div>
             <div className="cart_field__footer__button">
-              <ButtonOfPage path="checkout" label="Check out" />
+              <ButtonOfPage path="checkout" label={t('checkout.checkout')} />
             </div>
           </div>
         )}
