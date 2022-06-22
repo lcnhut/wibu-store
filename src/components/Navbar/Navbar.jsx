@@ -16,16 +16,18 @@ import englandIcon from '../../../src/assets/images/englandIcon.jpg';
 import vietnamIcon from '../../assets/images/vietnamIcon.png';
 import ButtonOfPage from '../Button/ButtonOfPage';
 import ProductCart from '../ProductCart/ProductCart';
+import CartField from './CartField';
 import './Navbar.scss';
+import SearchField from './SearchFIeld';
 
 export default function Navbar() {
-  const cartItem = useSelector((state) => state.product.cart);
   const [onActive, SetOnActive] = useState(false);
   const [onActiveNavbar, setOnActiveNavbar] = useState(true);
   const [onCartActive, setOnCartActive] = useState(false);
   const [onSearchActive, setOnSearchActive] = useState(false);
 
   const { t, i18n } = useTranslation();
+  const cartItem = useSelector((state) => state.product.cart);
   let navigate = useNavigate();
   const navbar = useRef();
 
@@ -60,6 +62,7 @@ export default function Navbar() {
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
+    localStorage.setItem('lng', lng);
   };
 
   return (
@@ -264,6 +267,7 @@ export default function Navbar() {
                 return (
                   <ProductCart
                     key={index}
+                    index={index}
                     id={item.id}
                     image={item.image}
                     name={item.name}

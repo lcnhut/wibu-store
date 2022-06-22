@@ -9,59 +9,58 @@ import {
 } from '@ant-design/icons';
 import { Space } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import ButtonOfPage from '../Button/ButtonOfPage';
 import './Footer.scss';
 
 export default function Footer() {
+  const { t, i18n } = useTranslation();
   return (
     <div className="footer-container">
       <div className="footer-container__content">
         <div className="footer-container__content__item">
           <div className="footer-container__content__item__title">
-            <h2 className="title">Shop</h2>
+            <h2 className="title">{t('footer.shop')}</h2>
           </div>
           <div className="footer-container__content__item__content">
             <ul>
-              <li>About Us</li>
-              <li>Privacy Policy</li>
-              <li>Terms & Conditions</li>
-              <li>Products Return</li>
-              <li>Wholesale Policy</li>
+              <li>{t('footer.work_time')}</li>
+              <li>{t('footer.privacy_policy')}</li>
+
+              <li>{t('footer.Products_return')}</li>
+              <li>{t('footer.wholesale_prolicy')}</li>
             </ul>
           </div>
         </div>
         <div className="footer-container__content__item">
           <div className="footer-container__content__item__title">
-            <h2 className="title">Infomation</h2>
+            <h2 className="title">{t('footer.infomation')}</h2>
           </div>
           <div className="footer-container__content__item__content">
             <ul>
-              <li>Pagination</li>
-              <li>Terms & Conditions</li>
-              <li>Contact</li>
-              <li>Accessories</li>
-              <li>Term of use</li>
+              <li>{t('footer.comments')}</li>
+              <li>{t('footer.address_store')}</li>
+              <li>{t('footer.term_of_user')}</li>
             </ul>
           </div>
         </div>
         <div className="footer-container__content__item">
           <div className="footer-container__content__item__title">
-            <h2 className="title">About</h2>
+            <h2 className="title">{t('footer.About')}</h2>
           </div>
           <div className="footer-container__content__item__content">
             <ul>
-              <li>Help Center</li>
-              <li>Address Store</li>
-              <li>Privacy Policy</li>
-              <li>Receivers & Amplifiers</li>
-              {/* <li>Wholesale Policy</li> */}
+              <li>{t('footer.help_center')}</li>
+
+              <li>{t('footer.address_store')}</li>
+              <li>{t('footer.Receivers_Amplifiers')}</li>
             </ul>
           </div>
         </div>
         <div className="footer-container__content__item">
           <div className="footer-container__content__item__title">
-            <h2 className="title">Follow Us</h2>
+            <h2 className="title">{t('footer.follow_us')}</h2>
           </div>
           <div className="footer-container__content__item__content">
             <ul>
@@ -105,7 +104,7 @@ export default function Footer() {
           style={{ flex: '1.5' }}
         >
           <div className="footer-container__content__item__title">
-            <h2 className="title">Newsletters</h2>
+            <h2 className="title">{t('footer.newsLetter')}</h2>
           </div>
           <div className="footer-container__content__item__content">
             <p className="footer-container__content__item__introduction">
@@ -120,7 +119,7 @@ export default function Footer() {
                   placeholder="Enter your email..."
                 />
               </div>
-              <ButtonOfPage label="Subscribe" />
+              <ButtonOfPage label={t('footer.subscribe')} />
             </div>
           </div>
         </div>
