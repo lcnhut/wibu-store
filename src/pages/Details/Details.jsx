@@ -7,19 +7,18 @@ import {
   Divider,
   Form,
   Image,
-  Input,
   InputNumber,
   Row,
   Select,
   Space,
   Spin,
 } from 'antd';
-import { set } from 'lodash';
-import { useForm } from 'rc-field-form';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
+import { productApi } from '../../api';
 import {
   addToCart,
   getByIdAsync,
@@ -28,32 +27,45 @@ import './Details.scss';
 
 const { Option } = Select;
 export default function Details() {
+  const { t, i18n } = useTranslation();
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const [qty, setQty] = useState(1);
+  const [qty] = useState(1);
   const [countQty, setCountQty] = useState(1);
 
-  const product = useSelector((state) => state.product.singleProduct);
+  const [product, setProduct] = useState();
+  const [productData, setProductData] = useState();
   const isLoading = useSelector((state) => state.product.isLoading);
-  useEffect(() => {
-    dispatch(getByIdAsync(id));
-  }, [id]);
 
-  const colors = product.colors && product.colors.map((color) => color.color);
+  const colors =
+    productData &&
+    productData.colors &&
+    productData.colors.map((color) => color.color);
   const selectedColor = colors && colors[0];
   const [sizes, setSizes] = useState([]);
 
   useEffect(() => {
-    form.setFieldsValue({
-      color: selectedColor,
-      qty: qty,
-      size: sizes[0],
-    });
-  }, [selectedColor, sizes]);
+    dispatch(getByIdAsync(id));
+    const getProduct = async (id) => {
+      const response = await productApi.getById(id);
+      setProduct(response.data);
+    };
+    getProduct(id);
+  }, []);
+
   useEffect(() => {
-    product.colors &&
-      product.colors.forEach((cl) => {
+    product &&
+      form.setFieldsValue({
+        color: product.colors[0].color,
+        size: product.colors[0].sizes[0].size,
+      });
+  }, [product]);
+
+  useEffect(() => {
+    productData &&
+      productData.colors &&
+      productData.colors.forEach((cl) => {
         cl.sizes.forEach((item) => setCountQty((pre) => (pre += item.inStock)));
         if (cl.color === selectedColor) {
           const sizes = cl.sizes.map((s) => s.size);
@@ -61,8 +73,16 @@ export default function Details() {
         }
       });
   }, []);
+
+  useEffect(() => {
+    form.setFieldsValue({
+      qty: qty,
+      size: sizes[0],
+    });
+  }, [selectedColor, sizes]);
+
   const handleSelectColor = (selectedColor) => {
-    product.colors.forEach((item) => {
+    productData.colors.forEach((item) => {
       if (item.color === selectedColor) {
         const sizes = item.sizes.map((s) => s.size);
         setSizes(sizes);
@@ -70,68 +90,87 @@ export default function Details() {
     });
   };
 
-  const onFinish = () => {
-    form
-      .validateFields()
-      .then((values) => {
-        form.setFieldsValue({
-          sizes: sizes[0],
-          color: selectedColor,
-          qty: 1,
-        });
-        handleAddToCart(values);
-      })
-      .catch((info) => {
-        console.log('Validate Failed:', info);
-      });
-  };
+  // handle price of current language
+  const EXCHANGE_RATE = 23231;
+  const currentLanguage = i18n.language;
+
+  useEffect(() => {
+    if (currentLanguage === 'vi') {
+      const formatProduct = {
+        ...product,
+        price: product.price * EXCHANGE_RATE,
+      };
+      setProductData(formatProduct);
+    } else {
+      setProductData(product);
+    }
+  }, [product, currentLanguage]);
+
   const data = [
     {
-      Title: 'Why Choose Us ?',
-      content:
-        'Official Herschel stockist Australian warranty assistance & support Australian shipping & returns.Customer first experience environmentally focused',
+      Title: 'why_choose_us',
+      content: 'why_choose_us_description',
     },
     {
-      Title: 'Return',
-      content:
-        'Return this product within 100 days if you change your mind. Get a refund/replacement & free return shipping if it arrives damaged or not as described',
+      Title: 'return',
+      content: 'return_description',
     },
     {
-      Title: 'Shipping',
-      content:
-        'Free if stated near price. $9.95 Australia wide (up to 10 items). $18.95 for Express Post (generally 1 business day).',
+      Title: 'shipping',
+      content: 'shipping_description',
     },
   ];
 
   const handleAddToCart = (values) => {
     const submitData = {
       ...values,
-      id: product.id,
-      image: product.image,
-      price: qty ? product.price * qty : product.price * 1,
+      id: productData.id,
+      image: productData.image,
+      price: qty ? productData.price * qty : productData.price * 1,
       color: values.color,
       sizes: values.sizes,
       quantity: values.qty ? values.qty : 1,
-      name: product.name,
+      name: productData.name,
     };
     dispatch(addToCart(submitData));
   };
+
+  const onFinish = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        handleAddToCart(values);
+        form.setFieldsValue({
+          sizes: product.colors[0].sizes[0].size,
+          color: product.colors[0].color,
+        });
+      })
+      .catch((info) => {
+        console.log('Validate Failed:', info);
+      });
+  };
+
   return (
     <Spin spinning={isLoading}>
       <>
-        {product && (
+        {productData && (
           <div className="container-page" style={{ padding: '0 7vw' }}>
             <Space className="details__page__title__container">
               <Link to="/">
-                <h1 className="details__page__title__h1">Home</h1>
+                <h1 className="details__page__title__h1">
+                  {t('details__page.home')}
+                </h1>
               </Link>
-              <h3 className="details__page__title__h3"> &gt; {product.name}</h3>
+              <h3 className="details__page__title__h3">
+                {' '}
+                &gt; {productData.name}
+              </h3>
             </Space>
             <Row gutter={[26, 0]}>
               <Col xl={{ span: 10 }} lg={{ span: 8 }} md={{ span: 12 }}>
                 <Carousel dotPosition="bottom" autoplay autoplaySpeed={1500}>
-                  {product.image ? (
-                    product.image.map((img, key) => (
+                  {productData.image ? (
+                    productData.image.map((img, key) => (
                       <Image preview={false} key={key} src={img.src} />
                     ))
                   ) : (
@@ -141,15 +180,19 @@ export default function Details() {
               </Col>
               <Col xl={{ span: 9 }} lg={{ span: 8 }} md={{ span: 12 }}>
                 <Space direction="vertical">
-                  <h1>{product.name}</h1>
-                  <h3 style={{ color: '#CEA384' }}>${product.price} USD</h3>
+                  <h1>{productData.name}</h1>
+                  <h3 style={{ color: '#CEA384' }}>
+                    {t(`details__page.price_product`, {
+                      prices: productData.price,
+                    })}
+                  </h3>
                   <Space style={{ color: '#CEA384' }}>
                     <StarOutlined />
                     <StarOutlined />
                     <StarOutlined />
                     <StarOutlined />
                     <StarOutlined />
-                    No reviews
+                    {t('details__page.no_review')}
                   </Space>
                 </Space>
                 <Divider />
@@ -157,10 +200,8 @@ export default function Details() {
                   style={{ color: 'rgba(0,0,0,0.5)' }}
                   direction="vertical"
                 >
-                  Add a touch of glam to any sunny-day ensemble with these
-                  sparkly sliders. The buckled straps are drenched in teeny
-                  diamantes and the footbeds are moulded for comfort.
-                  <h1>HURRY! ONLY {countQty} LEFT IN STOCK</h1>
+                  {productData.description}
+                  <h1>{t(`details__page.hurry`, { inStock: countQty })}</h1>
                 </Space>
                 <Form
                   onFinish={onFinish}
@@ -171,7 +212,7 @@ export default function Details() {
                   <Form.Item
                     rules={[{ required: true }]}
                     name="color"
-                    label="Color"
+                    label={t('details__page.color')}
                   >
                     <Select onSelect={(item) => handleSelectColor(item)}>
                       {colors &&
@@ -185,7 +226,7 @@ export default function Details() {
                   <Form.Item
                     rules={[{ required: true }]}
                     name="size"
-                    label="Size"
+                    label={t('details__page.size')}
                   >
                     <Select>
                       {sizes &&
@@ -201,11 +242,13 @@ export default function Details() {
                   <Form.Item
                     rules={[{ required: true }]}
                     name="qty"
-                    label="Quantity"
+                    label={t('details__page.quantity')}
                   >
                     <InputNumber min={1} />
                   </Form.Item>
-                  <Button htmlType="submit">Add To Cart</Button>
+                  <Button htmlType="submit">
+                    {t('details__page.add_to_cart')}
+                  </Button>
                 </Form>
               </Col>
               <Col xl={{ span: 5 }} lg={{ span: 8 }} md={{ span: 24 }}>
@@ -213,8 +256,11 @@ export default function Details() {
                   {data.map((item, key) => (
                     <Col key={key} sm={8} md={8} lg={24} xl={24}>
                       <Space style={{ textAlign: 'center' }}>
-                        <Card hoverable title={item.Title}>
-                          {item.content}
+                        <Card
+                          hoverable
+                          title={t(`details__page.${item.Title}`)}
+                        >
+                          {t(`details__page.${item.content}`)}
                         </Card>
                       </Space>
                     </Col>

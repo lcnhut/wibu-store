@@ -6,6 +6,22 @@
     "pages": "Các Trang",
     "checkout": "THANH TOÁN"
   },
+  "details__page": {
+    "home": "Trang chủ",
+    "no_review": "Không có đánh giá",
+    "color": "Màu",
+    "size": "Kích cỡ",
+    "quantity": "Số lượng",
+    "add_to_cart": "Thêm vào giỏ hàng",
+    "why_choose_us": "Tại sao nên chọn chúng tôi",
+    "return": "Chính sách đổi trả",
+    "shipping": "Chính sách giao hàng",
+    "why_choose_us_description": "Chúng tôi có bán những sản phẩm tốt nhất với giá cả thấp nhất trên thị trường",
+    "return_description": "Bạn có thể lại sản phẩm trong vòng 100 ngày, chúng tôi sẽ đổi sản phẩm khác cho bạn nếu sản phẩm bị hư tổn trong quá trình vận chuyển hoặc không giống như miêu tả",
+    "shipping_description": "Miễn phí vận chuyển nội thành và 30.000VND cho các khu vực khác",
+    "hurry": "Nhanh lên chỉ còn {{inStock}} trong kho",
+    "price_product": "{{prices}} VND"
+  },
   "field": {
     "search_nav": {
       "placeholder": "Tìm sản phẩm..."
