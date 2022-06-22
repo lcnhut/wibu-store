@@ -28,7 +28,6 @@ const { Option } = Select;
 const SingleProduct = ({ product }) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-
   const [visibleModalAddToCart, setVisibleModalAddToCart] = useState(false);
   const [singleProduct, setSingleProduct] = useState({});
 
@@ -179,7 +178,6 @@ const SingleProduct = ({ product }) => {
                       : ''}
                   </Select>
                 </Form.Item>
-
                 <div
                   style={{
                     display: 'flex',

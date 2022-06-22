@@ -1,12 +1,14 @@
 import 'animate.css';
 import { Carousel as CarouselAnt } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import './styles.scss';
 
 const Carousel = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   const data = [
     {
       img: 'https://cdn.shopify.com/s/files/1/0277/0472/1542/files/slide2.2.jpg?v=1589334520',
@@ -53,7 +55,7 @@ const Carousel = () => {
                   navigate('/collection');
                 }}
               >
-                SHOP NOW
+                {t('checkout.shop_now')}
               </button>
             </div>
           </div>
