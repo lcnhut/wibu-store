@@ -28,9 +28,10 @@ const { Option } = Select;
 const SingleProduct = ({ product }) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const { t, i18n } = useTranslation();
   const [visibleModalAddToCart, setVisibleModalAddToCart] = useState(false);
   const [singleProduct, setSingleProduct] = useState({});
+
+  const { t } = useTranslation();
 
   const handleAddToCart = (values) => {
     const submitData = {
@@ -72,7 +73,7 @@ const SingleProduct = ({ product }) => {
   const colorOption = product.colors.map((color) => color.color);
   const selectedColor = colorOption[0];
   const [sizeOption, setSizeOption] = useState([]);
-  const [selectedSize, setSelectSize] = useState(sizeOption[0]);
+  const [selectedSize] = useState(sizeOption[0]);
   const [bigImage, setBigImage] = useState(product.image[0].src);
 
   useEffect(() => {
@@ -147,7 +148,7 @@ const SingleProduct = ({ product }) => {
                 form={form}
                 onFinish={onFinish}
               >
-                <Form.Item name="color" label={t('filter.color_option')}>
+                <Form.Item name="color" label={t('admin.product.color')}>
                   <Select
                     style={{ width: '100%' }}
                     onSelect={(item) => onChangeColor(item)}
@@ -162,7 +163,7 @@ const SingleProduct = ({ product }) => {
                   </Select>
                 </Form.Item>
 
-                <Form.Item name="size" label={t('filter.size_option')}>
+                <Form.Item name="size" label={t('admin.product.size')}>
                   <Select style={{ width: '100%' }}>
                     {sizeOption
                       ? sizeOption
@@ -184,7 +185,10 @@ const SingleProduct = ({ product }) => {
                     justifyContent: 'space-between',
                   }}
                 >
-                  <Form.Item name="quantity" label={t('checkout.add_to_cart')}>
+                  <Form.Item
+                    name="quantity"
+                    label={t('admin.product.quantity')}
+                  >
                     <InputNumber min={1} />
                   </Form.Item>
 
@@ -227,7 +231,7 @@ const SingleProduct = ({ product }) => {
           >
             <h4>{product.name}</h4>
           </Link>
-          <p>${product.price}</p>
+          <p>{t('checkout.price_formatted', { val: product.price })}</p>
         </div>
       </div>
     </>

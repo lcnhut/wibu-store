@@ -1,17 +1,17 @@
+/* eslint-disable react/prop-types */
 import 'animate.css';
-import { Col, Pagination, Row, Skeleton, Space } from 'antd';
+import { Col, Pagination, Row, Skeleton } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 
 import SingleProduct from '../SingleProduct';
 import './styles.scss';
 
 const ListProduct = (props) => {
   const ListData = useRef();
-  let { view_list, data, loading } = props;
+  let { data, loading } = props;
   const [loadingChangeProduct, setLoadingChangeProduct] = useState(loading);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [numPagination, setNumPagination] = useState(1);
 
   useEffect(() => {

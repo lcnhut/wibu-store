@@ -1,8 +1,11 @@
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, Form, Input } from 'antd';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const DynamicImageField = () => {
+  const { t } = useTranslation();
+
   return (
     <Form.List name="images">
       {(fields, { add, remove }) => {
@@ -11,7 +14,7 @@ export const DynamicImageField = () => {
             {fields.map((field, index) => (
               <div key={field.key}>
                 <Divider>
-                  Image {index + 1}
+                  {t('admin.product.image') + ' '} {index + 1}
                   {index > 0 ? (
                     <span>
                       <Button
@@ -26,7 +29,7 @@ export const DynamicImageField = () => {
                 </Divider>
                 <Form.Item
                   name={[index, 'src']}
-                  label="Image"
+                  label={t('admin.product.image')}
                   rules={[{ required: true }]}
                 >
                   <Input />
@@ -40,7 +43,7 @@ export const DynamicImageField = () => {
                 onClick={() => add()}
                 style={{ width: '60%' }}
               >
-                <PlusOutlined /> Add Image
+                <PlusOutlined /> {t('admin.product.add_image')}
               </Button>
             </Form.Item>
           </div>

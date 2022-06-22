@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import { CloseOutlined } from '@ant-design/icons';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import { removeItemFromCart } from '../../store/Slice/product/productSlice';
@@ -7,7 +9,9 @@ import './ProductCart.scss';
 
 export default function ProductCart(props) {
   const { image, name, size, quantity, color, id, price } = props;
+
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   return (
     <div className="product-cart">
@@ -19,7 +23,7 @@ export default function ProductCart(props) {
           {name} - {size} / {color}
         </p>
         <p>QTY : {quantity}</p>
-        <p> $ {price}</p>
+        <p>{t('checkout.price_formatted', { val: price })}</p>
       </div>
       <div
         style={{ cursor: 'pointer' }}
