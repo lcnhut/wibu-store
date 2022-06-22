@@ -264,6 +264,7 @@ export default function Navbar() {
                 return (
                   <ProductCart
                     key={index}
+                    index={index}
                     id={item.id}
                     image={item.image}
                     name={item.name}

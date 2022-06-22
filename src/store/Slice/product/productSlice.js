@@ -55,8 +55,8 @@ export const productSlice = createSlice({
     },
 
     removeItemFromCart: (state, action) => {
-      let id = action.payload;
-      let newList = state.cart.filter((item, index) => item.id !== id);
+      let removedIndex = action.payload;
+      let newList = state.cart.filter((item, index) => index !== removedIndex);
       state.cart = newList;
     },
 

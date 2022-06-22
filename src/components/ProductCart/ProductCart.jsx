@@ -8,7 +8,7 @@ import { removeItemFromCart } from '../../store/Slice/product/productSlice';
 import './ProductCart.scss';
 
 export default function ProductCart(props) {
-  const { image, name, size, quantity, color, id, price } = props;
+  const { image, name, size, quantity, color, price, index } = props;
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -28,7 +28,7 @@ export default function ProductCart(props) {
       <div
         style={{ cursor: 'pointer' }}
         onClick={() => {
-          dispatch(removeItemFromCart(id));
+          dispatch(removeItemFromCart(index));
         }}
       >
         <CloseOutlined style={{ fontSize: '18px' }} />

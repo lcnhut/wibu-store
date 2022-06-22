@@ -140,7 +140,7 @@ describe('store/product', () => {
       ],
     };
 
-    expect(reducer(prevState, removeItemFromCart(456))).toEqual({
+    expect(reducer(prevState, removeItemFromCart(1))).toEqual({
       list: [],
       isLoading: true,
       singleProduct: {},
