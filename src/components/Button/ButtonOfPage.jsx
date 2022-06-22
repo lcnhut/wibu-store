@@ -14,7 +14,7 @@ const ButtonOfPage = (props) => {
         navigate(`/${path}`, { replace: true });
       }}
     >
-      {label}
+      <span>{label}</span>
     </button>
   );
 };

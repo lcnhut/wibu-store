@@ -49,13 +49,25 @@
     "feature_blog": "BÀI VIẾT HÀNG ĐẦU"
   },
   "footer": {
-    "contact_info": "Thông tin liên lạc",
+    "infomation": "Information",
+    "About": "About",
+    "shop": "Shop",
+    "subscribe": "Subscribe",
+    "follow_us": "Follow Us",
+    "newsLetter": "Newsletters",
+    "contact_info": "Contact Information",
     "address": "Địa chỉ: Phường Cái Khế, Quận Ninh Kiều, Thành phố Cần Thơ",
     "hotline": "Số điện thoại",
-    "email": "Email: dangkhoa.duong@nfq.asia",
     "work_time": "Thời gian làm việc",
-    "customer_support": "Hỗ trợ khách hàng",
-    "sign_email": "Đăng ký nhận thông tin mới nhất để nhận khuyến mãi sớm nhất."
+    "about_us": "Về chúng tôi",
+    "privacy_policy": "Privacy Policy",
+    "Term_and_conditions": "Terms & Conditions",
+    "Products_return": "Products Return",
+    "wholesale_prolicy": "Wholesale Policy",
+    "help_center": "Trung tâm trợ giúp",
+    "address_store": "Cửa hàng địa chỉ",
+    "Receivers_Amplifiers": "Receivers & Amplifiers",
+    "promotions": "Be the first who learns about our great promotions!"
   },
   "detail_product": {
     "description": "Mô tả",
