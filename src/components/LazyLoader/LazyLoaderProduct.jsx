@@ -8,19 +8,14 @@ import './LazyLoaderProduct.scss';
 export default function LazyLoaderProduct({ image, title }) {
   const { t, i18n } = useTranslation();
   return (
-    // <Space>
     <div className="container-lazyloader">
       <div className="item-container">
         <div className="item-description">
           <h1>{title}</h1>
-          <ButtonOfPage to="collection" label={t('checkout.shop_now')} />
+          <ButtonOfPage path="collection" label={t('checkout.shop_now')} />
         </div>
         <img className="item-container-image" src={image} />
-        {/* <div>
-        </div> */}
       </div>
     </div>
-
-    // </Space>
   );
 }
