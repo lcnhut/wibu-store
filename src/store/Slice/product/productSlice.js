@@ -47,11 +47,13 @@ export const productSlice = createSlice({
     error: '',
     cart: [],
   },
+
   reducers: {
     addToCart: (state, action) => {
       state.cart.unshift(action.payload);
       message.success('An item is added to cart!!!');
     },
+
     removeItemFromCart: (state, action) => {
       let id = action.payload;
       let newList = state.cart.filter((item, index) => item.id !== id);
