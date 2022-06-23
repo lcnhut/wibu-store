@@ -270,11 +270,12 @@ header {
     align-items: center;
     flex-direction: column;
     &__btn {
+      height: 45px;
       border: none;
-      padding: 10px 15px;
       background-color: black;
       color: #fff;
       cursor: pointer;
+      padding: 0 35px;
     }
     &__btn:hover {
       background-color: var(--primary-color);

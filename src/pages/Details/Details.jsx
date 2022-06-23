@@ -203,12 +203,7 @@ export default function Details() {
                   {productData.description}
                   <h1>{t(`details__page.hurry`, { inStock: countQty })}</h1>
                 </Space>
-                <Form
-                  onFinish={onFinish}
-                  form={form}
-                  labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 20 }}
-                >
+                <Form onFinish={onFinish} form={form} labelCol={{ span: 4 }}>
                   <Form.Item
                     rules={[{ required: true }]}
                     name="color"
@@ -246,9 +241,15 @@ export default function Details() {
                   >
                     <InputNumber min={1} />
                   </Form.Item>
-                  <Button htmlType="submit">
-                    {t('details__page.add_to_cart')}
-                  </Button>
+                  <div className="button__wrapper">
+                    <Button
+                      type="primary"
+                      className="button__submit"
+                      htmlType="submit"
+                    >
+                      {t('details__page.add_to_cart')}
+                    </Button>
+                  </div>
                 </Form>
               </Col>
               <Col xl={{ span: 5 }} lg={{ span: 8 }} md={{ span: 24 }}>
@@ -256,10 +257,7 @@ export default function Details() {
                   {data.map((item, key) => (
                     <Col key={key} sm={8} md={8} lg={24} xl={24}>
                       <Space style={{ textAlign: 'center' }}>
-                        <Card
-                          hoverable
-                          title={t(`details__page.${item.Title}`)}
-                        >
+                        <Card title={t(`details__page.${item.Title}`)}>
                           {t(`details__page.${item.content}`)}
                         </Card>
                       </Space>

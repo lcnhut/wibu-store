@@ -14,3 +14,14 @@
   width: 100%;
   border: 1px solid blue;
 }
+
+.button__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button__submit {
+  width: 100%;
+  height: 50px;
+}
