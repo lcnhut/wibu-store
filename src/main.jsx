@@ -13,4 +13,10 @@ ConfigProvider.config({
   },
 });
 
+ConfigProvider.config({
+  theme: {
+    primaryColor: '#cea384', // primary color for all components
+  },
+});
+
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
