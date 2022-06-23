@@ -30,6 +30,7 @@ const ListProduct = (props) => {
           <div className="listproduct__title__line"></div>
         </Col>
       </Row>
+
       <Row gutter={[16, 26]} className="listproduct__wrapper" ref={ListData}>
         {loadingChangeProduct ? (
           <>
@@ -50,8 +51,7 @@ const ListProduct = (props) => {
                 </Col>
               ))}
           </>
-        ) : (
-          sliceData &&
+        ) : sliceData.length > 0 ? (
           sliceData.map((product, id) => {
             return (
               id < ROW_SHOW_IN_PAGE && (
@@ -70,6 +70,8 @@ const ListProduct = (props) => {
               )
             );
           })
+        ) : (
+          <p>Sorry, there are no products in this collection</p>
         )}
         <Col
           xs={{ span: 24 }}
@@ -78,7 +80,7 @@ const ListProduct = (props) => {
           lg={{ span: 24 }}
           xl={{ span: 24 }}
         >
-          {data && (
+          {sliceData.length > 0 && (
             <Pagination
               showSizeChanger
               style={{
