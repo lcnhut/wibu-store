@@ -6,8 +6,4 @@ import './i18n';
 import './index.scss';
 import './style/antd-customized.css';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
