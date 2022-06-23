@@ -57,8 +57,12 @@ export default function Details() {
   useEffect(() => {
     product &&
       form.setFieldsValue({
-        color: product.colors[0].color,
-        size: product.colors[0].sizes[0].size,
+        color: product && product.colors[0] && product.colors[0].color,
+        size:
+          product &&
+          product.colors[0] &&
+          product.colors[0].sizes[0] &&
+          product.colors[0].sizes[0].size,
       });
   }, [product]);
 
@@ -98,7 +102,7 @@ export default function Details() {
     if (currentLanguage === 'vi') {
       const formatProduct = {
         ...product,
-        price: product.price * EXCHANGE_RATE,
+        price: product && product.price * EXCHANGE_RATE,
       };
       setProductData(formatProduct);
     } else {
