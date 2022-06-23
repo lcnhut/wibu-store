@@ -6,12 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "prepare": "husky install",
-    "less": "lessc --js src/style/antd-customized.less src/style/antd-customized.css",
-    "test": "jest",
-    "test:watch": "npm test -- --watch",
-    "test:watchAll": "npm test -- --watchAll",
-    "cypress:open": "cypress open"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",

@@ -13,8 +13,10 @@ ConfigProvider.config({
   },
 });
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+ConfigProvider.config({
+  theme: {
+    primaryColor: '#cea384', // primary color for all components
+  },
+});
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
