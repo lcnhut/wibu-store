@@ -76,6 +76,17 @@ const AddProductForm = (props) => {
         >
           <InputNumber min={1} />
         </Form.Item>
+        <Form.Item
+          name="category"
+          label={t('admin.product.category')}
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
         <Form.Item name="description" label={t('admin.product.description')}>
           <Input />
         </Form.Item>
