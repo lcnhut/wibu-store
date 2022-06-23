@@ -11,11 +11,20 @@ describe('store/invoice', () => {
     });
   });
 
-  it('should return list of invoice', async () => {
+  // run this when invoice has data
+  //   it('should return a list of invoice', async () => {
+  //     const result = await store.dispatch(getAllInvoiceAsync());
+  //     expect(result.type).toBe('invoice/getAll/fulfilled');
+
+  //     const state = store.getState().invoice.list;
+  //     expect(state.length).toBeGreaterThan(0);
+  //   });
+
+  it('should return a list of empty invoice', async () => {
     const result = await store.dispatch(getAllInvoiceAsync());
     expect(result.type).toBe('invoice/getAll/fulfilled');
 
     const state = store.getState().invoice.list;
-    expect(state.length).toBeGreaterThan(0);
+    expect(state.length).toBe(0);
   });
 });
