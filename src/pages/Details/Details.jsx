@@ -208,6 +208,7 @@ export default function Details() {
                   form={form}
                   labelCol={{ span: 4 }}
                   wrapperCol={{ span: 20 }}
+                  id="detailspage__form"
                 >
                   <Form.Item
                     rules={[{ required: true }]}
