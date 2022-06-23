@@ -92,6 +92,18 @@ const ProductAdmin = () => {
       },
     },
     {
+      title: t('admin.product.category'),
+      dataIndex: 'categories',
+      key: 'categories',
+      render: (_, record) => {
+        return (
+          <div style={{ marginBottom: '5px' }}>
+            <Tag color={setColorTag(0)}>{record.categories.toUpperCase()}</Tag>
+          </div>
+        );
+      },
+    },
+    {
       title: t('admin.product.price'),
       dataIndex: 'price',
       key: 'price',
@@ -187,7 +199,9 @@ const ProductAdmin = () => {
       (entry) =>
         entry.name.toLowerCase().includes(currValue) ||
         entry.name.toUpperCase().includes(currValue) ||
-        entry.price.includes(currValue)
+        entry.price.toString().includes(currValue) ||
+        entry.categories.toLowerCase().includes(currValue) ||
+        entry.categories.toUpperCase().includes(currValue)
     );
     setProduct(filteredData);
   };

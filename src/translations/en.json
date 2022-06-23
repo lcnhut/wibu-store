@@ -147,6 +147,7 @@
       "in_stock": "In stock",
       "action": "Action",
       "description": "Description",
+      "category": "Category",
       "color": "Color",
       "quantity": "Quantity",
       "size": "Size",
