@@ -1,10 +1,12 @@
-import { Form, Input, InputNumber, Modal } from 'antd';
+import { Form, Input, InputNumber, Modal, Select } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import formatSubmitData from '../../../utils/FormatSubmitData/formatSubmitData';
 import { DynamicColorField } from '../../DynamicField/DynamicColorField';
 import { DynamicImageField } from '../../DynamicField/DynamicImageField';
+
+const { Option } = Select;
 
 const AddProductForm = (props) => {
   const [form] = Form.useForm();
@@ -17,9 +19,37 @@ const AddProductForm = (props) => {
   };
 
   const onFinish = (values) => {
+    console.log(values);
     let transformData = formatSubmitData(values);
     handleSubmitForm(transformData);
   };
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+
+  const categoryOption = [
+    {
+      label: 'High-tops',
+      value: 'High-tops',
+    },
+    {
+      label: 'Running shoes',
+      value: 'Running shoes',
+    },
+    {
+      label: 'Climbing shoes',
+      value: 'Climbing shoes',
+    },
+    {
+      label: 'Old skool',
+      value: 'Old skool',
+    },
+    {
+      label: 'Hiking boots',
+      value: 'Hiking boots',
+    },
+  ];
 
   return (
     <Modal
@@ -52,6 +82,7 @@ const AddProductForm = (props) => {
         initialValues={{
           images: [''],
           colors: [''],
+          category: categoryOption[0].value,
         }}
       >
         <Form.Item
@@ -85,7 +116,21 @@ const AddProductForm = (props) => {
             },
           ]}
         >
-          <Input />
+          <Select
+            defaultValue={categoryOption[0]}
+            style={{
+              width: 120,
+            }}
+            onChange={handleChange}
+          >
+            {categoryOption.map((item, index) => {
+              return (
+                <Option key={index} value={item.value}>
+                  {item.label}
+                </Option>
+              );
+            })}
+          </Select>
         </Form.Item>
         <Form.Item name="description" label={t('admin.product.description')}>
           <Input />
