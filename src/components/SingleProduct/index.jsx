@@ -5,6 +5,7 @@ import {
   ShoppingCartOutlined,
 } from '@ant-design/icons';
 import {
+  Button,
   Col,
   Divider,
   Form,
@@ -192,12 +193,16 @@ const SingleProduct = ({ product }) => {
                     <InputNumber min={1} />
                   </Form.Item>
 
-                  <button className="add-to-cart__btn" type="submit">
+                  <Button
+                    size="large"
+                    className="add-to-cart__btn"
+                    htmlType="submit"
+                  >
                     <ShoppingCartOutlined
                       style={{ fontSize: '20px', marginRight: '5px' }}
                     />
                     {t('checkout.add_to_cart')}
-                  </button>
+                  </Button>
                 </div>
               </Form>
             </Col>
