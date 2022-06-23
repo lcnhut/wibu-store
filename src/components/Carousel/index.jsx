@@ -1,5 +1,5 @@
 import 'animate.css';
-import { Carousel as CarouselAnt } from 'antd';
+import { Button, Carousel as CarouselAnt } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -48,15 +48,15 @@ const Carousel = () => {
               <h3 className="animate__animated animate__fadeInUp">
                 {item.box_title2}
               </h3>
-              <button
-                style={{ padding: '10px 35px' }}
+              <Button
+                size="large"
                 className="carousel__content__btn"
                 onClick={() => {
                   navigate('/collection');
                 }}
               >
                 {t('checkout.shop_now')}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
