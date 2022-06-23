@@ -1,6 +1,7 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import './App.scss';
 import { Router } from './router/Router';
@@ -12,6 +13,9 @@ function App() {
       <BrowserRouter>
         <Provider store={store}>
           <Router />
+          {/* <Router>
+            <Route path="/" element={<></>} />
+          </Router> */}
         </Provider>
       </BrowserRouter>
     </div>

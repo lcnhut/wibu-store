@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons';
 import { Badge, Select } from 'antd';
 import { sum } from 'lodash';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -30,7 +30,6 @@ export default function Navbar() {
   const cartItem = useSelector((state) => state.product.cart);
   let navigate = useNavigate();
   const navbar = useRef();
-
   window.onscroll = () => {
     if (document.documentElement.scrollTop < 100) {
       setOnActiveNavbar(true);
@@ -59,6 +58,12 @@ export default function Navbar() {
       ),
     },
   ];
+
+  const defaultLanguage = window.localStorage.getItem('lng');
+
+  useEffect(() => {
+    i18n.changeLanguage(defaultLanguage);
+  }, []);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -186,7 +191,7 @@ export default function Navbar() {
           </div>
           <div>
             <Select
-              defaultValue={languageOptions[0]}
+              defaultValue={defaultLanguage}
               options={languageOptions}
               onChange={changeLanguage}
             />
@@ -259,7 +264,6 @@ export default function Navbar() {
               <div className="cart_field__body__title">
                 <h3>{t('checkout.empty')}</h3>
               </div>
-              {/* <ButtonOfPage path="collection" label={t('checkout.shop_now')} /> */}
               <button
                 className="cart_field__body__btn"
                 onClick={() => {
@@ -297,7 +301,7 @@ export default function Navbar() {
               <div>{t('checkout.total')}</div>
               <div>
                 {t('checkout.price_formatted', {
-                  val: sum(cartItem.map((item) => item.price)),
+                  val: sum(cartItem.map((item) => item.price * item.quantity)),
                 })}
               </div>
             </div>

@@ -30,8 +30,10 @@
 }
 
 .single__product__wrapper {
-  width: 100%;
+  // width: 100%;
+  // max-width: 400px;
   display: flex;
+  // max-height: 400px;
   justify-content: space-around;
   flex-direction: column;
   .single__product__image {
