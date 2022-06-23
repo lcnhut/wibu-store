@@ -5,7 +5,7 @@ import {
   ShoppingOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Badge, Select } from 'antd';
+import { Badge, Button, Select } from 'antd';
 import { sum } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,9 +16,7 @@ import englandIcon from '../../../src/assets/images/englandIcon.jpg';
 import vietnamIcon from '../../assets/images/vietnamIcon.png';
 import ButtonOfPage from '../Button/ButtonOfPage';
 import ProductCart from '../ProductCart/ProductCart';
-import CartField from './CartField';
 import './Navbar.scss';
-import SearchField from './SearchFIeld';
 
 export default function Navbar() {
   const [onActive, SetOnActive] = useState(false);
@@ -264,7 +262,9 @@ export default function Navbar() {
               <div className="cart_field__body__title">
                 <h3>{t('checkout.empty')}</h3>
               </div>
-              <button
+
+              <Button
+                size="large"
                 className="cart_field__body__btn"
                 onClick={() => {
                   navigate('/Collection');
@@ -273,7 +273,7 @@ export default function Navbar() {
                 }}
               >
                 {t('checkout.shop_now')}
-              </button>
+              </Button>
             </>
           ) : (
             <div className="cart_field__body__product">
