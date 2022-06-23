@@ -22,6 +22,7 @@ import { Link } from 'react-router-dom';
 
 import { addToCart } from '../../store/Slice/product/productSlice';
 import { axiosInstance } from '../../utils/AxiosConfig/AxiosConfig';
+import formatCurrency from '../../utils/formatCurrency';
 import './styles.scss';
 
 const { Option } = Select;
@@ -32,7 +33,7 @@ const SingleProduct = ({ product }) => {
   const [visibleModalAddToCart, setVisibleModalAddToCart] = useState(false);
   const [singleProduct, setSingleProduct] = useState({});
 
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const handleAddToCart = (values) => {
     const submitData = {
@@ -101,6 +102,8 @@ const SingleProduct = ({ product }) => {
       }
     });
   };
+
+  const currentLanguage = i18n.language;
 
   return (
     <>
@@ -236,7 +239,11 @@ const SingleProduct = ({ product }) => {
           >
             <h4>{product.name}</h4>
           </Link>
-          <p>{t('checkout.price_formatted', { val: product.price })}</p>
+          <p>
+            {t('checkout.price_formatted', {
+              val: formatCurrency(product.price, currentLanguage),
+            })}
+          </p>
         </div>
       </div>
     </>
