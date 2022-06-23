@@ -259,7 +259,17 @@ export default function Navbar() {
               <div className="cart_field__body__title">
                 <h3>{t('checkout.empty')}</h3>
               </div>
-              <ButtonOfPage path="collection" label={t('checkout.shop_now')} />
+              {/* <ButtonOfPage path="collection" label={t('checkout.shop_now')} /> */}
+              <button
+                className="cart_field__body__btn"
+                onClick={() => {
+                  navigate('/Collection');
+                  setOnCartActive(false);
+                  SetOnActive(false);
+                }}
+              >
+                {t('checkout.shop_now')}
+              </button>
             </>
           ) : (
             <div className="cart_field__body__product">
