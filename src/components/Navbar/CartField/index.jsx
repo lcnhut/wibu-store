@@ -14,6 +14,7 @@ export default function CartField({
   SetOnActive,
   setOnCartActive,
 }) {
+  console.log(sum(cartItem.map((item) => item.price)));
   return (
     <div
       className="cart_field"
@@ -76,7 +77,7 @@ export default function CartField({
         <div className="cart_field__footer">
           <div className="cart_field__footer__total">
             <div>Total:</div>
-            <div>{sum(cartItem.map((item) => item.price))}</div>
+            <div>{sum(cartItem.map((item) => item.price * item.quantity))}</div>
           </div>
           <div className="cart_field__footer__button">
             <ButtonOfPage path="checkout" label="Check out" />

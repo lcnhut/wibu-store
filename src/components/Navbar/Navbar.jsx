@@ -30,7 +30,6 @@ export default function Navbar() {
   const cartItem = useSelector((state) => state.product.cart);
   let navigate = useNavigate();
   const navbar = useRef();
-
   window.onscroll = () => {
     if (document.documentElement.scrollTop < 100) {
       setOnActiveNavbar(true);
@@ -259,7 +258,6 @@ export default function Navbar() {
               <div className="cart_field__body__title">
                 <h3>{t('checkout.empty')}</h3>
               </div>
-              {/* <ButtonOfPage path="collection" label={t('checkout.shop_now')} /> */}
               <button
                 className="cart_field__body__btn"
                 onClick={() => {
@@ -297,7 +295,7 @@ export default function Navbar() {
               <div>{t('checkout.total')}</div>
               <div>
                 {t('checkout.price_formatted', {
-                  val: sum(cartItem.map((item) => item.price)),
+                  val: sum(cartItem.map((item) => item.price * item.quantity)),
                 })}
               </div>
             </div>
