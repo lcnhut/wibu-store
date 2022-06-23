@@ -50,7 +50,12 @@ const ProductDetailModal = (props) => {
           <Col className="product__information" span={12}>
             <h2>{product.name}</h2>
             <Divider />
-            <span>{product.description}</span>
+            <p>
+              {t('admin.product.description')}: {product.description}
+            </p>
+            <p>
+              {t('admin.product.category')}: {product.categories}
+            </p>
             <Divider />
             <Row>
               {product.colors.map((color, index) => {
@@ -62,7 +67,7 @@ const ProductDetailModal = (props) => {
                           return {
                             label: (
                               <span>
-                                {t('admin.product.size')}: {size.size} -{' '}
+                                {t('admin.product.size')}: {size.size} -
                                 {t('admin.product.in_stock')}: {size.inStock}
                               </span>
                             ),

@@ -17,6 +17,7 @@ const productApi = {
         image: product.images ? product.images : [],
         price: product.price,
         description: product.description ? product.description : '',
+        categories: product.category,
         colors: product.colors,
       })
       .then((response) => {
@@ -37,6 +38,7 @@ const productApi = {
       image: product.images ? product.images : [],
       price: product.price,
       description: product.description ? product.description : '',
+      categories: product.category,
       colors: product.colors,
     });
   },

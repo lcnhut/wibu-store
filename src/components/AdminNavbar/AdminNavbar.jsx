@@ -5,6 +5,7 @@ import {
 } from '@ant-design/icons';
 import { Menu, Select } from 'antd';
 import React from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink, useLocation } from 'react-router-dom';
 
@@ -30,10 +31,15 @@ const AdminNavbar = () => {
         break;
     }
   };
+  const activeItem = window.localStorage.getItem('activeSidebar');
 
   handleActiveItem(url);
+  const defaultLanguage = window.localStorage.getItem('lng');
 
-  const activeItem = window.localStorage.getItem('activeSidebar');
+  useEffect(() => {
+    i18n.changeLanguage(defaultLanguage);
+  }, []);
+
   const languageOptions = [
     {
       key: 'en',
@@ -57,6 +63,7 @@ const AdminNavbar = () => {
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
+    window.localStorage.setItem('lng', lng);
   };
 
   return (
@@ -72,9 +79,8 @@ const AdminNavbar = () => {
         <NavLink to="invoices">{t('admin.product.invoices')}</NavLink>
       </Menu.Item>
       <Menu.Item key={'3'} icon={<SettingOutlined />}>
-        {/* <NavLink to="setting">Setting</NavLink> */}
         <Select
-          defaultValue={languageOptions[0]}
+          defaultValue={defaultLanguage}
           options={languageOptions}
           onChange={changeLanguage}
         />
