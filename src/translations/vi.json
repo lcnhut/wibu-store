@@ -148,6 +148,7 @@
       "in_stock": "Tồn kho",
       "action": "Thao tác",
       "description": "Mô tả",
+      "category": "Loại",
       "color": "Màu",
       "quantity": "Số lượng",
       "size": "Kích cỡ",
