@@ -9,7 +9,8 @@
     "prepare": "husky install",
     "less": "lessc --js src/style/antd-customized.less src/style/antd-customized.css",
     "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "test:watchAll": "npm test -- --watchAll"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
