@@ -151,126 +151,121 @@ export default function Details() {
   };
 
   return (
-    <Spin spinning={isLoading}>
-      <>
-        {productData && (
-          <div className="container-page" style={{ padding: '0 7vw' }}>
-            <Space className="details__page__title__container">
-              <Link to="/">
-                <h1 className="details__page__title__h1">
-                  {t('details__page.home')}
-                </h1>
-              </Link>
-              <h3 className="details__page__title__h3">
-                {' '}
-                &gt; {productData.name}
-              </h3>
-            </Space>
-            <Row gutter={[26, 0]}>
-              <Col xl={{ span: 10 }} lg={{ span: 8 }} md={{ span: 12 }}>
-                <Carousel dotPosition="bottom" autoplay autoplaySpeed={1500}>
-                  {productData.image ? (
-                    productData.image.map((img, key) => (
-                      <Image preview={false} key={key} src={img.src} />
-                    ))
-                  ) : (
-                    <h1>loading</h1>
-                  )}
-                </Carousel>
-              </Col>
-              <Col xl={{ span: 9 }} lg={{ span: 8 }} md={{ span: 12 }}>
-                <Space direction="vertical">
-                  <h1>{productData.name}</h1>
-                  <h3 style={{ color: '#CEA384' }}>
-                    {t(`details__page.price_product`, {
-                      prices: productData.price,
-                    })}
-                  </h3>
-                  <Space style={{ color: '#CEA384' }}>
-                    <StarOutlined />
-                    <StarOutlined />
-                    <StarOutlined />
-                    <StarOutlined />
-                    <StarOutlined />
-                    {t('details__page.no_review')}
-                  </Space>
+    <>
+      <div className="spin__wrapper">
+        <Spin size="large" spinning={isLoading} />
+      </div>
+      {productData && (
+        <div className="container-page" style={{ padding: '0 7vw' }}>
+          <Space className="details__page__title__container">
+            <Link to="/">
+              <h1 className="details__page__title__h1">
+                {t('details__page.home')}
+              </h1>
+            </Link>
+            <h3 className="details__page__title__h3">
+              {' '}
+              &gt; {productData.name}
+            </h3>
+          </Space>
+          <Row gutter={[26, 0]}>
+            <Col xl={{ span: 10 }} lg={{ span: 8 }} md={{ span: 12 }}>
+              <Carousel dotPosition="bottom" autoplay autoplaySpeed={1500}>
+                {productData.image ? (
+                  productData.image.map((img, key) => (
+                    <Image preview={false} key={key} src={img.src} />
+                  ))
+                ) : (
+                  <h1>loading</h1>
+                )}
+              </Carousel>
+            </Col>
+            <Col xl={{ span: 9 }} lg={{ span: 8 }} md={{ span: 12 }}>
+              <Space direction="vertical">
+                <h1>{productData.name}</h1>
+                <h3 style={{ color: '#CEA384' }}>
+                  {t(`details__page.price_product`, {
+                    prices: productData.price,
+                  })}
+                </h3>
+                <Space style={{ color: '#CEA384' }}>
+                  <StarOutlined />
+                  <StarOutlined />
+                  <StarOutlined />
+                  <StarOutlined />
+                  <StarOutlined />
+                  {t('details__page.no_review')}
                 </Space>
-                <Divider />
-                <Space
-                  style={{ color: 'rgba(0,0,0,0.5)' }}
-                  direction="vertical"
+              </Space>
+              <Divider />
+              <Space style={{ color: 'rgba(0,0,0,0.5)' }} direction="vertical">
+                {productData.description}
+                <h1>{t(`details__page.hurry`, { inStock: countQty })}</h1>
+              </Space>
+              <Form
+                onFinish={onFinish}
+                form={form}
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 20 }}
+              >
+                <Form.Item
+                  rules={[{ required: true }]}
+                  name="color"
+                  label={t('details__page.color')}
                 >
-                  {productData.description}
-                  <h1>{t(`details__page.hurry`, { inStock: countQty })}</h1>
-                </Space>
-                <Form
-                  onFinish={onFinish}
-                  form={form}
-                  labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 20 }}
+                  <Select onSelect={(item) => handleSelectColor(item)}>
+                    {colors &&
+                      colors.map((item, key) => (
+                        <Option value={item} key={key}>
+                          {item.color}
+                        </Option>
+                      ))}
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  rules={[{ required: true }]}
+                  name="size"
+                  label={t('details__page.size')}
                 >
-                  <Form.Item
-                    rules={[{ required: true }]}
-                    name="color"
-                    label={t('details__page.color')}
-                  >
-                    <Select onSelect={(item) => handleSelectColor(item)}>
-                      {colors &&
-                        colors.map((item, key) => (
-                          <Option value={item} key={key}>
-                            {item.color}
+                  <Select>
+                    {sizes &&
+                      sizes
+                        .sort((a, b) => a - b)
+                        .map((s, key) => (
+                          <Option value={s} key={key}>
+                            {s}
                           </Option>
                         ))}
-                    </Select>
-                  </Form.Item>
-                  <Form.Item
-                    rules={[{ required: true }]}
-                    name="size"
-                    label={t('details__page.size')}
-                  >
-                    <Select>
-                      {sizes &&
-                        sizes
-                          .sort((a, b) => a - b)
-                          .map((s, key) => (
-                            <Option value={s} key={key}>
-                              {s}
-                            </Option>
-                          ))}
-                    </Select>
-                  </Form.Item>
-                  <Form.Item
-                    rules={[{ required: true }]}
-                    name="qty"
-                    label={t('details__page.quantity')}
-                  >
-                    <InputNumber min={1} />
-                  </Form.Item>
-                  <Button htmlType="submit">
-                    {t('details__page.add_to_cart')}
-                  </Button>
-                </Form>
-              </Col>
-              <Col xl={{ span: 5 }} lg={{ span: 8 }} md={{ span: 24 }}>
-                <Row gutter={[16, 0]}>
-                  {data.map((item, key) => (
-                    <Col key={key} sm={8} md={8} lg={24} xl={24}>
-                      <Space style={{ textAlign: 'center' }}>
-                        <Card
-                          hoverable
-                          title={t(`details__page.${item.Title}`)}
-                        >
-                          {t(`details__page.${item.content}`)}
-                        </Card>
-                      </Space>
-                    </Col>
-                  ))}
-                </Row>
-              </Col>
-            </Row>
-          </div>
-        )}
-      </>
-    </Spin>
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  rules={[{ required: true }]}
+                  name="qty"
+                  label={t('details__page.quantity')}
+                >
+                  <InputNumber min={1} />
+                </Form.Item>
+                <Button htmlType="submit">
+                  {t('details__page.add_to_cart')}
+                </Button>
+              </Form>
+            </Col>
+            <Col xl={{ span: 5 }} lg={{ span: 8 }} md={{ span: 24 }}>
+              <Row gutter={[16, 0]}>
+                {data.map((item, key) => (
+                  <Col key={key} sm={8} md={8} lg={24} xl={24}>
+                    <Space style={{ textAlign: 'center' }}>
+                      <Card hoverable title={t(`details__page.${item.Title}`)}>
+                        {t(`details__page.${item.content}`)}
+                      </Card>
+                    </Space>
+                  </Col>
+                ))}
+              </Row>
+            </Col>
+          </Row>
+        </div>
+      )}
+    </>
   );
 }

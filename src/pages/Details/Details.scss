@@ -14,3 +14,13 @@
   width: 100%;
   border: 1px solid blue;
 }
+.spin__wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  opacity: 0.8;
+}
