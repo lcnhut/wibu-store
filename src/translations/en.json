@@ -20,19 +20,15 @@
     "return_description": "Return this product within 100 days if you change your mind. Get a refund/replacement & free return shipping if it arrives damaged or not as described",
     "shipping_description": "Free if stated near price. $9.95 Australia wide (up to 10 items). $18.95 for Express Post (generally 1 business day).",
     "hurry": "HURRY! ONLY {{inStock}} LEFT IN STOCK",
-    "price_product": "{{val, currency(currency: USD)}}"
+    "price_product": "{{prices}} USD"
   },
   "field": {
-    "search_nav": {
-      "placeholder": "Tìm sản phẩm..."
-    }
+    "search_nav": {}
   },
 
-  "error": {
-    "not_choose_size": "Hãy chọn size của bạn!"
-  },
+  "error": {},
   "price_product": "{{val, currency(currency: VND)}}",
-  "price_product_null": "Liên hệ",
+
   "navbar": {
     "home": "Home",
     "collection": "Collection",
@@ -40,8 +36,7 @@
     "categories": "Categories",
     "sale": "Sale",
     "releases": "Releases",
-    "blog": "Blog",
-    "locations": "Vị trí shop"
+    "blog": "Blog"
   },
   "product_list": {
     "shop_collection": "Shop The Collection"
@@ -56,50 +51,31 @@
     "color_option": "Colors",
     "size_option": "Size"
   },
-  "home": {
-    "announcement": "Để tìm được size giày phù hợp. Vui lòng xem",
-    "announcement_link": "hướng dẫn chọn size của chúng tôi",
-    "new_arrival": "SẢN PHẨM MỚI VỀ",
-    "best_seller": "SẢN PHẨM BÁN CHẠY",
-    "new_releases": "SẢN PHẨM MỚI",
-    "feature_blog": "BÀI VIẾT HÀNG ĐẦU"
-  },
+
   "footer": {
     "infomation": "Information",
     "About": "About",
     "shop": "Shop",
+    "comments": "Comments",
     "subscribe": "Subscribe",
     "follow_us": "Follow Us",
     "newsLetter": "Newsletters",
+    "term_of_user": "Term Of User",
     "contact_info": "Contact Information",
-    "address": "Địa chỉ: Phường Cái Khế, Quận Ninh Kiều, Thành phố Cần Thơ",
-    "hotline": "Số điện thoại",
-    "work_time": "Thời gian làm việc",
-    "about_us": "Về chúng tôi",
+    "address": "Address",
+    "hotline": "Hot Line",
+    "work_time": "Work time",
+    "about_us": "About Us",
     "privacy_policy": "Privacy Policy",
     "Term_and_conditions": "Terms & Conditions",
     "Products_return": "Products Return",
     "wholesale_prolicy": "Wholesale Policy",
-    "help_center": "Trung tâm trợ giúp",
-    "address_store": "Cửa hàng địa chỉ",
+    "help_center": "Help Center",
+    "address_store": "Address Store",
     "Receivers_Amplifiers": "Receivers & Amplifiers",
     "promotions": "Be the first who learns about our great promotions!"
   },
-  "detail_product": {
-    "description": "Mô tả",
-    "shipping": "Giao hàng",
-    "comments": "Bình luận",
-    "description_content": "{{name}} kết hợp giữa phong cách thời trang và đường phố để mang đến cho bạn một đôi giày sneaker hầm hố. Phần trên bằng chất liệu hỗn hợp có các tấm lưới trong suốt giúp thoáng khí, trong khi phần gót có thể thu gọn lại mang đến nét nữ tính cho Nike b-ball.",
-    "detail": "Chi tiết sản phẩm",
-    "package_dimensions": "Kích thước gói hàng",
-    "date_first_available": "Ngày có sẵn đầu tiên",
-    "manufacturer": "Nhà chế tạo",
-    "item_model_number": "Số mô hình mặt hàng",
-    "weight": "Trọng lượng",
-    "no_support": "Không hỗ trợ",
-    "related_items": "Sản phẩm tương tự",
-    "products_in_stock": "Còn {{quantity}} sản phẩm trong kho"
-  },
+
   "checkout": {
     "empty": "Your cart is empty",
     "home": "Home",
@@ -144,11 +120,9 @@
       "name": "Product name",
       "image": "Image",
       "price": "Price",
-      "price_formatted": "{{val, currency(currency: USD)}}",
       "in_stock": "In stock",
       "action": "Action",
       "description": "Description",
-      "category": "Category",
       "color": "Color",
       "quantity": "Quantity",
       "size": "Size",
@@ -159,7 +133,7 @@
       "update_modal_label": "Update product",
       "delete_modal_label": "Delete product",
       "delete_modal_content": "This product will be deleted?",
-      "search_placeholder": "Search product"
+      "search_placehoder": "Search product"
     },
     "invoice": {
       "customer_name": "Customer name",
@@ -168,7 +142,7 @@
       "total_price": "Total price",
       "order_date": "Order date",
       "status": "Status",
-      "search_placeholder": "Search orders (customer name, total price, contact...)"
+      "search_placehoder": "Search orders (customer name, total price, contact...)"
     }
   },
   "country": {

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import 'animate.css';
-import { Col, Pagination, Row, Skeleton } from 'antd';
+import { Col, Pagination, Row, Skeleton, Space } from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -11,15 +11,17 @@ const ListProduct = (props) => {
   const ListData = useRef();
   let { data, loading } = props;
   const [loadingChangeProduct, setLoadingChangeProduct] = useState(loading);
+
   const { t } = useTranslation();
   const [numPagination, setNumPagination] = useState(1);
 
   useEffect(() => {
-    setLoadingChangeProduct(!loadingChangeProduct);
     setTimeout(() => {
       setLoadingChangeProduct(false);
-    }, 300);
+    }, 500);
+    setLoadingChangeProduct(true);
   }, [data]);
+
   const ROW_SHOW_IN_PAGE = 8;
   const sliceData = data.slice((numPagination - 1) * 8, numPagination * 8);
   return (
@@ -30,25 +32,48 @@ const ListProduct = (props) => {
           <div className="listproduct__title__line"></div>
         </Col>
       </Row>
+
       <Row gutter={[16, 26]} className="listproduct__wrapper" ref={ListData}>
         {loadingChangeProduct ? (
           <>
-            {Array(ROW_SHOW_IN_PAGE)
-              .fill(1)
-              .map((card, index) => (
-                <Col
-                  xs={{ span: 24 }}
-                  sm={{ span: 24 }}
-                  md={{ span: 12 }}
-                  lg={{ span: 8 }}
-                  xl={{ span: 6 }}
-                  className="listproduct__item"
-                  key={index}
-                  span={6}
-                >
-                  <Skeleton active />
-                </Col>
-              ))}
+            {
+              <>
+                {Array(ROW_SHOW_IN_PAGE)
+                  .fill(1)
+                  .map((card, index) => (
+                    <Col
+                      xs={{ span: 24 }}
+                      sm={{ span: 24 }}
+                      md={{ span: 12 }}
+                      lg={{ span: 8 }}
+                      xl={{ span: 6 }}
+                      className="listproduct__item"
+                      key={index}
+                      span={6}
+                    >
+                      <Space
+                        style={{ display: 'flex', flexDirection: 'column' }}
+                      >
+                        <Skeleton.Button
+                          style={{ width: '400px', height: '400px' }}
+                          active={true}
+                          size={'default'}
+                          shape={'square'}
+                          block={true}
+                        />
+                        <Skeleton.Input
+                          active={true}
+                          style={{ width: '400px', height: '15px' }}
+                        />
+                        <Skeleton.Input
+                          active={true}
+                          style={{ width: '400px', height: '15px' }}
+                        />
+                      </Space>
+                    </Col>
+                  ))}
+              </>
+            }
           </>
         ) : sliceData.length > 0 ? (
           sliceData.map((product, id) => {
@@ -70,7 +95,7 @@ const ListProduct = (props) => {
             );
           })
         ) : (
-          <p>Sorry, there are no products in this collection</p>
+          <p>not found</p>
         )}
         <Col
           xs={{ span: 24 }}
