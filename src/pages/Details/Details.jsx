@@ -125,8 +125,7 @@ export default function Details() {
       name: product.name,
       inStock: inStockPerColor,
     };
-    // dispatch(addToCart(submitData));
-    console.log(submitData);
+    dispatch(addToCart(submitData));
   };
 
   const onFinish = () => {
