@@ -43,6 +43,7 @@ const SingleProduct = ({ product }) => {
       name: product.name,
       image: product.image,
       price: product.price,
+      inStock: inStock,
     };
     dispatch(addToCart(submitData));
     setVisibleModalAddToCart(false);

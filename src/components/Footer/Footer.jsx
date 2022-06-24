@@ -17,7 +17,7 @@ import './Footer.scss';
 export default function Footer() {
   const { t, i18n } = useTranslation();
   return (
-    <div className="footer-container">
+    <div style={{ bottom: 0 }} className="footer-container">
       <div className="footer-container__content">
         <div className="footer-container__content__item">
           <div className="footer-container__content__item__title">
