@@ -64,7 +64,7 @@ export const getFilterProductSelector = createSelector(
         if (getFilterPrice === 0) return true;
         else if (getFilterPrice < 100) return item.prices < getFilterPrice;
         else {
-          return item.prices >= getFilterPrice;
+          return item.prices > getFilterPrice;
         }
       });
 

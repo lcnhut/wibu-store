@@ -303,7 +303,7 @@ export default function Navbar() {
               <div>
                 {t('checkout.price_formatted', {
                   val: formatCurrency(
-                    sum(cartItem.map((item) => item.price)),
+                    sum(cartItem.map((item) => item.price * item.quantity)),
                     defaultLanguage
                   ),
                 })}
