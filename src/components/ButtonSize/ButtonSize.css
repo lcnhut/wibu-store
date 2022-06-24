@@ -1,0 +1,38 @@
+.btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: 1px solid black;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-container.active {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+}
+
+.btn-container p {
+  margin: 0;
+  font-weight: 600;
+  padding: 8px 12px;
+}
+
+.btn-container:hover {
+  color: #fff;
+  background-color: #000;
+}
