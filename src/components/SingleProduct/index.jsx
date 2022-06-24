@@ -15,6 +15,7 @@ import {
   Row,
   Select,
 } from 'antd';
+import { set } from 'lodash';
 import { React, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -73,32 +74,60 @@ const SingleProduct = ({ product }) => {
   };
 
   const colorOption = product.colors.map((color) => color.color);
-  const selectedColor = colorOption[0];
+  const defaultColor = colorOption[0];
   const [sizeOption, setSizeOption] = useState([]);
   const [selectedSize] = useState(sizeOption[0]);
   const [bigImage, setBigImage] = useState(product.image[0].src);
+  const [inStock, setInStock] = useState(0);
+  const [selectedColor, setSelectedColor] = useState(defaultColor);
+  const [fullState, setFullState] = useState(false);
 
   useEffect(() => {
+    product.colors.forEach((item) => {
+      if (item.color === defaultColor) {
+        const size = item.sizes.map((size) => size.size);
+        setSizeOption(size);
+      }
+    });
+  }, [defaultColor]);
+
+  useEffect(() => {
+    form.setFieldsValue({
+      size: sizeOption[0],
+    });
+    setFullState(true);
+  }, [sizeOption, visibleModalAddToCart]);
+
+  useEffect(() => {
+    form.getFieldValue('size') &&
+      product.colors.forEach((item) => {
+        if (item.color === defaultColor) {
+          const currentSize = item.sizes.find(
+            (size) => size.size === form.getFieldValue('size')
+          );
+          setInStock(currentSize.inStock);
+        }
+      });
+  }, [fullState]);
+
+  // update size after changing color
+  const onChangeColor = (selectedColor) => {
+    setSelectedColor(selectedColor);
     product.colors.forEach((item) => {
       if (item.color === selectedColor) {
         const size = item.sizes.map((size) => size.size);
         setSizeOption(size);
       }
     });
-  }, [selectedColor]);
+  };
 
-  useEffect(() => {
-    form.setFieldsValue({
-      size: sizeOption[0],
-    });
-  }, [sizeOption, visibleModalAddToCart]);
-
-  // update size after changing color
-  const onChangeColor = (selectedColor) => {
+  const onChangeSize = (selectedSize) => {
     product.colors.forEach((item) => {
       if (item.color === selectedColor) {
-        const size = item.sizes.map((size) => size.size);
-        setSizeOption(size);
+        const currentSize = item.sizes.find(
+          (size) => size.size === selectedSize
+        );
+        setInStock(currentSize.inStock);
       }
     });
   };
@@ -146,7 +175,7 @@ const SingleProduct = ({ product }) => {
                 layout="vertical"
                 initialValues={{
                   size: selectedSize,
-                  color: selectedColor,
+                  color: defaultColor,
                   quantity: 1,
                 }}
                 form={form}
@@ -168,7 +197,7 @@ const SingleProduct = ({ product }) => {
                 </Form.Item>
 
                 <Form.Item name="size" label={t('admin.product.size')}>
-                  <Select style={{ width: '100%' }}>
+                  <Select style={{ width: '100%' }} onSelect={onChangeSize}>
                     {sizeOption
                       ? sizeOption
                           .sort((a, b) => a - b)
@@ -193,7 +222,7 @@ const SingleProduct = ({ product }) => {
                     name="quantity"
                     label={t('admin.product.quantity')}
                   >
-                    <InputNumber min={1} />
+                    <InputNumber min={1} max={inStock} />
                   </Form.Item>
 
                   <Button

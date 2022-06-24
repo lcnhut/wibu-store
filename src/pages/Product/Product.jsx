@@ -11,7 +11,6 @@ import './Product.scss';
 export default function Product() {
   const loading = useSelector(getLoadingOfProduct);
   const AllProduct = useSelector(getAllProduct);
-  console.log(AllProduct);
   const dispatch = useDispatch();
 
   useEffect(() => {
