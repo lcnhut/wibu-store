@@ -10,7 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   getAllProduct,
+  getFilterCategories,
   getFilterColor,
+  getFilterPrice,
   getFilterSize,
 } from '../../store/Selector/product/filterProductSelector';
 import {
@@ -34,10 +36,12 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
   const AllProduct = useSelector(getAllProduct);
   const sizeCurrentForFilter = useSelector(getFilterSize);
   const colorCurrentForFilter = useSelector(getFilterColor);
+  const categoriesCurrentForFilter = useSelector(getFilterCategories);
+  const priceCurrentForFilter = useSelector(getFilterPrice);
   const colorFilter = getAllColorExitInProduct(AllProduct);
   const sizeFilter = getAllSizeExitInProduct(AllProduct);
   const categoriesFilter = getAllCategoryExitInProduct(AllProduct);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const menu = (
     <Menu
       items={[
@@ -161,6 +165,12 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
                 <li
                   className="filter-selection-item__item"
                   value={'All'}
+                  style={{
+                    color:
+                      categoriesCurrentForFilter === ''
+                        ? 'var(--primary-color)'
+                        : 'black',
+                  }}
                   onClick={(e) => {
                     e.preventDefault();
                     addFilterCategories('');
@@ -174,6 +184,12 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
                       <li
                         className="filter-selection-item__item"
                         value={category}
+                        style={{
+                          color:
+                            categoriesCurrentForFilter === category
+                              ? 'var(--primary-color)'
+                              : 'black',
+                        }}
                         onClick={(e) => {
                           e.preventDefault();
                           addFilterCategories(category);
@@ -254,6 +270,12 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
               <ul className="filter-selection-item__items">
                 <li
                   className="filter-selection-item__item"
+                  style={{
+                    color:
+                      priceCurrentForFilter === 50
+                        ? 'var(--primary-color)'
+                        : 'black',
+                  }}
                   onClick={() => {
                     addFilterPrice(50);
                   }}
@@ -262,19 +284,31 @@ export default function FilterField({ showFilterButton, setValueShowItem }) {
                 </li>
                 <li
                   className="filter-selection-item__item"
+                  style={{
+                    color:
+                      priceCurrentForFilter === 100
+                        ? 'var(--primary-color)'
+                        : 'black',
+                  }}
                   onClick={() => {
                     addFilterPrice(100);
                   }}
                 >
-                  $50-$100
+                  higher than $100
                 </li>
                 <li
                   className="filter-selection-item__item"
+                  style={{
+                    color:
+                      priceCurrentForFilter === 150
+                        ? 'var(--primary-color)'
+                        : 'black',
+                  }}
                   onClick={() => {
                     addFilterPrice(150);
                   }}
                 >
-                  $100-$150
+                  higher than $150
                 </li>
               </ul>
             </div>
