@@ -5,13 +5,16 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import { removeItemFromCart } from '../../store/Slice/product/productSlice';
+import formatCurrency from '../../utils/formatCurrency';
 import './ProductCart.scss';
 
 export default function ProductCart(props) {
   const { image, name, size, quantity, color, price, index } = props;
 
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
+
+  const currentLanguage = i18n.language;
 
   return (
     <div className="product-cart">
@@ -23,7 +26,12 @@ export default function ProductCart(props) {
           {name} - {size} / {color}
         </p>
         <p>QTY : {quantity}</p>
-        <p>{t('checkout.price_formatted', { val: price })}</p>
+        <p>
+          {' '}
+          {t('checkout.price_formatted', {
+            val: formatCurrency(price, currentLanguage),
+          })}
+        </p>
       </div>
       <div
         style={{ cursor: 'pointer' }}

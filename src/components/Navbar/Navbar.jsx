@@ -14,6 +14,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import englandIcon from '../../../src/assets/images/englandIcon.jpg';
 import vietnamIcon from '../../assets/images/vietnamIcon.png';
+import formatCurrency from '../../utils/formatCurrency';
 import ButtonOfPage from '../Button/ButtonOfPage';
 import ProductCart from '../ProductCart/ProductCart';
 import './Navbar.scss';
@@ -301,7 +302,10 @@ export default function Navbar() {
               <div>{t('checkout.total')}</div>
               <div>
                 {t('checkout.price_formatted', {
-                  val: sum(cartItem.map((item) => item.price)),
+                  val: formatCurrency(
+                    sum(cartItem.map((item) => item.price)),
+                    defaultLanguage
+                  ),
                 })}
               </div>
             </div>
