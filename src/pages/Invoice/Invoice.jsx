@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getAllInvoiceAsync } from '../../store/Slice/invoice/invoiceSlice';
+import formatCurrency from '../../utils/formatCurrency';
 
 const Invoice = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,9 @@ const Invoice = () => {
   const [invoice, setInvoice] = useState(invoiceData);
   const [searchValue, setSearchValue] = useState('');
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const currentLanguage = i18n.language;
 
   useEffect(() => {
     dispatch(getAllInvoiceAsync());
@@ -45,6 +48,15 @@ const Invoice = () => {
       title: t('admin.invoice.total_price'),
       dataIndex: 'price',
       key: 'price',
+      render: (_, record) => {
+        return (
+          <span>
+            {t('admin.product.price_formatted', {
+              val: formatCurrency(record.price, currentLanguage),
+            })}
+          </span>
+        );
+      },
       sorter: (a, b) => a.price - b.price,
     },
     {
@@ -88,7 +100,7 @@ const Invoice = () => {
       <div className="admin__page">
         <Input
           className="search__input"
-          placeholder={t('admin.invoice.search_placehoder')}
+          placeholder={t('admin.invoice.search_placeholder')}
           value={searchValue}
           onChange={(e) => onSearch(e.target.value)}
         />
