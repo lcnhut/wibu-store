@@ -50,7 +50,12 @@ const CartItemCheckout = ({ product, index }) => {
             {product.size} / {product.color}
           </div>
         </div>
-        <InputNumber onChange={onQuantityChange} min={1} value={quantity} />
+        <InputNumber
+          onChange={onQuantityChange}
+          min={1}
+          max={product.inStock}
+          value={quantity}
+        />
         <div className="cart__price">
           {t('checkout.price_formatted', {
             val: formatCurrency(price, currentLanguage),

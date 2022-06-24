@@ -15,7 +15,6 @@ import {
   Row,
   Select,
 } from 'antd';
-import { set } from 'lodash';
 import { React, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -43,6 +42,7 @@ const SingleProduct = ({ product }) => {
       name: product.name,
       image: product.image,
       price: product.price,
+      inStock: inStock,
     };
     dispatch(addToCart(submitData));
     setVisibleModalAddToCart(false);
