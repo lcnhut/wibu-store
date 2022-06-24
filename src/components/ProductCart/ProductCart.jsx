@@ -29,7 +29,7 @@ export default function ProductCart(props) {
         <p>
           {' '}
           {t('checkout.price_formatted', {
-            val: formatCurrency(price, currentLanguage),
+            val: formatCurrency(price * quantity, currentLanguage),
           })}
         </p>
       </div>
