@@ -133,7 +133,8 @@
       "update_modal_label": "Update product",
       "delete_modal_label": "Delete product",
       "delete_modal_content": "This product will be deleted?",
-      "search_placehoder": "Search product"
+      "search_placeholder": "Search product",
+      "price_formatted": "{{val, currency(currency: USD)}}"
     },
     "invoice": {
       "customer_name": "Customer name",
@@ -142,7 +143,7 @@
       "total_price": "Total price",
       "order_date": "Order date",
       "status": "Status",
-      "search_placehoder": "Search orders (customer name, total price, contact...)"
+      "search_placeholder": "Search orders (customer name, total price, contact...)"
     }
   },
   "country": {
