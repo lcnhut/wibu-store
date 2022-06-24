@@ -198,7 +198,12 @@ export default function Details() {
                   })}
                 </h1>
               </Space>
-              <Form onFinish={onFinish} form={form} labelCol={{ span: 6 }}>
+              <Form
+                onFinish={onFinish}
+                form={form}
+                labelCol={{ span: 6 }}
+                id="detailspage__form"
+              >
                 <Form.Item
                   rules={[{ required: true }]}
                   name="color"
