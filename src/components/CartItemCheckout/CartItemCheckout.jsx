@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import { updateQuantity } from '../../store/Slice/product/productSlice';
+import formatCurrency from '../../utils/formatCurrency';
 import './CartItemCheckout.scss';
 
 const CartItemCheckout = ({ product, index }) => {
@@ -12,7 +13,7 @@ const CartItemCheckout = ({ product, index }) => {
   const [price, setPrice] = useState(product.price * product.quantity);
 
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const onQuantityChange = (value) => {
     const productPrice = value * product.price;
@@ -26,6 +27,7 @@ const CartItemCheckout = ({ product, index }) => {
       })
     );
   };
+  const currentLanguage = i18n.language;
 
   return (
     <div className="cart__item">
@@ -50,7 +52,9 @@ const CartItemCheckout = ({ product, index }) => {
         </div>
         <InputNumber onChange={onQuantityChange} min={1} value={quantity} />
         <div className="cart__price">
-          {t('checkout.price_formatted', { val: price })}
+          {t('checkout.price_formatted', {
+            val: formatCurrency(price, currentLanguage),
+          })}
         </div>
       </div>
     </div>
