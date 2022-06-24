@@ -1,0 +1,23 @@
+.image__group {
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.image__group img {
+  width: 100%;
+  max-width: 100px;
+  opacity: 1;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.image__group img:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}

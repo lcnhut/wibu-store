@@ -5,6 +5,7 @@ import {
   ShoppingCartOutlined,
 } from '@ant-design/icons';
 import {
+  Button,
   Col,
   Divider,
   Form,
@@ -14,6 +15,7 @@ import {
   Row,
   Select,
 } from 'antd';
+import { set } from 'lodash';
 import { React, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -21,6 +23,7 @@ import { Link } from 'react-router-dom';
 
 import { addToCart } from '../../store/Slice/product/productSlice';
 import { axiosInstance } from '../../utils/AxiosConfig/AxiosConfig';
+import formatCurrency from '../../utils/formatCurrency';
 import './styles.scss';
 
 const { Option } = Select;
@@ -31,7 +34,7 @@ const SingleProduct = ({ product }) => {
   const [visibleModalAddToCart, setVisibleModalAddToCart] = useState(false);
   const [singleProduct, setSingleProduct] = useState({});
 
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const handleAddToCart = (values) => {
     const submitData = {
@@ -71,28 +74,45 @@ const SingleProduct = ({ product }) => {
   };
 
   const colorOption = product.colors.map((color) => color.color);
-  const selectedColor = colorOption[0];
+  const defaultColor = colorOption[0];
   const [sizeOption, setSizeOption] = useState([]);
   const [selectedSize] = useState(sizeOption[0]);
   const [bigImage, setBigImage] = useState(product.image[0].src);
+  const [inStock, setInStock] = useState(0);
+  const [selectedColor, setSelectedColor] = useState(defaultColor);
+  const [fullState, setFullState] = useState(false);
 
   useEffect(() => {
     product.colors.forEach((item) => {
-      if (item.color === selectedColor) {
+      if (item.color === defaultColor) {
         const size = item.sizes.map((size) => size.size);
         setSizeOption(size);
       }
     });
-  }, [selectedColor]);
+  }, [defaultColor]);
 
   useEffect(() => {
     form.setFieldsValue({
       size: sizeOption[0],
     });
+    setFullState(true);
   }, [sizeOption, visibleModalAddToCart]);
+
+  useEffect(() => {
+    form.getFieldValue('size') &&
+      product.colors.forEach((item) => {
+        if (item.color === defaultColor) {
+          const currentSize = item.sizes.find(
+            (size) => size.size === form.getFieldValue('size')
+          );
+          setInStock(currentSize.inStock);
+        }
+      });
+  }, [fullState]);
 
   // update size after changing color
   const onChangeColor = (selectedColor) => {
+    setSelectedColor(selectedColor);
     product.colors.forEach((item) => {
       if (item.color === selectedColor) {
         const size = item.sizes.map((size) => size.size);
@@ -100,6 +120,19 @@ const SingleProduct = ({ product }) => {
       }
     });
   };
+
+  const onChangeSize = (selectedSize) => {
+    product.colors.forEach((item) => {
+      if (item.color === selectedColor) {
+        const currentSize = item.sizes.find(
+          (size) => size.size === selectedSize
+        );
+        setInStock(currentSize.inStock);
+      }
+    });
+  };
+
+  const currentLanguage = i18n.language;
 
   return (
     <>
@@ -142,7 +175,7 @@ const SingleProduct = ({ product }) => {
                 layout="vertical"
                 initialValues={{
                   size: selectedSize,
-                  color: selectedColor,
+                  color: defaultColor,
                   quantity: 1,
                 }}
                 form={form}
@@ -164,7 +197,7 @@ const SingleProduct = ({ product }) => {
                 </Form.Item>
 
                 <Form.Item name="size" label={t('admin.product.size')}>
-                  <Select style={{ width: '100%' }}>
+                  <Select style={{ width: '100%' }} onSelect={onChangeSize}>
                     {sizeOption
                       ? sizeOption
                           .sort((a, b) => a - b)
@@ -189,15 +222,19 @@ const SingleProduct = ({ product }) => {
                     name="quantity"
                     label={t('admin.product.quantity')}
                   >
-                    <InputNumber min={1} />
+                    <InputNumber min={1} max={inStock} />
                   </Form.Item>
 
-                  <button className="add-to-cart__btn" type="submit">
+                  <Button
+                    size="large"
+                    className="add-to-cart__btn"
+                    htmlType="submit"
+                  >
                     <ShoppingCartOutlined
                       style={{ fontSize: '20px', marginRight: '5px' }}
                     />
                     {t('checkout.add_to_cart')}
-                  </button>
+                  </Button>
                 </div>
               </Form>
             </Col>
@@ -231,7 +268,11 @@ const SingleProduct = ({ product }) => {
           >
             <h4>{product.name}</h4>
           </Link>
-          <p>{t('checkout.price_formatted', { val: product.price })}</p>
+          <p>
+            {t('checkout.price_formatted', {
+              val: formatCurrency(product.price, currentLanguage),
+            })}
+          </p>
         </div>
       </div>
     </>

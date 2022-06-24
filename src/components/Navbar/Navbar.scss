@@ -269,6 +269,17 @@ header {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    &__btn {
+      height: 45px;
+      border: none;
+      background-color: black;
+      color: #fff;
+      cursor: pointer;
+      padding: 0 35px;
+    }
+    &__btn:hover {
+      background-color: var(--primary-color);
+    }
   }
   &__header {
     display: flex;

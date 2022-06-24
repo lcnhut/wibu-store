@@ -25,6 +25,7 @@ import {
   updateProductAsync,
 } from '../../store/Slice/product/productSlice';
 import { setColorTag } from '../../utils/SetTagColor/setTagColor';
+import formatCurrency from '../../utils/formatCurrency';
 import './ProductAdmin.scss';
 
 const { Panel } = Collapse;
@@ -49,7 +50,8 @@ const ProductAdmin = () => {
   const [productToUpdate, setProductToUpdate] = useState();
   const [productDetail, setProductDetail] = useState({});
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
 
   useEffect(() => {
     dispatch(getAllAsync());
@@ -92,9 +94,30 @@ const ProductAdmin = () => {
       },
     },
     {
+      title: t('admin.product.category'),
+      dataIndex: 'categories',
+      key: 'categories',
+      render: (_, record) => {
+        return (
+          <div style={{ marginBottom: '5px' }}>
+            <Tag color={setColorTag(0)}>{record.categories.toUpperCase()}</Tag>
+          </div>
+        );
+      },
+    },
+    {
       title: t('admin.product.price'),
       dataIndex: 'price',
       key: 'price',
+      render: (_, record) => {
+        return (
+          <span>
+            {t('admin.product.price_formatted', {
+              val: formatCurrency(record.price, currentLanguage),
+            })}
+          </span>
+        );
+      },
       sorter: (a, b) => a.price - b.price,
     },
     {
@@ -187,7 +210,9 @@ const ProductAdmin = () => {
       (entry) =>
         entry.name.toLowerCase().includes(currValue) ||
         entry.name.toUpperCase().includes(currValue) ||
-        entry.price.includes(currValue)
+        entry.price.toString().includes(currValue) ||
+        entry.categories.toLowerCase().includes(currValue) ||
+        entry.categories.toUpperCase().includes(currValue)
     );
     setProduct(filteredData);
   };
@@ -258,7 +283,7 @@ const ProductAdmin = () => {
       <div className="admin__page">
         <Input
           className="search__input"
-          placeholder="Search product"
+          placeholder={t('admin.product.search_placeholder')}
           value={searchValue}
           onChange={(e) => onSearch(e.target.value)}
         />

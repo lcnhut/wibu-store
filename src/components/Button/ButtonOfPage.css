@@ -8,10 +8,13 @@
   color: #fff;
   background-color: black;
   cursor: pointer;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  &:hover {
-    transition: 0.3s;
-    background-color: #cea384;
-    color: white;
-  }
+}
+
+.Button-of-page:hover {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  background-color: #cea384;
+  color: white;
 }

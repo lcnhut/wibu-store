@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
-import { Form, Input, InputNumber, Modal } from 'antd';
+import { Form, Input, InputNumber, Modal, Select } from 'antd';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import formatSubmitData from '../../../utils/FormatSubmitData/formatSubmitData';
 import { DynamicColorField } from '../../DynamicField/DynamicColorField';
 import { DynamicImageField } from '../../DynamicField/DynamicImageField';
+
+const { Option } = Select;
 
 const UpdateProductForm = (props) => {
   const { t } = useTranslation();
@@ -35,9 +37,37 @@ const UpdateProductForm = (props) => {
       price: productToUpdate.price,
       description: productToUpdate.description,
       images: productToUpdate.image,
+      category: productToUpdate.categories,
       colors: updateColorsData,
     });
   }, [productToUpdate]);
+
+  const categoryOption = [
+    {
+      label: 'High-tops',
+      value: 'High-tops',
+    },
+    {
+      label: 'Running shoes',
+      value: 'Running shoes',
+    },
+    {
+      label: 'Climbing shoes',
+      value: 'Climbing shoes',
+    },
+    {
+      label: 'Old skool',
+      value: 'Old skool',
+    },
+    {
+      label: 'Hiking boots',
+      value: 'Hiking boots',
+    },
+  ];
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
 
   const onFinish = (values) => {
     const transformData = formatSubmitData(values);
@@ -95,13 +125,39 @@ const UpdateProductForm = (props) => {
             >
               <InputNumber />
             </Form.Item>
-            <DynamicImageField />
             <Form.Item
               name="description"
               label={t('admin.product.description')}
             >
               <Input />
             </Form.Item>
+            <Form.Item
+              name="category"
+              label={t('admin.product.category')}
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
+            >
+              <Select
+                defaultValue={productToUpdate.categories}
+                style={{
+                  width: 120,
+                }}
+                onChange={handleChange}
+              >
+                {categoryOption.map((item, index) => {
+                  return (
+                    <Option key={index} value={item.value}>
+                      {item.label}
+                    </Option>
+                  );
+                })}
+              </Select>
+            </Form.Item>
+
+            <DynamicImageField />
             <DynamicColorField
               colors={productToUpdate.colors}
               productToUpdate={productToUpdate}

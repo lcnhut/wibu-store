@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { invoiceApi } from '../../api';
 import { CartItemCheckout, CheckoutForm } from '../../components';
 import { clearCart } from '../../store/Slice/product/productSlice';
+import formatCurrency from '../../utils/formatCurrency';
 import './Checkout.scss';
 
 const Checkout = () => {
@@ -22,7 +23,7 @@ const Checkout = () => {
 
   const TAX_PERCENT = 0.1;
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -72,6 +73,9 @@ const Checkout = () => {
     }
   };
 
+  const currentLanguage = i18n.language;
+  console.log(formatCurrency(tax, currentLanguage));
+
   return (
     <div className="checkout__container">
       <div className="checkout__content">
@@ -113,7 +117,9 @@ const Checkout = () => {
                 <div className="checkout__summary__line">
                   <div>{t('checkout.total')}</div>
                   <div className="checkout__summary__price">
-                    {t('checkout.price_formatted', { val: subTotalPrice })}
+                    {t('checkout.price_formatted', {
+                      val: formatCurrency(subTotalPrice, currentLanguage),
+                    })}
                   </div>
                 </div>
                 <div className="checkout__summary__line">
@@ -123,14 +129,18 @@ const Checkout = () => {
                 <div className="checkout__summary__line">
                   <div>{t('checkout.tax')}</div>
                   <div className="checkout__summary__price">
-                    {t('checkout.price_formatted', { val: tax })}
+                    {t('checkout.price_formatted', {
+                      val: formatCurrency(tax, currentLanguage),
+                    })}
                   </div>
                 </div>
               </div>
               <div className="checkout__summary__total__price">
                 <div>{t('checkout.amount')}</div>
                 <div className="final__price">
-                  {t('checkout.price_formatted', { val: totalPrice })}
+                  {t('checkout.price_formatted', {
+                    val: formatCurrency(totalPrice, currentLanguage),
+                  })}
                 </div>
               </div>
             </div>

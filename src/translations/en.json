@@ -20,7 +20,7 @@
     "return_description": "Return this product within 100 days if you change your mind. Get a refund/replacement & free return shipping if it arrives damaged or not as described",
     "shipping_description": "Free if stated near price. $9.95 Australia wide (up to 10 items). $18.95 for Express Post (generally 1 business day).",
     "hurry": "HURRY! ONLY {{inStock}} LEFT IN STOCK",
-    "price_product": "{{prices}} USD"
+    "price_product": "{{val, currency(currency: USD)}}"
   },
   "field": {
     "search_nav": {
@@ -144,9 +144,11 @@
       "name": "Product name",
       "image": "Image",
       "price": "Price",
+      "price_formatted": "{{val, currency(currency: USD)}}",
       "in_stock": "In stock",
       "action": "Action",
       "description": "Description",
+      "category": "Category",
       "color": "Color",
       "quantity": "Quantity",
       "size": "Size",
@@ -157,7 +159,7 @@
       "update_modal_label": "Update product",
       "delete_modal_label": "Delete product",
       "delete_modal_content": "This product will be deleted?",
-      "search_placehoder": "Search product"
+      "search_placeholder": "Search product"
     },
     "invoice": {
       "customer_name": "Customer name",
@@ -166,7 +168,7 @@
       "total_price": "Total price",
       "order_date": "Order date",
       "status": "Status",
-      "search_placehoder": "Search orders (customer name, total price, contact...)"
+      "search_placeholder": "Search orders (customer name, total price, contact...)"
     }
   },
   "country": {
