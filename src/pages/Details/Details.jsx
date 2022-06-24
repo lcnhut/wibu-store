@@ -33,7 +33,7 @@ export default function Details() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [qty] = useState(1);
-
+  const [inStockPerColor, setInStockPerColor] = useState(1);
   const [product, setProduct] = useState();
   const isLoading = useSelector((state) => state.product.isLoading);
 
@@ -58,8 +58,6 @@ export default function Details() {
         size: product.colors[0].sizes[0].size,
       });
   }, [product]);
-
-  let totalInStock = 1;
   useEffect(() => {
     product &&
       product.colors &&
@@ -67,16 +65,15 @@ export default function Details() {
         if (cl.color === selectedColor) {
           const sizes = cl.sizes.map((s) => s.size);
           setSizes(sizes);
+          cl.sizes.forEach((instock) => {
+            let total = 0;
+            total += instock.inStock;
+            setInStockPerColor(total);
+          });
         }
       });
-  }, []);
-  product &&
-    product.colors &&
-    product.colors.forEach((cl) => {
-      cl.sizes.forEach((item) => {
-        totalInStock += item.inStock;
-      });
-    });
+  }, [selectedColor]);
+
   useEffect(() => {
     form.setFieldsValue({
       qty: qty,
@@ -89,6 +86,11 @@ export default function Details() {
       if (item.color === selectedColor) {
         const sizes = item.sizes.map((s) => s.size);
         setSizes(sizes);
+        item.sizes.forEach((instock) => {
+          let total = 0;
+          total += instock.inStock;
+          setInStockPerColor(total);
+        });
       }
     });
   };
@@ -121,10 +123,10 @@ export default function Details() {
       sizes: values.sizes,
       quantity: values.qty ? values.qty : 1,
       name: product.name,
-      inStock: totalInStock,
+      inStock: inStockPerColor,
     };
-    dispatch(addToCart(submitData));
-    // console.log(submitData);
+    // dispatch(addToCart(submitData));
+    console.log(submitData);
   };
 
   const onFinish = () => {
@@ -191,7 +193,11 @@ export default function Details() {
               <Divider />
               <Space style={{ color: 'rgba(0,0,0,0.5)' }} direction="vertical">
                 {product.description}
-                <h1>{t(`details__page.hurry`, { inStock: totalInStock })}</h1>
+                <h1>
+                  {t(`details__page.hurry`, {
+                    inStock: inStockPerColor,
+                  })}
+                </h1>
               </Space>
               <Form onFinish={onFinish} form={form} labelCol={{ span: 6 }}>
                 <Form.Item
@@ -229,7 +235,7 @@ export default function Details() {
                   name="qty"
                   label={t('details__page.quantity')}
                 >
-                  <InputNumber min={1} max={totalInStock} />
+                  <InputNumber min={1} max={inStockPerColor} />
                 </Form.Item>
                 <div className="button__wrapper">
                   <Button

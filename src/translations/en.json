@@ -20,7 +20,7 @@
     "return_description": "Return this product within 100 days if you change your mind. Get a refund/replacement & free return shipping if it arrives damaged or not as described",
     "shipping_description": "Free if stated near price. $9.95 Australia wide (up to 10 items). $18.95 for Express Post (generally 1 business day).",
     "hurry": "HURRY! ONLY {{inStock}} LEFT IN STOCK",
-    "price_product": "{{prices}} USD"
+    "price_product": "{{val, currency(currency: USD)}}"
   },
   "field": {
     "search_nav": {}
